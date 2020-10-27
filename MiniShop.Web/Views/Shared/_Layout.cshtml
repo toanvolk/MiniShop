@@ -1,138 +1,149 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- basic -->
+    <title>@ViewData["Title"] - Shop.link</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- mobile metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-    <!-- site metas -->
-    <title>@ViewData["Title"] - MiniShop.Web</title>
-    <meta name="keywords" content="">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <!-- bootstrap css -->
-    <link rel="stylesheet" href="~/lib/fiu/css/bootstrap.min.css">
-    <link href="~/lib/fiu/css/bootstrap.min.css" rel="stylesheet" />
-    <!-- style css -->
-    <link rel="stylesheet" href="~/lib/fiu/css/style.css">
-    <!-- Responsive-->
-    <link rel="stylesheet" href="~/lib/fiu/css/responsive.css">
-    <!-- fevicon -->
-    <link rel="icon" href="~/lib/fiu/images/fevicon.png" type="image/gif" />
-    <!-- Scrollbar Custom CSS -->
-    <link rel="stylesheet" href="~/lib/fiu/css/jquery.mCustomScrollbar.min.css">
-    <!-- Tweaks for older IEs-->
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-    <!-- owl stylesheets -->
-    <link rel="stylesheet" href="~/lib/fiu/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="~/lib/fiu/css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+    <meta name="description" content="Free HTML5 Website Template by gettemplates.co" />
+    <meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
+    <meta name="author" content="gettemplates.co" />
+
+    <!--
+    //////////////////////////////////////////////////////
+
+    FREE HTML5 TEMPLATE
+    DESIGNED & DEVELOPED by FreeHTML5.co
+
+    Website: 		http://freehtml5.co/
+    Email: 			info@freehtml5.co
+    Twitter: 		http://twitter.com/fh5co
+    Facebook: 		https://www.facebook.com/fh5co
+
+    //////////////////////////////////////////////////////
+     -->
+    <!-- Facebook and Twitter integration -->
+    <meta property="og:title" content="" />
+    <meta property="og:image" content="" />
+    <meta property="og:url" content="" />
+    <meta property="og:site_name" content="" />
+    <meta property="og:description" content="" />
+    <meta name="twitter:title" content="" />
+    <meta name="twitter:image" content="" />
+    <meta name="twitter:url" content="" />
+    <meta name="twitter:card" content="" />
+
+    <!-- <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet"> -->
+    <!-- <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i" rel="stylesheet"> -->
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="~/lib/shop-master/css/animate.css">
+    <!-- Icomoon Icon Fonts-->
+    <link rel="stylesheet" href="~/lib/shop-master/css/icomoon.css">
+    <!-- Bootstrap  -->
+    <link rel="stylesheet" href="~/lib/shop-master/css/bootstrap.css">
+
+    <!-- Flexslider  -->
+    <link rel="stylesheet" href="~/lib/shop-master/css/flexslider.css">
+
+    <!-- Owl Carousel  -->
+    <link rel="stylesheet" href="~/lib/shop-master/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/lib/shop-master/css/owl.theme.default.min.css">
+
+    <!-- Theme style  -->
+    <link rel="stylesheet" href="~/lib/shop-master/css/style.css">
+
+    <!-- Modernizr JS -->
+    <script src="~/lib/shop-master/js/modernizr-2.6.2.min.js"></script>
+    <!-- FOR IE9 below -->
+    <!--[if lt IE 9]>
+    <script src="~/lib/shop-master/js/respond.min.js"></script>
+    <![endif]-->
+    <!-- my css -->
+    <link href="~/css/p-layout.css" rel="stylesheet" />
 </head>
 <body>
-    <!-- header section start -->
-    <div class="header_section">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="fh5co-loader"></div>
+    <div id="page">
+        @RenderBody()
+        <footer id="fh5co-footer" role="contentinfo">
             <div class="container">
-                <a class="logo" href="index.html"><img src="~/lib/fiu/images/logo.png"></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.html">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="about.html">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="design.html">Our Design</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="shop.html">Shop</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="contact.html">Contact Us</a>
-                        </li>
-                    </ul>
-                    <form class="form-inline my-2 my-lg-0">
-                        <div class="search_icon">
-                            <ul>
-                                <li><a href="#"><img src="~/lib/fiu/images/search-icon.png"></a></li>
-                                <li><a href="#"><img src="~/lib/fiu/images/user-icon.png"></a></li>
-                            </ul>
-                        </div>
-                    </form>
-                </div>
+                <div class="row row-pb-md">
+                    <div class="col-md-4 fh5co-widget">
+                        <h3>Shop.</h3>
+                        <p>Facilis ipsum reprehenderit nemo molestias. Aut cum mollitia reprehenderit. Eos cumque dicta adipisci architecto culpa amet.</p>
+                    </div>
+                    <div class="col-md-2 col-sm-4 col-xs-6 col-md-push-1">
+                        <ul class="fh5co-footer-links">
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Help</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Terms</a></li>
+                            <li><a href="#">Meetups</a></li>
+                        </ul>
+                    </div>
 
-            </div>
-        </nav>
-    </div>
-    @RenderBody()
-    <!-- footer section start -->
-    <div class="footer_section">
-        <div class="container">
-            <div class="footer_location_text">
-                <ul>
-                    <li><img src="~/lib/fiu/images/map-icon.png"><span class="padding_left_10"><a href="#">Loram Ipusm hosting web</a></span></li>
-                    <li><img src="~/lib/fiu/images/call-icon.png"><span class="padding_left_10"><a href="#">Call : +7586656566</a></span></li>
-                    <li><img src="~/lib/fiu/images/mail-icon.png"><span class="padding_left_10"><a href="#">demo@gmail.com</a></span></li>
-                </ul>
-            </div>
-            <div class="row">
-                <div class="col-lg-3 col-sm-6">
-                    <h2 class="useful_text">Useful link </h2>
-                    <div class="footer_menu">
-                        <ul>
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="about.html">About</a></li>
-                            <li><a href="design.html">Our Designe</a></li>
-                            <li><a href="contact.html">Contact Us</a></li>
+                    <div class="col-md-2 col-sm-4 col-xs-6 col-md-push-1">
+                        <ul class="fh5co-footer-links">
+                            <li><a href="#">Shop</a></li>
+                            <li><a href="#">Privacy</a></li>
+                            <li><a href="#">Testimonials</a></li>
+                            <li><a href="#">Handbook</a></li>
+                            <li><a href="#">Held Desk</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-2 col-sm-4 col-xs-6 col-md-push-1">
+                        <ul class="fh5co-footer-links">
+                            <li><a href="#">Find Designers</a></li>
+                            <li><a href="#">Find Developers</a></li>
+                            <li><a href="#">Teams</a></li>
+                            <li><a href="#">Advertise</a></li>
+                            <li><a href="#">API</a></li>
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-3 col-sm-6">
-                    <h2 class="useful_text">Repair</h2>
-                    <p class="lorem_text">Lorem ipsum dolor sit amet, consectetur  adipiscinaliqua  Loreadipiscing </p>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <h2 class="useful_text">Social Media</h2>
-                    <div id="social">
-                        <a class="facebookBtn smGlobalBtn active" href="#"></a>
-                        <a class="twitterBtn smGlobalBtn" href="#"></a>
-                        <a class="googleplusBtn smGlobalBtn" href="#"></a>
-                        <a class="linkedinBtn smGlobalBtn" href="#"></a>
+
+                <div class="row copyright">
+                    <div class="col-md-12 text-center">
+                        <p>
+                            <small class="block">&copy; 2018 Free HTML5. All Rights Reserved.</small>
+                            <small class="block">Designed by <a href="http://freehtml5.co/" target="_blank">FreeHTML5.co</a> Demo Images: <a href="http://blog.gessato.com/" target="_blank">Gessato</a> &amp; <a href="http://unsplash.co/" target="_blank">Unsplash</a></small>
+                        </p>
+                        <p>
+                            <ul class="fh5co-social-icons">
+                                <li><a href="#"><i class="icon-twitter"></i></a></li>
+                                <li><a href="#"><i class="icon-facebook"></i></a></li>
+                                <li><a href="#"><i class="icon-linkedin"></i></a></li>
+                                <li><a href="#"><i class="icon-dribbble"></i></a></li>
+                            </ul>
+                        </p>
                     </div>
                 </div>
-                <div class="col-sm-6 col-lg-3">
-                    <h1 class="useful_text">Our Repair center</h1>
-                    <p class="footer_text">Lorem ipsum dolor sit amet, consectetur adipiscinaliquaLoreadipiscing </p>
-                </div>
+
             </div>
-        </div>
+        </footer>
     </div>
-    <!-- footer section end -->
-    <!-- copyright section start -->
-    <div class="copyright_section">
-        <div class="container">
-            <p class="copyright_text">2020 All Rights Reserved. Design by <a href="https://html.design">Free html  Templates</a></p>
-        </div>
+
+    <div class="gototop js-top">
+        <a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
     </div>
-    <!-- copyright section end -->
-    <!-- Javascript files-->
-    <script src="~/lib/fiu/js/jquery.min.js"></script>
-    <script src="~/lib/fiu/js/popper.min.js"></script>
-    <script src="~/lib/fiu/js/bootstrap.bundle.min.js"></script>
-    <script src="~/lib/fiu/js/jquery-3.0.0.min.js"></script>
-    <script src="~/lib/fiu/js/plugin.js"></script>
-    <!-- sidebar -->
-    <script src="~/lib/fiu/js/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script src="~/lib/fiu/js/custom.js"></script>
-    <!-- javascript -->
-    <script src="~/lib/fiu/js/owl.carousel.js"></script>
-    <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+    <!-- jQuery -->
+    <script src="~/lib/shop-master/js/jquery.min.js"></script>
+    <!-- jQuery Easing -->
+    <script src="~/lib/shop-master/js/jquery.easing.1.3.js"></script>
+    <!-- Bootstrap -->
+    <script src="~/lib/shop-master/js/bootstrap.min.js"></script>
+    <!-- Waypoints -->
+    <script src="~/lib/shop-master/js/jquery.waypoints.min.js"></script>
+    <!-- Carousel -->
+    <script src="~/lib/shop-master/js/owl.carousel.min.js"></script>
+    <!-- countTo -->
+    <script src="~/lib/shop-master/js/jquery.countTo.js"></script>
+    <!-- Flexslider -->
+    <script src="~/lib/shop-master/js/jquery.flexslider-min.js"></script>
+    <!-- Main -->
+    <script src="~/lib/shop-master/js/main.js"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>
