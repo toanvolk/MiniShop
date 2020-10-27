@@ -1,0 +1,65 @@
+﻿
+using MiniShop.EF;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Threading.Tasks;
+
+namespace MiniShop.Infrastructure
+{
+    public class UnitOfWork : IUnitOfWork
+    {
+        //  var context = services.GetRequiredService<MiniShopContext>();
+        //  public MiniShopContext dbContext =>  new MiniShopContext;
+        private MiniShopContext _dbContext;
+        private readonly IRepositoryBase _repositoryBase;
+        public UnitOfWork(MiniShopContext dbContext, IRepositoryBase repositoryBase)
+        {
+            _dbContext = dbContext;
+            _repositoryBase = repositoryBase;
+        }
+
+        #region method
+        public int SaveChanges()
+        {
+            CheckIsDisposed();
+            return _dbContext.SaveChanges();
+        }
+
+        public Task<int> SaveChangesAsync()
+        {
+            CheckIsDisposed();
+            return _dbContext.SaveChangesAsync();
+        }
+
+        private bool _disposed = false;
+        private void CheckIsDisposed()
+        {
+            if (_disposed)
+            {
+                throw new ObjectDisposedException(GetType().Name);
+            }
+        }
+
+        [Obsolete]
+        public int ExecQueryCommand(string sqlQuery, params object[] param) => _dbContext.Database.ExecuteSqlCommand(sqlQuery, param); //"procedureName @p0, @p1", parameters: new[] { "Bill", "Gates" }
+
+        [Obsolete]
+        public Task<int> ExecQueryCommandAsync(string sqlQuery, params object[] param) => _dbContext.Database.ExecuteSqlCommandAsync(sqlQuery, param); //"CreateTable @p0, @p1", parameters: new[]
+
+        public string GetDatabaseName()=> _repositoryBase.GetDatabaseName();
+
+        public System.Collections.Generic.IEnumerable<dynamic> GetDynamicResult(string commandText, params SqlParameter[] parameters)=> _repositoryBase.GetDynamicResult(commandText, parameters);
+
+        #endregion end method
+
+        #region register reponsitory
+        //private IRepositoryBase<Category> _categoryRepository;       
+        //public DbSet<Category> Categories => _dbContext.Categorys;
+
+        //Not table on database
+        
+        #endregion end register reponsitory
+    }
+  
+}
