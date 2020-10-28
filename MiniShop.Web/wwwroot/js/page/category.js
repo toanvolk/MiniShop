@@ -6,7 +6,7 @@
 var categoryIndex = {
     clickEvent: function (e) {
         let _handle = categoryHandle();
-        if (eval($(e).data('ename')))
+        if (eval($(e).data('ename')) == categoryConst.add) categoryIndex.add(e, _handle);
     },
     changeEvent: function (e) {
         let _eventName = $(e).data('ename'); _handle = categoryHandle();
@@ -75,6 +75,21 @@ var categoryIndex = {
                 }
             ]
         })
+    },
+    add: function (e, handle) {
+        handle.dialog({
+            contentData: {
+                url: "/admin/category/add",
+                
+            },
+            config: {
+                title: "TẠO MỚI",
+                actions: ["Refresh", "Close"],
+                width: 800
+                //close: function () { categoryIndex.loadTable(); },
+                //refresh: function () { categoryIndex.loadTable(); }
+            }
+        });
     }
 };
 var categoryHandle = function () {

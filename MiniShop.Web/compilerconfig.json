@@ -2,5 +2,9 @@
   {
     "outputFile": "wwwroot/css/p-layout.css",
     "inputFile": "wwwroot/css/p-layout.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/page/category-add.css",
+    "inputFile": "wwwroot/css/page/category-add.scss"
   }
 ]

@@ -26,5 +26,10 @@ namespace MiniShop.Web.Areas.admin.Controllers
             };
             return Json(response);
         }
+        [HttpPost]
+        public IActionResult Add()
+        {
+            return PartialView("_add");
+        }
     }
 }

@@ -18,5 +18,6 @@ namespace MiniShop.EF
         public string Description { get; set; }
         public bool NotUse { get; set; }
         public Guid CategoryId { get; set; }
+        public string TrackingLink { get; set; }
     }
 }
