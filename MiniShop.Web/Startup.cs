@@ -2,11 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using MiniShop.EF;
 
 namespace MiniShop.Web
 {
@@ -22,12 +26,25 @@ namespace MiniShop.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var mappingConfig = new MapperConfiguration(cfg =>
+            {
+                //cfg.AddProfile(new CategoryProfileMapping());
+                //cfg.AddProfile(new ExpenseProfileMapping());
+                //cfg.AddProfile(new IntendedProfileMapping());
+            });
+            IMapper mapper = mappingConfig.CreateMapper();
+            services.AddSingleton(mapper);
+
+            // Add Db Context
+            services.AddDbContext<MiniShopContext>(options => options.UseSqlServer(Configuration.GetConnectionString("MiniShopConnection")));
+
             services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -36,6 +53,11 @@ namespace MiniShop.Web
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+            //Migrate database
+            MigrateDatabaseAuto.Migrate(app);
+
+            // Add Logfile
+            loggerFactory.AddFile(Configuration.GetSection("Logging:LogPath").Value);
             app.UseStaticFiles();
 
             app.UseRouting();
@@ -44,6 +66,9 @@ namespace MiniShop.Web
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(
+                    name: "admin",
+                    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
