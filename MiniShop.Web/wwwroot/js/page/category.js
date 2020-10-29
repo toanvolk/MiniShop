@@ -3,7 +3,8 @@
     edit: 'edit',
     delete: 'delete',
     gridSelectorName: '#mnshop-category .grid',
-    urlLoadData: 'category/loaddata'
+    urlLoadData: 'category/loaddata',
+    statuChange: 'statu-change'
 };
 var categoryIndex = {
     clickEvent: function (e) {
@@ -13,7 +14,8 @@ var categoryIndex = {
         if (eval($(e).data('ename')) == categoryConst.delete) categoryIndex.delete(e, _handle);
     },
     changeEvent: function (e) {
-        let _eventName = $(e).data('ename'); _handle = categoryHandle();
+        let _handle = categoryHandle();
+        if (eval($(e).data('ename')) == categoryConst.statuChange) categoryIndex.statuChange(e, _handle);
     },
     //child event
     init: function () {
@@ -56,10 +58,12 @@ var categoryIndex = {
                     title: "Status",
                     template: function (item) {
                         let _html = `<div class="custom-switch">
-                                            <input type="checkbox" class="custom-control-input" id="{id}" checked="">
+                                            <input type="checkbox" class="custom-control-input" id="{id}" {checked} onchange="categoryIndex.changeEvent(this)" data-ename= "categoryConst.statuChange" data-id="{id}">
                                             <label class="custom-control-label" for="{id}"></label>
                                         </div>`
-                        return _html.replaceAll(new RegExp("{id}", "gi"), item.id);
+                        return _html
+                            .replaceAll(new RegExp("{id}", "gi"), item.id)
+                            .replaceAll(new RegExp("{checked}", "gi"), item.notUse == true ? "" : "checked" )
                     },
                     width: "120px"
                 },
@@ -126,6 +130,20 @@ var categoryIndex = {
             }
 
         }).catch(swal.noop);
+    },
+    statuChange: function (e, handle) {
+        let _id = $(e).data('id');
+        let _checked = $(e).prop('checked');
+
+        console.log(_id, _checked);
+        handle.statuChange(_id, _checked, function (res) {
+            if (res.statu == 200) {
+                $(categoryConst.gridSelectorName).data("kendoGrid").dataSource.read();
+            }
+            else {
+                swal(res.statu, res.message, 'error');
+            }            
+        });
     }
 };
 var categoryHandle = function () {
@@ -135,12 +153,17 @@ var categoryHandle = function () {
             callback(res);
         });
     }
+    let _statuChange = function (categoryId, checked, callback) {
+        let _url = 'category/updateStatu';
+        $.post(_url, { categoryId: categoryId, ischecked: checked }, function (res) { callback(res);});
+    }
     return {
         data: helper.formData,
         formatNumber: helper.formatNumber,
         validate: helper.inputValidate,
         dialog: helper.showDialog,
-        delete: _delete
+        delete: _delete,
+        statuChange: _statuChange
     }
 };
 categoryIndex.init();

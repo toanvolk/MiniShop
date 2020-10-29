@@ -20,6 +20,7 @@ namespace MiniShop.Web.Areas.admin.Controllers
         }
         public IActionResult Index()
         {
+            ViewBag.Title = "Category";
             return View();
         }
         public JsonResult LoadData()
@@ -102,6 +103,28 @@ namespace MiniShop.Web.Areas.admin.Controllers
                 else
                 {
                     var response = new DataResponeCommon() { Statu = StatuCodeEnum.InternalServerError, Message = "Xóa thất bại" };
+                    return Json(response);
+                }
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e.Message);
+                throw;
+            }
+        }
+        [HttpPost]
+        public JsonResult UpdateStatu(Guid categoryId, bool ischecked)
+        {
+            try
+            {
+                if (_categoryService.UpdateStatu(categoryId, ischecked))
+                {
+                    var response = new DataResponeCommon() { Statu = StatuCodeEnum.OK, Message = "Cập nhật thành công" };
+                    return Json(response);
+                }
+                else
+                {
+                    var response = new DataResponeCommon() { Statu = StatuCodeEnum.InternalServerError, Message = "Cập nhật thất bại" };
                     return Json(response);
                 }
             }

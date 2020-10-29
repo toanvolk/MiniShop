@@ -11,5 +11,6 @@ namespace MiniShop.App
         bool Delete(Guid categoryId);
         ICollection<CategoryDto> LoadData();
         CategoryDto GetData(Guid categoryId);
+        bool UpdateStatu(Guid categoryId, bool ischecked);
     }
 }

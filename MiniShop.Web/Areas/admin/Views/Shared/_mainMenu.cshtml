@@ -2,20 +2,21 @@
 @{
     Layout = null;
 }
+
 <!-- BEGIN: Main Menu-->
 <div class="header-navbar navbar-expand-sm navbar navbar-horizontal navbar-fixed navbar-dark navbar-without-dd-arrow navbar-shadow" role="navigation" data-menu="menu-wrapper">
     <div class="navbar-container main-menu-content" data-menu="menu-container">
         <ul class="nav navbar-nav" id="main-menu-navigation" data-menu="menu-navigation">
-            <li class="dropdown nav-item" data-menu="dropdown">
+            <li class="dropdown nav-item @(ViewBag.Title == "Dashboard" ? "active" : "")" data-menu="dropdown">
                 <a class="dropdown-toggle nav-link" href="index.html" data-toggle="dropdown"><i class="ft-home"></i><span>Dashboard</span></a>
             </li>
-            <li class="dropdown nav-item" data-menu="dropdown">
-                <a class="dropdown-toggle nav-link" href="index.html" data-toggle="dropdown"><i class="ft-box"></i><span>Category</span></a>
+            <li class="dropdown nav-item @(ViewBag.Title == "Category" ? "active" : "") " data-menu="dropdown">
+                <a class="nav-link" href="/admin/category"><i class="ft-box"></i><span>Category</span></a>
             </li>
-            <li class="dropdown nav-item" data-menu="dropdown">
+            <li class="dropdown nav-item @(ViewBag.Title == "Product" ? "active" : "")" data-menu="dropdown">
                 <a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown"><i class="ft-layers"></i><span>Product</span></a>
             </li>
-        </ul>
+        </ul>        
     </div>
 </div>
 <!-- END: Main Menu-->

@@ -56,5 +56,14 @@ namespace MiniShop.App
 
             return categoryDto;
         }
+
+        public bool UpdateStatu(Guid categoryId, bool ischecked)
+        {
+            var entity = _unitOfWorfk.CategoryRepository.FindById(categoryId);
+            entity.UpdatedBy = "ADMIN";
+            entity.UpdatedDate = DateTime.Now;
+            entity.NotUse = !ischecked;
+            return _unitOfWorfk.SaveChanges() > 0;
+        }
     }
 }
