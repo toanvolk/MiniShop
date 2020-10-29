@@ -54,11 +54,12 @@ namespace MiniShop.Infrastructure
         #endregion end method
 
         #region register reponsitory
-        //private IRepositoryBase<Category> _categoryRepository;       
-        //public DbSet<Category> Categories => _dbContext.Categorys;
+        private IRepositoryBase<Category> _categoryRepository;
+        public IRepositoryBase<Category> CategoryRepository => _categoryRepository ?? (_categoryRepository = new RepositoryBase<Category>(_dbContext));
+        public DbSet<Category> Categories => _dbContext.Categorys;
 
         //Not table on database
-        
+
         #endregion end register reponsitory
     }
   

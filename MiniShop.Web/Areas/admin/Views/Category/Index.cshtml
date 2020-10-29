@@ -1,7 +1,8 @@
 ﻿@{ Layout = "../Shared/_Layout.cshtml"; }
 
-@section Styles{ 
+@section Styles{
     <link href="~/css/page/category-add.css" rel="stylesheet" />
+    <link href="~/css/page/category-edit.css" rel="stylesheet" />
 }
 <section id="mnshop-category">
     <div class="content-wrapper-before"></div>
@@ -17,8 +18,12 @@
                         <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                         <div class="heading-elements">
                             <ul class="list-inline mb-0">
-                                <li><button type="button" class="btn btn-glow btn-round btn-bg-gradient-x-red-pink"
-                                            onclick="categoryIndex.clickEvent(this)" data-ename="categoryConst.add">Add</button></li>
+                                <li>
+                                    <button type="button" class="btn btn-glow btn-round btn-bg-gradient-x-red-pink"
+                                            onclick="categoryIndex.clickEvent(this)" data-ename="categoryConst.add">
+                                        Add
+                                    </button>
+                                </li>
                             </ul>
                         </div>
                     </div>

@@ -1,26 +1,29 @@
 ﻿@{
     Layout = null;
 }
-<div class="card" id="mnshop-category-add">
+@using MiniShop.App;
+@model CategoryDto;
+<div class="card" id="mnshop-category-edit">
     <div class="card-content collapse show">
         <div class="card-body">            
             <div class="form">
+                <input hidden name="Id" value="@Model.Id" />
                 <div class="form-body">
                     <h4 class="form-section">
                         <i class="ft-flag"></i> Category Info
                     </h4>
                     <div class="form-group">
                         <label for="categoryName">Name</label>
-                        <input type="text" class="form-control" placeholder="Category name" name="Name" required validate-message-required="Please a category name!">
+                        <input type="text" class="form-control" placeholder="Category name" name="Name" required validate-message-required="Please a category name!" value="@Model.Name">
                     </div>                    
                     <div class="form-group">
                         <label for="companyinput8">Description</label>
-                        <textarea rows="5" class="form-control" name="Description" placeholder="Category description"></textarea>
+                        <textarea rows="5" class="form-control" name="Description" placeholder="Category description" value="@Model.Description">@Model.Description</textarea>
                     </div>
                 </div>
 
-                <div class="form-actions">
-                    <button class="btn btn-primary" onclick="categoryAddIndex.clickEvent(this)" data-ename="categoryAddConst.save">
+                <div class="form-actions">                   
+                    <button class="btn btn-primary" onclick="categoryEditIndex.clickEvent(this)" data-ename="categoryEditConst.save">
                         <i class="la la-check-square-o"></i> Save
                     </button>
                 </div>

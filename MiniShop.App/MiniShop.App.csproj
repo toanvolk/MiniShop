@@ -10,12 +10,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Implements\" />
-    <Folder Include="Interfaces\" />
-    <Folder Include="Maps\Profile\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\MiniShop.EF\MiniShop.EF.csproj" />
     <ProjectReference Include="..\MiniShop.Infrastructure\MiniShop.Infrastructure.csproj" />
   </ItemGroup>

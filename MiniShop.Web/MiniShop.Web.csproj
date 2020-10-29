@@ -4407,4 +4407,10 @@
     <Folder Include="Areas\admin\Models\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="wwwroot\css\page\category-add - Copy.min.css">
+      <DependentUpon>category-add.min.css</DependentUpon>
+    </Content>
+  </ItemGroup>
+
 </Project>

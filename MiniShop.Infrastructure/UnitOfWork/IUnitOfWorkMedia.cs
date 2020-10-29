@@ -19,8 +19,8 @@ namespace MiniShop.Infrastructure
         Task<int> ExecQueryCommandAsync(string sqlQuery, params object[] param);
 
         #region Implement Repository
-        //IRepositoryBase<Category> CategoryRepository { get; }
-        //DbSet<Category> Categories { get; }        
+        IRepositoryBase<Category> CategoryRepository { get; }
+        DbSet<Category> Categories { get; }
 
         #endregion
 

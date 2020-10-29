@@ -10,7 +10,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using MiniShop.App;
 using MiniShop.EF;
+using MiniShop.Infrastructure;
 
 namespace MiniShop.Web
 {
@@ -28,15 +30,23 @@ namespace MiniShop.Web
         {
             var mappingConfig = new MapperConfiguration(cfg =>
             {
-                //cfg.AddProfile(new CategoryProfileMapping());
-                //cfg.AddProfile(new ExpenseProfileMapping());
-                //cfg.AddProfile(new IntendedProfileMapping());
+                cfg.AddProfile(new CategoryProfileMapping());
             });
             IMapper mapper = mappingConfig.CreateMapper();
             services.AddSingleton(mapper);
 
             // Add Db Context
             services.AddDbContext<MiniShopContext>(options => options.UseSqlServer(Configuration.GetConnectionString("MiniShopConnection")));
+
+            //Registry dependency
+            // Register DbContext
+            services.AddScoped<MiniShopContext>();
+            // Register UnitOfWork
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            // Register RepositoryBase
+            services.AddScoped<IRepositoryBase, RepositoryBase>();
+
+            services.AddScoped<ICategoryService, CategoryService>();
 
             services.AddControllersWithViews();
         }

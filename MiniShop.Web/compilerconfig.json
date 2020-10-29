@@ -6,5 +6,9 @@
   {
     "outputFile": "wwwroot/css/page/category-add.css",
     "inputFile": "wwwroot/css/page/category-add.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/page/category-edit.css",
+    "inputFile": "wwwroot/css/page/category-edit.scss"
   }
 ]

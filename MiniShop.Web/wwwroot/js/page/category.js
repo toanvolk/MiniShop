@@ -1,12 +1,16 @@
 ﻿var categoryConst = {
     add: 'add',
+    edit: 'edit',
+    delete: 'delete',
     gridSelectorName: '#mnshop-category .grid',
-    urlLoadData: ''
+    urlLoadData: 'category/loaddata'
 };
 var categoryIndex = {
     clickEvent: function (e) {
         let _handle = categoryHandle();
         if (eval($(e).data('ename')) == categoryConst.add) categoryIndex.add(e, _handle);
+        if (eval($(e).data('ename')) == categoryConst.edit) categoryIndex.edit(e, _handle);
+        if (eval($(e).data('ename')) == categoryConst.delete) categoryIndex.delete(e, _handle);
     },
     changeEvent: function (e) {
         let _eventName = $(e).data('ename'); _handle = categoryHandle();
@@ -51,16 +55,11 @@ var categoryIndex = {
                     field: "NotUse",
                     title: "Status",
                     template: function (item) {
-                        let _html = `<div class="onoffswitch">
-                                    <input type = "checkbox" name = "onoffswitch" class="onoffswitch-checkbox" id = "oow-{{id}}" onchange="categoryIndex.changeEvent(this, categoryIndex.actionType.UpdateStatu)" {{checked}} data-id="{{id}}">
-                                    <label class="onoffswitch-label" for="oow-{{id}}">
-                                        <span class="onoffswitch-inner"></span>
-                                        <span class="onoffswitch-switch"></span>
-                                    </label>
-                                    </div >`
-                        return _html
-                            .replace(RegExp("{{id}}", "gi"), item.id)
-                            .replace(RegExp("{{checked}}", "gi"), item.notUse == true ? "" : "checked");
+                        let _html = `<div class="custom-switch">
+                                            <input type="checkbox" class="custom-control-input" id="{id}" checked="">
+                                            <label class="custom-control-label" for="{id}"></label>
+                                        </div>`
+                        return _html.replaceAll(new RegExp("{id}", "gi"), item.id);
                     },
                     width: "120px"
                 },
@@ -68,8 +67,8 @@ var categoryIndex = {
                     field: "",
                     width: "15%",
                     template: function (item) {
-                        let _html = '<button type="button" class="btn btn-outline-primary round mr-1 mb-1" onclick="categoryIndex.clickEvent(this, categoryIndex.actionType.EditForm)" data-id="' + item.id + '"><i class="ft-edit-3"></i> Sửa</button>';
-                        _html += '<button type="button" class="btn btn-outline-danger round mr-1 mb-1" onclick="categoryIndex.clickEvent(this, categoryIndex.actionType.Delete)" data-id="' + item.id + '" data-name="' + item.name + '"><i class="ft-trash-2"></i> Xóa</button>';
+                        let _html = '<button type="button" class="btn btn-outline-primary round mr-1 mb-1" onclick="categoryIndex.clickEvent(this)" data-id="' + item.id + '" data-ename= "categoryConst.edit"><i class="ft-edit-3"></i> Sửa</button>';
+                        _html += '<button type="button" class="btn btn-outline-danger round mr-1 mb-1" onclick="categoryIndex.clickEvent(this)" data-id="' + item.id + '" data-name="' + item.name + '" data-ename= "categoryConst.delete"><i class="ft-trash-2"></i> Xóa</button>';
                         return _html;
                     },
                 }
@@ -85,20 +84,63 @@ var categoryIndex = {
             config: {
                 title: "TẠO MỚI",
                 actions: ["Refresh", "Close"],
-                width: 800
-                //close: function () { categoryIndex.loadTable(); },
-                //refresh: function () { categoryIndex.loadTable(); }
+                width: 800,
+                close: function () { $(categoryConst.gridSelectorName).data("kendoGrid").dataSource.read(); },
+                refresh: function () { $(categoryConst.gridSelectorName).data("kendoGrid").dataSource.read(); }
             }
         });
+    },
+    edit: function (e, handle) {
+        let _id = $(e).data('id');
+        handle.dialog({
+            contentData: {
+                url: "/admin/category/edit",
+                data: { categoryId: _id }
+            },
+            config: {
+                title: "TẠO MỚI",
+                actions: ["Refresh", "Close"],
+                width: 650,
+                close: function () { $(categoryConst.gridSelectorName).data("kendoGrid").dataSource.read(); },
+                refresh: function () { $(categoryConst.gridSelectorName).data("kendoGrid").dataSource.read(); }
+            }
+        });
+    },
+    delete: function (e, handle) {
+        var _dataCategory = $(e).data();
+        swal({
+            title: 'Chắc xóa?',
+            text: 'Xóa [' + _dataCategory.name + ']!',
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Quay lại',
+            confirmButtonText: 'Vâng, xóa!'
+        }).then(function (e) {
+            if (e.value == true) {
+                handle.delete(_dataCategory.id, function (res) {
+                    swal('Đã xóa!', res.message, 'success');
+                    $(categoryConst.gridSelectorName).data("kendoGrid").dataSource.read();
+                });
+            }
+
+        }).catch(swal.noop);
     }
 };
 var categoryHandle = function () {
-
+    let _delete = function (categoryId, callback) {
+        let _url = 'category/delete';
+        $.post(_url, { categoryId: categoryId}, function (res) {
+            callback(res);
+        });
+    }
     return {
         data: helper.formData,
         formatNumber: helper.formatNumber,
         validate: helper.inputValidate,
-        dialog: helper.showDialog
+        dialog: helper.showDialog,
+        delete: _delete
     }
 };
 categoryIndex.init();
