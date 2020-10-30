@@ -1,87 +1,40 @@
 ﻿@{
     Layout = null;
 }
-<div class="card">
-    <div class="card-header">
-        <h4 class="card-title" id="basic-layout-form">Simple Form</h4>
-        <a class="heading-elements-toggle">
-            <i class="la la-ellipsis-v font-medium-3"></i>
-        </a>
-        <div class="heading-elements">
-            <ul class="list-inline mb-0">
-                <li>
-                    <a data-action="collapse">
-                        <i class="ft-minus"></i>
-                    </a>
-                </li>
-                <li>
-                    <a data-action="reload">
-                        <i class="ft-rotate-cw"></i>
-                    </a>
-                </li>
-                <li>
-                    <a data-action="expand">
-                        <i class="ft-maximize"></i>
-                    </a>
-                </li>
-                <li>
-                    <a data-action="close">
-                        <i class="ft-x"></i>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
+<div class="card" id="mnshop-product-add">
     <div class="card-content collapse show">
-        <div class="card-body">
-            <div class="card-text">
-                <p>This is the most basic and default form having form section.</p>
-            </div>
-            <form class="form">
+        <div class="card-body">            
+            <div class="form">
                 <div class="form-body">
                     <h4 class="form-section">
                         <i class="ft-flag"></i> Product Info
                     </h4>
                     <div class="form-group">
-                        <label for="companyName">Name</label>
-                        <input type="text" id="companyName" class="form-control" placeholder="Company Name" name="company">
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="companyinput1">Email</label>
-                                <input type="email" id="companyinput1" class="form-control" placeholder="email" name="email">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="companyinput5">Company Locations</label>
-                                <select id="companyinput5" name="interested" class="form-control">
-                                    <option value="none" selected="" disabled="">Countries</option>
-                                    <option value="design">US</option>
-                                    <option value="development">Canada</option>
-                                    <option value="illustration">Japan</option>
-                                    <option value="branding">Australia</option>
-                                    <option value="video">China</option>
-                                </select>
-                            </div>
-                        </div>
+                        <label for="productName">Name</label>
+                        <input type="text" class="form-control" placeholder="Product name" name="Name" required validate-message-required="Please a product name!">
                     </div>
                     <div class="form-group">
-                        <label for="companyinput8">About Company</label>
-                        <textarea id="companyinput8" rows="5" class="form-control" name="comment" placeholder="About Company"></textarea>
+                        <label for="companyinput8">Description</label>
+                        <textarea rows="5" class="form-control" name="Description" placeholder="Product description"></textarea>
                     </div>
+                    <div class="form-group">
+                        <div class="input-group">                            
+                            <input type="text" class="form-control" name="Picture" placeholder="Link image">
+                            <div class="input-group-prepend">
+                                <span class="btn btn-outline-info input-group-text" 
+                                      onclick="productAddIndex.clickEvent(this)" data-ename="productAddConst.chooseImage">Choose image</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="filemanager"></div>
                 </div>
 
                 <div class="form-actions">
-                    <button type="button" class="btn btn-danger mr-1">
-                        <i class="ft-x"></i> Cancel
-                    </button>
-                    <button type="submit" class="btn btn-primary">
+                    <button class="btn btn-primary" onclick="productAddIndex.clickEvent(this)" data-ename="productAddConst.save">
                         <i class="la la-check-square-o"></i> Save
                     </button>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 </div>

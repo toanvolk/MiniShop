@@ -18,7 +18,7 @@
         let _contentData = {
             url: "",
             type: "POST",
-            data: {},
+            data: {},            
         }
 
         if (obj.contentData) {
@@ -200,6 +200,89 @@
                 x1 = x1.replace(rgx, '$1' + ',' + '$2');
             }
             return x1 + x2;
+        }
+    },
+    file: {
+        fileManager: function (content, obj) {
+            let _data = {
+                modal: false
+            }
+            let _configKendoWindow = {
+                name: "k-window-custom-" + helper.createGUID(),
+                title: "Title-window",
+                draggable: true,
+                resizable: false,
+                width: "600px",
+                modal: true,
+                actions: [
+                    "Maximize",
+                    "Close"
+                ],
+                activate: function (e) {
+                    this.center();
+                },
+                close: function (e) {
+                    //e.sender.element.data('handler').destroy();
+                    console.log(e);
+                },
+                visible: true
+            }
+            
+            kendo.syncReady(function () {
+                content.kendoFileManager({
+                    "toolbar": {
+                        "items": [{
+                            "name": "createFolder"
+                        }, {
+                            "name": "upload"
+                        }, {
+                            "name": "sortDirection"
+                        }, {
+                            "name": "sortField"
+                        }, {
+                            "name": "changeView"
+                        }, {
+                            "name": "spacer"
+                        }, {
+                            "name": "details"
+                        }, {
+                            "name": "search"
+                        }
+                        ]
+                    },
+                    "contextMenu": {
+                        "items": [{
+                            "name": "rename"
+                        }, {
+                            "name": "delete"
+                        }
+                        ]
+                    },
+                    "dataSource": {
+                        "transport": {
+                            "read": {
+                                "url": "/admin/FileManagerData/Read",
+                                "type": "POST"
+                            },
+                            "update": {
+                                "url": "/admin/FileManagerData/Update",
+                                "type": "POST"
+                            },
+                            "create": {
+                                "url": "/admin/FileManagerData/Create",
+                                "type": "POST"
+                            },
+                            "destroy": {
+                                "url": "/admin/FileManagerData/Destroy",
+                                "type": "POST"
+                            }
+                        }
+                    },
+                    "uploadUrl": "/admin/FileManagerData/Upload"
+                });
+                content.kendoWindow(_configKendoWindow);
+            });
+                        
         }
     }
 }

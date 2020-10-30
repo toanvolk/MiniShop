@@ -21,6 +21,8 @@ namespace MiniShop.Infrastructure
         #region Implement Repository
         IRepositoryBase<Category> CategoryRepository { get; }
         DbSet<Category> Categories { get; }
+        IRepositoryBase<Product> ProductRepository { get; }
+        DbSet<Product> Products { get; }
 
         #endregion
 

@@ -10,5 +10,13 @@
   {
     "outputFile": "wwwroot/css/page/category-edit.css",
     "inputFile": "wwwroot/css/page/category-edit.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/page/product-add.css",
+    "inputFile": "wwwroot/css/page/product-add.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/page/product-edit.css",
+    "inputFile": "wwwroot/css/page/product-edit.scss"
   }
 ]

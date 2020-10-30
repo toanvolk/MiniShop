@@ -58,6 +58,10 @@ namespace MiniShop.Infrastructure
         public IRepositoryBase<Category> CategoryRepository => _categoryRepository ?? (_categoryRepository = new RepositoryBase<Category>(_dbContext));
         public DbSet<Category> Categories => _dbContext.Categorys;
 
+        private IRepositoryBase<Product> _productRepository;
+        public IRepositoryBase<Product> ProductRepository => _productRepository ?? (_productRepository = new RepositoryBase<Product>(_dbContext));
+        public DbSet<Product> Products => _dbContext.Products;
+
         //Not table on database
 
         #endregion end register reponsitory
