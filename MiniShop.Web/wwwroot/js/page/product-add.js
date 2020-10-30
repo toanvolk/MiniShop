@@ -45,7 +45,15 @@ var productAddIndex = {
         //        width: 800
         //    }
         //});
-        handle.fileManager($(e));
+        handle.fileDialog(
+            content = $(e).closest(productAddConst.cardContent),
+            objConfig = { title: "Choose file"},
+            callbackAfterChoose = function (selects) {
+                let _filenames = [];
+                $(selects).each(function (index, item) { _filenames.push(item.path); });
+                $(e).parent().prev().val(_filenames);
+            }
+        );
     }
 };
 var productAddHandle = function () {
@@ -64,6 +72,6 @@ var productAddHandle = function () {
         showDialog: helper.showDialog,
         closeDialog: helper.closeDialog,
         newId: helper.createGUID,
-        fileManager: helper.file.fileManager
+        fileDialog: helper.file.fileDialog
     }
 }

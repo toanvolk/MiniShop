@@ -1,5 +1,6 @@
 ﻿#mnshop-product-add .form-control {
-  padding: revert; }
+  padding: revert;
+  padding-left: 8px; }
 
 #mnshop-product-add .btn {
   cursor: pointer; }

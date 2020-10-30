@@ -88,6 +88,10 @@ var productIndex = {
             config: {
                 title: "TẠO MỚI",
                 actions: ["Refresh", "Close"],
+                activate: function (e) {
+                    handle.initEditor($('#mnshop-product-add #description'));
+                 
+                },
                 width: 800,
                 close: function () { $(productConst.gridSelectorName).data("kendoGrid").dataSource.read(); },
                 refresh: function () { $(productConst.gridSelectorName).data("kendoGrid").dataSource.read(); }
@@ -163,7 +167,8 @@ var productHandle = function () {
         validate: helper.inputValidate,
         dialog: helper.showDialog,
         delete: _delete,
-        statuChange: _statuChange
+        statuChange: _statuChange,
+        initEditor:  helper.editor.init
     }
 };
 productIndex.init();
