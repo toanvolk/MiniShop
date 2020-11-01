@@ -297,7 +297,12 @@ namespace MiniShop.Web.Areas.admin.Controllers
                     var directories = directoryBrowser.GetDirectories(path);
                     var result = files.Concat(directories).Select(VirtualizePath);
 
-                    return Json(result.ToArray());
+                    return Json(result.ToArray(), new System.Text.Json.JsonSerializerOptions()
+                    {
+                        PropertyNameCaseInsensitive = false
+                    });
+
+                    //return Json(result.ToArray());
                 }
                 catch (DirectoryNotFoundException)
                 {
@@ -425,7 +430,7 @@ namespace MiniShop.Web.Areas.admin.Controllers
         {
             var fileContent = ContentDispositionHeaderValue.Parse(file.ContentDisposition);
             return Path.GetFileName(fileContent.FileName.ToString().Trim('"'));
-        }
+        }        
     }
 
     public class FileContentBrowser

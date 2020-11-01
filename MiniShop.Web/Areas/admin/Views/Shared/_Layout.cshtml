@@ -34,7 +34,8 @@
     <!-- BEGIN: Custom CSS-->
     <link href="~/lib/chameleon-admin/assets/css/style.css" rel="stylesheet" />
     <!-- END: Custom CSS-->
-    <script src="~/lib/chameleon-admin/app-assets/js/core/libraries/jquery.min.js"></script>
+    @*<script src="~/lib/chameleon-admin/app-assets/js/core/libraries/jquery.min.js"></script>*@
+    <script src="~/lib/kendo-ui/js/jquery.min.js"></script>
     <!-- BEGIN: Vendor JS-->
     <script src="~/lib/chameleon-admin/app-assets/vendors/js/vendors.min.js" type="text/javascript"></script>
     <!-- BEGIN Vendor JS-->
@@ -45,8 +46,11 @@
 
     <script src="~/lib/kendo-ui/js/kendo.all.min.js"></script>
     <script src="~/lib/kendo-ui/js/kendo.aspnetmvc.min.js"></script>
+    @*<script src="~/lib/kendo-ui/js/kendo.editor.min.js"></script>
+        <script src="~/lib/kendo-ui/js/kendo.filebrowser.min.js"></script>
+        <script src="~/lib/kendo-ui/js/kendo.filemanager.min.js"></script>*@
     <!-- END: kendo ui-->
-    @RenderSection("Styles",false)
+    @RenderSection("Styles", false)
 </head>
 <!-- END: Head-->
 <!-- BEGIN: Body-->

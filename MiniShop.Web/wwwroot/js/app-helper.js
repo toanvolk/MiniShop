@@ -1,4 +1,5 @@
-﻿var helper = {
+﻿
+var helper = {
     createGUID: function () {
         return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
             var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
@@ -18,7 +19,7 @@
         let _contentData = {
             url: "",
             type: "POST",
-            data: {},            
+            data: {},
         }
 
         if (obj.contentData) {
@@ -202,9 +203,17 @@
             return x1 + x2;
         }
     },
+    formatString: {
+        upperCaseFirst: function (str) {
+            str = str.toLowerCase().replace(/\b[a-z]/g, function (letter) {
+                return letter.toUpperCase();
+            });
+            return str;
+        }
+    },
     file: {
         fileDialog: function (content, objConfig, callbackAfterChoose) {
-            let _newId = helper.createGUID(); 
+            let _newId = helper.createGUID();
             let _html = `<div id="file-manager-{id}">
                             <div id="file-manager-content-{id}"></div>
                             <div style="align-content: revert;margin-top: 10px;">
@@ -224,7 +233,7 @@
             });
 
 
-           
+
 
             let _configKendoWindow = {
                 name: "k-window-custom-" + _newId,
@@ -241,7 +250,7 @@
                     this.center();
                 },
                 close: function (e) {
-                    e.sender.element.data('handler').destroy();                  
+                    e.sender.element.data('handler').destroy();
                 },
                 visible: true
             }
@@ -306,102 +315,115 @@
                 });
                 _contentShowDialog.kendoWindow(_configKendoWindow);
             });
-                        
+
         }
     },
     editor: {
-        init: function (content) {
-            content.kendoEditor({
-                stylesheets: [
-                    "../content/shared/styles/editor.css",
-                ],
-                tools: [
-                    "bold",
-                    "italic",
-                    "underline",
-                    "justifyLeft",
-                    "justifyCenter",
-                    "justifyRight",
-                    "insertUnorderedList",
-                    "createLink",
-                    "unlink",
-                    "insertImage",
-                    "tableWizard",
-                    "createTable",
-                    "addRowAbove",
-                    "addRowBelow",
-                    "addColumnLeft",
-                    "addColumnRight",
-                    "deleteRow",
-                    "deleteColumn",
-                    "mergeCellsHorizontally",
-                    "mergeCellsVertically",
-                    "splitCellHorizontally",
-                    "splitCellVertically",
-                    "formatting",
-                    {
-                        name: "fontName",
-                        items: [
-                            { text: "Andale Mono", value: "Andale Mono" },
-                            { text: "Arial", value: "Arial" },
-                            { text: "Arial Black", value: "Arial Black" },
-                            { text: "Book Antiqua", value: "Book Antiqua" },
-                            { text: "Comic Sans MS", value: "Comic Sans MS" },
-                            { text: "Courier New", value: "Courier New" },
-                            { text: "Georgia", value: "Georgia" },
-                            { text: "Helvetica", value: "Helvetica" },
-                            { text: "Impact", value: "Impact" },
-                            { text: "Symbol", value: "Symbol" },
-                            { text: "Tahoma", value: "Tahoma" },
-                            { text: "Terminal", value: "Terminal" },
-                            { text: "Times New Roman", value: "Times New Roman" },
-                            { text: "Trebuchet MS", value: "Trebuchet MS" },
-                            { text: "Verdana", value: "Verdana" },
-                        ]
+        init: function (content) {            
+            kendo.syncReady(function () {
+                content.kendoEditor({
+                    "tools": [
+                        "bold",
+                        "italic",
+                        "underline",
+                        "justifyLeft",
+                        "justifyCenter",
+                        "justifyRight",
+                        "insertUnorderedList",
+                        "createLink",
+                        "unlink",
+                        "insertImage",
+                        "tableWizard",
+                        "createTable",
+                        "addRowAbove",
+                        "addRowBelow",
+                        "addColumnLeft",
+                        "addColumnRight",
+                        "deleteRow",
+                        "deleteColumn",
+                        "mergeCellsHorizontally",
+                        "mergeCellsVertically",
+                        "splitCellHorizontally",
+                        "splitCellVertically",
+                        "formatting",
+                        {
+                            name: "fontName",
+                            items: [
+                                { text: "Andale Mono", value: "Andale Mono" },
+                                { text: "Arial", value: "Arial" },
+                                { text: "Arial Black", value: "Arial Black" },
+                                { text: "Book Antiqua", value: "Book Antiqua" },
+                                { text: "Comic Sans MS", value: "Comic Sans MS" },
+                                { text: "Courier New", value: "Courier New" },
+                                { text: "Georgia", value: "Georgia" },
+                                { text: "Helvetica", value: "Helvetica" },
+                                { text: "Impact", value: "Impact" },
+                                { text: "Symbol", value: "Symbol" },
+                                { text: "Tahoma", value: "Tahoma" },
+                                { text: "Terminal", value: "Terminal" },
+                                { text: "Times New Roman", value: "Times New Roman" },
+                                { text: "Trebuchet MS", value: "Trebuchet MS" },
+                                { text: "Verdana", value: "Verdana" },
+                            ]
+                        },
+                        "fontSize",
+                        "foreColor",
+                        "backColor",
+                        {
+                            "name": "insertImage"
+                        }, {
+                            "name": "insertFile"
+                        }
+                    ],
+                    "imageBrowser": {
+                        "fileTypes": "*.png,*.gif,*.jpg,*.jpeg",
+                        "transport": {
+                            "read": {
+                                "url": "/admin/ImageBrowser/Read"
+                            },
+                            "type": "imagebrowser-aspnetmvc",
+                            "create": {
+                                "url": "/admin/ImageBrowser/Create"
+                            },
+                            "destroy": {
+                                "url": "/admin/ImageBrowser/Destroy"
+                            },
+                            "imageUrl": "/shared/userFiles/Images/{0}",
+                            "uploadUrl": "/admin/ImageBrowser/Upload"
+                        }
                     },
-                    "fontSize",
-                    "foreColor",
-                    "backColor",
-                    "insertImage",
-                    "insertFile"
-                ],
-                imageBrowser: {
-                    messages: {
-                        dropFilesHere: "Drop files here"
+                    "fileBrowser": {
+                        "fileTypes": "*.*",
+                        "transport": {
+                            "read": {
+                                "url": "/admin/FileBrowser/Read"
+                            },
+                            "type": "filebrowser-aspnetmvc",
+                            "create": {
+                                "url": "/admin/FileBrowser/Create"
+                            },
+                            "destroy": {
+                                "url": "/admin/FileBrowser/Destroy"
+                            },
+                            "fileUrl": "/shared/userFiles/Images/{0}",
+                            "uploadUrl": "/admin/FileBrowser/Upload"
+                        }
                     },
-                    transport: {
-                        read: "/kendo-ui/service/ImageBrowser/Read",
-                        destroy: {
-                            url: "/kendo-ui/service/ImageBrowser/Destroy",
-                            type: "POST"
-                        },
-                        create: {
-                            url: "/kendo-ui/service/ImageBrowser/Create",
-                            type: "POST"
-                        },
-                        thumbnailUrl: "/kendo-ui/service/ImageBrowser/Thumbnail",
-                        uploadUrl: "/kendo-ui/service/ImageBrowser/Upload",
-                        imageUrl: "/kendo-ui/service/ImageBrowser/Image?path={0}"
-                    }
-                },
-                fileBrowser: {
-                    messages: {
-                        dropFilesHere: "Drop files here"
-                    },
-                    transport: {
-                        read: "/kendo-ui/service/FileBrowser/Read",
-                        destroy: {
-                            url: "/kendo-ui/service/FileBrowser/Destroy",
-                            type: "POST"
-                        },
-                        create: {
-                            url: "/kendo-ui/service/FileBrowser/Create",
-                            type: "POST"
-                        },
-                        uploadUrl: "/kendo-ui/service/FileBrowser/Upload",
-                        fileUrl: "/kendo-ui/service/FileBrowser/File?fileName={0}"
-                    }
-                }
+                    "stylesheets": ["../lib/kendo-ui/styles/editor.css"]
+                });
+                $(document)
+                    .off('click', '.k-filebrowser-dialog .k-listview-item[data-type=f]')
+                    .on('click', '.k-filebrowser-dialog .k-listview-item[data-type=f]', function (e) {
+                        $(e.target)
+                            .closest('.k-filebrowser-dialog')
+                            .find('#k-editor-image-url')
+                            .change();
+                    });
+                $(document)
+                    .off('change', '.k-filebrowser-dialog #k-editor-image-url')
+                    .on('change', '.k-filebrowser-dialog #k-editor-image-url', function (e) {
+                        $(e.target).val(e.target.value.replaceAll(new RegExp("%2F", "gi"), "/"));
+                    });
             });
         }
     }
