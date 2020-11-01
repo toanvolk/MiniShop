@@ -26,25 +26,16 @@ var productAddIndex = {
         });
         console.log(_data);
         //save
-        handle.save(_data, function (res) {
-            if (res.statu == 200) {
-                handle.closeDialog($(e).closest(productAddConst.cardContent));
-            }
-            else {
-                swal(res.statu, res.message, 'error');
-            }
-        });
-    },
-    chooseImage: function (e, handle) {
-        //console.log('choose image');
-        //handle.showDialog({
-        //    contentData: {
-        //        url: "/admin/filemanager"
-        //    },
-        //    config: {
-        //        width: 800
+        //handle.save(_data, function (res) {
+        //    if (res.statu == 200) {
+        //        handle.closeDialog($(e).closest(productAddConst.cardContent));
+        //    }
+        //    else {
+        //        swal(res.statu, res.message, 'error');
         //    }
         //});
+    },
+    chooseImage: function (e, handle) {
         handle.fileDialog(
             content = $(e).closest(productAddConst.cardContent),
             objConfig = { title: "Choose file"},

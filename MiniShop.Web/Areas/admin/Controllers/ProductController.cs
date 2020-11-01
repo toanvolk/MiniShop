@@ -36,7 +36,8 @@ namespace MiniShop.Web.Areas.admin.Controllers
         [HttpPost]
         public IActionResult Add()
         {
-            return PartialView("_add");
+            var model = new Tuple<ICollection<CategoryDto>,ICollection<AreaDto>>(_productService.GetCategories(), _productService.GetAreas());
+            return PartialView("_add", model);
         }
         [HttpPost]
         public IActionResult Edit(Guid productId)

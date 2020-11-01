@@ -32,6 +32,7 @@ namespace MiniShop.Web
             {
                 cfg.AddProfile(new CategoryProfileMapping());
                 cfg.AddProfile(new ProductProfileMapping());
+                cfg.AddProfile(new AreaProfileMapping());
             });
             IMapper mapper = mappingConfig.CreateMapper();
             services.AddSingleton(mapper);
@@ -49,6 +50,7 @@ namespace MiniShop.Web
 
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IAreaService, AreaService>();
 
             //register kendo
             services.AddKendo();

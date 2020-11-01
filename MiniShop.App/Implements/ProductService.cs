@@ -14,11 +14,17 @@ namespace MiniShop.App
         private ILogger<ProductService> _logger { get; set; }
         private readonly IUnitOfWork _unitOfWorfk;
         private readonly IMapper _mapper;
-        public ProductService(ILogger<ProductService> logger, IUnitOfWork unitOfWork, IMapper mapper)
+        private readonly ICategoryService _categoryService;
+        private readonly IAreaService _areaService;
+        public ProductService(ILogger<ProductService> logger, IUnitOfWork unitOfWork, IMapper mapper
+            , ICategoryService categoryService
+            ,IAreaService areaService)
         {
             _logger = logger;
             _unitOfWorfk = unitOfWork;
             _mapper = mapper;
+            _categoryService = categoryService;
+            _areaService = areaService;
         }        
         public bool Insert(ProductDto data)
         {
@@ -64,6 +70,15 @@ namespace MiniShop.App
             entity.UpdatedDate = DateTime.Now;
             entity.NotUse = !ischecked;
             return _unitOfWorfk.SaveChanges() > 0;
+        }
+
+        public ICollection<CategoryDto> GetCategories()
+        {
+            return _categoryService.LoadData();
+        }
+        public ICollection<AreaDto> GetAreas()
+        {
+            return _areaService.LoadData();
         }
     }
 }

@@ -12,5 +12,7 @@ namespace MiniShop.App
         ICollection<ProductDto> LoadData();
         ProductDto GetData(Guid productId);
         bool UpdateStatu(Guid productId, bool ischecked);
+        ICollection<CategoryDto> GetCategories();
+        ICollection<AreaDto> GetAreas();
     }
 }

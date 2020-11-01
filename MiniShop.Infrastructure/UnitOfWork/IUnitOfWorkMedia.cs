@@ -23,6 +23,8 @@ namespace MiniShop.Infrastructure
         DbSet<Category> Categories { get; }
         IRepositoryBase<Product> ProductRepository { get; }
         DbSet<Product> Products { get; }
+        IRepositoryBase<Area> AreaRepository { get; }
+        DbSet<Area> Areas { get; }
 
         #endregion
 

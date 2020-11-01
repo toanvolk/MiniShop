@@ -98,9 +98,9 @@ var helper = {
             let _content;
             if (typeof (_data.content) == 'object') {
                 if (!_data.takeIgnore)
-                    _content = _data.content.find('input[required]:not([ignore])');
+                    _content = _data.content.find('input[required]:not([ignore]), select[required]:not([ignore])');
                 else
-                    _content = _data.content.find('input[required]');
+                    _content = _data.content.find('input[required], select[required]');
             }
             else {
                 _content = (_data.content ? _data.content + " " : "") + "input[required]";
