@@ -41,9 +41,12 @@
                             </div>
                         </div>
                     </div>
-              
-      
-                    
+
+                    <div class="form-group">
+                        <label for="Price">Giá</label>
+                        <input name="Price" class="form-control decimal-inputmask" required validate-message-required="Nhập số tiền" />
+                    </div>
+
                     <div class="form-group">
                         <label for="Picture">Chọn ảnh</label>
                         <div class="input-group">
@@ -53,6 +56,10 @@
                                       onclick="productAddIndex.clickEvent(this)" data-ename="productAddConst.chooseImage">Chọn</span>
                             </div>
                         </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="TrackingLink">Tracking link</label>
+                        <input type="text" class="form-control" placeholder="Nhập tracking link" name="TrackingLink">
                     </div>
                     <div class="form-group">
                         <label for="companyinput8">Mô tả</label>

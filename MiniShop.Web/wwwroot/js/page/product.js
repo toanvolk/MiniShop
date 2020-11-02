@@ -3,7 +3,7 @@
     edit: 'edit',
     delete: 'delete',
     gridSelectorName: '#mnshop-product .grid',
-    urlLoadData: 'product/loaddata',
+    urlLoadData: 'product/loaddatapage',
     statuChange: 'statu-change'
 };
 var productIndex = {
@@ -25,24 +25,32 @@ var productIndex = {
                     read: {
                         url: productConst.urlLoadData,
                         dataType: "json",
-                        type: "GET",
-                        //data: {
-                        //    rootproductType: _rootproductType
-                        //}
+                        type: "GET"
                     }
                 },
                 schema: {
                     data: "data",
                     total: "total"
                 },
-                serverPaging: false
+                serverPaging: true,
+                pageSize: 10,
             },
-            pageable: false,
+            pageable: true,
             columns: [
                 {
                     field: "index",
                     title: "#",
                     width: 35
+                },
+                {
+                    field: "picture",
+                    title: "Ảnh",
+                    width: "7%",
+                    template: function (item) {
+                        let _html = `<img src="{link-image}">`
+                        return _html
+                            .replaceAll(new RegExp("{link-image}", "gi"), item.picture);
+                    },
                 },
                 {
                     field: "name",
@@ -52,6 +60,23 @@ var productIndex = {
                 {
                     field: "description",
                     title: "Mô tả"
+                },
+                {
+                    field: "areaCode",
+                    title: "Quốc gia",
+                    width: "5%",
+                },
+                {
+                    field: "price",
+                    title: "Giá",
+                    width: "5%",
+                    template: "#= kendo.toString(price, '\\#\\#,\\#') #",
+                    attributes: { class: "text-right" }
+                },
+                {
+                    field: "trackingLink",
+                    title: "Tracking link",
+                    width: "20%",
                 },
                 {
                     field: "NotUse",
@@ -90,7 +115,18 @@ var productIndex = {
                 actions: ["Refresh", "Close"],
                 activate: function (e) {
                     handle.initEditor($('#mnshop-product-add #description'));
-                 
+                    $('.decimal-inputmask').inputmask("decimal", {
+                        placeholder: "0",
+                        digits: 0,
+                        digitsOptional: false,
+                        radixPoint: ".",
+                        groupSeparator: ",",
+                        autoGroup: true,
+                        allowPlus: false,
+                        allowMinus: true,
+                        clearMaskOnLostFocus: false,
+                        removeMaskOnSubmit: true
+                    });
                 },
                 width: 800,
                 close: function () { $(productConst.gridSelectorName).data("kendoGrid").dataSource.read(); },
@@ -108,7 +144,22 @@ var productIndex = {
             config: {
                 title: "TẠO MỚI",
                 actions: ["Refresh", "Close"],
-                width: 650,
+                activate: function (e) {
+                    handle.initEditor($('#mnshop-product-edit #description'));
+                    $('.decimal-inputmask').inputmask("decimal", {
+                        placeholder: "0",
+                        digits: 0,
+                        digitsOptional: false,
+                        radixPoint: ".",
+                        groupSeparator: ",",
+                        autoGroup: true,
+                        allowPlus: false,
+                        allowMinus: true,
+                        clearMaskOnLostFocus: false,
+                        removeMaskOnSubmit: true
+                    });
+                },
+                width: 850,
                 close: function () { $(productConst.gridSelectorName).data("kendoGrid").dataSource.read(); },
                 refresh: function () { $(productConst.gridSelectorName).data("kendoGrid").dataSource.read(); }
             }

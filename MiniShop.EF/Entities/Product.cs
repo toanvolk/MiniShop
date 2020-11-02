@@ -19,5 +19,7 @@ namespace MiniShop.EF
         public bool NotUse { get; set; }
         public Guid CategoryId { get; set; }
         public string TrackingLink { get; set; }
+        [MaxLength(50)]
+        public string AreaCode { get; set; }
     }
 }

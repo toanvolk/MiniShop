@@ -4,6 +4,7 @@ using MiniShop.EF;
 using MiniShop.Infrastructure;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 
@@ -16,6 +17,7 @@ namespace MiniShop.App
         private readonly IMapper _mapper;
         private readonly ICategoryService _categoryService;
         private readonly IAreaService _areaService;
+        private readonly string _fileRootPath = "/shared/UserFiles/Folders";
         public ProductService(ILogger<ProductService> logger, IUnitOfWork unitOfWork, IMapper mapper
             , ICategoryService categoryService
             ,IAreaService areaService)
@@ -49,12 +51,52 @@ namespace MiniShop.App
 
         public ICollection<ProductDto> LoadData()
         {
-            var datas = _unitOfWorfk.Products.ToList();
-            var model = _mapper.Map<List<ProductDto>>(datas);
+            var query = from product in _unitOfWorfk.Products
+                        join category in _unitOfWorfk.Categories on product.CategoryId equals category.Id
+                        join area in _unitOfWorfk.Areas on product.AreaCode equals area.Code
+                        select new ProductDto()
+                        {
+                            Id = product.Id,
+                            Name = product.Name,
+                            Description = product.Description,
+                            CategoryId = product.CategoryId,
+                            AreaCode = product.AreaCode,
+                            Price = product.Price,
+                            TrackingLink = product.TrackingLink,
+                            Picture = $"{_fileRootPath}/{product.Picture}",
+                            NotUse = product.NotUse,
 
+                            CategoryName = category.Name
+                        };
+
+            var model = query.ToList();
             return model;
         }
+        public Tuple<ICollection<ProductDto>, int> LoadDataPage(int page, int pageSize)
+        {
+            var query = from product in _unitOfWorfk.Products
+                        join category in _unitOfWorfk.Categories on product.CategoryId equals category.Id
+                        join area in _unitOfWorfk.Areas on product.AreaCode equals area.Code
+                        select new ProductDto()
+                        {
+                            Id = product.Id,
+                            Name = product.Name,
+                            Description = product.Description,
+                            CategoryId = product.CategoryId,
+                            AreaCode = product.AreaCode,
+                            Price = product.Price,
+                            TrackingLink = product.TrackingLink,
+                            Picture = $"{_fileRootPath}/{product.Picture}",
+                            NotUse = product.NotUse,
 
+                            CategoryName = category.Name
+                        };
+
+            var model = query.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+            var total = query.Count();
+
+            return new Tuple<ICollection<ProductDto>, int>(model, total);
+        }
         public ProductDto GetData(Guid productId)
         {
             var entity = _unitOfWorfk.ProductRepository.FindById(productId);
@@ -80,5 +122,7 @@ namespace MiniShop.App
         {
             return _areaService.LoadData();
         }
+
+        
     }
 }

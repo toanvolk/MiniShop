@@ -23,17 +23,18 @@ var productAddIndex = {
         if (!handle.validate.checkRequired({ content: _$rootContent })) return;
         let _data = handle.data.inputToObject(_$rootContent, function (obj) {
             obj.Id = handle.newId();
+            obj.Price = parseFloat(obj.Price.replaceAll(',', ''));
         });
         console.log(_data);
         //save
-        //handle.save(_data, function (res) {
-        //    if (res.statu == 200) {
-        //        handle.closeDialog($(e).closest(productAddConst.cardContent));
-        //    }
-        //    else {
-        //        swal(res.statu, res.message, 'error');
-        //    }
-        //});
+        handle.save(_data, function (res) {
+            if (res.statu == 200) {
+                handle.closeDialog($(e).closest(productAddConst.cardContent));
+            }
+            else {
+                swal(res.statu, res.message, 'error');
+            }
+        });
     },
     chooseImage: function (e, handle) {
         handle.fileDialog(

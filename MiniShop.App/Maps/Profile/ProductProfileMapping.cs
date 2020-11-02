@@ -15,6 +15,10 @@ namespace MiniShop.App
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(source => source.Id))
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(source => source.Name))
                 .ForMember(dest => dest.Description, opt => opt.MapFrom(source => source.Description))
+                .ForMember(dest => dest.CategoryId, opt => opt.MapFrom(source => source.CategoryId))
+                .ForMember(dest => dest.AreaCode, opt => opt.MapFrom(source => source.AreaCode))
+                .ForMember(dest => dest.Price, opt => opt.MapFrom(source => source.Price))
+                .ForMember(dest => dest.TrackingLink, opt => opt.MapFrom(source => source.TrackingLink))
                 .AfterMap((source, destination) =>
                 {
                     destination.CreatedBy = "ADMIN";
@@ -25,7 +29,6 @@ namespace MiniShop.App
                 });
 
             //get
-            //create - update
             CreateMap<Product, ProductDto>()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(source => source.Id))
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(source => source.Name))
@@ -45,6 +48,10 @@ namespace MiniShop.App
                     Id = item.Id,
                     Description = item.Description,
                     Name = item.Name,
+                    Picture = item.Picture,
+                    TrackingLink = item.TrackingLink,
+                    Price = item.Price,
+                    CategoryId = item.CategoryId,
                     NotUse = item.NotUse
                 });
             }

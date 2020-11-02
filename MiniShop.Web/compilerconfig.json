@@ -18,5 +18,9 @@
   {
     "outputFile": "wwwroot/css/page/product-edit.css",
     "inputFile": "wwwroot/css/page/product-edit.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/page/product.css",
+    "inputFile": "wwwroot/css/page/product.scss"
   }
 ]

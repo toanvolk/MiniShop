@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Kendo.Mvc.UI;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MiniShop.App;
@@ -23,11 +24,22 @@ namespace MiniShop.Web.Areas.admin.Controllers
         }
         public JsonResult LoadData()
         {
-            //var model = _productService.LoadDatas(rootproductType, true);
             var model = _productService.LoadData();
             var response = new DataResponeCommon<ICollection<ProductDto>>()
             {
                 Data = model,
+                Message = "OK",
+                Statu = StatuCodeEnum.OK
+            };
+            return Json(response);
+        }
+        public JsonResult LoadDataPage([DataSourceRequest] DataSourceRequest request)
+        {
+            var source = _productService.LoadDataPage(request.Page, request.PageSize);
+            var response = new DataResponeCommon<ICollection<ProductDto>>()
+            {
+                Data = source.Item1,
+                Total = source.Item2,
                 Message = "OK",
                 Statu = StatuCodeEnum.OK
             };
@@ -42,8 +54,12 @@ namespace MiniShop.Web.Areas.admin.Controllers
         [HttpPost]
         public IActionResult Edit(Guid productId)
         {
-            var entity = _productService.GetData(productId);
-            return PartialView("_edit", entity);
+            var model = new Tuple<ICollection<CategoryDto>, ICollection<AreaDto>, ProductDto>(
+                _productService.GetCategories(),
+                _productService.GetAreas(),
+                _productService.GetData(productId)
+                );
+            return PartialView("_edit", model);
         }
         [HttpPost]
         public JsonResult Create(ProductDto data)

@@ -13,6 +13,8 @@
     <Compile Remove="Migrations\20201101162008_add-data-area.Designer.cs" />
     <Compile Remove="Migrations\20201101162154_add-data-area.cs" />
     <Compile Remove="Migrations\20201101162154_add-data-area.Designer.cs" />
+    <Compile Remove="Migrations\20201102031009_addition-field-areacode-into-product.cs" />
+    <Compile Remove="Migrations\20201102031009_addition-field-areacode-into-product.Designer.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.8" />
