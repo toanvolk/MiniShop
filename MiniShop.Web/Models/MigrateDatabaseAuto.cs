@@ -1,11 +1,8 @@
-﻿using MiniShop.EF;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using MiniShop.EF;
+using MiniShop.Identity.Data;
 
 namespace MiniShop.Web
 {
@@ -18,6 +15,10 @@ namespace MiniShop.Web
             .CreateScope())
             {
                 using (var context = serviceScope.ServiceProvider.GetService<MiniShopContext>())
+                {
+                    context.Database.Migrate();
+                }
+                using (var context = serviceScope.ServiceProvider.GetService<AuthDbContext>())
                 {
                     context.Database.Migrate();
                 }
