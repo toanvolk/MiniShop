@@ -13,6 +13,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using MiniShop.App;
 using MiniShop.EF;
+using MiniShop.Identity;
 using MiniShop.Identity.Data;
 using MiniShop.Infrastructure;
 
@@ -34,7 +35,8 @@ namespace MiniShop.Web
             services.AddDbContext<AuthDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("AuthConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)           
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<AuthDbContext>();
 
             services.Configure<IdentityOptions>(options =>
@@ -64,7 +66,7 @@ namespace MiniShop.Web
                 options.Cookie.HttpOnly = true;
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
 
-                options.LoginPath = "/Identity/Account/Login";
+                options.LoginPath = "/admin/auth/login";
                 options.AccessDeniedPath = "/Identity/Account/AccessDenied";
                 options.SlidingExpiration = true;
             });
@@ -103,7 +105,7 @@ namespace MiniShop.Web
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
         {
 
             if (env.IsDevelopment())
@@ -115,7 +117,7 @@ namespace MiniShop.Web
                 app.UseExceptionHandler("/Home/Error");
             }
             //Migrate database
-            MigrateDatabaseAuto.Migrate(app);
+            MigrateDatabaseAuto.Migrate(app, userManager, roleManager);
 
             // Add Logfile
             loggerFactory.AddFile(Configuration.GetSection("Logging:LogPath").Value);
