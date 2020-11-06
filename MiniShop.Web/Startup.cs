@@ -122,6 +122,13 @@ namespace MiniShop.Web
             // Add Logfile
             loggerFactory.AddFile(Configuration.GetSection("Logging:LogPath").Value);
             app.UseStaticFiles();
+            //app.UseStaticFiles(new StaticFileOptions
+            //{
+            //    FileProvider = new Microsoft.Extensions.FileProviders.PhysicalFileProvider(
+            //        System.IO.Path.Combine(env.ContentRootPath, "wwwroot")),
+            //    RequestPath = "/wwwroot"
+            //}); ;
+
 
             app.UseRouting();
 

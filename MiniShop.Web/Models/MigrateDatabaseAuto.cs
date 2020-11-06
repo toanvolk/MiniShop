@@ -1,10 +1,13 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Kendo.Mvc.Extensions;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using MiniShop.EF;
 using MiniShop.Identity;
 using MiniShop.Identity.Data;
+using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace MiniShop.Web
@@ -20,7 +23,7 @@ namespace MiniShop.Web
             {
                 using (var context = serviceScope.ServiceProvider.GetService<MiniShopContext>())
                 {
-                    context.Database.Migrate();
+                    context.Database.Migrate();                   
                 }
                 using (var context = serviceScope.ServiceProvider.GetService<AuthDbContext>())
                 {

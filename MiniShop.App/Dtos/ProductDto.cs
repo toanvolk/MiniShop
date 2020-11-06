@@ -10,6 +10,8 @@ namespace MiniShop.App
         public string Code { get; set; }
         public string Name { get; set; }
         public string Picture { get; set; }
+        public string SmallPicture { get; set; }
+        public string BigPicture { get; set; }
         public decimal Price { get; set; }
         public string Description { get; set; }
         public bool NotUse { get; set; }

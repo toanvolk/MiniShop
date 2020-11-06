@@ -13,6 +13,10 @@ namespace MiniShop.EF
         public string Name { get; set; }
         [MaxLength(500)]
         public string Picture { get; set; }
+        [MaxLength(500)]
+        public string SmallPicture { get; set; }
+        [MaxLength(500)]
+        public string BigPicture { get; set; }
         [Column(TypeName = "decimal(12, 2)")]
         public decimal Price { get; set; }
         public string Description { get; set; }

@@ -19,6 +19,9 @@ namespace MiniShop.App
                 .ForMember(dest => dest.AreaCode, opt => opt.MapFrom(source => source.AreaCode))
                 .ForMember(dest => dest.Price, opt => opt.MapFrom(source => source.Price))
                 .ForMember(dest => dest.TrackingLink, opt => opt.MapFrom(source => source.TrackingLink))
+                .ForMember(dest => dest.Picture, opt => opt.MapFrom(source => source.Picture))
+                .ForMember(dest => dest.SmallPicture, opt => opt.MapFrom(source => source.SmallPicture))
+                .ForMember(dest => dest.BigPicture, opt => opt.MapFrom(source => source.BigPicture))
                 .AfterMap((source, destination) =>
                 {
                     destination.CreatedBy = "ADMIN";
@@ -32,7 +35,15 @@ namespace MiniShop.App
             CreateMap<Product, ProductDto>()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(source => source.Id))
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(source => source.Name))
-                .ForMember(dest => dest.Description, opt => opt.MapFrom(source => source.Description));
+                .ForMember(dest => dest.Description, opt => opt.MapFrom(source => source.Description))
+                .ForMember(dest => dest.CategoryId, opt => opt.MapFrom(source => source.CategoryId))
+                .ForMember(dest => dest.AreaCode, opt => opt.MapFrom(source => source.AreaCode))
+                .ForMember(dest => dest.Price, opt => opt.MapFrom(source => source.Price))
+                .ForMember(dest => dest.TrackingLink, opt => opt.MapFrom(source => source.TrackingLink))
+                .ForMember(dest => dest.Picture, opt => opt.MapFrom(source => source.Picture))
+                .ForMember(dest => dest.SmallPicture, opt => opt.MapFrom(source => source.SmallPicture))
+                .ForMember(dest => dest.BigPicture, opt => opt.MapFrom(source => source.BigPicture));
+
             //load
             CreateMap<List<Product>, List<ProductDto>>().ConvertUsing<ProductTypingConvert>();
         }

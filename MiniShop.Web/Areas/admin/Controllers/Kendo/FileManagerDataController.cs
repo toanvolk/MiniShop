@@ -284,7 +284,7 @@ namespace MiniShop.Web.Areas.admin.Controllers
                 Directory.Delete(physicalPath, true);
             }
         }
-
+        [HttpPost]
         public virtual JsonResult Read(string target)
         {
             var path = NormalizePath(target);
