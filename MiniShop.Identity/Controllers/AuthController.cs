@@ -31,9 +31,17 @@ namespace MiniShop.Identity.Controllers
 
             var result = await _signInManager.PasswordSignInAsync(authUser.UserName,
                                    authUser.Password, authUser.RememberMe, lockoutOnFailure: true);
+            var response = new DataResponeCommon<string>()
+            {
+                Data = "Sai thông tin tài khoản hoặc mật khẩu!",
+                Message = "Đăng nhập không thành công",
+                Statu = StatuCodeEnum.Unauthorized
+            }; ;
             if (result.Succeeded)
             {
-                return LocalRedirect(returnUrl);
+                response.Data = returnUrl;
+                response.Message = "Đăng nhập thành công";
+                response.Statu = StatuCodeEnum.OK;
             }
             if (result.RequiresTwoFactor)
             {
@@ -47,13 +55,13 @@ namespace MiniShop.Identity.Controllers
             {
                 return RedirectToPage("./Lockout");
             }
-            var response = new DataResponeCommon<string>()
-            {
-                Data = "Sai thông tin tài khoản hoặc mật khẩu!",
-                Message = "Đăng nhập không thành công",
-                Statu = StatuCodeEnum.Unauthorized
-            };
+            
             return Json(response);
+        }       
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectPermanent("/admin");
         }
     }
 }
