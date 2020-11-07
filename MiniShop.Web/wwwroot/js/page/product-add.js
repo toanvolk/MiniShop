@@ -27,14 +27,14 @@ var productAddIndex = {
         });
         console.log(_data);
         //save
-        handle.save(_data, function (res) {
-            if (res.statu == 200) {
-                handle.closeDialog($(e).closest(productAddConst.cardContent));
-            }
-            else {
-                swal(res.statu, res.message, 'error');
-            }
-        });
+        //handle.save(_data, function (res) {
+        //    if (res.statu == 200) {
+        //        handle.closeDialog($(e).closest(productAddConst.cardContent));
+        //    }
+        //    else {
+        //        swal(res.statu, res.message, 'error');
+        //    }
+        //});
     },
     chooseImage: function (e, handle) {
         handle.fileDialog(

@@ -13,13 +13,12 @@
                     </h4>
                     <div class="form-group">
                         <label for="productName">Tên</label>
-                        <input type="text" class="form-control" placeholder="Product name" name="Name" 
+                        <input type="text" class="form-control" placeholder="Product name" name="Name"
                                required validate-message-required="Nhập tên sản phẩm!"
-                               value="@Model.Item3.Name"
-                               >
+                               value="@Model.Item3.Name">
                     </div>
                     <div class="row">
-                        <input name="Id" value="@Model.Item3.Id" hidden/>
+                        <input name="Id" value="@Model.Item3.Id" hidden />
                         <div class="col-md-5">
                             <div class="form-group">
                                 <label for="CattegoryId">Loại sản phâm</label>
@@ -54,7 +53,7 @@
                                         {
                                             <option value="@item.Code">@item.Name</option>
                                         }
-                                        
+
                                     }
                                 </select>
                             </div>
@@ -63,10 +62,9 @@
 
                     <div class="form-group">
                         <label for="Price">Giá</label>
-                        <input name="Price" class="form-control decimal-inputmask" 
-                               required validate-message-required="Nhập số tiền" 
-                               value="@Model.Item3.Price"
-                               />
+                        <input name="Price" class="form-control decimal-inputmask"
+                               required validate-message-required="Nhập số tiền"
+                               value="@Model.Item3.Price" />
                     </div>
 
                     <div class="form-group">
@@ -76,6 +74,26 @@
                             <div class="input-group-prepend">
                                 <span class="btn btn-outline-info input-group-text"
                                       onclick="productEditIndex.clickEvent(this)" data-ename="productEditConst.chooseImage">Chọn</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="SmallPicture">Chọn ảnh (small)</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="SmallPicture" placeholder="Link image" value="@Model.Item3.SmallPicture">
+                            <div class="input-group-prepend">
+                                <span class="btn btn-outline-info input-group-text"
+                                      onclick="productAddIndex.clickEvent(this)" data-ename="productAddConst.chooseImage">Chọn</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="BigPicture">Chọn ảnh (large)</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="BigPicture" placeholder="Link image" value="@Model.Item3.BigPicture">
+                            <div class="input-group-prepend">
+                                <span class="btn btn-outline-info input-group-text"
+                                      onclick="productAddIndex.clickEvent(this)" data-ename="productAddConst.chooseImage">Chọn</span>
                             </div>
                         </div>
                     </div>

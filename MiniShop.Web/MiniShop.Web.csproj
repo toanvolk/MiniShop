@@ -4407,6 +4407,7 @@
 
   <ItemGroup>
     <Folder Include="Areas\admin\Data\" />
+    <Folder Include="wwwroot\js\client\" />
     <Folder Include="wwwroot\shared\UserFiles\Images\" />
   </ItemGroup>
 

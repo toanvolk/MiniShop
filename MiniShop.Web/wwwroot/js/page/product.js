@@ -33,7 +33,7 @@ var productIndex = {
                     total: "total"
                 },
                 serverPaging: true,
-                pageSize: 10,
+                pageSize: cdA.pageSize,
             },
             pageable: true,
             columns: [

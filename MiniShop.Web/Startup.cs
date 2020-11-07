@@ -120,7 +120,7 @@ namespace MiniShop.Web
             MigrateDatabaseAuto.Migrate(app, userManager, roleManager);
 
             // Add Logfile
-            loggerFactory.AddFile(Configuration.GetSection("Logging:LogPath").Value);
+            loggerFactory.AddFile(Configuration.GetSection("Logging:LogPath").Value);            
             app.UseStaticFiles();
             //app.UseStaticFiles(new StaticFileOptions
             //{

@@ -147,7 +147,10 @@ namespace MiniShop.Web.Areas.admin.Controllers
                 newEntry = CopyEntry(target, entry);
             }
 
-            return Json(VirtualizePath(newEntry));
+            return Json(VirtualizePath(newEntry), new System.Text.Json.JsonSerializerOptions()
+            {
+                PropertyNameCaseInsensitive = false
+            });
         }
 
         protected virtual FileManagerEntry CopyEntry(string target, FileManagerEntry entry)
@@ -250,7 +253,10 @@ namespace MiniShop.Web.Areas.admin.Controllers
                     DeleteFile(path);
                 }
 
-                return Json(new object[0]);
+                return Json(new object[0], new System.Text.Json.JsonSerializerOptions()
+                {
+                    PropertyNameCaseInsensitive = false
+                });
             }
             throw new Exception("File Not Found");
         }
@@ -331,7 +337,10 @@ namespace MiniShop.Web.Areas.admin.Controllers
 
             newEntry = RenameEntry(entry);
 
-            return Json(VirtualizePath(newEntry));
+            return Json(VirtualizePath(newEntry), new System.Text.Json.JsonSerializerOptions()
+            {
+                PropertyNameCaseInsensitive = false
+            });
         }
 
         protected virtual FileManagerEntry RenameEntry(FileManagerEntry entry)
@@ -404,7 +413,10 @@ namespace MiniShop.Web.Areas.admin.Controllers
                 SaveFile(file, path);
                 newEntry = directoryBrowser.GetFile(Path.Combine(path, fileName));
 
-                return Json(VirtualizePath(newEntry));
+                return Json(VirtualizePath(newEntry), new System.Text.Json.JsonSerializerOptions()
+                {
+                    PropertyNameCaseInsensitive = false
+                });
             }
 
             throw new Exception("Forbidden");
