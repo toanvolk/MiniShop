@@ -22,5 +22,17 @@
   {
     "outputFile": "wwwroot/css/page/product.css",
     "inputFile": "wwwroot/css/page/product.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/client/product-card-1.css",
+    "inputFile": "wwwroot/css/client/product-card-1.scss"
+  },
+  {
+    "outputFile": "wwwroot/lib/pagination/pagination.css",
+    "inputFile": "wwwroot/lib/pagination/pagination.scss"
+  },
+  {
+    "outputFile": "wwwroot/lib/pagination/pagination.css",
+    "inputFile": "wwwroot/lib/pagination/pagination.less"
   }
 ]
