@@ -34,5 +34,17 @@
   {
     "outputFile": "wwwroot/lib/pagination/pagination.css",
     "inputFile": "wwwroot/lib/pagination/pagination.less"
+  },
+  {
+    "outputFile": "wwwroot/css/client/product-card-commer.css",
+    "inputFile": "wwwroot/css/client/product-card-commer.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/client/product-filter.css",
+    "inputFile": "wwwroot/css/client/product-filter.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/client/client-self.css",
+    "inputFile": "wwwroot/css/client/client-self.scss"
   }
 ]
