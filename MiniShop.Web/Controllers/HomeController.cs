@@ -31,9 +31,9 @@ namespace MiniShop.Web.Controllers
             return View();
         }
 
-        public IActionResult ProductPage(int pageNumber = 1, int pageSize = 9)
+        public IActionResult ProductPage(int pageNumber = 1, int pageSize = 9, string textSearch = null)
         {
-            var productDtos = _productService.LoadDataPage(pageNumber, pageSize);
+            var productDtos = _productService.LoadDataPage(pageNumber, pageSize, textSearch);
             var model = new
             {
                 source = productDtos.Item1,

@@ -72,11 +72,12 @@ namespace MiniShop.App
             var model = query.ToList();
             return model;
         }
-        public Tuple<ICollection<ProductDto>, int> LoadDataPage(int page, int pageSize)
+        public Tuple<ICollection<ProductDto>, int> LoadDataPage(int page, int pageSize, string textSearch=null)
         {
             var query = from product in _unitOfWorfk.Products
                         join category in _unitOfWorfk.Categories on product.CategoryId equals category.Id
                         join area in _unitOfWorfk.Areas on product.AreaCode equals area.Code
+                        where (textSearch == null) || product.Name.Contains(textSearch) || category.Name.Contains(textSearch)
                         select new ProductDto()
                         {
                             Id = product.Id,

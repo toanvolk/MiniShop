@@ -11,22 +11,22 @@
     <div class="container">
         <div class="row animate-box">
             <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-                <span>Thức tỉnh nội tại</span>
-                <h2 style="color:#f8950f;">Sản phẩm hỗ trợ khơi dậy đam mê</h2>
-                <p>Sức khỏe - tuyệt vời - bạn cần phải trân trọng - nó sẽ làm tất cả những gì bạn thích!</p>
+                @*<span>Thức tỉnh nội tại</span>
+        <h2 style="color:#f8950f;">Sản phẩm hỗ trợ khơi dậy đam mê</h2>
+        <p>Sức khỏe - tuyệt vời - bạn cần phải trân trọng - nó sẽ làm tất cả những gì bạn thích!</p>*@
             </div>
         </div>
         <div class="row mshop-filter" data-card-id="@productCardId">
-            <div class="col-md-4 mshop-filter-item">
-                <label for="search">Search for stuff</label>
-                <input id="search" type="search" placeholder="Search..." autofocus required />
-                <button type="button">Go</button>
+            <div class="col-md-6 mshop-filter-item">
+                <div class="search__container">
+                    <input class="search__input" type="text" placeholder="Search" id="mnshop-btn-product-search">
+                </div>
             </div>
-            <div class="col-md-4 col-md-offset-6 mnshop-pagination">
+            <div class="col-md-6 mnshop-pagination">
 
             </div>
         </div>
-        <div class="row" id="@productCardId">
+        <div class="row msshop-product-content" id="@productCardId">
         </div>
 
     </div>
