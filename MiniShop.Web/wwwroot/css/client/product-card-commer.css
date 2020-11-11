@@ -10,7 +10,11 @@
         display: flex;
         align-items: center;
         justify-content: center;
-    }*/ }
+    }*/
+  /* .img-responsive {
+        max-height: 195px;
+    }
+*/ }
   .mshop-product-client .msshop-product-content button {
     position: relative;
     outline: none;
@@ -77,8 +81,7 @@
     min-height: 238px;
     overflow: hidden;
     position: relative;
-    border: 1px solid #CEEFFF;
-    padding-top: 40px; }
+    border: 1px solid #CEEFFF; }
   .mshop-product-client .prod-info-main .product-deatil {
     border-bottom: 1px solid #dfe5e9;
     padding-bottom: 17px;

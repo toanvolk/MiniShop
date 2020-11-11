@@ -14,3 +14,6 @@
 ### 3. Thao tác của ADMIN
 - Post sản phẩm.
 - Xem báo cáo lượt click.
+
+# Note
+- Size hiển thị danh sách products: 0.93 (W/H)
