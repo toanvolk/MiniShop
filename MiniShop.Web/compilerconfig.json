@@ -46,5 +46,13 @@
   {
     "outputFile": "wwwroot/css/client/client-self.css",
     "inputFile": "wwwroot/css/client/client-self.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/client/product-card-img.css",
+    "inputFile": "wwwroot/css/client/product-card-img.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/client/product-card-notification.css",
+    "inputFile": "wwwroot/css/client/product-card-notification.scss"
   }
 ]

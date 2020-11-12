@@ -221,6 +221,33 @@ var helper = {
                 return letter.toUpperCase();
             });
             return str;
+        },
+        decodeHtml: function (text, formater) {
+            let _config = {
+                normal: false
+            }
+            //fill param
+            if (formater) {
+                $.each(formater, function (key, value) {
+                    _config[key] = value;
+                });
+            }
+
+            let _text = $("<textarea/>")
+                .html(text)
+                .text();
+            if (_config)
+                _text = $($("<div></div>").html(_text)).text();
+            return _text
+        },
+        encodeHtml: function (text) {
+            return $("<textarea/>")
+                .text(text)
+                .html();
+        },
+        truncate: function (text, signLenght) {
+            text = text.substr(0, signLenght);
+            return text + '...';
         }
     },
     file: {

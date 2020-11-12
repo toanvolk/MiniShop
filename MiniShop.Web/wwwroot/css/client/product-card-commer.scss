@@ -11,7 +11,7 @@
         align-items: center;
         justify-content: center;
     }*/
-   /* .img-responsive {
+    /* .img-responsive {
         max-height: 195px;
     }
 */
@@ -171,7 +171,10 @@
         font-size: 12.5px;
         line-height: 20px;
         padding: 10px 14px 16px 19px;
-        background: #fff
+        background: #fff;
+        max-height: 75px;
+        overflow: hidden;
+        width: 320px;
     }
 
     .prod-info-main .product-info {
@@ -221,16 +224,16 @@
 
     .prod-wrap .product-image span.tag2 {
         position: absolute;
-        top: 10px;
-        right: 10px;
+        top: 0px;
         width: 36px;
         height: 36px;
         border-radius: 50%;
-        padding: 10px 0;
         color: #fff;
         font-size: 11px;
         text-align: center
     }
+
+    
 
     .prod-wrap .product-image span.tag3 {
         position: absolute;
@@ -256,6 +259,7 @@
     .prod-wrap .product-image span.special {
         background-color: #3B6764;
     }
+
 
     .shop-btn {
         position: relative

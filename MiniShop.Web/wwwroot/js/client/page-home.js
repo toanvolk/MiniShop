@@ -10,26 +10,25 @@
 		<div class="row">
 				<div class="col-md-5 col-sm-12 col-xs-12">
 					<div class="product-image"> 
-						<img src="{#:picture}" class="img-responsive"> 
-						<span class="tag2 hot">
-							HOT
-						</span> 
+						<img src="{#:picture}" class="img-responsive">   
 					</div>
 				</div>
 				<div class="col-md-7 col-sm-12 col-xs-12">
 				<div class="product-deatil">
 						<h5 class="name">
-							<a href="{#:trackingLink}">
+							<a href="{#:trackingLink}" style="font-weight: 700;">
 								{#:name}
 							</a>
 							<a href="#">
-								<span>Sản phẩm [{#:categoryName}]</span>
+								<span style="margin-top:5px">Nhóm sản phẩm {#:categoryName}</span>
 							</a>   
 						</h5>
 						<p class="price-container">
 							<span>{#:price}</span>
 						</p>
-						<span class="tag1"></span> 
+						<span class="tag1">
+							<img src="{#:picture-hot}" style="width: 55px">  
+						</span>
 				</div>
 				<div class="description">
 					<p>{#:description}</p>
@@ -37,13 +36,10 @@
 				<div class="product-info smart-form">
 					<div class="row">
 						<div class="col-md-12"> 
-                            <button class="btn-read-more" data-link="{#:link}">
+                            <button class="btn-read-more" data-link="{#:link}" style="margin: 0 auto">
                               <span>Chi tiết</span>
                             </button>
-						</div>
-						<div class="col-md-12">
-							<label><i class="fa fa-eye text-warning"></i> 6868</label>
-						</div>
+						</div>						
 					</div>
 				</div>
 			</div>
@@ -54,11 +50,12 @@
                         `;
         _template = _template
             .replaceAll(new RegExp("{#:picture}", "gi"), data.picture)
+            .replaceAll(new RegExp("{#:picture-hot}", "gi"), '/shared/Icon/icon-hot-2.gif')
             .replaceAll(new RegExp("{#:name}", "gi"), data.name)
             .replaceAll(new RegExp("{#:trackingLink}", "gi"), data.trackingLink)
             .replaceAll(new RegExp("{#:link}", "gi"), data.trackingLink)
             .replaceAll(new RegExp("{#:price}", "gi"), helper.formatNumber.k(data.price))
-            .replaceAll(new RegExp("{#:description}", "gi"), data.description || "")
+            .replaceAll(new RegExp("{#:description}", "gi"), data.description ? helper.formatString.truncate(helper.formatString.decodeHtml(data.description, {normal: true}),150) : "")
             .replaceAll(new RegExp("{#:categoryName}", "gi"), data.categoryName || "")
         return _template;
     };

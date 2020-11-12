@@ -121,7 +121,10 @@
     font-size: 12.5px;
     line-height: 20px;
     padding: 10px 14px 16px 19px;
-    background: #fff; }
+    background: #fff;
+    max-height: 75px;
+    overflow: hidden;
+    width: 320px; }
   .mshop-product-client .prod-info-main .product-info {
     padding: 11px 19px 10px 20px; }
   .mshop-product-client .prod-info-main .product-info a.add-to-cart {
@@ -155,12 +158,10 @@
     margin-top: 15px; }
   .mshop-product-client .prod-wrap .product-image span.tag2 {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 0px;
     width: 36px;
     height: 36px;
     border-radius: 50%;
-    padding: 10px 0;
     color: #fff;
     font-size: 11px;
     text-align: center; }
