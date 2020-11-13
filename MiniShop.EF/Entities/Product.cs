@@ -25,5 +25,6 @@ namespace MiniShop.EF
         public string TrackingLink { get; set; }
         [MaxLength(50)]
         public string AreaCode { get; set; }
+        public bool IsHero { get; set; }
     }
 }

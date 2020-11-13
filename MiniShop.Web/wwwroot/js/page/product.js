@@ -4,7 +4,8 @@
     delete: 'delete',
     gridSelectorName: '#mnshop-product .grid',
     urlLoadData: 'product/loaddatapage',
-    statuChange: 'statu-change'
+    statuChange: 'statu-change',
+    heroChange: 'hero-change'
 };
 var productIndex = {
     clickEvent: function (e) {
@@ -16,6 +17,7 @@ var productIndex = {
     changeEvent: function (e) {
         let _handle = productHandle();
         if (eval($(e).data('ename')) == productConst.statuChange) productIndex.statuChange(e, _handle);
+        if (eval($(e).data('ename')) == productConst.heroChange) productIndex.heroChange(e, _handle);
     },
     //child event
     init: function () {
@@ -59,7 +61,10 @@ var productIndex = {
                 },
                 {
                     field: "description",
-                    title: "Mô tả"
+                    title: "Mô tả",
+                    template: function (item) {
+                        return helper.formatString.truncate(helper.formatString.decodeHtml(item.description, { normal: true }), 150)
+                    }
                 },
                 {
                     field: "areaCode",
@@ -77,6 +82,20 @@ var productIndex = {
                     field: "trackingLink",
                     title: "Tracking link",
                     width: "20%",
+                },
+                {
+                    field: "isHero",
+                    title: "Status",
+                    template: function (item) {
+                        let _html = `<div class="custom-switch">
+                                            <input type="checkbox" class="custom-control-input" id="{id}" {checked} onchange="productIndex.changeEvent(this)" data-ename= "productConst.heroChange" data-id="{id}">
+                                            <label class="custom-control-label" for="{id}"></label>
+                                        </div>`
+                        return _html
+                            .replaceAll(new RegExp("{id}", "gi"), item.id)
+                            .replaceAll(new RegExp("{checked}", "gi"), item.isHero ? "checked" : "")
+                    },
+                    width: "120px"
                 },
                 {
                     field: "NotUse",
@@ -199,6 +218,20 @@ var productIndex = {
                 swal(res.statu, res.message, 'error');
             }            
         });
+    },
+    heroChange: function (e, handle) {
+        let _id = $(e).data('id');
+        let _checked = $(e).prop('checked');
+
+        console.log(_id, _checked);
+        handle.heroChange(_id, _checked, function (res) {
+            if (res.statu == 200) {
+                $(productConst.gridSelectorName).data("kendoGrid").dataSource.read();
+            }
+            else {
+                swal(res.statu, res.message, 'error');
+            }
+        });
     }
 };
 var productHandle = function () {
@@ -212,14 +245,20 @@ var productHandle = function () {
         let _url = 'product/updateStatu';
         $.post(_url, { productId: productId, ischecked: checked }, function (res) { callback(res);});
     }
+    let _heroChange = function (productId, checked, callback) {
+        let _url = 'product/updateHero';
+        $.post(_url, { productId: productId, ischecked: checked }, function (res) { callback(res); });
+    }
     return {
         data: helper.formData,
         formatNumber: helper.formatNumber,
+        formatString: helper.formatString,
         validate: helper.inputValidate,
         dialog: helper.showDialog,
         delete: _delete,
         statuChange: _statuChange,
-        initEditor:  helper.editor.init
+        initEditor: helper.editor.init,
+        heroChange: _heroChange
     }
 };
 productIndex.init();

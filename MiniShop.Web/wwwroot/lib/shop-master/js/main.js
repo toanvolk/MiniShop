@@ -1,4 +1,4 @@
-;(function () {
+; (function (bridge) {
 	
 	'use strict';
 
@@ -309,9 +309,9 @@
 		goToTop();
 		loaderPage();
 		counterWayPoint();
-		sliderMain();
+		//sliderMain();
 		testimonialCarousel();
 	});
 
-
-}());
+	bridge.sliderMain = function () { return sliderMain() };
+}(helper.bridgeHandle));

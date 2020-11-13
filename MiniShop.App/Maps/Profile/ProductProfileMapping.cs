@@ -60,10 +60,13 @@ namespace MiniShop.App
                     Description = item.Description,
                     Name = item.Name,
                     Picture = item.Picture,
+                    SmallPicture = item.SmallPicture,
+                    BigPicture = item.BigPicture,
                     TrackingLink = item.TrackingLink,
                     Price = item.Price,
                     CategoryId = item.CategoryId,
-                    NotUse = item.NotUse
+                    NotUse = item.NotUse,
+                    IsHero = item.IsHero
                 });
             }
             return destination;

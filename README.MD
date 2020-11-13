@@ -17,3 +17,5 @@
 
 # Note
 - Size hiển thị danh sách products: 0.93 (W/H)
+- Size hiển thị danh sách products big: 1.32 (W/H)
+ 

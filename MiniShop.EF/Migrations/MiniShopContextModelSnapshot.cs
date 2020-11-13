@@ -195,6 +195,9 @@ namespace MiniShop.EF.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsHero")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(200)")
                         .HasMaxLength(200);

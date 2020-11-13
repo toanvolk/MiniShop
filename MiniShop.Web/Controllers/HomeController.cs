@@ -41,6 +41,19 @@ namespace MiniShop.Web.Controllers
             };
             return Json(model);
         }
+
+        public IActionResult ProductHero()
+        {
+            var productDtos = _productService.LoadDataHero().Take(4);
+            var model = new
+            {
+                source = productDtos
+            };
+            return Json(model);
+        }
+
+        
+        #region Generic system
         public IActionResult Privacy()
         {
             return View();
@@ -51,5 +64,7 @@ namespace MiniShop.Web.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+        #endregion
+
     }
 }

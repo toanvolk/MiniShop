@@ -2,7 +2,8 @@
     let _paginationClass = ".mnshop-pagination";
     let _btnProductSearch = "#mnshop-btn-product-search";
     let _mshop_product_client = ".mshop-product-client";
-    let _formatTemplate = function (data) {
+    let _mnshop_product_hero = ".mnshop-product-hero";
+    let _formatCardTemplate = function (data) {
         let _template = `
             <div class="col-xs-12 col-md-6">
 	<!-- First product box start here-->
@@ -10,7 +11,11 @@
 		<div class="row">
 				<div class="col-md-5 col-sm-12 col-xs-12">
 					<div class="product-image"> 
-						<img src="{#:picture}" class="img-responsive">   
+                        <div class="border"></div>
+                        <div class="main-element">
+                            <img src="{#:picture}" class="img-responsive">   
+                        </div>
+						
 					</div>
 				</div>
 				<div class="col-md-7 col-sm-12 col-xs-12">
@@ -59,6 +64,32 @@
             .replaceAll(new RegExp("{#:categoryName}", "gi"), data.categoryName || "")
         return _template;
     };
+    let _formatProductHero = function (data) {
+        let _template = `
+                        <li style="background-image: url({#:bigPicture})">
+                            <div class="overlay-gradient"></div>
+                            <div class="container">
+                                <div class="col-md-6 col-md-offset-3 col-md-pull-3 js-fullheight slider-text">
+                                    <div class="slider-text-inner">
+                                        <div class="desc">
+                                            <span class="price">{#:price}</span>
+                                            <h2>{#:name}</h2>
+                                            <p>{#:description}</p>
+                                            <p><a href="{#:trackingLink}" class="btn btn-primary btn-outline btn-lg">Xem chi tiết</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    `;
+        _template = _template
+            .replaceAll(new RegExp("{#:bigPicture}", "gi"), data.bigPicture)
+            .replaceAll(new RegExp("{#:name}", "gi"), data.name)
+            .replaceAll(new RegExp("{#:price}", "gi"), helper.formatNumber.k(data.price))
+            .replaceAll(new RegExp("{#:description}", "gi"), data.description ? helper.formatString.truncate(helper.formatString.decodeHtml(data.description, { normal: true }), 150) : "")
+            .replaceAll(new RegExp("{#:trackingLink}", "gi"), data.trackingLink);
+        return _template;
+    }
 
     var myVar;
     $(_btnProductSearch).keyup(function (e) {
@@ -82,7 +113,7 @@
 
         content.pagination({
             dataSource: _url,
-            className: 'paginationjs-theme-green paginationjs-big',
+            className: 'paginationjs-big',
             locator: 'source',
             pageNumber: 1,
             totalNumberLocator: function (response) {
@@ -102,13 +133,27 @@
 
                 let _html = '';
                 $(data).each(function (index, value) {
-                    _html += _formatTemplate(value);
+                    _html += _formatCardTemplate(value);
                 });
                 $(_$containRoot).find('#' + _cardId).html(_html);
             }
         });
     }
+    let _genericHero = async function () {
+        let _url = 'home/producthero';
+        let _html = '';
+        await $.get(_url, function (res) {
+            if (res.source) {
+                $(res.source).each(function (index, item) {
+                    _html += _formatProductHero(item);
+                });
+            }
+        });
+        $(_mnshop_product_hero + ' ul.slides').html(_html);
+        helper.bridgeHandle.sliderMain();
+    }
     // init
+    _genericHero();
     _genericPagination($(_paginationClass));
     //event
     $(document).on('click',_mshop_product_client+' .btn-read-more',  function (e) {

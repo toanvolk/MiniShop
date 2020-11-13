@@ -465,5 +465,6 @@ var helper = {
                     });
             });
         }
-    }
+    },
+    bridgeHandle: {}
 }

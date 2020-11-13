@@ -151,5 +151,27 @@ namespace MiniShop.Web.Areas.admin.Controllers
                 throw;
             }
         }
+        [HttpPost]
+        public JsonResult UpdateHero(Guid productId, bool ischecked)
+        {
+            try
+            {
+                if (_productService.UpdateHero(productId, ischecked, this.User?.Identity.Name))
+                {
+                    var response = new DataResponeCommon() { Statu = StatuCodeEnum.OK, Message = "Cập nhật thành công" };
+                    return Json(response);
+                }
+                else
+                {
+                    var response = new DataResponeCommon() { Statu = StatuCodeEnum.InternalServerError, Message = "Cập nhật thất bại" };
+                    return Json(response);
+                }
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e.Message);
+                throw;
+            }
+        }
     }
 }

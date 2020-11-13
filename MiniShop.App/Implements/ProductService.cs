@@ -20,7 +20,7 @@ namespace MiniShop.App
         private readonly string _fileRootPath = "/shared/UserFiles/Folders";
         public ProductService(ILogger<ProductService> logger, IUnitOfWork unitOfWork, IMapper mapper
             , ICategoryService categoryService
-            ,IAreaService areaService)
+            ,IAreaService areaService) 
         {
             _logger = logger;
             _unitOfWorfk = unitOfWork;
@@ -65,7 +65,7 @@ namespace MiniShop.App
                             TrackingLink = product.TrackingLink,
                             Picture = $"{_fileRootPath}/{product.Picture}",
                             NotUse = product.NotUse,
-
+                            IsHero = product.IsHero,
                             CategoryName = category.Name
                         };
 
@@ -89,7 +89,7 @@ namespace MiniShop.App
                             TrackingLink = product.TrackingLink,
                             Picture = $"{_fileRootPath}/{product.Picture}",
                             NotUse = product.NotUse,
-
+                            IsHero = product.IsHero,
                             CategoryName = category.Name
                         };
 
@@ -124,6 +124,23 @@ namespace MiniShop.App
             return _areaService.LoadData();
         }
 
-        
+        public ICollection<ProductDto> LoadDataHero()
+        {
+            var products = _unitOfWorfk.ProductRepository.Filter(o => o.NotUse == false);
+            var productDtos = _mapper.Map<List<ProductDto>>(products);
+            foreach (var item in productDtos)
+            {
+                item.BigPicture = $"{_fileRootPath}/{item.Picture}";
+            }
+            return productDtos;
+        }
+        public bool UpdateHero(Guid productId, bool ischecked, string userName)
+        {
+            var entity = _unitOfWorfk.ProductRepository.FindById(productId);
+            entity.UpdatedBy = userName;
+            entity.UpdatedDate = DateTime.Now;
+            entity.IsHero = ischecked;
+            return _unitOfWorfk.SaveChanges() > 0;
+        }
     }
 }
