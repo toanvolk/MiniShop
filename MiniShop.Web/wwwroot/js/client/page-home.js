@@ -75,7 +75,7 @@
                                             <span class="price">{#:price}</span>
                                             <h2>{#:name}</h2>
                                             <p>{#:description}</p>
-                                            <p><a href="{#:trackingLink}" class="btn btn-primary btn-outline btn-lg">Xem chi tiết</a></p>
+                                            <p><a href="{#:trackingLink}" target="_blank" class="btn btn-primary btn-outline btn-lg">Xem chi tiết</a></p>
                                         </div>
                                     </div>
                                 </div>
@@ -158,6 +158,7 @@
     //event
     $(document).on('click',_mshop_product_client+' .btn-read-more',  function (e) {
         let _url = $(e.target).data('link');
-        console.log(_url);
+        
+        open(_url);
     });
 }($, document));

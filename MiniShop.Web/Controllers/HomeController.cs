@@ -44,7 +44,7 @@ namespace MiniShop.Web.Controllers
 
         public IActionResult ProductHero()
         {
-            var productDtos = _productService.LoadDataHero().Take(4);
+            var productDtos = _productService.LoadDataHero();
             var model = new
             {
                 source = productDtos

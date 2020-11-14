@@ -126,7 +126,7 @@ namespace MiniShop.App
 
         public ICollection<ProductDto> LoadDataHero()
         {
-            var products = _unitOfWorfk.ProductRepository.Filter(o => o.NotUse == false);
+            var products = _unitOfWorfk.ProductRepository.Filter(o => o.IsHero);
             var productDtos = _mapper.Map<List<ProductDto>>(products);
             foreach (var item in productDtos)
             {
