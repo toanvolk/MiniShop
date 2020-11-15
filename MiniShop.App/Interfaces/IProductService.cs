@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace MiniShop.App
 {
@@ -17,5 +18,6 @@ namespace MiniShop.App
         ICollection<AreaDto> GetAreas();
         ICollection<ProductDto> LoadDataHero();
         bool UpdateHero(Guid productId, bool ischecked, string userName);
+        int CountClick(Guid productId, string userHostAddress, string userHostName);
     }
 }

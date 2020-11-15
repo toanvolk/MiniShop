@@ -52,7 +52,14 @@ namespace MiniShop.Web.Controllers
             return Json(model);
         }
 
-        
+        [HttpPost]
+        public IActionResult CountClick(Guid id)
+        {
+            if (id == Guid.Empty) return Json(0);
+            var useHostAddress = this.HttpContext.Connection.RemoteIpAddress.ToString();
+            var count = _productService.CountClick(id, useHostAddress, string.Empty);
+            return Json(count);
+        }
         #region Generic system
         public IActionResult Privacy()
         {

@@ -54,5 +54,9 @@
   {
     "outputFile": "wwwroot/css/client/product-card-notification.css",
     "inputFile": "wwwroot/css/client/product-card-notification.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/client/loader-line.css",
+    "inputFile": "wwwroot/css/client/loader-line.scss"
   }
 ]

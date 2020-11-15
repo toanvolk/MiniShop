@@ -44,12 +44,6 @@
   border-radius: 0;
   background-position: 100% center; }
 
-.mshop-filter .search__input.load_stating:focus {
-  border-bottom: 1px solid #c3c334;
-  animation-name: colorLoading;
-  animation-duration: 0.75s;
-  animation-iteration-count: infinite; }
-
 @keyframes colorLoading {
   from {
     border-bottom: 2px solid #f2eed5; }

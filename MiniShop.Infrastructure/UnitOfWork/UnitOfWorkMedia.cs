@@ -65,6 +65,11 @@ namespace MiniShop.Infrastructure
         private IRepositoryBase<Area> _areaRepository;
         public IRepositoryBase<Area> AreaRepository => _areaRepository ?? (_areaRepository = new RepositoryBase<Area>(_dbContext));
         public DbSet<Area> Areas => _dbContext.Areas;
+
+        private IRepositoryBase<TouchHistory> _touchHistoryRepository;
+        public IRepositoryBase<TouchHistory> TouchHistoryRepository => _touchHistoryRepository ?? (_touchHistoryRepository = new RepositoryBase<TouchHistory>(_dbContext));
+
+        public DbSet<TouchHistory> TouchHistorys => _dbContext.TouchHistorys;
         //Not table on database
 
         #endregion end register reponsitory

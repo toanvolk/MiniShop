@@ -25,6 +25,8 @@ namespace MiniShop.Infrastructure
         DbSet<Product> Products { get; }
         IRepositoryBase<Area> AreaRepository { get; }
         DbSet<Area> Areas { get; }
+        IRepositoryBase<TouchHistory> TouchHistoryRepository { get; }
+        DbSet<TouchHistory> TouchHistorys { get; }
 
         #endregion
 

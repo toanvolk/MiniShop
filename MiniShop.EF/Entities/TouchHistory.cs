@@ -9,5 +9,6 @@ namespace MiniShop.EF
     public class TouchHistory : AuditableEntity
     {
         public Guid ProductId { get; set; }
+        public string UserHostAddress { get; set; }
     }
 }

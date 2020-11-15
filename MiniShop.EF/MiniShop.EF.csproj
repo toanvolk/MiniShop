@@ -17,6 +17,8 @@
     <Compile Remove="Migrations\20201102031009_addition-field-areacode-into-product.Designer.cs" />
     <Compile Remove="Migrations\20201106074604_add-table-filepath.cs" />
     <Compile Remove="Migrations\20201106074604_add-table-filepath.Designer.cs" />
+    <Compile Remove="Migrations\20201114170629_add-query-product-review.cs" />
+    <Compile Remove="Migrations\20201114170629_add-query-product-review.Designer.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.8" />

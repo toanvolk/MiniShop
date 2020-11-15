@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace MiniShop.App
 {
@@ -141,6 +142,20 @@ namespace MiniShop.App
             entity.UpdatedDate = DateTime.Now;
             entity.IsHero = ischecked;
             return _unitOfWorfk.SaveChanges() > 0;
+        }
+
+        public int CountClick(Guid productId, string userHostAddress, string userHostName)
+        {
+            var entity = new TouchHistory() {
+                ProductId = productId,
+                UserHostAddress = userHostAddress,
+                CreatedBy = userHostName,
+                CreatedDate = DateTime.Now,
+                Id = Guid.NewGuid()
+            };
+
+            _unitOfWorfk.TouchHistorys.Add(entity);
+            return _unitOfWorfk.SaveChanges();
         }
     }
 }
