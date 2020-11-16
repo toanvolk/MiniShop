@@ -8,7 +8,7 @@
     let _btn_categorys = ".btn-categorys";
     let _formatCardTemplate = function (data) {
         let _template = `
-            <div class="col-xs-12 col-md-6">
+            <div class="col-xs-12 col-md-6 col-lg-4">
 	<!-- First product box start here-->
 	<div class="prod-info-main prod-wrap clearfix">
 		<div class="row">
