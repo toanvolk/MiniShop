@@ -5,6 +5,7 @@
     let _mnshop_product_hero = ".mnshop-product-hero";
     let _mshop_filter = ".mshop-filter";
     let _search_result = ".search__result";
+    let _btn_categorys = ".btn-categorys";
     let _formatCardTemplate = function (data) {
         let _template = `
             <div class="col-xs-12 col-md-6">
@@ -93,8 +94,13 @@
             .replaceAll(new RegExp("{#:description}", "gi"), data.description ? helper.formatString.truncate(helper.formatString.decodeHtml(data.description, { normal: true }), 150) : "")
             .replaceAll(new RegExp("{#:trackingLink}", "gi"), data.trackingLink);
         return _template;
-    }
+    };
+    let _formatCategoryTemplate = function (data) {
+        let _html = '<a class="btn" data-id="{#:id}" data-name= "{#:name}">{#:name}</a>';
 
+        return _html.replaceAll(new RegExp("{#:id}", "gi"), data.id)
+            .replaceAll(new RegExp("{#:name}", "gi"), data.name);
+    };
     var myVar;
     $(_btnProductSearch).keyup(function (e) {
         clearTimeout(myVar);
@@ -102,22 +108,36 @@
 
         $(_mshop_filter + ' .loader').show();
         myVar = setTimeout(function () {
-            let _textSearch = $(e.target).closest(_mshop_filter).find(_btnProductSearch).val();
-            _genericPagination($(_paginationClass), _textSearch);
-
+            _genericPagination();
             $(_mshop_filter + ' .loader').hide();
         }, 2500);
     });
     //
-    let _genericPagination = function (content, textSearch) {
-        let _url = 'home/productpage{#:textSearch}';
-        if (textSearch) {
-            content.pagination('destroy');
-            textSearch = "?textSearch=" + textSearch;
+    let _genericPagination = function () {
+        let _url = 'home/productpage{#:_paramStrs}';
+        let _paramStrs = "";
+        let _content = $(_paginationClass);
+        //get values
+        let _values = [];
+        $(_mshop_product_client + ' ' + _btn_categorys + ' a.active').each(function (index, item) {
+            let _id = $(item).data("id");
+            if (_id != "ALL")
+                _values.push($(item).data("id"));
+        });
+        let _textSearch = $(_mshop_filter).find(_btnProductSearch).first().val();
+        //parse filter
+        if (_textSearch || _values) {
+            if ($(_content).data('pagination')) _content.pagination('destroy');            
+            let _paramObject = {
+                TextSearch: _textSearch,
+                CategoryIds: _values
+            }
+            _paramStrs = "?paramStrs=" + JSON.stringify(_paramObject);
         };
-        _url = _url.replaceAll(new RegExp("{#:textSearch}", "gi"), textSearch || "");
 
-        content.pagination({
+        _url = _url.replaceAll(new RegExp("{#:_paramStrs}", "gi"), _paramStrs || "");
+
+        _content.pagination({
             dataSource: _url,
             className: 'paginationjs-big',
             locator: 'source',
@@ -165,6 +185,18 @@
         $(_mnshop_product_hero + ' ul.slides').html(_html);
         helper.bridgeHandle.sliderMain();
     }
+    let _genericCategoryButton = async function () {
+        let _url = 'home/getcategorys';
+        let _html = '<a class="btn" data-id="ALL" data-name="Tất cả">Tất cả</a>'
+        await $.get(_url, {}, function (res) {
+            if (res) {
+                $(res).each(function (index, item) {
+                    _html += _formatCategoryTemplate(item);
+                });
+            }
+        });
+        $(_mshop_product_client + ' ' + _btn_categorys).html(_html);
+    }
     let _countClick = function (id) {
         let _url = 'home/countClick';
         $.post(_url, { id: id }, function (res) { });
@@ -175,7 +207,8 @@
 
     // init
     _genericHero();
-    _genericPagination($(_paginationClass));
+    _genericPagination();
+    _genericCategoryButton();
     $(_mshop_filter + ' .loader').hide();
     //event
     $(document).on('click',
@@ -188,5 +221,22 @@
             open(_url);
             //count click
             _countClick(_id)
-    });    
+        });    
+    $(document).on('click', _mshop_product_client +' '+ _btn_categorys +' a', function (e) {
+        e.preventDefault();
+        if ($(e.target).hasClass("active"))
+            $(e.target).removeClass("active");
+        else
+            $(e.target).addClass("active");
+
+        if ($(e.target).data('id') == "ALL") {
+            $(_mshop_product_client + ' ' + _btn_categorys + ' a').removeClass("active");
+            $(e.target).addClass("active");
+        }
+        else {
+            $(_mshop_product_client + ' ' + _btn_categorys + ' a[data-id=ALL]').removeClass("active");
+        }
+
+        _genericPagination();
+    })
 }($, document));

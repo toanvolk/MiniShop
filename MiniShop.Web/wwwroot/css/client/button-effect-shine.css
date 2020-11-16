@@ -1,0 +1,46 @@
+﻿.button-effect-shine * {
+  padding: 0;
+  margin: 0;
+  margin-bottom: 10px; }
+
+.button-effect-shine .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; }
+
+.button-effect-shine a {
+  font-size: 1.5rem;
+  padding: 1rem 3rem;
+  color: #f7c708;
+  text-transform: uppercase;
+  margin-right: 5px; }
+
+.button-effect-shine a.active {
+  color: #ffffff;
+  font-weight: bold; }
+
+.button-effect-shine .btn {
+  text-decoration: none;
+  border: 1px solid #9294f8;
+  position: relative;
+  overflow: hidden; }
+
+.button-effect-shine .btn.active {
+  background: #f7c708; }
+
+.button-effect-shine .btn:hover {
+  box-shadow: 1px 1px 25px 10px rgba(146, 148, 248, 0.4); }
+
+.button-effect-shine .btn:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(146, 148, 248, 0.4), transparent);
+  transition: all 650ms; }
+
+.button-effect-shine .btn:hover:before {
+  left: 100%; }

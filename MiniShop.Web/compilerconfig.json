@@ -58,5 +58,9 @@
   {
     "outputFile": "wwwroot/css/client/loader-line.css",
     "inputFile": "wwwroot/css/client/loader-line.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/client/button-effect-shine.css",
+    "inputFile": "wwwroot/css/client/button-effect-shine.scss"
   }
 ]

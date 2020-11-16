@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MiniShop.App;
 using MiniShop.Web.Models;
+using Newtonsoft.Json;
 
 namespace MiniShop.Web.Controllers
 {
@@ -15,11 +16,13 @@ namespace MiniShop.Web.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IProductService _productService;
+        private readonly ICategoryService _categoryService;
 
-        public HomeController(ILogger<HomeController> logger, IProductService  productService)
+        public HomeController(ILogger<HomeController> logger, IProductService  productService, ICategoryService categoryService)
         {
             _logger = logger;
             _productService = productService;
+            _categoryService = categoryService;
         }
 
         public IActionResult Index()
@@ -31,9 +34,12 @@ namespace MiniShop.Web.Controllers
             return View();
         }
 
-        public IActionResult ProductPage(int pageNumber = 1, int pageSize = 9, string textSearch = null)
+        public IActionResult ProductPage(int pageNumber = 1, int pageSize = 9, string paramStrs = null)
         {
-            var productDtos = _productService.LoadDataPage(pageNumber, pageSize, textSearch);
+            ProductPageFilterDto filterDto = new ProductPageFilterDto();
+            if (!string.IsNullOrWhiteSpace(paramStrs))
+                filterDto = JsonConvert.DeserializeObject<ProductPageFilterDto>(paramStrs);
+            var productDtos = _productService.LoadDataPage(pageNumber, pageSize, filterDto);
             var model = new
             {
                 source = productDtos.Item1,
@@ -60,6 +66,12 @@ namespace MiniShop.Web.Controllers
             var count = _productService.CountClick(id, useHostAddress, string.Empty);
             return Json(count);
         }
+        
+        public IActionResult GetCategorys()
+        {
+            var model = _categoryService.LoadData();
+            return Json(model);
+        }
         #region Generic system
         public IActionResult Privacy()
         {
@@ -72,6 +84,7 @@ namespace MiniShop.Web.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
         #endregion
+
 
     }
 }

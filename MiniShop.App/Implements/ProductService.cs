@@ -73,12 +73,38 @@ namespace MiniShop.App
             var model = query.ToList();
             return model;
         }
-        public Tuple<ICollection<ProductDto>, int> LoadDataPage(int page, int pageSize, string textSearch=null)
+        public Tuple<ICollection<ProductDto>, int> LoadDataPage(int page, int pageSize, ProductPageFilterDto filter)
         {
             var query = from product in _unitOfWorfk.Products
                         join category in _unitOfWorfk.Categories on product.CategoryId equals category.Id
                         join area in _unitOfWorfk.Areas on product.AreaCode equals area.Code
-                        where (textSearch == null) || product.Name.Contains(textSearch) || category.Name.Contains(textSearch)
+                        where ((filter.TextSearch == null) || product.Name.Contains(filter.TextSearch) || category.Name.Contains(filter.TextSearch))
+                            && ((filter.CategoryIds.Count == 0) || filter.CategoryIds.Contains(product.CategoryId))
+                        select new ProductDto()
+                        {
+                            Id = product.Id,
+                            Name = product.Name,
+                            Description = product.Description,
+                            CategoryId = product.CategoryId,
+                            AreaCode = product.AreaCode,
+                            Price = product.Price,
+                            TrackingLink = product.TrackingLink,
+                            Picture = $"{_fileRootPath}/{product.Picture}",
+                            NotUse = product.NotUse,
+                            IsHero = product.IsHero,
+                            CategoryName = category.Name
+                        };
+
+            var model = query.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+            var total = query.Count();
+
+            return new Tuple<ICollection<ProductDto>, int>(model, total);
+        }
+        public Tuple<ICollection<ProductDto>, int> LoadDataPage(int page, int pageSize)
+        {
+            var query = from product in _unitOfWorfk.Products
+                        join category in _unitOfWorfk.Categories on product.CategoryId equals category.Id
+                        join area in _unitOfWorfk.Areas on product.AreaCode equals area.Code
                         select new ProductDto()
                         {
                             Id = product.Id,
