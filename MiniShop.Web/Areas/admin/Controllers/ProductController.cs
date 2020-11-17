@@ -35,6 +35,7 @@ namespace MiniShop.Web.Areas.admin.Controllers
             };
             return Json(response);
         }
+        [HttpPost]
         public JsonResult LoadDataPage([DataSourceRequest] DataSourceRequest request)
         {
             var source = _productService.LoadDataPage(request.Page, request.PageSize);

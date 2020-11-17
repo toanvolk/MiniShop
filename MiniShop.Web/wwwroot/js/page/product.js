@@ -5,7 +5,8 @@
     gridSelectorName: '#mnshop-product .grid',
     urlLoadData: 'product/loaddatapage',
     statuChange: 'statu-change',
-    heroChange: 'hero-change'
+    heroChange: 'hero-change',
+    productSearch: 'product-search'
 };
 var productIndex = {
     clickEvent: function (e) {
@@ -19,22 +20,44 @@ var productIndex = {
         if (eval($(e).data('ename')) == productConst.statuChange) productIndex.statuChange(e, _handle);
         if (eval($(e).data('ename')) == productConst.heroChange) productIndex.heroChange(e, _handle);
     },
+    keyupEvent: function (e) {
+        if (eval($(e).data('ename')) == productConst.productSearch) productIndex.productSearch(e, _handle);        
+    },
     //child event
     init: function () {
         $(productConst.gridSelectorName).kendoGrid({
             dataSource: {
                 transport: {
-                    read: {
-                        url: productConst.urlLoadData,
-                        dataType: "json",
-                        type: "GET"
+                    read: function(options) {
+
+                        $.ajax({
+                            url: productConst.urlLoadData,
+                            contentType: 'application/json',
+                            dataType: 'json',
+                            type: "POST",
+                            data: JSON.stringify(options.data),
+                            success: function (result) {
+                                options.success(result);
+                            }
+                        })
+
                     }
                 },
                 schema: {
                     data: "data",
-                    total: "total"
+                    total: "total",
+                    fields: [
+                        { field: 'Id', type: 'number' },
+                        { field: 'FirstName', type: 'string' },
+                        { field: 'LastName', type: 'string' }
+                    ]
+                },
+                filter: {
+                    filters: [{ field: 'FirstName', operator: 'eq', value: 'David' }]
                 },
                 serverPaging: true,
+                serverFiltering: true,
+                serverSorting: true,
                 pageSize: cdA.pageSize,
             },
             pageable: true,
@@ -244,7 +267,8 @@ var productIndex = {
                 swal(res.statu, res.message, 'error');
             }
         });
-    }
+    },
+    
 };
 var productHandle = function () {
     let _delete = function (productId, callback) {
@@ -261,6 +285,18 @@ var productHandle = function () {
         let _url = 'product/updateHero';
         $.post(_url, { productId: productId, ischecked: checked }, function (res) { callback(res); });
     }
+    let _loadData = function (options) {
+        $.ajax({
+            url: productConst.urlLoadData,
+            contentType: 'application/json',
+            dataType: 'json',
+            type: 'POST',
+            data: JSON.stringify(options.data),
+            success: function (result) {
+                options.success(result);
+            }
+        })        
+    }
     return {
         data: helper.formData,
         formatNumber: helper.formatNumber,
@@ -270,7 +306,8 @@ var productHandle = function () {
         delete: _delete,
         statuChange: _statuChange,
         initEditor: helper.editor.init,
-        heroChange: _heroChange
+        heroChange: _heroChange,
+        loadData: _loadData
     }
 };
 productIndex.init();
