@@ -50,16 +50,21 @@ namespace MiniShop.Web.Areas.admin.Controllers
         [HttpPost]
         public IActionResult Add()
         {
-            var model = new Tuple<ICollection<CategoryDto>,ICollection<AreaDto>>(_productService.GetCategories(), _productService.GetAreas());
+
+            var model = new Tuple<ICollection<CategoryDto>,ICollection<AreaDto>, ICollection<string>>(
+                _productService.GetCategories(), 
+                _productService.GetAreas(),
+                _productService.TagList());
             return PartialView("_add", model);
         }
         [HttpPost]
         public IActionResult Edit(Guid productId)
         {
-            var model = new Tuple<ICollection<CategoryDto>, ICollection<AreaDto>, ProductDto>(
+            var model = new Tuple<ICollection<CategoryDto>, ICollection<AreaDto>, ProductDto, ICollection<string>>(
                 _productService.GetCategories(),
                 _productService.GetAreas(),
-                _productService.GetData(productId)
+                _productService.GetData(productId),
+                 _productService.TagList()
                 );
             return PartialView("_edit", model);
         }

@@ -20,5 +20,6 @@ namespace MiniShop.App
         public string TrackingLink { get; set; }
         public string AreaCode { get; set; }
         public bool IsHero { get; set; }
+        public TagEnum Tag { get; set; }
     }
 }

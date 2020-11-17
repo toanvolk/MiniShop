@@ -26,5 +26,6 @@ namespace MiniShop.EF
         [MaxLength(50)]
         public string AreaCode { get; set; }
         public bool IsHero { get; set; }
+        public int Tag { get; set; }
     }
 }

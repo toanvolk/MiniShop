@@ -22,6 +22,7 @@ namespace MiniShop.App
                 .ForMember(dest => dest.Picture, opt => opt.MapFrom(source => source.Picture))
                 .ForMember(dest => dest.SmallPicture, opt => opt.MapFrom(source => source.SmallPicture))
                 .ForMember(dest => dest.BigPicture, opt => opt.MapFrom(source => source.BigPicture))
+                .ForMember(dest => dest.Tag, opt => opt.MapFrom(source => source.Tag))
                 .AfterMap((source, destination) =>
                 {
                     destination.CreatedBy = "ADMIN";
@@ -42,7 +43,8 @@ namespace MiniShop.App
                 .ForMember(dest => dest.TrackingLink, opt => opt.MapFrom(source => source.TrackingLink))
                 .ForMember(dest => dest.Picture, opt => opt.MapFrom(source => source.Picture))
                 .ForMember(dest => dest.SmallPicture, opt => opt.MapFrom(source => source.SmallPicture))
-                .ForMember(dest => dest.BigPicture, opt => opt.MapFrom(source => source.BigPicture));
+                .ForMember(dest => dest.BigPicture, opt => opt.MapFrom(source => source.BigPicture))
+                .ForMember(dest => dest.Tag, opt => opt.MapFrom(source => source.Tag));
 
             //load
             CreateMap<List<Product>, List<ProductDto>>().ConvertUsing<ProductTypingConvert>();
@@ -66,7 +68,8 @@ namespace MiniShop.App
                     Price = item.Price,
                     CategoryId = item.CategoryId,
                     NotUse = item.NotUse,
-                    IsHero = item.IsHero
+                    IsHero = item.IsHero,
+                    Tag = (TagEnum) Enum.Parse(typeof(TagEnum), item.Tag.ToString())
                 });
             }
             return destination;

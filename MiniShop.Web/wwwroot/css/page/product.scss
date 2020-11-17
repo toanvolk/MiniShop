@@ -4,4 +4,16 @@
         width: 100px;
         height: 100px;
     }
+
+    .mnshop-product-image {
+        .image-tag {
+            position: absolute;
+
+            img {
+                position: relative;
+                max-width: 42px;
+                max-height: 42px;
+            }
+        }
+    }
 }

@@ -49,9 +49,21 @@ var productIndex = {
                     title: "Ảnh",
                     width: "7%",
                     template: function (item) {
-                        let _html = `<img src="{link-image}">`
+                        let _html = `
+                                    <div class="mnshop-product-image">
+                                        <div class="image-tag" {#:hide}>
+                                            <img src="{#:link-image-tag}">                                            
+                                        </div>
+                                        <img src="{#:link-image}">                                        
+                                    </div>
+                                    `;
+                        let _pathImg = '';
+                        if (item.tag == cdA.productTag.HOT) _pathImg = '/shared/Icon/icon-hot-2.gif';
+                        if (item.tag == cdA.productTag.NEW) _pathImg = '/shared/Icon/icon-new-1.gif';
                         return _html
-                            .replaceAll(new RegExp("{link-image}", "gi"), item.picture);
+                            .replaceAll(new RegExp("{#:link-image}", "gi"), item.picture)
+                            .replaceAll(new RegExp("{#:link-image-tag}", "gi"), _pathImg)
+                            .replaceAll(new RegExp("{#:hide}", "gi"), _pathImg || "hidden");
                     },
                 },
                 {
@@ -85,7 +97,7 @@ var productIndex = {
                 },
                 {
                     field: "isHero",
-                    title: "Status",
+                    title: "Trang đầu",
                     template: function (item) {
                         let _html = `<div class="custom-switch">
                                             <input type="checkbox" class="custom-control-input" id="{id}" {checked} onchange="productIndex.changeEvent(this)" data-ename= "productConst.heroChange" data-id="{id}">

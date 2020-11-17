@@ -2,7 +2,7 @@
     Layout = null;
 }
 @using MiniShop.App; 
-@model Tuple<ICollection<CategoryDto>, ICollection<AreaDto>, ProductDto>
+@model Tuple<ICollection<CategoryDto>, ICollection<AreaDto>, ProductDto, ICollection<string> >
 <div class="card" id="mnshop-product-edit">
     <div class="card-content collapse show">
         <div class="card-body">            
@@ -38,7 +38,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <label for="AreaId">Quốc gia</label>
                                 <select name="AreaCode" class="form-control" required validate-message-required="Chọn quốc gia!">
@@ -54,6 +54,28 @@
                                             <option value="@item.Code">@item.Name</option>
                                         }
 
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="Tag">Tag</label>
+                                <select name="Tag" class="form-control" required>
+                                    @{
+                                        var loop = 0;
+                                    }
+                                    @foreach (var item in @Model.Item4)
+                                    {
+                                        if (item == Model.Item3.Tag.ToString())
+                                        {
+                                            <option value="@item" selected>@item</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@item">@item</option>
+                                        }
+                                        loop++;
                                     }
                                 </select>
                             </div>

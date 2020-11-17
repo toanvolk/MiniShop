@@ -56,10 +56,14 @@
 	<!-- end product -->
 </div>
                         `;
+
+        let _pathImg = '';
+        if (data.tag == cdC.productTag.HOT) _pathImg = '/shared/Icon/icon-hot-2.gif';
+        if (data.tag == cdC.productTag.NEW) _pathImg = '/shared/Icon/icon-new-1.gif';
         _template = _template
             .replaceAll(new RegExp("{#:picture}", "gi"), data.picture)
             .replaceAll(new RegExp("{#:id}", "gi"), data.id)
-            .replaceAll(new RegExp("{#:picture-hot}", "gi"), '/shared/Icon/icon-hot-2.gif')
+            .replaceAll(new RegExp("{#:picture-hot}", "gi"), _pathImg)
             .replaceAll(new RegExp("{#:name}", "gi"), data.name)
             .replaceAll(new RegExp("{#:trackingLink}", "gi"), data.trackingLink)
             .replaceAll(new RegExp("{#:link}", "gi"), data.trackingLink)

@@ -40,7 +40,7 @@ namespace MiniShop.App
         public bool Update(ProductDto data)
         {
             var product = _mapper.Map<Product>(data);
-            _unitOfWorfk.ProductRepository.Update(product, UpdateAccessMode.DENY_UPDATE, "CreatedBy", "CreatedDate", "NotUse");
+            _unitOfWorfk.ProductRepository.Update(product, UpdateAccessMode.DENY_UPDATE, "CreatedBy", "CreatedDate", "NotUse", "IsHero");
             return _unitOfWorfk.SaveChanges() > 0;
         }
 
@@ -92,7 +92,8 @@ namespace MiniShop.App
                             Picture = $"{_fileRootPath}/{product.Picture}",
                             NotUse = product.NotUse,
                             IsHero = product.IsHero,
-                            CategoryName = category.Name
+                            CategoryName = category.Name,
+                            Tag = (TagEnum)product.Tag
                         };
 
             var model = query.Skip((page - 1) * pageSize).Take(pageSize).ToList();
@@ -117,7 +118,8 @@ namespace MiniShop.App
                             Picture = $"{_fileRootPath}/{product.Picture}",
                             NotUse = product.NotUse,
                             IsHero = product.IsHero,
-                            CategoryName = category.Name
+                            CategoryName = category.Name,
+                            Tag = (TagEnum)product.Tag
                         };
 
             var model = query.Skip((page - 1) * pageSize).Take(pageSize).ToList();
@@ -182,6 +184,12 @@ namespace MiniShop.App
 
             _unitOfWorfk.TouchHistorys.Add(entity);
             return _unitOfWorfk.SaveChanges();
+        }
+
+        public ICollection<string> TagList()
+        {
+            var list = Enum.GetNames(typeof(TagEnum));
+            return list;
         }
     }
 }
