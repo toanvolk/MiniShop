@@ -21,6 +21,7 @@ var productIndex = {
         if (eval($(e).data('ename')) == productConst.heroChange) productIndex.heroChange(e, _handle);
     },
     keyupEvent: function (e) {
+        let _handle = productHandle();
         if (eval($(e).data('ename')) == productConst.productSearch) productIndex.productSearch(e, _handle);        
     },
     //child event
@@ -28,36 +29,13 @@ var productIndex = {
         $(productConst.gridSelectorName).kendoGrid({
             dataSource: {
                 transport: {
-                    read: function(options) {
-
-                        $.ajax({
-                            url: productConst.urlLoadData,
-                            contentType: 'application/json',
-                            dataType: 'json',
-                            type: "POST",
-                            data: JSON.stringify(options.data),
-                            success: function (result) {
-                                options.success(result);
-                            }
-                        })
-
-                    }
+                    read: function (options) { return productIndex._read(options) }
                 },
                 schema: {
                     data: "data",
-                    total: "total",
-                    fields: [
-                        { field: 'Id', type: 'number' },
-                        { field: 'FirstName', type: 'string' },
-                        { field: 'LastName', type: 'string' }
-                    ]
-                },
-                filter: {
-                    filters: [{ field: 'FirstName', operator: 'eq', value: 'David' }]
+                    total: "total"
                 },
                 serverPaging: true,
-                serverFiltering: true,
-                serverSorting: true,
                 pageSize: cdA.pageSize,
             },
             pageable: true,
@@ -157,6 +135,22 @@ var productIndex = {
                 }
             ]
         })
+    },
+    _read: function (options, params) {
+        if (params) {
+            $.each(params, function (key, value) {
+                options.data[key] = value;
+            })
+        }
+        $.ajax({
+            url: productConst.urlLoadData,
+            type: "POST",
+            data: options.data,
+            success: function (result) {
+                options.success(result);
+            }
+        })
+
     },
     add: function (e, handle) {
         handle.dialog({
@@ -268,7 +262,18 @@ var productIndex = {
             }
         });
     },
-    
+    productSearch: function (e, handle) {
+        let _parmas = {};
+        if (event.key === 'Enter' || event.keyCode === 13) {
+            // Do something
+            _parmas.ProductName = $(e).val();
+            $(productConst.gridSelectorName).data("kendoGrid").dataSource.transport.read = function (options) {
+                return productIndex._read(options, _parmas);
+            }
+            $(productConst.gridSelectorName).data("kendoGrid").dataSource.read();
+        }
+        
+    }
 };
 var productHandle = function () {
     let _delete = function (productId, callback) {
