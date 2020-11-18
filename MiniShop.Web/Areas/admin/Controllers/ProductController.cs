@@ -24,17 +24,7 @@ namespace MiniShop.Web.Areas.admin.Controllers
             ViewBag.Title = "Product";
             return View();
         }
-        public JsonResult LoadData()
-        {
-            var model = _productService.LoadData();
-            var response = new DataResponeCommon<ICollection<ProductDto>>()
-            {
-                Data = model,
-                Message = "OK",
-                Statu = StatuCodeEnum.OK
-            };
-            return Json(response);
-        }
+
         [HttpPost]
         public JsonResult LoadDataPage([DataSourceRequest] DataSourceRequest request, ProductPageFilterDto paramSearch)
         {

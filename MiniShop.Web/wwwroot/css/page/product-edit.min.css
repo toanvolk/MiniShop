@@ -1,1 +1,1 @@
-﻿#mnshop-product-edit .form-control{padding:revert;}
+﻿#mnshop-product-edit *{box-sizing:border-box;}#mnshop-product-edit .form-control{padding:revert;padding-left:8px;}#mnshop-product-edit .btn{cursor:pointer;}#mnshop-product-edit .mnshop-category-content a{border:1px solid #808080;border-radius:10px;margin:2px;padding:5px;display:inline-block;}#mnshop-product-edit .mnshop-category-content a.active{background-color:#0e84e8;color:#f0f8ff;}

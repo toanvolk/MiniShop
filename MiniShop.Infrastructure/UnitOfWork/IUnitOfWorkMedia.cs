@@ -27,7 +27,6 @@ namespace MiniShop.Infrastructure
         DbSet<Area> Areas { get; }
         IRepositoryBase<TouchHistory> TouchHistoryRepository { get; }
         DbSet<TouchHistory> TouchHistorys { get; }
-        DbSet<ProductCategory> ProductCategories { get; }
         #endregion
 
         #region Implement reponsitory not entity

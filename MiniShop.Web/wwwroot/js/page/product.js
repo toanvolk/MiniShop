@@ -207,7 +207,7 @@ var productIndex = {
                         removeMaskOnSubmit: true
                     });
                 },
-                width: 850,
+                width: 1200,
                 close: function () { $(productConst.gridSelectorName).data("kendoGrid").dataSource.read(); },
                 refresh: function () { $(productConst.gridSelectorName).data("kendoGrid").dataSource.read(); }
             }

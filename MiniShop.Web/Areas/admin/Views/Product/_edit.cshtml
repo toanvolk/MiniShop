@@ -1,94 +1,87 @@
 ﻿@{
     Layout = null;
 }
-@using MiniShop.App; 
-@model Tuple<ICollection<CategoryDto>, ICollection<AreaDto>, ProductDto, ICollection<string> >
+@using MiniShop.App;
+@model Tuple<ICollection<CategoryDto>, ICollection<AreaDto>, ProductDto, ICollection<string>>
 <div class="card" id="mnshop-product-edit">
     <div class="card-content collapse show">
-        <div class="card-body">            
+        <div class="card-body">
             <div class="form">
                 <div class="form-body">
+                    <input name="Id" value="@Model.Item3.Id" hidden />
                     <h4 class="form-section">
                         <i class="ft-flag"></i> Thông tin sản phẩm
                     </h4>
-                    <div class="form-group">
-                        <label for="productName">Tên</label>
-                        <input type="text" class="form-control" placeholder="Product name" name="Name"
-                               required validate-message-required="Nhập tên sản phẩm!"
-                               value="@Model.Item3.Name">
-                    </div>
-                    <div class="row">
-                        <input name="Id" value="@Model.Item3.Id" hidden />
-                        <div class="col-md-5">
-                            <div class="form-group">
-                                <label for="CattegoryId">Loại sản phâm</label>
-                                <select name="CategoryId" class="form-control" required validate-message-required="Chọn loại sản phẩm!">
-                                    <option value="" selected disabled>Hãy chọn 1 loại sản phẩm</option>
-                                    @foreach (var item in @Model.Item1)
-                                    {
-                                        if (item.Id == Model.Item3.CategoryId)
-                                        {
-                                            <option value="@item.Id" selected>@item.Name</option>
-                                        }
-                                        else
-                                        {
-                                            <option value="@item.Id">@item.Name</option>
-                                        }
-                                    }
-                                </select>
-                            </div>
+                    <div class="form-group row">
+                        <div class="col-md-4">
+                            <label for="productName">Tên</label>
+                            <input type="text" class="form-control" placeholder="Product name" name="Name"
+                                   required validate-message-required="Nhập tên sản phẩm!"
+                                   value="@Model.Item3.Name">
                         </div>
                         <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="AreaId">Quốc gia</label>
-                                <select name="AreaCode" class="form-control" required validate-message-required="Chọn quốc gia!">
-                                    <option value="" selected disabled>Hãy chọn 1 quốc gia</option>
-                                    @foreach (var item in @Model.Item2)
+                            <label for="AreaId">Quốc gia</label>
+                            <select name="AreaCode" class="form-control" required validate-message-required="Chọn quốc gia!">
+                                <option value="" selected disabled>Hãy chọn 1 quốc gia</option>
+                                @foreach (var item in @Model.Item2)
+                                {
+                                    if (item.Code == Model.Item3.AreaCode)
                                     {
-                                        if (item.Code == Model.Item3.AreaCode)
-                                        {
-                                            <option value="@item.Code" selected>@item.Name</option>
-                                        }
-                                        else
-                                        {
-                                            <option value="@item.Code">@item.Name</option>
-                                        }
-
+                                        <option value="@item.Code" selected>@item.Name</option>
                                     }
-                                </select>
-                            </div>
+                                    else
+                                    {
+                                        <option value="@item.Code">@item.Name</option>
+                                    }
+
+                                }
+                            </select>
                         </div>
                         <div class="col-md-2">
-                            <div class="form-group">
-                                <label for="Tag">Tag</label>
-                                <select name="Tag" class="form-control" required>
-                                    @{
-                                        var loop = 0;
-                                    }
-                                    @foreach (var item in @Model.Item4)
+                            <label for="Tag">Tag</label>
+                            <select name="Tag" class="form-control" required>
+                                @{
+                                    var loop = 0;
+                                }
+                                @foreach (var item in @Model.Item4)
+                                {
+                                    if (item == Model.Item3.Tag.ToString())
                                     {
-                                        if (item == Model.Item3.Tag.ToString())
-                                        {
-                                            <option value="@item" selected>@item</option>
-                                        }
-                                        else
-                                        {
-                                            <option value="@item">@item</option>
-                                        }
-                                        loop++;
+                                        <option value="@item" selected>@item</option>
                                     }
-                                </select>
-                            </div>
+                                    else
+                                    {
+                                        <option value="@item">@item</option>
+                                    }
+                                    loop++;
+                                }
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="Price">Giá</label>
+                            <input name="Price" class="form-control decimal-inputmask"
+                                   required validate-message-required="Nhập số tiền"
+                                   value="@Model.Item3.Price" />
                         </div>
                     </div>
-
                     <div class="form-group">
-                        <label for="Price">Giá</label>
-                        <input name="Price" class="form-control decimal-inputmask"
-                               required validate-message-required="Nhập số tiền"
-                               value="@Model.Item3.Price" />
+                        <label for="CattegoryId">Loại sản phâm</label>
+                        <div class="mnshop-category-content">
+                            @{
+                                var categorys = Model.Item3.CategoryIds?.Split(',');
+                            }
+                            @foreach (var item in @Model.Item1)
+                            {
+                                var classActive = "";
+                                if (categorys != null && categorys.Any(o => o == item.Id.ToString()))
+                                    classActive = "class=active";
+                                <a id="@item.Id" @classActive
+                                   data-id="@item.Id"
+                                   onclick="productAddIndex.clickEvent(this)"
+                                   data-ename="productAddConst.categorySelected">@item.Name</a>
+                            }
+                        </div>
                     </div>
-
                     <div class="form-group">
                         <label for="Picture">Chọn ảnh</label>
                         <div class="input-group">

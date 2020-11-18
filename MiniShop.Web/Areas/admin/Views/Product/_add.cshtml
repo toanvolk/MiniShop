@@ -60,20 +60,6 @@
                             }
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-5">
-                            <div class="form-group">
-                                <label for="CattegoryId">Loại sản phâm</label>
-                                <select name="CategoryId" class="form-control" required validate-message-required="Chọn loại sản phẩm!">
-                                    <option value="" selected disabled>Hãy chọn 1 loại sản phẩm</option>
-                                    @foreach (var item in @Model.Item1)
-                                    {
-                                        <option value="@item.Id">@item.Name</option>
-                                    }
-                                </select>
-                            </div>
-                        </div>
-                    </div>
                     <div class="form-group">
                         <label for="Picture">Chọn ảnh</label>
                         <div class="input-group">

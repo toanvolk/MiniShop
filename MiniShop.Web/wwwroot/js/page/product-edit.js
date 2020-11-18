@@ -3,7 +3,9 @@
     cancel: "cancel",
     cardContent: "#mnshop-product-edit",
     chooseImage: 'choose-image',
-    fileManager: '#mnshop-product-edit #filemanager'
+    fileManager: '#mnshop-product-edit #filemanager',
+    categorySelected: "category-selected",
+    categoryContent: ".mnshop-category-content"
 };
 var productEditIndex = {
 
@@ -23,6 +25,11 @@ var productEditIndex = {
         if (!handle.validate.checkRequired({ content: _$rootContent })) return;
         let _data = handle.data.inputToObject(_$rootContent, function (obj) {
             obj.Price = parseFloat(obj.Price.replaceAll(',', ''));
+            let _catetorys = [];
+            $(productEditConst.cardContent + ' ' + productEditConst.categoryContent + ' a.active').each(function (index, item) {
+                _catetorys.push($(item).data('id'));
+            });
+            obj.CategoryIds = _catetorys.toString();
         });
         console.log(_data);
         //save
