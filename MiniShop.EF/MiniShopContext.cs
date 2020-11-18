@@ -13,6 +13,7 @@ namespace MiniShop.EF
         public DbSet<TouchHistory> TouchHistorys { get; set; }        
         public DbSet<Category> Categorys { get; set; }        
         public DbSet<Area> Areas { get; set; }        
+        public DbSet<ProductCategory> ProductCategories { get; set; }        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new MiniShopEntityConfiguration());

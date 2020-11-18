@@ -69,7 +69,7 @@ var productIndex = {
                 },
                 {
                     field: "name",
-                    title: "Loại",
+                    title: "Tên",
                     width: "15%"
                 },
                 {
@@ -176,7 +176,7 @@ var productIndex = {
                         removeMaskOnSubmit: true
                     });
                 },
-                width: 800,
+                width: 1200,
                 close: function () { $(productConst.gridSelectorName).data("kendoGrid").dataSource.read(); },
                 refresh: function () { $(productConst.gridSelectorName).data("kendoGrid").dataSource.read(); }
             }
@@ -266,7 +266,7 @@ var productIndex = {
         let _parmas = {};
         if (event.key === 'Enter' || event.keyCode === 13) {
             // Do something
-            _parmas.ProductName = $(e).val();
+            _parmas.textSearch = $(e).val();
             $(productConst.gridSelectorName).data("kendoGrid").dataSource.transport.read = function (options) {
                 return productIndex._read(options, _parmas);
             }

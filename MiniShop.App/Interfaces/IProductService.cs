@@ -12,7 +12,7 @@ namespace MiniShop.App
         bool Delete(Guid productId);
         ICollection<ProductDto> LoadData();
         Tuple<ICollection<ProductDto>, int> LoadDataPage(int page, int pageSize, ProductPageFilterDto filter);
-        Tuple<ICollection<ProductDto>, int> LoadDataPage(int page, int pageSize);
+        Tuple<ICollection<ProductDto>, int> LoadDataPageAdmin(int page, int pageSize, ProductPageFilterDto paramSearch);
         ProductDto GetData(Guid productId);
         bool UpdateStatu(Guid productId, bool ischecked);
         ICollection<CategoryDto> GetCategories();

@@ -36,9 +36,9 @@ namespace MiniShop.Web.Areas.admin.Controllers
             return Json(response);
         }
         [HttpPost]
-        public JsonResult LoadDataPage([DataSourceRequest] DataSourceRequest request)
+        public JsonResult LoadDataPage([DataSourceRequest] DataSourceRequest request, ProductPageFilterDto paramSearch)
         {
-            var source = _productService.LoadDataPage(request.Page, request.PageSize);
+            var source = _productService.LoadDataPageAdmin(request.Page, request.PageSize, paramSearch);
             var response = new DataResponeCommon<ICollection<ProductDto>>()
             {
                 Data = source.Item1,

@@ -3,7 +3,9 @@
     cancel: "cancel",
     cardContent: "#mnshop-product-add",
     chooseImage: 'choose-image',
-    fileManager: '#mnshop-product-add #filemanager'
+    fileManager: '#mnshop-product-add #filemanager',
+    categorySelected: "category-selected",
+    categoryContent:".mnshop-category-content"
 };
 var productAddIndex = {
 
@@ -12,6 +14,7 @@ var productAddIndex = {
         if (eval($(e).data('ename')) == productAddConst.save) productAddIndex.save(e, _handle);
         if (eval($(e).data('ename')) == productAddConst.cancel) productAddIndex.cancel(e, _handle);
         if (eval($(e).data('ename')) == productAddConst.chooseImage) productAddIndex.chooseImage(e, _handle);
+        if (eval($(e).data('ename')) == productAddConst.categorySelected) productAddIndex.categorySelected(e, _handle);
     },
     changeEvent: function (e) {
         let _handle = productAddHandle();
@@ -24,6 +27,12 @@ var productAddIndex = {
         let _data = handle.data.inputToObject(_$rootContent, function (obj) {
             obj.Id = handle.newId();
             obj.Price = parseFloat(obj.Price.replaceAll(',', ''));
+
+            let _catetorys = [];
+            $(productAddConst.cardContent + ' ' + productAddConst.categoryContent + ' a.active').each(function (index, item) {
+                _catetorys.push($(item).data('id'));
+            });
+            obj.CategoryIds = _catetorys.toString();
         });
         console.log(_data);
         //save
@@ -46,6 +55,12 @@ var productAddIndex = {
                 $(e).parent().prev().val(_filenames);
             }
         );
+    },
+    categorySelected: function (e, handle) {
+        if ($(e).hasClass('active'))
+            $(e).removeClass('active');
+        else
+            $(e).addClass('active');
     }
 };
 var productAddHandle = function () {

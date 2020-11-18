@@ -1,19 +1,64 @@
 ﻿@{
     Layout = null;
 }
-@using MiniShop.App; 
+@using MiniShop.App;
 @model Tuple<ICollection<CategoryDto>, ICollection<AreaDto>, ICollection<string>>
 <div class="card" id="mnshop-product-add">
     <div class="card-content collapse show">
-        <div class="card-body">            
+        <div class="card-body">
             <div class="form">
                 <div class="form-body">
                     <h4 class="form-section">
                         <i class="ft-flag"></i> Thông tin sản phẩm
                     </h4>
+                    <div class="form-group row">
+                        <div class="col-md-4">
+                            <label for="productName">Tên</label>
+                            <input type="text" class="form-control" placeholder="Product name" name="Name" required validate-message-required="Nhập tên sản phẩm!">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="AreaId">Quốc gia</label>
+                            <select name="AreaCode" class="form-control" required validate-message-required="Chọn quốc gia!">
+                                <option value="" selected disabled>Hãy chọn 1 quốc gia</option>
+                                @foreach (var item in @Model.Item2)
+                                {
+                                    <option value="@item.Code">@item.Name</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <label for="Tag">Tag</label>
+                            <select name="Tag" class="form-control" required>
+                                @{
+                                    var loop = 0;
+                                }
+                                @foreach (var item in @Model.Item3)
+                                {
+                                    if (loop == 0)
+                                    {
+                                        <option value="@item" selected>@item</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@item">@item</option>
+                                    }
+                                    loop++;
+                                }
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="Price">Giá</label>
+                            <input name="Price" class="form-control decimal-inputmask" required validate-message-required="Nhập số tiền" />
+                        </div>
+                    </div>
                     <div class="form-group">
-                        <label for="productName">Tên</label>
-                        <input type="text" class="form-control" placeholder="Product name" name="Name" required validate-message-required="Nhập tên sản phẩm!">
+                        <label for="CattegoryId">Loại sản phâm</label>
+                        <div class="mnshop-category-content">
+                            @foreach (var item in @Model.Item1)
+                            {
+                                <a id="@item.Id" data-id="@item.Id" onclick="productAddIndex.clickEvent(this)" data-ename="productAddConst.categorySelected">@item.Name</a>
+                            }
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-md-5">
@@ -28,47 +73,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="AreaId">Quốc gia</label>
-                                <select name="AreaCode" class="form-control" required validate-message-required="Chọn quốc gia!">
-                                    <option value="" selected disabled>Hãy chọn 1 quốc gia</option>
-                                    @foreach (var item in @Model.Item2)
-                                    {
-                                        <option value="@item.Code">@item.Name</option>
-                                    }
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <label for="Tag">Tag</label>
-                                <select name="Tag" class="form-control" required>
-                                    @{
-                                        var loop = 0;
-                                    }
-                                    @foreach (var item in @Model.Item3)
-                                    {
-                                        if (loop == 0)
-                                        {
-                                            <option value="@item" selected>@item</option>
-                                        }
-                                        else
-                                        {
-                                            <option value="@item">@item</option>
-                                        }
-                                        loop++;
-                                    }                                   
-                                </select>
-                            </div>
-                        </div>
                     </div>
-
-                    <div class="form-group">
-                        <label for="Price">Giá</label>
-                        <input name="Price" class="form-control decimal-inputmask" required validate-message-required="Nhập số tiền" />
-                    </div>
-
                     <div class="form-group">
                         <label for="Picture">Chọn ảnh</label>
                         <div class="input-group">

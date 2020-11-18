@@ -15,7 +15,7 @@ namespace MiniShop.App
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(source => source.Id))
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(source => source.Name))
                 .ForMember(dest => dest.Description, opt => opt.MapFrom(source => source.Description))
-                .ForMember(dest => dest.CategoryId, opt => opt.MapFrom(source => source.CategoryId))
+                .ForMember(dest => dest.CategoryIds, opt => opt.MapFrom(source => source.CategoryIds))
                 .ForMember(dest => dest.AreaCode, opt => opt.MapFrom(source => source.AreaCode))
                 .ForMember(dest => dest.Price, opt => opt.MapFrom(source => source.Price))
                 .ForMember(dest => dest.TrackingLink, opt => opt.MapFrom(source => source.TrackingLink))
@@ -37,7 +37,7 @@ namespace MiniShop.App
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(source => source.Id))
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(source => source.Name))
                 .ForMember(dest => dest.Description, opt => opt.MapFrom(source => source.Description))
-                .ForMember(dest => dest.CategoryId, opt => opt.MapFrom(source => source.CategoryId))
+                .ForMember(dest => dest.CategoryIds, opt => opt.MapFrom(source => source.CategoryIds))
                 .ForMember(dest => dest.AreaCode, opt => opt.MapFrom(source => source.AreaCode))
                 .ForMember(dest => dest.Price, opt => opt.MapFrom(source => source.Price))
                 .ForMember(dest => dest.TrackingLink, opt => opt.MapFrom(source => source.TrackingLink))
@@ -66,7 +66,7 @@ namespace MiniShop.App
                     BigPicture = item.BigPicture,
                     TrackingLink = item.TrackingLink,
                     Price = item.Price,
-                    CategoryId = item.CategoryId,
+                    CategoryIds = item.CategoryIds,
                     NotUse = item.NotUse,
                     IsHero = item.IsHero,
                     Tag = (TagEnum) Enum.Parse(typeof(TagEnum), item.Tag.ToString())

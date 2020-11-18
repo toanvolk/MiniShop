@@ -51,76 +51,74 @@ namespace MiniShop.App
         }
 
         public ICollection<ProductDto> LoadData()
-        {
-            var query = from product in _unitOfWorfk.Products
-                        join category in _unitOfWorfk.Categories on product.CategoryId equals category.Id
-                        join area in _unitOfWorfk.Areas on product.AreaCode equals area.Code
-                        select new ProductDto()
-                        {
-                            Id = product.Id,
-                            Name = product.Name,
-                            Description = product.Description,
-                            CategoryId = product.CategoryId,
-                            AreaCode = product.AreaCode,
-                            Price = product.Price,
-                            TrackingLink = product.TrackingLink,
-                            Picture = $"{_fileRootPath}/{product.Picture}",
-                            NotUse = product.NotUse,
-                            IsHero = product.IsHero,
-                            CategoryName = category.Name
-                        };
+        {           
+            var query = _unitOfWorfk.Products
+                .Join(_unitOfWorfk.ProductCategories, p => p.Id, pc => pc.ProductId, (p, pc) => new { p, pc })
+                .Join(_unitOfWorfk.Categories, ppc => ppc.pc.CategoryId, c => c.Id, (ppc, c) => new { ppc, c })
+                .Join(_unitOfWorfk.Areas, cppc => cppc.ppc.p.AreaCode, a => a.Code, (cppc, a) => new { cppc, a })
+                .Select( m=> new ProductDto()
+                {
+                    Id = m.cppc.ppc.p.Id,
+                    Name = m.cppc.ppc.p.Name,
+                    Description = m.cppc.ppc.p.Description,
+                    AreaCode = m.cppc.ppc.p.AreaCode,
+                    Price = m.cppc.ppc.p.Price,
+                    TrackingLink = m.cppc.ppc.p.TrackingLink,
+                    Picture = m.cppc.ppc.p.Picture,
+                    NotUse = m.cppc.ppc.p.NotUse,
+                    IsHero = m.cppc.ppc.p.IsHero,
+                    CategoryName = m.cppc.c.Name
+                });            
 
             var model = query.ToList();
             return model;
         }
         public Tuple<ICollection<ProductDto>, int> LoadDataPage(int page, int pageSize, ProductPageFilterDto filter)
         {
-            var query = from product in _unitOfWorfk.Products
-                        join category in _unitOfWorfk.Categories on product.CategoryId equals category.Id
-                        join area in _unitOfWorfk.Areas on product.AreaCode equals area.Code
-                        where ((filter.TextSearch == null) || product.Name.Contains(filter.TextSearch) || category.Name.Contains(filter.TextSearch))
-                            && ((filter.CategoryIds.Count == 0) || filter.CategoryIds.Contains(product.CategoryId))
-                        select new ProductDto()
-                        {
-                            Id = product.Id,
-                            Name = product.Name,
-                            Description = product.Description,
-                            CategoryId = product.CategoryId,
-                            AreaCode = product.AreaCode,
-                            Price = product.Price,
-                            TrackingLink = product.TrackingLink,
-                            Picture = $"{_fileRootPath}/{product.Picture}",
-                            NotUse = product.NotUse,
-                            IsHero = product.IsHero,
-                            CategoryName = category.Name,
-                            Tag = (TagEnum)product.Tag
-                        };
+            var query = _unitOfWorfk.Products
+                .Join(_unitOfWorfk.ProductCategories, p => p.Id, pc => pc.ProductId, (p, pc) => new { p, pc })
+                .Join(_unitOfWorfk.Categories, ppc => ppc.pc.CategoryId, c => c.Id, (ppc, c) => new { ppc, c })
+                .Join(_unitOfWorfk.Areas, cppc => cppc.ppc.p.AreaCode, a => a.Code, (cppc, a) => new { cppc, a })
+                .Select(m => new ProductDto()
+                {
+                    Id = m.cppc.ppc.p.Id,
+                    Name = m.cppc.ppc.p.Name,
+                    Description = m.cppc.ppc.p.Description,
+                    AreaCode = m.cppc.ppc.p.AreaCode,
+                    Price = m.cppc.ppc.p.Price,
+                    TrackingLink = m.cppc.ppc.p.TrackingLink,
+                    Picture = m.cppc.ppc.p.Picture,
+                    NotUse = m.cppc.ppc.p.NotUse,
+                    IsHero = m.cppc.ppc.p.IsHero,
+                    CategoryName = m.cppc.c.Name,
+                    Tag = (TagEnum) m.cppc.ppc.p.Tag
+                });            
 
             var model = query.Skip((page - 1) * pageSize).Take(pageSize).ToList();
             var total = query.Count();
 
             return new Tuple<ICollection<ProductDto>, int>(model, total);
         }
-        public Tuple<ICollection<ProductDto>, int> LoadDataPage(int page, int pageSize)
+        public Tuple<ICollection<ProductDto>, int> LoadDataPageAdmin(int page, int pageSize, ProductPageFilterDto paramSearch)
         {
-            var query = from product in _unitOfWorfk.Products
-                        join category in _unitOfWorfk.Categories on product.CategoryId equals category.Id
-                        join area in _unitOfWorfk.Areas on product.AreaCode equals area.Code
-                        select new ProductDto()
-                        {
-                            Id = product.Id,
-                            Name = product.Name,
-                            Description = product.Description,
-                            CategoryId = product.CategoryId,
-                            AreaCode = product.AreaCode,
-                            Price = product.Price,
-                            TrackingLink = product.TrackingLink,
-                            Picture = $"{_fileRootPath}/{product.Picture}",
-                            NotUse = product.NotUse,
-                            IsHero = product.IsHero,
-                            CategoryName = category.Name,
-                            Tag = (TagEnum)product.Tag
-                        };
+            var query = _unitOfWorfk.Products
+                .Join(_unitOfWorfk.ProductCategories, p => p.Id, pc => pc.ProductId, (p, pc) => new { p, pc })
+                .Join(_unitOfWorfk.Categories, ppc => ppc.pc.CategoryId, c => c.Id, (ppc, c) => new { ppc, c })
+                .Join(_unitOfWorfk.Areas, cppc => cppc.ppc.p.AreaCode, a => a.Code, (cppc, a) => new { cppc, a })
+                .Select(m => new ProductDto()
+                {
+                    Id = m.cppc.ppc.p.Id,
+                    Name = m.cppc.ppc.p.Name,
+                    Description = m.cppc.ppc.p.Description,
+                    AreaCode = m.cppc.ppc.p.AreaCode,
+                    Price = m.cppc.ppc.p.Price,
+                    TrackingLink = m.cppc.ppc.p.TrackingLink,
+                    Picture = m.cppc.ppc.p.Picture,
+                    NotUse = m.cppc.ppc.p.NotUse,
+                    IsHero = m.cppc.ppc.p.IsHero,
+                    CategoryName = m.cppc.c.Name,
+                    Tag = (TagEnum)m.cppc.ppc.p.Tag
+                });
 
             var model = query.Skip((page - 1) * pageSize).Take(pageSize).ToList();
             var total = query.Count();
