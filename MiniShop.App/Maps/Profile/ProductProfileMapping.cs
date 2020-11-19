@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MiniShop.EF;
+using MiniShop.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -25,6 +26,8 @@ namespace MiniShop.App
                 .ForMember(dest => dest.Tag, opt => opt.MapFrom(source => source.Tag))
                 .AfterMap((source, destination) =>
                 {
+                    destination.Code = source.Name.URLFriendly();
+
                     destination.CreatedBy = "ADMIN";
                     destination.CreatedDate = DateTime.Now;
 

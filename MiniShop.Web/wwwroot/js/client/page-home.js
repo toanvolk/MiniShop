@@ -65,8 +65,8 @@
             .replaceAll(new RegExp("{#:id}", "gi"), data.id)
             .replaceAll(new RegExp("{#:picture-hot}", "gi"), _pathImg)
             .replaceAll(new RegExp("{#:name}", "gi"), data.name)
-            .replaceAll(new RegExp("{#:trackingLink}", "gi"), data.trackingLink)
-            .replaceAll(new RegExp("{#:link}", "gi"), data.trackingLink)
+            .replaceAll(new RegExp("{#:trackingLink}", "gi"), '/san-pham/' + data.code)
+            .replaceAll(new RegExp("{#:link}", "gi"), '/san-pham/' + data.code)
             .replaceAll(new RegExp("{#:price}", "gi"), helper.formatNumber.k(data.price))
             .replaceAll(new RegExp("{#:description}", "gi"), data.description ? helper.formatString.truncate(helper.formatString.decodeHtml(data.description, {normal: true}),150) : "")
             .replaceAll(new RegExp("{#:categoryName}", "gi"), data.categoryName || "")
@@ -200,11 +200,7 @@
             }
         });
         $(_mshop_product_client + ' ' + _btn_categorys).html(_html);
-    }
-    let _countClick = function (id) {
-        let _url = 'home/countClick';
-        $.post(_url, { id: id }, function (res) { });
-    }
+    }    
     let _captionSearchResult = function (text) {
         $(_mshop_filter + ' ' + _search_result).text(text);
     }
@@ -222,9 +218,7 @@
             if (!_url) _url = $(e.target).parent().data('link');
             let _id = $(e.target).data('id');
         
-            open(_url);
-            //count click
-            _countClick(_id)
+            open(_url);            
         });    
     $(document).on('click', _mshop_product_client +' '+ _btn_categorys +' a', function (e) {
         e.preventDefault();

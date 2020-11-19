@@ -24,7 +24,6 @@ namespace MiniShop.Web.Controllers
             _productService = productService;
             _categoryService = categoryService;
         }
-
         public IActionResult Index()
         {
             //var productDtos = _productService.LoadDataPage(page, pageSize);
@@ -33,7 +32,6 @@ namespace MiniShop.Web.Controllers
             //var model = new Tuple<Tuple<ICollection<ProductDto>, int>>(productDtos);
             return View();
         }
-
         public IActionResult ProductPage(int pageNumber = 1, int pageSize = 9, string paramStrs = null)
         {
             ProductPageFilterDto filterDto = new ProductPageFilterDto();
@@ -47,7 +45,6 @@ namespace MiniShop.Web.Controllers
             };
             return Json(model);
         }
-
         public IActionResult ProductHero()
         {
             var productDtos = _productService.LoadDataHero();
@@ -56,17 +53,7 @@ namespace MiniShop.Web.Controllers
                 source = productDtos
             };
             return Json(model);
-        }
-
-        [HttpPost]
-        public IActionResult CountClick(Guid id)
-        {
-            if (id == Guid.Empty) return Json(0);
-            var useHostAddress = this.HttpContext.Connection.RemoteIpAddress.ToString();
-            var count = _productService.CountClick(id, useHostAddress, string.Empty);
-            return Json(count);
-        }
-        
+        }        
         public IActionResult GetCategorys()
         {
             var model = _categoryService.LoadData();

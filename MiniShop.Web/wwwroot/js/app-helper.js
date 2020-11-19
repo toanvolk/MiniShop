@@ -238,7 +238,9 @@ var helper = {
                 .text();
             if (_config)
                 _text = $($("<div></div>").html(_text)).text();
-            return _text
+            if (_text.indexOf('/>') >= 0 || _text.indexOf('</') >= 0)
+                _text = helper.formatString.decodeHtml(_text);
+            return _text;
         },
         encodeHtml: function (text) {
             return $("<textarea/>")

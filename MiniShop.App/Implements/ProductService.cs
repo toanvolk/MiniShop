@@ -82,6 +82,7 @@ namespace MiniShop.App
                 Price = m.Price,
                 TrackingLink = m.TrackingLink,
                 Picture = $"{_fileRootPath}/{m.Picture}",
+                Code = m.Code,
                 NotUse = m.NotUse,
                 IsHero = m.IsHero,
                 Tag = (TagEnum)m.Tag
@@ -114,7 +115,7 @@ namespace MiniShop.App
         {
 
             IQueryable<Product> query = null;
-            if (paramSearch.CategoryIds.Count > 0)
+            if (paramSearch.CategoryIds != null && paramSearch.CategoryIds.Count > 0)
             {
                 foreach (var item in paramSearch.CategoryIds)
                 {
@@ -217,6 +218,22 @@ namespace MiniShop.App
         {
             var list = Enum.GetNames(typeof(TagEnum));
             return list;
+        }
+
+        public ProductDto LoadDataView(Guid productId)
+        {
+            var products = _unitOfWorfk.ProductRepository.Filter(o => o.Id == productId).FirstOrDefault();
+            var productDto = _mapper.Map<ProductDto>(products);
+            productDto.BigPicture = $"{_fileRootPath}/{productDto.Picture}";
+            
+            return productDto;
+        }
+
+        public Guid GetProductId(string code)
+        {
+            var productDto = _unitOfWorfk.ProductRepository.Filter(o => o.Code == code).FirstOrDefault();
+            productDto ??= new Product();
+            return productDto.Id;
         }
     }
 }

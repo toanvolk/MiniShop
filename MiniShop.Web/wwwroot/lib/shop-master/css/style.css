@@ -291,6 +291,12 @@ h1, h2, h3, h4, h5, h6, figure {
 #fh5co-hero .btn {
   font-size: 24px;
 }
+
+    #fh5co-hero .btn.btn-jittery {
+        -webkit-animation: jittery 4s infinite;
+        animation: jittery 4s infinite;
+    }
+
 #fh5co-hero .btn.btn-primary {
   padding: 14px 30px !important;
 }
@@ -350,8 +356,9 @@ h1, h2, h3, h4, h5, h6, figure {
   }
 }
 #fh5co-hero .flexslider .slider-text > .slider-text-inner .desc {
-  background: rgba(255, 255, 255, 0.9);
-  padding: 40px;
+    background: rgb(5 1 1 / 30%);
+    padding: 40px;
+    border-radius: 5px;
 }
 #fh5co-hero .flexslider .slider-text > .slider-text-inner .desc .price {
   font-size: 14px;

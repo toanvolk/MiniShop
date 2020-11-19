@@ -35,7 +35,7 @@ namespace MiniShop.Web
             services.AddDbContext<AuthDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("AuthConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)           
+            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<AuthDbContext>();
 
@@ -121,7 +121,7 @@ namespace MiniShop.Web
             MigrateDatabaseAuto.Migrate(app, userManager, roleManager);
 
             // Add Logfile
-            loggerFactory.AddFile(Configuration.GetSection("Logging:LogPath").Value);            
+            loggerFactory.AddFile(Configuration.GetSection("Logging:LogPath").Value);
             app.UseStaticFiles();
             //app.UseStaticFiles(new StaticFileOptions
             //{
@@ -138,6 +138,7 @@ namespace MiniShop.Web
 
             app.UseEndpoints(endpoints =>
             {
+                
                 endpoints.MapControllerRoute(
                     name: "admin",
                     pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");

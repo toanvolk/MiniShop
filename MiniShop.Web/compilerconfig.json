@@ -62,5 +62,21 @@
   {
     "outputFile": "wwwroot/css/client/button-effect-shine.css",
     "inputFile": "wwwroot/css/client/button-effect-shine.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/client/page-not-found.css",
+    "inputFile": "wwwroot/css/client/page-not-found.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/client/social-effect.css",
+    "inputFile": "wwwroot/css/client/social-effect.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/client/button-pulse.css",
+    "inputFile": "wwwroot/css/client/button-pulse.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/client/mnshop.css",
+    "inputFile": "wwwroot/css/client/mnshop.scss"
   }
 ]

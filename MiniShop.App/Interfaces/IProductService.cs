@@ -20,5 +20,7 @@ namespace MiniShop.App
         bool UpdateHero(Guid productId, bool ischecked, string userName);
         int CountClick(Guid productId, string userHostAddress, string userHostName);
         ICollection<string> TagList();
+        ProductDto LoadDataView(Guid productId);
+        Guid GetProductId(string code);
     }
 }
