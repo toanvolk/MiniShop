@@ -48,7 +48,7 @@ var productIndex = {
                 {
                     field: "picture",
                     title: "Ảnh",
-                    width: "7%",
+                    width: "4%",
                     template: function (item) {
                         let _html = `
                                     <div class="mnshop-product-image">
