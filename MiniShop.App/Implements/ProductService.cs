@@ -136,7 +136,7 @@ namespace MiniShop.App
                 query = query.Where(o => o.Name.Contains(paramSearch.TextSearch));
 
             }
-            var queryDto = query.Select(m => new ProductDto()
+            var queryDto = query.OrderByDescending(o=>o.CreatedDate).Select(m => new ProductDto()
             {
                 Id = m.Id,
                 Name = m.Name,
