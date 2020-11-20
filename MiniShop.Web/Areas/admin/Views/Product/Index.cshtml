@@ -1,5 +1,6 @@
 ﻿@{ Layout = "../Shared/_Layout.cshtml"; }
-
+@using MiniShop.App; 
+@model  Tuple<ICollection<CategoryDto>>;
 @section Styles{
     <link href="~/css/page/product.css" rel="stylesheet" />
     <link href="~/css/page/product-add.css" rel="stylesheet" />
@@ -28,8 +29,16 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="mshop-filter">
-                        <input class="form-control" id="product-filter" placeholder="Tìm kiếm" onkeyup="productIndex.keyupEvent(this)" data-ename="productConst.productSearch"/>                        
+                    
+                    <div class="form-group mshop-filter">
+                        <label for="CattegoryId">Loại sản phâm</label>
+                        <div class="mnshop-category-content">
+                            @foreach (var item in @Model.Item1)
+                            {
+                                <a id="@item.Id" data-id="@item.Id" onclick="productIndex.clickEvent(this)" data-ename="productConst.categorySelected">@item.Name</a>
+                            }
+                        </div>
+                        <input class="form-control" id="product-filter" placeholder="Tìm kiếm theo tên sản phẩm" onkeyup="productIndex.keyupEvent(this)" data-ename="productConst.productSearch"/>
                     </div>
                     <div class="card-content collapse show">
                         <div class="card-body p-0 pb-0">

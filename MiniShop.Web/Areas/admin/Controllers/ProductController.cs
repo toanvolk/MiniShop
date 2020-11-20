@@ -22,7 +22,9 @@ namespace MiniShop.Web.Areas.admin.Controllers
         public IActionResult Index()
         {
             ViewBag.Title = "Product";
-            return View();
+            var model = new Tuple<ICollection<CategoryDto>>(
+                _productService.GetCategories());
+            return View(model);
         }
 
         [HttpPost]

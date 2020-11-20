@@ -6,7 +6,8 @@
     urlLoadData: 'product/loaddatapage',
     statuChange: 'statu-change',
     heroChange: 'hero-change',
-    productSearch: 'product-search'
+    productSearch: 'product-search',
+    categorySelected: "category-selected"
 };
 var productIndex = {
     clickEvent: function (e) {
@@ -14,6 +15,7 @@ var productIndex = {
         if (eval($(e).data('ename')) == productConst.add) productIndex.add(e, _handle);
         if (eval($(e).data('ename')) == productConst.edit) productIndex.edit(e, _handle);
         if (eval($(e).data('ename')) == productConst.delete) productIndex.delete(e, _handle);
+        if (eval($(e).data('ename')) == productConst.categorySelected) productIndex.categorySelected(e, _handle);
     },
     changeEvent: function (e) {
         let _handle = productHandle();
@@ -22,7 +24,7 @@ var productIndex = {
     },
     keyupEvent: function (e) {
         let _handle = productHandle();
-        if (eval($(e).data('ename')) == productConst.productSearch) productIndex.productSearch(e, _handle);        
+        if (eval($(e).data('ename')) == productConst.productSearch) productIndex.productSearchEvent(e, _handle);        
     },
     //child event
     init: function () {
@@ -262,17 +264,32 @@ var productIndex = {
             }
         });
     },
-    productSearch: function (e, handle) {
-        let _parmas = {};
+    productSearchEvent: function (e, handle) {
         if (event.key === 'Enter' || event.keyCode === 13) {
-            // Do something
-            _parmas.textSearch = $(e).val();
-            $(productConst.gridSelectorName).data("kendoGrid").dataSource.transport.read = function (options) {
-                return productIndex._read(options, _parmas);
-            }
-            $(productConst.gridSelectorName).data("kendoGrid").dataSource.read();
+            productIndex.productSearch();
         }
-        
+    },
+    productSearch: function () {
+        let _parmas = {};
+        let _values = [];
+        $('.mshop-filter .mnshop-category-content a.active').each(function (index, item) {
+            let _id = $(item).data("id");
+            _values.push(_id);
+        });
+        _parmas.CategoryIds = _values;
+        _parmas.textSearch = $('#product-filter').val();
+
+        $(productConst.gridSelectorName).data("kendoGrid").dataSource.transport.read = function (options) {
+            return productIndex._read(options, _parmas);
+        }
+        $(productConst.gridSelectorName).data("kendoGrid").dataSource.read();
+    },
+    categorySelected: function (e, handle) {
+        if ($(e).hasClass('active'))
+            $(e).removeClass('active');
+        else
+            $(e).addClass('active');
+        productIndex.productSearch();
     }
 };
 var productHandle = function () {
