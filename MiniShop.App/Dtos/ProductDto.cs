@@ -1,10 +1,11 @@
-﻿using System;
+﻿using MiniShop.Infrastructure;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace MiniShop.App
 {
-    public class ProductDto
+    public class ProductDto : IndexDto
     {
         public Guid Id { get; set; }
         public string Code { get; set; }

@@ -58,13 +58,14 @@ namespace MiniShop.App
                 foreach (var item in filter.CategoryIds)
                 {
                     var queryChild = _unitOfWorfk.Products.Where(o => o.CategoryIds.Contains(item.ToString()));
-                    if (query == null) 
+                    if (query == null)
                         query = queryChild;
                     else
                         query = query.Union(queryChild);
                 }
 
-            }else
+            }
+            else
             {
                 query = _unitOfWorfk.Products;
             }
@@ -136,21 +137,27 @@ namespace MiniShop.App
                 query = query.Where(o => o.Name.Contains(paramSearch.TextSearch));
 
             }
-            var queryDto = query.OrderByDescending(o=>o.CreatedDate).Select(m => new ProductDto()
-            {
-                Id = m.Id,
-                Name = m.Name,
-                Description = m.Description,
-                AreaCode = m.AreaCode,
-                Price = m.Price,
-                TrackingLink = m.TrackingLink,
-                Picture = $"{_fileRootPath}/{m.Picture}",
-                NotUse = m.NotUse,
-                IsHero = m.IsHero,
-                Tag = (TagEnum)m.Tag
-            });
+            var queryDto = query
+                .OrderByDescending(o => o.CreatedDate)                
+                .Select(m => new ProductDto()
+                {                   
+                    Id = m.Id,
+                    Name = m.Name,
+                    Description = m.Description,
+                    AreaCode = m.AreaCode,
+                    Price = m.Price,
+                    TrackingLink = m.TrackingLink,
+                    Picture = $"{_fileRootPath}/{m.Picture}",
+                    NotUse = m.NotUse,
+                    IsHero = m.IsHero,
+                    Tag = (TagEnum)m.Tag
+                });
             var model = queryDto.Skip((page - 1) * pageSize).Take(pageSize).ToList();
             var total = queryDto.Count();
+            //Index data
+            //int i = 0;
+            //model.ForEach((o) => {i++;o.Index = (page - 1) * pageSize + i; });
+            model.SetIndex(page, pageSize);
 
             return new Tuple<ICollection<ProductDto>, int>(model, total);
         }
@@ -225,7 +232,7 @@ namespace MiniShop.App
             var products = _unitOfWorfk.ProductRepository.Filter(o => o.Id == productId).FirstOrDefault();
             var productDto = _mapper.Map<ProductDto>(products);
             productDto.BigPicture = $"{_fileRootPath}/{productDto.Picture}";
-            
+
             return productDto;
         }
 

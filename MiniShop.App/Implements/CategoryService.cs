@@ -45,6 +45,7 @@ namespace MiniShop.App
         {
             var datas = _unitOfWorfk.Categories.ToList();
             var model = _mapper.Map<List<CategoryDto>>(datas);
+            model.SetIndex();
 
             return model;
         }
