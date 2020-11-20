@@ -85,12 +85,12 @@
                             <div class="overlay-gradient"></div>
                             <div class="container">
                                 <div class="col-md-6 col-md-offset-3 col-md-pull-3 js-fullheight slider-text">
-                                    <div class="slider-text-inner">
+                                    <div class="slider-text-inner button-pulse">
                                         <div class="desc">
                                             <span class="price">{#:price}</span>
                                             <h2>{#:name}</h2>
-                                            <p>{#:description}</p>
-                                            <p><a href="{#:trackingLink}" target="_blank" class="btn btn-primary btn-outline btn-lg btn-read-more" data-id="{#:id}">Xem chi tiết</a></p>
+                                            <p style="color: #e5c72a;">{#:description}</p>
+                                            <p class="button"><a href="{#:trackingLink}" target="_blank" class="btn-read-more pulse" data-id="{#:id}">Xem chi tiết</a></p>
                                         </div>
                                     </div>
                                 </div>
@@ -103,7 +103,7 @@
             .replaceAll(new RegExp("{#:name}", "gi"), data.name)
             .replaceAll(new RegExp("{#:price}", "gi"), helper.formatNumber.k(data.price))
             .replaceAll(new RegExp("{#:description}", "gi"), data.description ? helper.formatString.truncate(helper.formatString.decodeHtml(data.description, { normal: true }), 150) : "")
-            .replaceAll(new RegExp("{#:trackingLink}", "gi"), data.trackingLink);
+            .replaceAll(new RegExp("{#:trackingLink}", "gi"), '/san-pham/' + data.code);
         return _template;
     };
     let _formatCategoryTemplate = function (data) {
