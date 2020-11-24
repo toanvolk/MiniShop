@@ -1,11 +1,17 @@
 ﻿@{ 
     Layout = null;
 }
-@model Guid;
+@using MiniShop.App 
+@model ProductDto;
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title></title>
+    <title>Sản phẩm - @Model.Name</title>
+    <meta property="og:url" content="http://hanglink.info/san-pham/@Model.Code" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Sản phẩm - @Model.Name" />
+    <meta property="og:description" content="@Model.Description" />
+    <meta property="og:image" content="@Model.Picture" />
     <!-- my social -->
     <link href="~/css/client/mnshop.css" rel="stylesheet" />
     <link href="~/css/client/social-effect.css" rel="stylesheet" />
@@ -17,7 +23,7 @@
 </head>
 <body style="margin:0;">
     <div id="mnshop-product-view">
-        <input name="ProductId" value="@Model" hidden />
+        <input name="ProductId" value="@Model.Id" hidden />
         <div class="social-content">
             <div class="social-background"></div>
             <div class="call-back product" style="position: absolute;">
