@@ -103,8 +103,8 @@ var productIndex = {
                     title: "Trang đầu",
                     template: function (item) {
                         let _html = `<div class="custom-switch">
-                                            <input type="checkbox" class="custom-control-input" id="{id}" {checked} onchange="productIndex.changeEvent(this)" data-ename= "productConst.heroChange" data-id="{id}">
-                                            <label class="custom-control-label" for="{id}"></label>
+                                            <input type="checkbox" class="custom-control-input" id="{id}_isHero" {checked} onchange="productIndex.changeEvent(this)" data-ename= "productConst.heroChange" data-id="{id}">
+                                            <label class="custom-control-label" for="{id}_isHero"></label>
                                         </div>`
                         return _html
                             .replaceAll(new RegExp("{id}", "gi"), item.id)
@@ -117,8 +117,8 @@ var productIndex = {
                     title: "Status",
                     template: function (item) {
                         let _html = `<div class="custom-switch">
-                                            <input type="checkbox" class="custom-control-input" id="{id}" {checked} onchange="productIndex.changeEvent(this)" data-ename= "productConst.statuChange" data-id="{id}">
-                                            <label class="custom-control-label" for="{id}"></label>
+                                            <input type="checkbox" class="custom-control-input" id="{id}_notUse" {checked} onchange="productIndex.changeEvent(this)" data-ename= "productConst.statuChange" data-id="{id}">
+                                            <label class="custom-control-label" for="{id}_notUse"></label>
                                         </div>`
                         return _html
                             .replaceAll(new RegExp("{id}", "gi"), item.id)
