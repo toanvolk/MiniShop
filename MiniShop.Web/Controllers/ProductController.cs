@@ -25,6 +25,7 @@ namespace MiniShop.Web.Controllers
             if (productId == Guid.Empty) return Redirect("/html/not-found.html");
             var useHostAddress = this.HttpContext.Connection.RemoteIpAddress.ToString();
             _productService.CountClick(productId, useHostAddress, string.Empty);
+
             return View("Index", productDto);
         }
         [Route("data/{productId}")]
