@@ -62,7 +62,7 @@ namespace MiniShop.App
         {
             var entity = _unitOfWorfk.CategoryRepository.FindById(categoryId);
             entity.UpdatedBy = "ADMIN";
-            entity.UpdatedDate = DateTime.Now;
+            entity.UpdatedDate = DateTime.UtcNow;
             entity.NotUse = !ischecked;
             return _unitOfWorfk.SaveChanges() > 0;
         }

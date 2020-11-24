@@ -29,10 +29,10 @@ namespace MiniShop.App
                     destination.Code = source.Name.URLFriendly();
 
                     destination.CreatedBy = "ADMIN";
-                    destination.CreatedDate = DateTime.Now;
+                    destination.CreatedDate = DateTime.UtcNow;
 
                     destination.UpdatedBy = "ADMIN";
-                    destination.UpdatedDate = DateTime.Now;
+                    destination.UpdatedDate = DateTime.UtcNow;
                 });
 
             //get

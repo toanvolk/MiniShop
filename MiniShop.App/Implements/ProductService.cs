@@ -173,7 +173,7 @@ namespace MiniShop.App
         {
             var entity = _unitOfWorfk.ProductRepository.FindById(productId);
             entity.UpdatedBy = "ADMIN";
-            entity.UpdatedDate = DateTime.Now;
+            entity.UpdatedDate = DateTime.UtcNow;
             entity.NotUse = !ischecked;
             return _unitOfWorfk.SaveChanges() > 0;
         }
@@ -201,7 +201,7 @@ namespace MiniShop.App
         {
             var entity = _unitOfWorfk.ProductRepository.FindById(productId);
             entity.UpdatedBy = userName;
-            entity.UpdatedDate = DateTime.Now;
+            entity.UpdatedDate = DateTime.UtcNow;
             entity.IsHero = ischecked;
             return _unitOfWorfk.SaveChanges() > 0;
         }
@@ -213,7 +213,7 @@ namespace MiniShop.App
                 ProductId = productId,
                 UserHostAddress = userHostAddress,
                 CreatedBy = userHostName,
-                CreatedDate = DateTime.Now,
+                CreatedDate = DateTime.UtcNow,
                 Id = Guid.NewGuid()
             };
 
