@@ -165,7 +165,7 @@ namespace MiniShop.App
         {
             var entity = _unitOfWorfk.ProductRepository.FindById(productId);
             var productDto = _mapper.Map<ProductDto>(entity);
-            productDto.Picture = $"{_fileRootPath}/{productDto.Picture}";
+            
             return productDto;
         }
 

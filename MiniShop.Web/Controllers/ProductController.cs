@@ -11,7 +11,7 @@ namespace MiniShop.Web.Controllers
     public class ProductController : Controller
     {
         private readonly IProductService _productService;
-
+        private readonly string _fileRootPath = "/shared/UserFiles/Folders";
         public ProductController(IProductService productService)
         {
             _productService = productService;
@@ -25,6 +25,7 @@ namespace MiniShop.Web.Controllers
             if (productId == Guid.Empty) return Redirect("/html/not-found.html");
             var useHostAddress = this.HttpContext.Connection.RemoteIpAddress.ToString();
             _productService.CountClick(productId, useHostAddress, string.Empty);
+            productDto.Picture = $"{_fileRootPath}/{productDto.Picture}";
 
             return View("Index", productDto);
         }
