@@ -244,4 +244,13 @@
 
         _genericPagination();
     })
+    //scroll
+    $(window).scroll(function () {
+        //if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+        //     ajax call get data from server and append to the div
+        //}
+        console.log('$(window).scrollTop() ' + $(window).scrollTop());
+        console.log('$(document).height() ' + $(document).height());
+        console.log('$(window).height() ' + $(window).height());
+    });
 }($, document));
