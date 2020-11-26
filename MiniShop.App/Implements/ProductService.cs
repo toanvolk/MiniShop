@@ -89,7 +89,8 @@ namespace MiniShop.App
                 Tag = (TagEnum)m.Tag
             });
 
-            var model = queryDto.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+            //var model = queryDto.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+            var model = queryDto.Skip(filter.SkipCount).Take(filter.TakeRecords).ToList();
             var total = queryDto.Count();
 
             return new Tuple<ICollection<ProductDto>, int>(model, total);

@@ -30,3 +30,4 @@
 6. Tạo hội thoại góp ý.
 7. Điều chỉnh ngày thao tác thành UTC. -- OK
 8. Check NotUse client -- OK
+9. Client-lazyload -- Processing
