@@ -1,21 +1,35 @@
-﻿@{ 
+﻿@{
     Layout = null;
 }
 @using MiniShop.App;
-@model ProductDto;
+@model Tuple<ProductDto, InfoServerConfig>;
 @{
-    var img_url = "hanglink.info"+  @Model.Picture;
+    var metaData = new MetaTagDto()
+    {
+        Title = $"Sản phẩm - {Model.Item1.Name}",
+        Description = @Model.Item1.Description,
+        FacebookMeta = new FacebookMetaTag()
+        {
+            Title = $"Sản phẩm - {Model.Item1.Name}",
+            Description = @Model.Item1.Description,
+            Image = $"{Model.Item2.HostName}/{@Model.Item1.Picture}",
+            SiteName = $"{Model.Item2.DomainName}",
+            Url = $"{Model.Item2.HostName}/san-pham/{Model.Item1.Code}"
+        },
+        TwitterMeta = new TwitterMetaTag()
+        {
+            Title = $"Sản phẩm - {Model.Item1.Name}",
+            Image = $"{Model.Item2.HostName}/{@Model.Item1.Picture}",
+            Url = $"{Model.Item2.HostName}/san-pham/{Model.Item1.Code}",
+            Card = $"{Model.Item2.DomainName}"
+        }
+    };
 }
-<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="vi">
 <head>
-    <title>Sản phẩm - @Model.Name</title>
-    <meta property="og:site_name" content="hanglink.info">
-    <meta property="og:type" content="website">
-    <meta property="og:locale" content="vi_VN">
-    <meta property="og:title" content="Sản phẩm - @Model.Name">
-    <meta property="og:description" content="@Model.Description">
-    <meta property="og:url" content="http://hanglink.info/san-pham/@Model.Code">
-    <meta property="og:image" content="http://@img_url">
+    <partial name="../Shared/_metaTag.cshtml" model="metaData"/>   
     <!-- my social -->
     <link href="~/css/client/mnshop.css" rel="stylesheet" />
     <link href="~/css/client/social-effect.css" rel="stylesheet" />
@@ -27,7 +41,7 @@
 </head>
 <body style="margin:0;">
     <div id="mnshop-product-view">
-        <input name="ProductId" value="@Model.Id" hidden />
+        <input name="ProductId" value="@Model.Item1.Id" hidden />
         <div class="social-content">
             <div class="social-background"></div>
             <div class="call-back product" style="position: absolute;">

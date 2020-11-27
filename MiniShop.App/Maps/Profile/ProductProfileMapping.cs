@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.Extensions.Options;
 using MiniShop.EF;
 using MiniShop.Infrastructure;
 using System;
@@ -51,31 +52,34 @@ namespace MiniShop.App
 
             //load
             CreateMap<List<Product>, List<ProductDto>>().ConvertUsing<ProductTypingConvert>();
+
+
         }
-    }
-    public class ProductTypingConvert : ITypeConverter<List<Product>, List<ProductDto>>
-    {
-        public List<ProductDto> Convert(List<Product> source, List<ProductDto> destination, ResolutionContext context)
+        public class ProductTypingConvert : ITypeConverter<List<Product>, List<ProductDto>>
         {
-            destination ??= new List<ProductDto>();
-            foreach (var item in source)
+            public List<ProductDto> Convert(List<Product> source, List<ProductDto> destination, ResolutionContext context)
             {
-                destination.Add(new ProductDto() { 
-                    Id = item.Id,
-                    Description = item.Description,
-                    Name = item.Name,
-                    Picture = item.Picture,
-                    SmallPicture = item.SmallPicture,
-                    BigPicture = item.BigPicture,
-                    TrackingLink = item.TrackingLink,
-                    Price = item.Price,
-                    CategoryIds = item.CategoryIds,
-                    NotUse = item.NotUse,
-                    IsHero = item.IsHero,
-                    Tag = (TagEnum) Enum.Parse(typeof(TagEnum), item.Tag.ToString())
-                });
+                destination ??= new List<ProductDto>();
+                foreach (var item in source)
+                {
+                    destination.Add(new ProductDto()
+                    {
+                        Id = item.Id,
+                        Description = item.Description,
+                        Name = item.Name,
+                        Picture = item.Picture,
+                        SmallPicture = item.SmallPicture,
+                        BigPicture = item.BigPicture,
+                        TrackingLink = item.TrackingLink,
+                        Price = item.Price,
+                        CategoryIds = item.CategoryIds,
+                        NotUse = item.NotUse,
+                        IsHero = item.IsHero,
+                        Tag = (TagEnum)Enum.Parse(typeof(TagEnum), item.Tag.ToString())
+                    });
+                }
+                return destination;
             }
-            return destination;
         }
     }
 }

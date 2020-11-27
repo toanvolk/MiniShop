@@ -1,0 +1,20 @@
+﻿@{
+    Layout = null;
+}
+@using MiniShop.App;
+@model MetaTagDto;
+<title>@Model.Title</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="@Model.Description" />
+<meta name="keywords" content="@Model.Keywords" />
+<!-- Facebook and Twitter integration -->
+<meta property="og:title" content="@Model.FacebookMeta.Title" />
+<meta property="og:image" content="@Model.FacebookMeta.Image" />
+<meta property="og:url" content="@Model.FacebookMeta.Url" />
+<meta property="og:site_name" content="@Model.FacebookMeta.SiteName" />
+<meta property="og:description" content="@Model.FacebookMeta.Description" />
+<meta name="twitter:title" content="@Model.TwitterMeta.Title" />
+<meta name="twitter:image" content="@Model.TwitterMeta.Image" />
+<meta name="twitter:url" content="@Model.TwitterMeta.Url" />
+<meta name="twitter:card" content="@Model.TwitterMeta.Card" />

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using MiniShop.App;
 
 namespace MiniShop.Web.Controllers
@@ -11,10 +12,11 @@ namespace MiniShop.Web.Controllers
     public class ProductController : Controller
     {
         private readonly IProductService _productService;
-        private readonly string _fileRootPath = "/shared/UserFiles/Folders";
-        public ProductController(IProductService productService)
+        private readonly InfoServerConfig _infoServerConfig;
+        public ProductController(IProductService productService, IOptions<InfoServerConfig> optionAccessor)
         {
             _productService = productService;
+            _infoServerConfig = optionAccessor.Value;
         }
         [Route("{code}")]
         public IActionResult Index(string code)
@@ -22,12 +24,13 @@ namespace MiniShop.Web.Controllers
             //filter code => productId
             var productId = _productService.GetProductId(code);
             var productDto = _productService.GetData(productId);
-            if (productId == Guid.Empty) return Redirect("/html/not-found.html");
+            if (productId == Guid.Empty) return Redirect(_infoServerConfig.PathPageNoteFound);
             var useHostAddress = this.HttpContext.Connection.RemoteIpAddress.ToString();
             _productService.CountClick(productId, useHostAddress, string.Empty);
-            productDto.Picture = $"{_fileRootPath}/{productDto.Picture}";
+            productDto.Picture = $"{_infoServerConfig.FileRootPath}/{productDto.Picture}";
 
-            return View("Index", productDto);
+            var model = new Tuple<ProductDto, InfoServerConfig>(productDto, _infoServerConfig);
+            return View("Index", model);
         }
         [Route("data/{productId}")]
         public IActionResult ProductView(Guid productId)

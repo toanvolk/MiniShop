@@ -3,6 +3,33 @@
 }
 @using MiniShop.App
 @model Tuple<Tuple<ICollection<ProductDto>, int>>;
+@{ 
+    var metaData = new MetaTagDto()
+    {
+        Title = "Thực phẩm chức năng | Sản phẩm đặc trị | Sản phẩm hỗ trợ sinh lý nam giới | Sản phẩm giúp chị Em làm đẹp ",
+        Description = "Cung cấp thông tin các sản phẩm từ các nguồn sản xuất chính hãng.",
+        Keywords = "sinh ly, phu khoa, man duc, co be, phuc hoi, tang kha nang, lam dep, phu nu, duong vat, am ho, ...",
+        FacebookMeta = new FacebookMetaTag()
+        {
+            Description = "Cung cấp thông tin các sản phẩm từ các nguồn sản xuất chính hãng.",
+            Title = "Thực phẩm chức năng | Sản phẩm đặc trị | Sản phẩm hỗ trợ sinh lý nam giới | Sản phẩm giúp chị Em làm đẹp ",
+            SiteName = "hanglink.info",
+            Image = "/shared/img-backgrounds/pic-home.jpg",
+            Url = "hanglink.info"
+        },
+        TwitterMeta = new TwitterMetaTag()
+        {
+            Url = "hanglink.info",
+            Title = "Thực phẩm chức năng | Sản phẩm đặc trị | Sản phẩm hỗ trợ sinh lý nam giới | Sản phẩm giúp chị Em làm đẹp ",
+            Image = "/shared/img-backgrounds/pic-home.jpg",
+            Card = "hanglink.info"
+        }
+    };
+}
+@section metaTag{
+    <partial name="../Shared/_metaTag.cshtml" model="metaData" />
+}
+
 @*<partial name="_nav.cshtml" />*@
 <partial name="_hero.cshtml" />
 @*<partial name="_service.cshtml" />*@
