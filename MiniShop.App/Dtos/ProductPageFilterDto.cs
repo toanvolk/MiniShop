@@ -8,5 +8,7 @@ namespace MiniShop.App
     {
         public string TextSearch { get; set; }
         public List<Guid> CategoryIds { get; set; }
+        public int SkipCount { get; set; }
+        public int TakeRecords { get; set; }
     }
 }

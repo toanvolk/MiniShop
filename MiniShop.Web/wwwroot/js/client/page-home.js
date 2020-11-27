@@ -6,6 +6,10 @@
     let _mshop_filter = ".mshop-filter";
     let _search_result = ".search__result";
     let _btn_categorys = ".btn-categorys";
+    var timeDelay;
+    var numberDeplayLazy = 0;
+    var numberCountMax = 0;
+
     let _formatCardTemplate = function (data) {
         let _template = `
             <div class="col-xs-12 col-md-6 col-lg-4">
@@ -75,7 +79,7 @@
             .replaceAll(new RegExp("{#:trackingLink}", "gi"), '/san-pham/' + data.code)
             .replaceAll(new RegExp("{#:link}", "gi"), '/san-pham/' + data.code)
             .replaceAll(new RegExp("{#:price}", "gi"), helper.formatNumber.k(data.price))
-            .replaceAll(new RegExp("{#:description}", "gi"), data.description ? helper.formatString.truncate(helper.formatString.decodeHtml(data.description, {normal: true}),150) : "")
+            .replaceAll(new RegExp("{#:description}", "gi"), data.description ? helper.formatString.truncate(helper.formatString.decodeHtml(data.description, { normal: true }), 150) : "")
             .replaceAll(new RegExp("{#:categoryName}", "gi"), data.categoryName || "")
         return _template;
     };
@@ -112,77 +116,18 @@
         return _html.replaceAll(new RegExp("{#:id}", "gi"), data.id)
             .replaceAll(new RegExp("{#:name}", "gi"), data.name);
     };
-    var myVar;
+
     $(_btnProductSearch).keyup(function (e) {
-        clearTimeout(myVar);
+        clearTimeout(timeDelay);
         _captionSearchResult("");
 
         $(_mshop_filter + ' .loader').show();
-        myVar = setTimeout(function () {
-            _genericPagination();
+        timeDelay = setTimeout(function () {
+            //_genericPagination();
+            _loadLazy(true);
             $(_mshop_filter + ' .loader').hide();
         }, 2500);
     });
-    //
-    let _genericPagination = function () {
-        let _url = 'home/productpage{#:_paramStrs}';
-        let _paramStrs = "";
-        let _content = $(_paginationClass);
-        //get values
-        let _values = [];
-        $(_mshop_product_client + ' ' + _btn_categorys + ' a.active').each(function (index, item) {
-            let _id = $(item).data("id");
-            if (_id != "ALL")
-                _values.push($(item).data("id"));
-        });
-        let _textSearch = $(_mshop_filter).find(_btnProductSearch).first().val();
-        //parse filter
-        if (_textSearch || _values) {
-            if ($(_content).data('pagination')) _content.pagination('destroy');            
-            let _paramObject = {
-                TextSearch: _textSearch,
-                CategoryIds: _values
-            }
-            _paramStrs = "?paramStrs=" + JSON.stringify(_paramObject);
-        };
-
-        _url = _url.replaceAll(new RegExp("{#:_paramStrs}", "gi"), _paramStrs || "");
-
-        _content.pagination({
-            dataSource: _url,
-            className: 'paginationjs-big',
-            locator: 'source',
-            pageNumber: 1,
-            totalNumberLocator: function (response) {
-                // you can return totalNumber by analyzing response content
-                return response.total;
-            },
-            pageSize: cdC.pageSize,
-            ajax: {
-                beforeSend: function () {
-
-                }
-            },
-            callback: function (data, pagination) {
-                let _$containPagination = $(pagination.el).closest('.row');
-                let _$containRoot = $(pagination.el).closest(_mshop_product_client);
-                let _cardId = $(_$containPagination).data("cardId");
-
-                let _html = '';
-                $(data).each(function (index, value) {
-                    _html += _formatCardTemplate(value);
-                });
-
-                if ($(_btnProductSearch).val()) {
-                    let _resultText = "Tìm thấy {#:totalItem} kết quả";
-                    _resultText = _resultText.replaceAll(new RegExp("{#:totalItem}", "gi"), pagination.totalNumber);
-                    _captionSearchResult(_resultText);                    
-                }
-
-                $(_$containRoot).find('#' + _cardId).html(_html);
-            }
-        });
-    }
     let _genericHero = async function () {
         let _url = 'home/producthero';
         let _html = '';
@@ -207,27 +152,75 @@
             }
         });
         $(_mshop_product_client + ' ' + _btn_categorys).html(_html);
-    }    
+    }
     let _captionSearchResult = function (text) {
         $(_mshop_filter + ' ' + _search_result).text(text);
     }
+    let _loadLazy = function (reload) {
+        let _cardId = $(".mshop-filter").data("cardId");
+        if (reload) {
+            numberDeplayLazy = 0;
+            numberCountMax = 0;
+            $(_mshop_product_client).find('#' + _cardId).html('');
+        }
+        let _url = 'home/productpage{#:_paramStrs}';
+        let _paramStrs = "";
+        //get values
+        let _values = [];
+        $(_mshop_product_client + ' ' + _btn_categorys + ' a.active').each(function (index, item) {
+            let _id = $(item).data("id");
+            if (_id != "ALL")
+                _values.push($(item).data("id"));
+        });
+        let _textSearch = $(_mshop_filter).find(_btnProductSearch).first().val();
+        //parse filter
+        if (_textSearch || _values != []) {
+            let _paramObject = {
+                TextSearch: _textSearch,
+                CategoryIds: _values,
+                SkipCount: numberDeplayLazy,
+                TakeRecords: cdC.pageSize
+            }
+            _paramStrs = "?paramStrs=" + JSON.stringify(_paramObject);
+        };
+        _url = _url.replaceAll(new RegExp("{#:_paramStrs}", "gi"), _paramStrs || "");
 
+        $.get(_url, {}, function (res) {
+            let _html = '';
+            $(res.source).each(function (index, value) {
+                _html += _formatCardTemplate(value);
+            });
+            //set total row into numberCountMax
+            numberCountMax = res.total;
+            if ($(_btnProductSearch).val()) {
+                let _resultText = "Tìm thấy {#:totalItem} kết quả";
+                _resultText = _resultText.replaceAll(new RegExp("{#:totalItem}", "gi"), res.total);
+                _captionSearchResult(_resultText);
+            }
+            //cập nhật tham số load lazy
+            numberDeplayLazy += res.source.length;
+            $(_mshop_product_client).find('#' + _cardId).append(_html);
+
+            console.log("numberDeplayLazy: " + numberDeplayLazy, "numberCountMax :" + numberCountMax)
+        });
+
+
+    }
     // init
     _genericHero();
-    _genericPagination();
     _genericCategoryButton();
     $(_mshop_filter + ' .loader').hide();
     //event
     $(document).on('click',
-        _mshop_product_client + ' .btn-read-more, ' + _mnshop_product_hero +' .btn-read-more',
+        _mshop_product_client + ' .btn-read-more, ' + _mnshop_product_hero + ' .btn-read-more',
         function (e) {
             let _url = $(e.target).data('link');
             if (!_url) _url = $(e.target).parent().data('link');
             let _id = $(e.target).data('id');
-        
-            open(_url);            
-        });    
-    $(document).on('click', _mshop_product_client +' '+ _btn_categorys +' a', function (e) {
+
+            open(_url);
+        });
+    $(document).on('click', _mshop_product_client + ' ' + _btn_categorys + ' a', function (e) {
         e.preventDefault();
         if ($(e.target).hasClass("active"))
             $(e.target).removeClass("active");
@@ -242,6 +235,22 @@
             $(_mshop_product_client + ' ' + _btn_categorys + ' a[data-id=ALL]').removeClass("active");
         }
 
-        _genericPagination();
+        _loadLazy(true);
     })
+    //scroll
+    $(window).scroll(function () {
+        if (($(window).scrollTop() >= $(document).height() - $(window).height() - $("#fh5co-footer")[0].offsetHeight)) {   
+            clearTimeout(timeDelay);
+            if (numberDeplayLazy == numberCountMax && numberDeplayLazy != 0) {
+                $(_mshop_product_client + ' .loader-tomato').hide();
+                return;
+            }
+            $(_mshop_product_client + ' .loader-tomato').show();
+            timeDelay = setTimeout(function () {
+                _loadLazy();
+                $(_mshop_product_client + ' .loader-tomato').hide();
+            }, 2200);
+            
+        }
+    });
 }($, document));
