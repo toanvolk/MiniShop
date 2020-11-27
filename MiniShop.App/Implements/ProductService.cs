@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using MiniShop.EF;
 using MiniShop.Infrastructure;
 using System;
@@ -18,16 +19,18 @@ namespace MiniShop.App
         private readonly IMapper _mapper;
         private readonly ICategoryService _categoryService;
         private readonly IAreaService _areaService;
-        private readonly string _fileRootPath = "/shared/UserFiles/Folders";
+        private readonly InfoServerConfig _infoServerConfig;
         public ProductService(ILogger<ProductService> logger, IUnitOfWork unitOfWork, IMapper mapper
             , ICategoryService categoryService
-            , IAreaService areaService)
+            , IAreaService areaService
+            , IOptions<InfoServerConfig> optionAccessor)
         {
             _logger = logger;
             _unitOfWorfk = unitOfWork;
             _mapper = mapper;
             _categoryService = categoryService;
             _areaService = areaService;
+            _infoServerConfig = optionAccessor.Value;
         }
         public bool Insert(ProductDto data)
         {
@@ -82,7 +85,7 @@ namespace MiniShop.App
                 AreaCode = m.AreaCode,
                 Price = m.Price,
                 TrackingLink = m.TrackingLink,
-                Picture = $"{_fileRootPath}/{m.Picture}",
+                Picture = $"{_infoServerConfig.FileRootPath}/{m.Picture}",
                 Code = m.Code,
                 NotUse = m.NotUse,
                 IsHero = m.IsHero,
@@ -147,7 +150,7 @@ namespace MiniShop.App
                     AreaCode = m.AreaCode,
                     Price = m.Price,
                     TrackingLink = m.TrackingLink,
-                    Picture = $"{_fileRootPath}/{m.Picture}",
+                    Picture = $"{_infoServerConfig.FileRootPath}/{m.Picture}",
                     NotUse = m.NotUse,
                     IsHero = m.IsHero,
                     Tag = (TagEnum)m.Tag
@@ -193,7 +196,7 @@ namespace MiniShop.App
             var productDtos = _mapper.Map<List<ProductDto>>(products);
             foreach (var item in productDtos)
             {
-                item.BigPicture = $"{_fileRootPath}/{item.Picture}";
+                item.BigPicture = $"{_infoServerConfig.FileRootPath}/{item.Picture}";
             }
             return productDtos;
         }
@@ -231,7 +234,7 @@ namespace MiniShop.App
         {
             var products = _unitOfWorfk.ProductRepository.Filter(o => o.Id == productId).FirstOrDefault();
             var productDto = _mapper.Map<ProductDto>(products);
-            productDto.BigPicture = $"{_fileRootPath}/{productDto.Picture}";
+            productDto.BigPicture = $"{_infoServerConfig.FileRootPath}/{productDto.Picture}";
 
             return productDto;
         }

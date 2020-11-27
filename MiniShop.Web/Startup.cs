@@ -100,6 +100,10 @@ namespace MiniShop.Web
             services.AddScoped<IHomeService, HomeService>();
             #endregion
 
+            // Config setting 
+            var infoServerConfig =Configuration.GetSection("InfoServer");
+            services.Configure<InfoServerConfig>(infoServerConfig);
+
             //register kendo
             services.AddKendo();
             services.AddControllersWithViews();
