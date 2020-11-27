@@ -78,5 +78,9 @@
   {
     "outputFile": "wwwroot/css/client/mnshop.css",
     "inputFile": "wwwroot/css/client/mnshop.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/client/loader-tomato.css",
+    "inputFile": "wwwroot/css/client/loader-tomato.scss"
   }
 ]
