@@ -18,14 +18,16 @@
         },
         TwitterMeta = new TwitterMetaTag()
         {
-            Title = $"Sản phẩm - {Model.Item1.Name}"
-            
+            Title = $"Sản phẩm - {Model.Item1.Name}",
+            Image = $"{Model.Item2.HostName}/{@Model.Item1.Picture}",
+            Url = $"{Model.Item2.HostName}/san-pham/{Model.Item1.Code}",
+            Card = $"{Model.Item2.DomainName}"
         }
     };
 }
 
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="vi">
 <head>
     <partial name="../Shared/_metaTag.cshtml" model="metaData"/>   
     <!-- my social -->
