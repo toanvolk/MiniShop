@@ -6,6 +6,7 @@ using System.Net.WebSockets;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using MiniShop.App;
 using MiniShop.Web.Models;
 using Newtonsoft.Json;
@@ -17,20 +18,19 @@ namespace MiniShop.Web.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly IProductService _productService;
         private readonly ICategoryService _categoryService;
+        private readonly InfoServerConfig _infoServerConfig;
 
-        public HomeController(ILogger<HomeController> logger, IProductService  productService, ICategoryService categoryService)
+        public HomeController(ILogger<HomeController> logger, IProductService  productService, ICategoryService categoryService, IOptions<InfoServerConfig> optionAccessor)
         {
             _logger = logger;
             _productService = productService;
             _categoryService = categoryService;
+            _infoServerConfig = optionAccessor.Value;
         }
         public IActionResult Index()
         {
-            //var productDtos = _productService.LoadDataPage(page, pageSize);
-
-            //----------------
-            //var model = new Tuple<Tuple<ICollection<ProductDto>, int>>(productDtos);
-            return View();
+            var model = new Tuple<InfoServerConfig>(_infoServerConfig);
+            return View(model);
         }
         public IActionResult ProductPage(int pageNumber = 1, int pageSize = 9, string paramStrs = null)
         {

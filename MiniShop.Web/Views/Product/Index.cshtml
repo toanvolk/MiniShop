@@ -12,14 +12,14 @@
         {
             Title = $"Sản phẩm - {Model.Item1.Name}",
             Description = @Model.Item1.Description,
-            Image = $"{Model.Item2.HostName}/{@Model.Item1.Picture}",
+            Image = $"{Model.Item2.HostName}{@Model.Item1.Picture}",
             SiteName = $"{Model.Item2.DomainName}",
             Url = $"{Model.Item2.HostName}/san-pham/{Model.Item1.Code}"
         },
         TwitterMeta = new TwitterMetaTag()
         {
             Title = $"Sản phẩm - {Model.Item1.Name}",
-            Image = $"{Model.Item2.HostName}/{@Model.Item1.Picture}",
+            Image = $"{Model.Item2.HostName}{@Model.Item1.Picture}",
             Url = $"{Model.Item2.HostName}/san-pham/{Model.Item1.Code}",
             Card = $"{Model.Item2.DomainName}"
         }

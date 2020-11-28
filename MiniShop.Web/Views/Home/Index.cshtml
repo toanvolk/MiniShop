@@ -1,8 +1,5 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
-@using MiniShop.App
-@model Tuple<Tuple<ICollection<ProductDto>, int>>;
+﻿@using MiniShop.App
+@model Tuple<InfoServerConfig>;
 @{ 
     var metaData = new MetaTagDto()
     {
@@ -13,16 +10,16 @@
         {
             Description = "Cung cấp thông tin các sản phẩm từ các nguồn sản xuất chính hãng.",
             Title = "Thực phẩm chức năng | Sản phẩm đặc trị | Sản phẩm hỗ trợ sinh lý nam giới | Sản phẩm giúp chị Em làm đẹp ",
-            SiteName = "hanglink.info",
-            Image = "/shared/img-backgrounds/pic-home.jpg",
+            SiteName = Model.Item1.DomainName,
+            Image = @$"{Model.Item1.HostName}/shared/img-backgrounds/pic-home.jpg",
             Url = "hanglink.info"
         },
         TwitterMeta = new TwitterMetaTag()
         {
             Url = "hanglink.info",
             Title = "Thực phẩm chức năng | Sản phẩm đặc trị | Sản phẩm hỗ trợ sinh lý nam giới | Sản phẩm giúp chị Em làm đẹp ",
-            Image = "/shared/img-backgrounds/pic-home.jpg",
-            Card = "hanglink.info"
+            Image = @$"{Model.Item1.HostName}/shared/img-backgrounds/pic-home.jpg",
+            Card = Model.Item1.DomainName
         }
     };
 }
