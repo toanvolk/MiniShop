@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Encodings.Web;
+using System.Text.Unicode;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
@@ -103,6 +105,11 @@ namespace MiniShop.Web
             // Config setting 
             var infoServerConfig =Configuration.GetSection("InfoServer");
             services.Configure<InfoServerConfig>(infoServerConfig);
+
+            services.AddSingleton<HtmlEncoder>(
+                HtmlEncoder.Create(allowedRanges: new[] {
+                    UnicodeRanges.All
+                }));
 
             //register kendo
             services.AddKendo();
