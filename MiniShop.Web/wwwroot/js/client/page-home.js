@@ -85,7 +85,14 @@
     };
     let _formatProductHero = function (data) {
         let _template = `
-                        <li style="background-image: url({#:bigPicture})">
+                        <li>
+                            <div class="img-hero" style="background-image: url({#:bigPicture}); width: 100%;
+    float: left;
+    margin-right: -100%;
+    opacity: 1;
+    z-index: 2;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;"></div>
                             <div class="overlay-gradient"></div>
                             <div class="container">
                                 <div class="col-md-6 col-md-offset-3 col-md-pull-3 js-fullheight slider-text">
