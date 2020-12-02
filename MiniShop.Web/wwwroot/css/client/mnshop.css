@@ -68,6 +68,17 @@
     transform: translate3d(2px, 0, 0) translateZ(0); }
   100% {
     transform: translate3d(0, 0, 0) translateZ(0); } }
+  .mshop-product-client .msshop-product-nav.read-more {
+    text-align: center;
+    margin-top: 20px; }
+    .mshop-product-client .msshop-product-nav.read-more .button {
+      background: none;
+      border: solid 1px #e0b585;
+      font-size: 15px;
+      margin: 0px;
+      cursor: pointer; }
+      .mshop-product-client .msshop-product-nav.read-more .button span.pulse {
+        color: #d1c286; }
   .mshop-product-client .btn.btn-info {
     border-radius: 30px;
     font: 24px "Margarine", sans-serif; }

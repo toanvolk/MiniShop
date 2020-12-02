@@ -244,20 +244,23 @@
 
         _loadLazy(true);
     })
+    $(document).on('click', _mshop_product_client + ' .msshop-product-nav.read-more p.button', function (e) { _loadLazy(); })
+    _loadLazy();
+
     //scroll
-    $(window).scroll(function () {
-        if (($(window).scrollTop() >= $(document).height() - $(window).height() - $("#fh5co-footer")[0].offsetHeight)) {   
-            clearTimeout(timeDelay);
-            if (numberDeplayLazy == numberCountMax && numberDeplayLazy != 0) {
-                $(_mshop_product_client + ' .loader-tomato').hide();
-                return;
-            }
-            $(_mshop_product_client + ' .loader-tomato').show();
-            timeDelay = setTimeout(function () {
-                _loadLazy();
-                $(_mshop_product_client + ' .loader-tomato').hide();
-            }, 2200);
+    //$(window).scroll(function () {
+    //    if (($(window).scrollTop() >= $(document).height() - $(window).height() - $("#fh5co-footer")[0].offsetHeight)) {   
+    //        clearTimeout(timeDelay);
+    //        if (numberDeplayLazy == numberCountMax && numberDeplayLazy != 0) {
+    //            $(_mshop_product_client + ' .loader-tomato').hide();
+    //            return;
+    //        }
+    //        $(_mshop_product_client + ' .loader-tomato').show();
+    //        timeDelay = setTimeout(function () {
+    //            //_loadLazy();
+    //            $(_mshop_product_client + ' .loader-tomato').hide();
+    //        }, 2200);
             
-        }
-    });
+    //    }
+    //});
 }($, document));

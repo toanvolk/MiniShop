@@ -98,6 +98,23 @@
         }
     }
 
+    .msshop-product-nav.read-more {
+        text-align: center;
+        margin-top: 20px;
+
+        .button {
+            background: none;
+            border: solid 1px #e0b585;
+            font-size: 15px;
+            margin: 0px;
+            cursor: pointer;
+
+            span.pulse {
+                color: #d1c286;
+            }
+        }
+    }
+
     .btn.btn-info {
         border-radius: 30px;
         font: 24px "Margarine", sans-serif;
