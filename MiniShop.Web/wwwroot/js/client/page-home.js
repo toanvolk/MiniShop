@@ -131,7 +131,7 @@
         $(_mshop_filter + ' .loader').show();
         timeDelay = setTimeout(function () {
             //_genericPagination();
-            _loadLazy(true);
+            _loadProductMore(true);
             $(_mshop_filter + ' .loader').hide();
         }, 2500);
     });
@@ -163,12 +163,13 @@
     let _captionSearchResult = function (text) {
         $(_mshop_filter + ' ' + _search_result).text(text);
     }
-    let _loadLazy = function (reload) {
+    let _loadProductMore = function (reload) {
         let _cardId = $(".mshop-filter").data("cardId");
         if (reload) {
             numberDeplayLazy = 0;
             numberCountMax = 0;
             $(_mshop_product_client).find('#' + _cardId).html('');
+            $(_mshop_product_client + ' .msshop-product-nav.read-more').show();
         }
         let _url = 'home/productpage{#:_paramStrs}';
         let _paramStrs = "";
@@ -209,6 +210,9 @@
             $(_mshop_product_client).find('#' + _cardId).append(_html);
 
             console.log("numberDeplayLazy: " + numberDeplayLazy, "numberCountMax :" + numberCountMax)
+            if (numberDeplayLazy == numberCountMax && numberDeplayLazy != 0) {
+                $(_mshop_product_client + ' .msshop-product-nav.read-more').hide();
+            }
         });
 
 
@@ -242,10 +246,10 @@
             $(_mshop_product_client + ' ' + _btn_categorys + ' a[data-id=ALL]').removeClass("active");
         }
 
-        _loadLazy(true);
+        _loadProductMore(true);
     })
-    $(document).on('click', _mshop_product_client + ' .msshop-product-nav.read-more p.button', function (e) { _loadLazy(); })
-    _loadLazy();
+    $(document).on('click', _mshop_product_client + ' .msshop-product-nav.read-more p.button', function (e) { _loadProductMore(); })
+    _loadProductMore();
 
     //scroll
     //$(window).scroll(function () {
@@ -257,7 +261,7 @@
     //        }
     //        $(_mshop_product_client + ' .loader-tomato').show();
     //        timeDelay = setTimeout(function () {
-    //            //_loadLazy();
+    //            //_loadProductMore();
     //            $(_mshop_product_client + ' .loader-tomato').hide();
     //        }, 2200);
             
