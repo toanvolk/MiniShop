@@ -388,3 +388,15 @@
 #mnshop-product-view .mnshop-product-content iframe {
   width: 99.8%;
   height: 99.62%; }
+
+.mnshop-service-client {
+  padding: 1em !important; }
+  .mnshop-service-client .icon {
+    background: none; }
+    .mnshop-service-client .icon img {
+      height: 90px; }
+  .mnshop-service-client .service-read-more {
+    color: #f19512;
+    border: 1px solid #f19512; }
+  .mnshop-service-client .service-read-more:hover {
+    background: #f19512 !important; }

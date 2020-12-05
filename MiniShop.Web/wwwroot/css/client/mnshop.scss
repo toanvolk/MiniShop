@@ -566,3 +566,24 @@
         }
     }
 }
+
+.mnshop-service-client {
+    padding: 1em !important;
+
+    .icon {
+        background: none;
+
+        img {
+            height: 90px
+        }
+    }
+
+    .service-read-more {
+        color: #f19512;
+        border: 1px solid #f19512;
+    }
+
+    .service-read-more:hover {
+        background: #f19512 !important;
+    }
+}
