@@ -1,4 +1,4 @@
-﻿(function ($, document) {
+﻿(function ($, document, helper) {
     let _mnshop_product_view = "#mnshop-product-view";
     let _formatProductView = function (data) {
         let _template = `
@@ -14,18 +14,17 @@
             .replaceAll(new RegExp("{#:trackingLink}", "gi"), data.trackingLink);
         return _template;
     };
-    
+
     let _genericView = async function () {
         let _id = $('input[name=ProductId]').val();
         let _url = '/san-pham/data/{#:productId}';
-        _url = _url.replaceAll(new RegExp("{#:productId}","gi"), _id);
-
+        _url = _url.replaceAll(new RegExp("{#:productId}", "gi"), _id);
         let _html = '';
         await $.get(_url, function (res) {
-            if (res.source) {
-                _html += _formatProductView(res.source);
-            }
-        });
+                if (res.source) {
+                    _html += _formatProductView(res.source);
+                }
+            });
         $(_mnshop_product_view + ' .mnshop-product-content').html(_html);
         _genericShare();
     }
@@ -37,4 +36,4 @@
     }
     // init
     _genericView();
-}($, document));
+}($, document, helper));

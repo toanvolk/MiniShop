@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.Extensions.Logging;
+using MiniShop.App.Common;
 using MiniShop.EF;
 using MiniShop.Infrastructure;
 using System;
@@ -17,8 +18,9 @@ namespace MiniShop.App
         private readonly IUnitOfWork _unitOfWorfk;
         private readonly IMapper _mapper;
         private readonly IProductService _productService;
+
         public HomeService(ILogger<HomeService> logger, IUnitOfWork unitOfWork, IMapper mapper
-            , IProductService productService) 
+            , IProductService productService)
         {
             _logger = logger;
             _unitOfWorfk = unitOfWork;
@@ -38,13 +40,39 @@ namespace MiniShop.App
             var datas = _unitOfWorfk.GetDynamicResult("sp_mnshop_getproductreview @p0, @p1", fromDateParam, toDateParam);
             foreach (var item in datas)
             {
-                results.Add(new ProductReviewDto() { 
+                results.Add(new ProductReviewDto()
+                {
                     ProductName = item.ProductName,
-                    Count = item.Count 
+                    Count = item.Count
                 });
             }
 
             return results;
+        }
+
+        public CounterDto GetCounter()
+        {
+            // Get view total
+            var viewCountTotal = _unitOfWorfk.TouchHistorys.Count();
+            var blogCount = 0;
+            var productCount = _unitOfWorfk.Products.Where(o => o.NotUse != true).Count();
+            var viewDailyCount = _unitOfWorfk.TouchHistorys.Where(o => o.CreatedDate.Value.Year == DateTime.UtcNow.Year &&
+            o.CreatedDate.Value.Month == DateTime.UtcNow.Month &&
+            o.CreatedDate.Value.Day == DateTime.UtcNow.Day
+            ).Count();
+
+            return new CounterDto()
+            {
+                BlogCount = blogCount,
+                ProductCount = productCount,
+                ViewCount = viewCountTotal,
+                ViewDailyCount = viewDailyCount
+            };
+        }
+
+        public void Counting(string key)
+        {
+            
         }
     }
 }

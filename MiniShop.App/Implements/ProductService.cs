@@ -209,22 +209,6 @@ namespace MiniShop.App
             entity.IsHero = ischecked;
             return _unitOfWorfk.SaveChanges() > 0;
         }
-
-        public int CountClick(Guid productId, string userHostAddress, string userHostName)
-        {
-            var entity = new TouchHistory()
-            {
-                ProductId = productId,
-                UserHostAddress = userHostAddress,
-                CreatedBy = userHostName,
-                CreatedDate = DateTime.UtcNow,
-                Id = Guid.NewGuid()
-            };
-
-            _unitOfWorfk.TouchHistorys.Add(entity);
-            return _unitOfWorfk.SaveChanges();
-        }
-
         public ICollection<string> TagList()
         {
             var list = Enum.GetNames(typeof(TagEnum));

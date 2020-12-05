@@ -468,5 +468,31 @@ var helper = {
             });
         }
     },
+    sessionStorage: {
+        getOrCreate: function (code) {            
+            if (typeof (Storage) !== "undefined") {
+                if (typeof (sessionStorage[code]) == "undefined") {
+                    sessionStorage[code] = helper.createGUID();
+                }
+            } else {
+                sessionStorage[code] = "Sorry, client browser does not support web storage...";
+            }
+
+            return sessionStorage[code];
+        },
+        setIfNotExist: function (code) {
+            if (typeof (Storage) !== "undefined") {
+                if (typeof (sessionStorage[code]) == "undefined") {
+                    sessionStorage[code] = helper.sessionStorage.getOrCreate(code);
+                    $.post('/base/countClick', {
+                        url: window.location.pathname,
+                        keyView: sessionStorage[code]
+                    });
+                }
+            } else {
+                sessionStorage[code] = "Sorry, client browser does not support web storage...";
+            }            
+        }
+    },
     bridgeHandle: {}
 }

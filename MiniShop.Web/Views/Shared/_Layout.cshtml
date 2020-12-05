@@ -91,5 +91,10 @@
     <partial name="_cdC.cshtml" />
     <script src="~/lib/shop-master/js/main.js"></script>
     @RenderSection("Scripts", required: false)
+    <script>
+        (function (helper) {
+            helper.sessionStorage.setIfNotExist(window.location.pathname);
+        })(helper);
+    </script>
 </body>
 </html>

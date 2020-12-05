@@ -18,7 +18,6 @@ namespace MiniShop.App
         ICollection<AreaDto> GetAreas();
         ICollection<ProductDto> LoadDataHero();
         bool UpdateHero(Guid productId, bool ischecked, string userName);
-        int CountClick(Guid productId, string userHostAddress, string userHostName);
         ICollection<string> TagList();
         ProductDto LoadDataView(Guid productId);
         Guid GetProductId(string code);

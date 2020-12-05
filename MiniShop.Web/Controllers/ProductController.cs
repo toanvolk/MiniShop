@@ -9,11 +9,11 @@ using MiniShop.App;
 namespace MiniShop.Web.Controllers
 {
     [Route("san-pham")]
-    public class ProductController : Controller
+    public class ProductController : BaseController
     {
         private readonly IProductService _productService;
         private readonly InfoServerConfig _infoServerConfig;
-        public ProductController(IProductService productService, IOptions<InfoServerConfig> optionAccessor)
+        public ProductController(IBaseService baseService, IProductService productService, IOptions<InfoServerConfig> optionAccessor) : base(baseService)
         {
             _productService = productService;
             _infoServerConfig = optionAccessor.Value;
@@ -24,9 +24,7 @@ namespace MiniShop.Web.Controllers
             //filter code => productId
             var productId = _productService.GetProductId(code);
             var productDto = _productService.GetData(productId);
-            if (productId == Guid.Empty) return Redirect(_infoServerConfig.PathPageNoteFound);
-            var useHostAddress = this.HttpContext.Connection.RemoteIpAddress.ToString();
-            _productService.CountClick(productId, useHostAddress, string.Empty);
+            if (productId == Guid.Empty) return Redirect(_infoServerConfig.PathPageNoteFound);           
             productDto.Picture = $"{_infoServerConfig.FileRootPath}/{productDto.Picture}";
 
             var model = new Tuple<ProductDto, InfoServerConfig>(productDto, _infoServerConfig);

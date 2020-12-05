@@ -8,7 +8,8 @@ namespace MiniShop.EF
     [Table("TouchHistory")]
     public class TouchHistory : AuditableEntity
     {
-        public Guid ProductId { get; set; }
         public string UserHostAddress { get; set; }
+        public string Url { get; set; }
+        public string KeyView { get; set; }
     }
 }

@@ -79,5 +79,10 @@
     <script src="~/js/app-helper.js"></script>
     <script src="~/js/client/jquery.c-share.js"></script>
     <script src="~/js/client/product-view.js"></script>
+    <script>
+        (function (helper) {
+            helper.sessionStorage.setIfNotExist(window.location.pathname);
+        })(helper);
+    </script>
 </body>
 </html>

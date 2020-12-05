@@ -400,3 +400,6 @@
     border: 1px solid #f19512; }
   .mnshop-service-client .service-read-more:hover {
     background: #f19512 !important; }
+
+.mnshop-navigation #fh5co-logo img {
+  height: 24px; }

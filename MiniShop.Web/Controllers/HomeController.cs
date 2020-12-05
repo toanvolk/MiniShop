@@ -13,19 +13,22 @@ using Newtonsoft.Json;
 
 namespace MiniShop.Web.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IProductService _productService;
         private readonly ICategoryService _categoryService;
         private readonly InfoServerConfig _infoServerConfig;
-
-        public HomeController(ILogger<HomeController> logger, IProductService  productService, ICategoryService categoryService, IOptions<InfoServerConfig> optionAccessor)
+        private readonly IHomeService _homeService;
+         
+        public HomeController(IBaseService baseService, ILogger<HomeController> logger, IProductService  productService, ICategoryService categoryService, IOptions<InfoServerConfig> optionAccessor, IHomeService homeService)
+        : base(baseService)
         {
             _logger = logger;
             _productService = productService;
             _categoryService = categoryService;
             _infoServerConfig = optionAccessor.Value;
+            _homeService = homeService;
         }
         public IActionResult Index()
         {
@@ -57,6 +60,16 @@ namespace MiniShop.Web.Controllers
         public IActionResult GetCategorys()
         {
             var model = _categoryService.LoadData();
+            return Json(model);
+        }
+
+        public IActionResult GetCounter()
+        {
+            var counterDtos = _homeService.GetCounter();
+            var model = new
+            {
+                source = counterDtos
+            };
             return Json(model);
         }
         #region Generic system

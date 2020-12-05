@@ -6,6 +6,9 @@ namespace MiniShop.App.Common
 {
     public class CounterDto
     {
-        public int Viewer { get; set; }
+        public int ViewCount { get; set; }
+        public int BlogCount { get; set; }
+        public int ProductCount { get; set; }
+        public int ViewDailyCount { get; set; }
     }
 }
