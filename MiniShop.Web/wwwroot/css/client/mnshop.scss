@@ -1,4 +1,36 @@
-﻿.mshop-product-client {
+﻿
+@media only screen and (min-width: 1900px) {
+    #page {
+        width: 84.2%;
+        float: left;
+    }
+    #page-ads {
+        width: 15.8%;
+        background: blue;
+        position: fixed;
+        right: 0;
+    }
+}
+@media only screen and (max-width: 1899px) {
+    #page {
+        width: 100%;
+    }
+
+    #page-ads {       
+        display:none
+    }
+}
+
+/*@media only screen and (max-width: 1899) {
+    #page-ads {
+        display:none;
+        background-color: blue;
+    }
+}*/
+
+
+
+.mshop-product-client {
     /*msshop-product-content {
         width: 100%;
         height: 100%;
@@ -18,7 +50,7 @@
     background-image: url("../../shared/img-backgrounds/dark-background-8.jpg");
 
     .msshop-product-content {
-        background-image: url("../../shared/img-backgrounds/grunge-dark-background-4k-uhd_bsvpysqu__F0000.png");
+        background-image: url("../../shared/img-backgrounds/dark-background-product.png");
 
         button {
             position: relative;
@@ -30,8 +62,8 @@
             align-items: center;
             cursor: pointer;
             text-transform: uppercase;
-            height: 36px;
-            width: 120px;
+            height: 2em;
+            width: 6em;
             opacity: 1;
             background-color: #ffffff;
             border: 1px solid rgba(22, 76, 167, 0.6);
@@ -133,7 +165,8 @@
     .prod-info-main .product-image {
         background-color: #EBF8FE;
         display: block;
-        min-height: 238px;
+        min-height: 89px;
+        width: 89px;
         overflow: hidden;
         position: relative;
         border: 1px solid #CEEFFF;
@@ -207,10 +240,9 @@
         height: 50px;
         padding: 13px 0;
         position: absolute;
-        right: 10px;
+        right: 0em;
         text-align: center;
-        top: 10px;
-        width: 50px
+        top: 0;
     }
 
     .prod-info-main .product-deatil span.sale {
@@ -231,8 +263,8 @@
         padding: 10px 14px 16px 19px;
         /*background: #fff;*/
         max-height: 72px;
+        max-width: 100%;
         overflow: hidden;
-        width: 320px;
         color: #f9ea94;
     }
 
@@ -289,7 +321,8 @@
         border-radius: 50%;
         color: #fff;
         font-size: 11px;
-        text-align: center
+        text-align: center;
+        z-index: 1
     }
 
 
@@ -587,10 +620,11 @@
         background: #f19512 !important;
     }
 }
+
 .mnshop-navigation {
     #fh5co-logo {
         img {
-            height:24px;
+            height: 24px;
         }
     }
 }

@@ -82,5 +82,9 @@
   {
     "outputFile": "wwwroot/css/client/loader-tomato.css",
     "inputFile": "wwwroot/css/client/loader-tomato.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/client/blog-card.css",
+    "inputFile": "wwwroot/css/client/blog-card.scss"
   }
 ]

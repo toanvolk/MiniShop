@@ -1,4 +1,26 @@
 ﻿@import url("https://fonts.googleapis.com/css?family=Raleway:400,700,900");
+@media only screen and (min-width: 1900px) {
+  #page {
+    width: 84.2%;
+    float: left; }
+  #page-ads {
+    width: 15.8%;
+    background: blue;
+    position: fixed;
+    right: 0; } }
+
+@media only screen and (max-width: 1899px) {
+  #page {
+    width: 100%; }
+  #page-ads {
+    display: none; } }
+
+/*@media only screen and (max-width: 1899) {
+    #page-ads {
+        display:none;
+        background-color: blue;
+    }
+}*/
 .mshop-product-client {
   /*msshop-product-content {
         width: 100%;
@@ -18,7 +40,7 @@
 */
   background-image: url("../../shared/img-backgrounds/dark-background-8.jpg"); }
   .mshop-product-client .msshop-product-content {
-    background-image: url("../../shared/img-backgrounds/grunge-dark-background-4k-uhd_bsvpysqu__F0000.png"); }
+    background-image: url("../../shared/img-backgrounds/dark-background-product.png"); }
     .mshop-product-client .msshop-product-content button {
       position: relative;
       outline: none;
@@ -29,8 +51,8 @@
       align-items: center;
       cursor: pointer;
       text-transform: uppercase;
-      height: 36px;
-      width: 120px;
+      height: 2em;
+      width: 6em;
       opacity: 1;
       background-color: #ffffff;
       border: 1px solid rgba(22, 76, 167, 0.6); }
@@ -93,7 +115,8 @@
   .mshop-product-client .prod-info-main .product-image {
     background-color: #EBF8FE;
     display: block;
-    min-height: 238px;
+    min-height: 89px;
+    width: 89px;
     overflow: hidden;
     position: relative;
     border: 1px solid #CEEFFF; }
@@ -153,10 +176,9 @@
     height: 50px;
     padding: 13px 0;
     position: absolute;
-    right: 10px;
+    right: 0em;
     text-align: center;
-    top: 10px;
-    width: 50px; }
+    top: 0; }
   .mshop-product-client .prod-info-main .product-deatil span.sale {
     background-color: #21c2f8; }
   .mshop-product-client .prod-info-main .product-deatil span.discount {
@@ -169,8 +191,8 @@
     padding: 10px 14px 16px 19px;
     /*background: #fff;*/
     max-height: 72px;
+    max-width: 100%;
     overflow: hidden;
-    width: 320px;
     color: #f9ea94; }
   .mshop-product-client .prod-info-main .product-info {
     padding: 11px 19px 10px 20px; }
@@ -211,7 +233,8 @@
     border-radius: 50%;
     color: #fff;
     font-size: 11px;
-    text-align: center; }
+    text-align: center;
+    z-index: 1; }
   .mshop-product-client .prod-wrap .product-image span.tag3 {
     position: absolute;
     top: 10px;

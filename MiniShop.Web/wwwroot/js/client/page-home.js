@@ -12,56 +12,50 @@
 
     let _formatCardTemplate = function (data) {
         let _template = `
-            <div class="col-xs-12 col-md-6 col-lg-4">
+            <div class="col-xs-12 col-md-6 col-lg-3">
 	<!-- First product box start here-->
 	<div class="prod-info-main prod-wrap clearfix">
 		<div class="row">
-				<div class="col-md-5 col-sm-12 col-xs-12">
+				<div class="col-md-3 col-sm-3 col-xs-3">
 					<div class="product-image"> 
                         <div class="border"></div>
                         <div class="main-element">
                             <img src="{#:picture}" class="img-responsive">   
                         </div>
-						
+						<span class="tag2">
+							<img src="{#:picture-hot}" style="width: 30px">  
+						</span>
 					</div>
 				</div>
-				<div class="col-md-7 col-sm-12 col-xs-12">
-				<div class="product-deatil">
-						<h5 class="name">
-							<a href="{#:trackingLink}" style="font-weight: 700;">
-								{#:name}
-							</a>
-							<a href="#">
-								<span style="margin-top:5px">Nhóm sản phẩm {#:categoryName}</span>
-							</a>   
-						</h5>
-						<p class="price-container">
-							<span>{#:price}</span>
-                            <a title="Giá tham khảo, có thể chênh lệch với giá thực tế" class="text-decoration-none">
-<svg width="0.6em" height="0.6em" viewBox="0 0 16 16" class="bi bi-info-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-  <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-  <path d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588z"/>
-  <circle cx="8" cy="4.5" r="1"/>
-</svg>
-</a>
-						</p>
-						<span class="tag1">
-							<img src="{#:picture-hot}" style="width: 55px">  
-						</span>
-				</div>
-				<div class="description">
+				<div class="col-md-9 col-sm-9 col-xs-9">
+				    <div class="product-deatil">
+						    <h5 class="name">
+							    <a href="{#:trackingLink}" style="font-weight: 700;">
+								    {#:name}
+							    </a>							 
+						    </h5>
+                                <span class="tag1">
+							        <button class="btn-read-more" data-link="{#:link}" data-id="{#:id}" style="margin: 0 auto">
+                                      <span>Chi tiết</span>
+                                    </button>
+						        </span>
+						    <p class="price-container">
+							    <span>{#:price}</span>
+                                <a title="Giá tham khảo, có thể chênh lệch với giá thực tế" class="text-decoration-none">
+    <svg width="0.6em" height="0.6em" viewBox="0 0 16 16" class="bi bi-info-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+      <path d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588z"/>
+      <circle cx="8" cy="4.5" r="1"/>
+    </svg>
+    </a>
+						    </p>
+						
+				    </div>
+				
+			</div>
+            <div class="description">
 					<p>{#:description}</p>
 				</div>
-				<div class="product-info smart-form">
-					<div class="row">
-						<div class="col-md-12"> 
-                            <button class="btn-read-more" data-link="{#:link}" data-id="{#:id}" style="margin: 0 auto">
-                              <span>Chi tiết</span>
-                            </button>
-						</div>						
-					</div>
-				</div>
-			</div>
 		</div>
 	</div>
 	<!-- end product -->
