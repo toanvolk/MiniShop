@@ -227,7 +227,7 @@
                 $('#fh5co-counter .js-counter.view-daily-count').data('to', res.source.viewDailyCount);
             }
         });
-    }
+    }    
     // init
     _genericHero();
     _genericCategoryButton();
@@ -257,9 +257,58 @@
             $(_mshop_product_client + ' ' + _btn_categorys + ' a[data-id=ALL]').removeClass("active");
         }
 
+        clearTimeout(timeDelay);
+        _captionSearchResult("");
+        $(_mshop_filter + ' .loader').show();
+        timeDelay = setTimeout(function () {
+            //_genericPagination();
+            _loadProductMore(true);
+            $(_mshop_filter + ' .loader').hide();
+        }, 700);
         _loadProductMore(true);
     })
     $(document).on('click', _mshop_product_client + ' .msshop-product-nav.read-more p.button', function (e) { _loadProductMore(); })
+    $(document).on('click', '.mnshop-service-client a.service-read-more', function (e) {
+        let _group = $(e.target).data('group');
+        if (typeof (_group) == "undefined") _group = $(e.target).closest('a').data('group');
+        
+        //clear focus
+        $(_mshop_product_client + ' ' + _btn_categorys + ' a').removeClass("active");
+
+        //Thực phẩm chức năng
+        if (_group == 'thuc-pham-chuc-nang') {
+            $(_mshop_product_client + ' a').each(function (index, item) {                
+                if ([
+                        '2fc89e20-b009-427b-8e34-4483bc0638fa', //Sinh lý
+                        '8829d257-bafd-494b-bd6c-fce6954791b2' // Tăng -giảm cân
+                    ].indexOf($(item).data('id')) != -1) {
+                    $(item).click();
+                }
+            });
+        }
+        //Mỹ phẩm
+        if (_group == 'my-pham') {
+            $(_mshop_product_client + ' a').each(function (index, item) {
+                if ([
+                    'ecac91c4-c0a2-41ae-b1e0-526e7134dd02', //Mẹ & bé
+                    '717db383-b665-40c1-864c-635aa0b711f0', //Làm đẹp
+                    '68163f53-529a-4177-9835-9ff5825b1741', //Mỹ phẩm
+                ].indexOf($(item).data('id')) != -1) {
+                    $(item).click();
+                }
+            });
+        }
+        //Đặc trị
+        if (_group == 'dac-tri') {
+            $(_mshop_product_client + ' a').each(function (index, item) {
+                if ([
+                    'f2919983-d99a-4361-b1df-8be8ed873a41' //Đặc trị      
+                ].indexOf($(item).data('id')) != -1) {
+                    $(item).click();
+                }
+            });
+        }
+    });
     _loadProductMore();
     _getCounter();
     //scroll

@@ -72,6 +72,20 @@ namespace MiniShop.Web.Controllers
             };
             return Json(model);
         }
+
+        [Route("anh-chang")]
+        [Route("man")]
+        public IActionResult ProductTypeMan()
+        {
+            return Json("For man");
+        }
+        [Route("co-nang")]
+        [Route("woman")]
+        public IActionResult ProductTypeWoMan()
+        {
+            return Json("For WoMan");
+        }
+
         #region Generic system
         public IActionResult Privacy()
         {

@@ -40,5 +40,6 @@ namespace MiniShop.Web.Controllers
             };
             return Json(model);
         }
+        
     }
 }
