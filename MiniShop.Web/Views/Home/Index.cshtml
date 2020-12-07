@@ -1,5 +1,5 @@
 ﻿@using MiniShop.App
-@model Tuple<InfoServerConfig>;
+@model Tuple<InfoServerConfig, ICollection<BlogDto>>;
 @{
     var metaData = new MetaTagDto()
     {
@@ -40,7 +40,7 @@
 
 @*<partial name="_testimonial.cshtml" />*@
 <partial name="_counter.cshtml" />
-<partial name="_blog.cshtml" />
+<partial name="_blog.cshtml" model="Model.Item2"/>
 <partial name="_footer.cshtml" />
 @section Scripts{
     <script src="~/lib/pagination/pagination.js"></script>

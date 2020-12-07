@@ -20,8 +20,15 @@ namespace MiniShop.Web.Controllers
         private readonly ICategoryService _categoryService;
         private readonly InfoServerConfig _infoServerConfig;
         private readonly IHomeService _homeService;
-         
-        public HomeController(IBaseService baseService, ILogger<HomeController> logger, IProductService  productService, ICategoryService categoryService, IOptions<InfoServerConfig> optionAccessor, IHomeService homeService)
+        private readonly IBlogService _blogService;
+
+        public HomeController(IBaseService baseService, 
+            ILogger<HomeController> logger, 
+            IProductService  productService, 
+            ICategoryService categoryService, 
+            IOptions<InfoServerConfig> optionAccessor, 
+            IHomeService homeService,
+            IBlogService blogService)
         : base(baseService)
         {
             _logger = logger;
@@ -29,10 +36,11 @@ namespace MiniShop.Web.Controllers
             _categoryService = categoryService;
             _infoServerConfig = optionAccessor.Value;
             _homeService = homeService;
+            _blogService = blogService;
         }
         public IActionResult Index()
         {
-            var model = new Tuple<InfoServerConfig>(_infoServerConfig);
+            var model = new Tuple<InfoServerConfig, ICollection<BlogDto>>(_infoServerConfig, _blogService.BlogMains());
             return View(model);
         }
         public IActionResult ProductPage(int pageNumber = 1, int pageSize = 9, string paramStrs = null)
@@ -73,18 +81,6 @@ namespace MiniShop.Web.Controllers
             return Json(model);
         }
 
-        [Route("anh-chang")]
-        [Route("man")]
-        public IActionResult ProductTypeMan()
-        {
-            return Json("For man");
-        }
-        [Route("co-nang")]
-        [Route("woman")]
-        public IActionResult ProductTypeWoMan()
-        {
-            return Json("For WoMan");
-        }
 
         #region Generic system
         public IActionResult Privacy()

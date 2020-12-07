@@ -101,6 +101,7 @@ namespace MiniShop.Web
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IAreaService, AreaService>();
             services.AddScoped<IHomeService, HomeService>();
+            services.AddScoped<IBlogService, BlogService>();
             #endregion
 
             // Config setting 
