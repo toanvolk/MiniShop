@@ -1,5 +1,5 @@
 ﻿@using MiniShop.App
-@model Tuple<InfoServerConfig, ICollection<BlogDto>>;
+@model Tuple<InfoServerConfig, ICollection<BlogDto>, CounterDto>;
 @{
     var metaData = new MetaTagDto()
     {
@@ -39,7 +39,7 @@
 
 
 @*<partial name="_testimonial.cshtml" />*@
-<partial name="_counter.cshtml" />
+<partial name="_counter.cshtml" model="Model.Item3"/>
 <partial name="_blog.cshtml" model="Model.Item2"/>
 <partial name="_footer.cshtml" />
 @section Scripts{

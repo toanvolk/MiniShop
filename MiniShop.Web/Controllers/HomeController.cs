@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Net.WebSockets;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using MiniShop.App;
 using MiniShop.Web.Models;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace MiniShop.Web.Controllers
 {
@@ -40,7 +37,7 @@ namespace MiniShop.Web.Controllers
         }
         public IActionResult Index()
         {
-            var model = new Tuple<InfoServerConfig, ICollection<BlogDto>>(_infoServerConfig, _blogService.BlogMains());
+            var model = new Tuple<InfoServerConfig, ICollection<BlogDto>, CounterDto>(_infoServerConfig, _blogService.BlogMains(), _homeService.GetCounter());
             return View(model);
         }
         public IActionResult ProductPage(int pageNumber = 1, int pageSize = 9, string paramStrs = null)
@@ -70,17 +67,6 @@ namespace MiniShop.Web.Controllers
             var model = _categoryService.LoadData();
             return Json(model);
         }
-
-        public IActionResult GetCounter()
-        {
-            var counterDtos = _homeService.GetCounter();
-            var model = new
-            {
-                source = counterDtos
-            };
-            return Json(model);
-        }
-
 
         #region Generic system
         public IActionResult Privacy()

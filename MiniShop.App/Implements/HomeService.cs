@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.Extensions.Logging;
-using MiniShop.App.Common;
+using MiniShop.App;
 using MiniShop.EF;
 using MiniShop.Infrastructure;
 using System;

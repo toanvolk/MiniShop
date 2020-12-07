@@ -1,6 +1,8 @@
 ﻿@{ 
     Layout = null;
 }
+@using MiniShop.App;
+@model CounterDto;
 <div id="fh5co-counter" class="fh5co-bg fh5co-counter" style="background-image:url(lib/shop-master/images/img_bg_5.jpg);">
     <div class="container">
         <div class="row">
@@ -12,7 +14,7 @@
                                 <i class="icon-eye"></i>
                             </span>
 
-                            <span class="counter js-counter view-count" data-from="0" data-to="22070" data-speed="5000" data-refresh-interval="50">1</span>
+                            <span class="counter js-counter view-count" data-from="0" data-to="@Model.ViewCount" data-speed="5000" data-refresh-interval="50">1</span>
                             <span class="counter-label">Lượt xem</span>
 
                         </div>
@@ -23,7 +25,7 @@
                                 <i class="icon-edit"></i>
                             </span>
 
-                            <span class="counter js-counter blog-count" data-from="0" data-to="450" data-speed="5000" data-refresh-interval="50">1</span>
+                            <span class="counter js-counter blog-count" data-from="0" data-to="@Model.BlogCount" data-speed="5000" data-refresh-interval="50">1</span>
                             <span class="counter-label">Blog</span>
                         </div>
                     </div>
@@ -32,7 +34,7 @@
                             <span class="icon">
                                 <i class="icon-shop"></i>
                             </span>
-                            <span class="counter js-counter product-count" data-from="0" data-to="700" data-speed="5000" data-refresh-interval="50">1</span>
+                            <span class="counter js-counter product-count" data-from="0" data-to="@Model.ProductCount" data-speed="5000" data-refresh-interval="50">1</span>
                             <span class="counter-label">Sản phẩm</span>
                         </div>
                     </div>
@@ -42,7 +44,7 @@
                                 <i class="icon-clock"></i>
                             </span>
 
-                            <span class="counter js-counter view-daily-count" data-from="0" data-to="5605" data-speed="5000" data-refresh-interval="50">1</span>
+                            <span class="counter js-counter view-daily-count" data-from="0" data-to="@Model.ViewDailyCount" data-speed="5000" data-refresh-interval="50">1</span>
                             <span class="counter-label">Lượt xem trong ngày</span>
 
                         </div>

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MiniShop.App.Common
+namespace MiniShop.App
 {
     public class CounterDto
     {

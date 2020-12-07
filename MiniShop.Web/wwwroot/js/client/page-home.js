@@ -211,17 +211,6 @@
 
 
     }
-    let _getCounter = function () {
-        let _url = '/home/getcounter';
-        $.get(_url, {}, function (res) {
-            if (res.source) {
-                $('#fh5co-counter .js-counter.view-count').data('to', res.source.viewCount);
-                $('#fh5co-counter .js-counter.blog-count').data('to', res.source.blogCount);
-                $('#fh5co-counter .js-counter.product-count').data('to', res.source.productCount);
-                $('#fh5co-counter .js-counter.view-daily-count').data('to', res.source.viewDailyCount);
-            }
-        });
-    }    
     // init
     _genericHero();
     _genericCategoryButton();
@@ -304,7 +293,6 @@
         }
     });
     _loadProductMore();
-    _getCounter();
     //scroll
     //$(window).scroll(function () {
     //    if (($(window).scrollTop() >= $(document).height() - $(window).height() - $("#fh5co-footer")[0].offsetHeight)) {   
