@@ -5,38 +5,45 @@
 @model List<BlogDto>;
 <div id="fh5co-blog" class="mshop-blog-client">
     <div class="row">
-        @foreach (var item in Model)
-        {
-            <div class="col-lg-6 col-md-6 col-xs-12">
-                <div class="blog-card">
-                    <div class="meta">
-                        <div class="photo" style="background-image: url(@item.PicturePath)"></div>
-                        <ul class="details">
-                            <li class="author"><a href="#">@item.Author</a></li>
-                            <li class="date">@item.PublishDate</li>
-                            <li class="tags">
-                                <ul>
-                                    @{
-                                        var tags = @item.HashTag.Split(',');
-                                        foreach (var tag in tags)
-                                        {
-                                            <li><a href="#">@tag</a></li>
+
+        @{
+            var index = 0;
+            var alt = "";
+            foreach (var item in Model)
+            {
+                index++;
+                if (index % 2 == 0) alt = "alt"; else alt = "";
+                <div class="col-lg-6 col-md-6 col-xs-12">
+                    <div class="blog-card @alt">
+                        <div class="meta">
+                            <div class="photo" style="background-image: url(@item.PicturePath)"></div>
+                            <ul class="details">
+                                <li class="author"><a href="#">@item.Author</a></li>
+                                <li class="date">@item.PublishDate</li>
+                                <li class="tags">
+                                    <ul>
+                                        @{
+                                            var tags = @item.HashTag.Split(',');
+                                            foreach (var tag in tags)
+                                            {
+                                                <li><a href="#">@tag</a></li>
+                                            }
                                         }
-                                    }
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="description">
-                        <h1>@item.Title</h1>
-                        <h2>@item.Category</h2>
-                        <p> @item.Description</p>
-                        <p class="read-more">
-                            <a href="#">Đọc thêm</a>
-                        </p>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="description">
+                            <h1>@item.Title</h1>
+                            <h2>@item.Category</h2>
+                            <p style="max-height: 120px; height:120px" > @item.Description</p>
+                            <p class="read-more">
+                                <a href="@item.ReadMorePath" target="_blank">Đọc thêm</a>
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>
+            }
         }
     </div>
 </div>

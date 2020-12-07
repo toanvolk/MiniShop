@@ -54,7 +54,7 @@ namespace MiniShop.App
         {
             // Get view total
             var viewCountTotal = _unitOfWorfk.TouchHistorys.Count();
-            var blogCount = 0;
+            var blogCount = 6;
             var productCount = _unitOfWorfk.Products.Where(o => o.NotUse != true).Count();
             var viewDailyCount = _unitOfWorfk.TouchHistorys.Where(o => o.CreatedDate.Value.Year == DateTime.UtcNow.Year &&
             o.CreatedDate.Value.Month == DateTime.UtcNow.Month &&

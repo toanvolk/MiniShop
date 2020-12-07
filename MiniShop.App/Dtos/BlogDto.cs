@@ -13,5 +13,6 @@ namespace MiniShop.App
         public DateTime PublishDate { get; set; }
         public string HashTag { get; set; }
         public string PicturePath { get; set; }
+        public string ReadMorePath { get; set; }
     }
 }
