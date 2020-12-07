@@ -25,10 +25,10 @@ namespace MiniShop.Web.Areas.admin.Controllers
             ViewBag.Title = "Category";
             return View();
         }
-        public JsonResult LoadData()
+        public JsonResult LoadDataAdmin()
         {
             //var model = _categoryService.LoadDatas(rootCategoryType, true);
-            var model = _categoryService.LoadData();
+            var model = _categoryService.LoadDataAdmin();
             var response = new DataResponeCommon<ICollection<CategoryDto>>()
             {
                 Data = model,

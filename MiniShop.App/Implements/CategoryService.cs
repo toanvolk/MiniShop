@@ -41,7 +41,7 @@ namespace MiniShop.App
             return _unitOfWorfk.SaveChanges() > 0;
         }
 
-        public ICollection<CategoryDto> LoadData()
+        public ICollection<CategoryDto> LoadDataAdmin()
         {
             var datas = _unitOfWorfk.Categories.ToList();
             var model = _mapper.Map<List<CategoryDto>>(datas);
@@ -49,7 +49,14 @@ namespace MiniShop.App
 
             return model;
         }
+        public ICollection<CategoryDto> LoadData()
+        {
+            var datas = _unitOfWorfk.Categories.Where(o=>o.NotUse !=true).ToList();
+            var model = _mapper.Map<List<CategoryDto>>(datas);
+            model.SetIndex();
 
+            return model;
+        }
         public CategoryDto GetData(Guid categoryId)
         {
             var entity = _unitOfWorfk.CategoryRepository.FindById(categoryId);

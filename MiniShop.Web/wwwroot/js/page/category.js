@@ -3,7 +3,7 @@
     edit: 'edit',
     delete: 'delete',
     gridSelectorName: '#mnshop-category .grid',
-    urlLoadData: 'category/loaddata',
+    urlLoadData: 'category/LoadDataAdmin',
     statuChange: 'statu-change'
 };
 var categoryIndex = {

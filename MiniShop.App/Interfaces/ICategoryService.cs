@@ -10,6 +10,7 @@ namespace MiniShop.App
         bool Update(CategoryDto data);
         bool Delete(Guid categoryId);
         ICollection<CategoryDto> LoadData();
+        ICollection<CategoryDto> LoadDataAdmin();
         CategoryDto GetData(Guid categoryId);
         bool UpdateStatu(Guid categoryId, bool ischecked);
     }
