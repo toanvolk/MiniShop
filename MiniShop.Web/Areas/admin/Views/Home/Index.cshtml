@@ -1,23 +1,16 @@
 ﻿@{ Layout = "../Shared/_Layout.cshtml"; }
-
+@section Styles{ 
+    <link href="~/css/page/home.min.css" rel="stylesheet" />
+}
 <div class="content-wrapper-before"></div>
 <div class="content-header row">
 </div>
-<div class="content-body">
+<div class="content-body mnshop-home">
     <!-- Revenue, Hit Rate & Deals -->
     <div class="row">
         <div class="col-md-12">
-            <div class="card mnshop-product-review">
-                <div class="card-header">
-                    <h4 class="card-title">Product review</h4>
-                    <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
-                    <div class="heading-elements" hidden>
-                        <ul class="list-inline mb-0">
-                            <li><button type="button" class="btn btn-glow btn-round btn-bg-gradient-x-red-pink">More</button></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="card-header" style="background: aliceblue; padding: 0 50px; margin-bottom: 20px;">
+            <div class="card mnshop-product-review">                
+                <div class="card-header" style="background: aliceblue; padding: 0 50px; margin: 5px;">
                     <div class="card-title float-left" style="padding-top: 0.6%; margin-right: 12px;">Thời gian </div>
                     <div class="blue-grey lighten-2 font-small-2 mb-0 float-left">
                         <div class='input-group'>
@@ -46,23 +39,63 @@
                             },
                                 function (start, end) {
                                     console.log(start, end);
-                                    helper.bridgeHandle.prouductReviewLoad(start._d, end._d);
+                                    helper.bridgeHandle.clickViewsLoad(start._d, end._d);
                                 });
                         </script>
-                    </div>                    
-                </div>
-                <div class="card-content collapse show">
-                    <div class="card-body p-0 pb-0">
-                        <div class="chartist">
-                            <div id="home-product-review-chart" class=""></div>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
     </div>
-
+    <div class="row match-height content-table-view">
+        <div class="col-xl-8 col-lg-12">
+            <h5 class="card-title text-bold-700 my-2">Lượt xem</h5>
+           
+            <div class="card" style="clear: both; margin-top: 10px;">
+                <div class="card-content">
+                    <div id="product-summary" class="media-list position-relative ">
+                        <div class="table-responsive">
+                            <table class="table table-padded table-xl mb-0" id="click-view-table">
+                                <thead>
+                                    <tr>
+                                        <th class="border-top-0">Url</th>
+                                        <th class="border-top-0">Số lần</th>
+                                        <th class="border-top-0">Xem</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-lg-12">
+            <h5 class="card-title text-bold-700 my-2">Chi tiết lượt xem</h5>
+            <div class="card">
+                <div class="card-content">
+                    <div id="product-summary" class="media-list position-relative">
+                        <div class="table-responsive">
+                            <table class="table table-padded table-xl mb-0" id="click-view-detail-table">
+                                <thead>
+                                    <tr>
+                                        <th class="border-top-0">Time</th>
+                                        <th class="border-top-0">IP</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <!--/ Products sell and New Orders -->
 <!-- Total earning & Recent Sales  -->

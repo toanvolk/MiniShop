@@ -7,6 +7,7 @@ namespace MiniShop.App
     {
         ICollection<ProductReviewDto> GetProductReview(DateTime fromDate, DateTime toDate);
         CounterDto GetCounter();
-        void Counting(string key);
+        ICollection<ClickView> GetViewCount(DateTime fromDate, DateTime toDate);
+        ICollection<ClickViewDetail> GetViewDetail(string url);
     }
 }

@@ -86,5 +86,9 @@
   {
     "outputFile": "wwwroot/css/client/blog-card.css",
     "inputFile": "wwwroot/css/client/blog-card.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/page/home.css",
+    "inputFile": "wwwroot/css/page/home.scss"
   }
 ]

@@ -24,16 +24,29 @@ namespace MiniShop.Web.Areas.admin.Controllers
         public IActionResult Index()
         {
             return View();
-        }
+        }       
+
         [HttpPost]
         public IActionResult GetProductReview([FromForm] DateTime fromDate, [FromForm] DateTime toDate)
         {
             var model = _homeService.GetProductReview(fromDate, toDate);
             return Json(new
             {
-                Name = model.Select(o=>o.ProductName).ToList(),
+                Name = model.Select(o => o.ProductName).ToList(),
                 Count = new List<List<int>>() { model.Select(o => o.Count).ToList() },
             });
+        }
+        [HttpPost]
+        public IActionResult GetClickView([FromForm] DateTime fromDate, [FromForm] DateTime toDate)
+        {
+            var clickViews = _homeService.GetViewCount(fromDate, toDate);
+            return Json(clickViews);
+        }
+        [HttpPost]
+        public IActionResult GetClickViewDetail(string url)
+        {
+            var clickViewDetails = _homeService.GetViewDetail(url);
+            return Json(clickViewDetails);
         }
     }
 }

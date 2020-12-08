@@ -70,9 +70,24 @@ namespace MiniShop.App
             };
         }
 
-        public void Counting(string key)
+        public ICollection<ClickView> GetViewCount(DateTime fromDate, DateTime toDate)
         {
-            
+            var query = _unitOfWorfk.TouchHistorys
+                .Where(o=>o.Url != null && (o.CreatedDate >= fromDate.ToUniversalTime() && o.CreatedDate <= toDate.ToUniversalTime()))
+                .GroupBy(o => o.Url)
+                .Select(group => new ClickView() { Url = group.Key, ClickCount = group.Count() });
+
+            return query.ToList();
+        }
+
+        public ICollection<ClickViewDetail> GetViewDetail(string url)
+        {
+            var query = _unitOfWorfk.TouchHistorys
+                .Where(o => o.Url == url)
+                .OrderByDescending(o=>o.CreatedDate)
+                .Select(o => new ClickViewDetail() { AddressId = o.UserHostAddress, ClickDate = o.CreatedDate.GetValueOrDefault()});
+
+            return query.ToList();
         }
     }
 }

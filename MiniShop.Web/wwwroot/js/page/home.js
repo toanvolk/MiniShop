@@ -46,11 +46,48 @@
             }
         });
     };
+    let _clickViewTemplate = function (data) {
+        let _htmlTableBody = `
+                <tr>
+                    <td class="text-truncate">{#:url}</td>
+                    <td class="text-truncate">
+                        <span>
+                            <i class="ft-arrow-up success"></i> {#:clickCount}
+                        </span>
+                    </td>
+                    <td class="text-truncat mr-1">
+                        <a class="detail-view" data-url="{#:url}">
+                            <i class="ft-eye blue-grey lighten-2 font-medium-5 ml-1"></i>
+                        </a>
+                    </td>
+                </tr>
+                `;
+        let _html = '';
+        $(data).each(function (index, item) {
+            _html += _htmlTableBody
+                .replace(new RegExp("{#:url}", "gi"), item.url)
+                .replace(new RegExp("{#:clickCount}", "gi"), item.clickCount);
+        });
+        $('#click-view-table tbody').html(_html);
+    }
+    let _clickViewDetailTemplate = function (data) {
+        let _htmlTableBody = `
+                <tr>
+                    <td class="text-truncate">{#:date}</td>
+                    <td class="text-truncate">{#:addressId}</td>
+                </tr>
+                `;
+        let _html = '';
+        $(data).each(function (index, item) {
+            _html += _htmlTableBody
+                .replace(new RegExp("{#:date}", "gi"), moment.utc(item.clickDate).local().format('DD/MM/YYYY HH:mm') )
+                .replace(new RegExp("{#:addressId}", "gi"), item.addressId);
+        });
+        $('#click-view-detail-table tbody').html(_html);
+    }
     //registry event
-
-
     //function
-    let _prouductReviewLoad = function (fromDate, toDate) {
+    let _clickViewsLoad = function (fromDate, toDate) {
         if (!fromDate) {
             let _now = new Date();
             _now.setDate(_now.getDate() - cdA.home.periodDayProductReviewDefault);
@@ -60,12 +97,27 @@
         fromDate = fromDate.toJSON();
         toDate = toDate.toJSON();
         //----------------------
-        let _url = 'admin/home/getProductReview';
-        $.post(_url, { fromDate: fromDate, toDate: toDate}, function (res) {
-           _rProductReview(res.name, res.count);
+        let _url = 'admin/home/GetClickView';
+        $.post(_url, { fromDate: fromDate, toDate: toDate }, function (res) {
+            if (res) {
+                _clickViewTemplate(res);                
+            }
         });
     };
+    let _clickViewDetailLoad = function (url) {
+        let _url = 'admin/home/GetClickViewDetail';
+        $.post(_url, { url: url }, function (res) {
+            if (res) {
+                _clickViewDetailTemplate(res);
+            }
+        });
+    }
     //init event
-    _prouductReviewLoad();
-    bridgeHandle.prouductReviewLoad = _prouductReviewLoad;
+    _clickViewsLoad();
+    $(document).on('click', '#click-view-table tbody a.detail-view', function (e) {
+        let _url = $(e.target).data('url');
+        if (typeof (_url) == "undefined") _url = $(e.target).closest('a').data('url');
+        _clickViewDetailLoad(_url);
+    });
+    bridgeHandle.clickViewsLoad = _clickViewsLoad; 
 })(helper.bridgeHandle);

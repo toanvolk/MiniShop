@@ -1,0 +1,15 @@
+﻿.mnshop-home {
+
+    .card{
+        height: auto !important;
+    }
+    .content-table-view {
+        height: 760px;
+
+        table {
+            max-height: 750px;
+            white-space: nowrap;
+            overflow: auto;
+        }
+    }
+}

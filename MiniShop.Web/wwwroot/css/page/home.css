@@ -1,0 +1,9 @@
+﻿.mnshop-home .card {
+  height: auto !important; }
+
+.mnshop-home .content-table-view {
+  height: 760px; }
+  .mnshop-home .content-table-view table {
+    max-height: 750px;
+    white-space: nowrap;
+    overflow: auto; }
