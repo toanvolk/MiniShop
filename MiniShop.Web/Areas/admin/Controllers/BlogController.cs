@@ -22,6 +22,10 @@ namespace MiniShop.Web.Areas.admin.Controllers
             _blogService = blogService;
             _logger = logger;
         }
+        public string Live()
+        {
+            return "living..";
+        }
         public IActionResult Index()
         {
             return View();

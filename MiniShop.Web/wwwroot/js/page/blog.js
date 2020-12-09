@@ -1,4 +1,8 @@
-﻿
+﻿//live
+(function () {
+    setInterval(function () { $.get('/admin/blog/live'); }, 60000);    
+})();
+
 //index
 (function (selectorRoot) {
     $(document).on('click', selectorRoot +  ' .btn.ac-blog-add', function (e) {
@@ -86,3 +90,4 @@
         console.log(helper.formData.inputToObject($(selectorRoot)));
     });
 })("section#mnshop-blog-add");
+
