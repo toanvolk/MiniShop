@@ -104,7 +104,7 @@ namespace MiniShop.App
             var dtos = new List<BlogDto>();
 
             entities.ForEach(o => dtos.Add(_mapper.Map<BlogDto>(o)));
-            entities.SetIndex(page, pageSize);
+            dtos.SetIndex(page, pageSize);
 
             return new Tuple<ICollection<BlogDto>, int>(dtos, total);
         }
@@ -114,6 +114,21 @@ namespace MiniShop.App
             var blog = _mapper.Map<Blog>(blogDto);
             _unitOfWorfk.BlogRepository.Add(blog);
 
+            return _unitOfWorfk.SaveChanges() > 0;
+        }
+
+        public bool Delete(Guid blogId)
+        {
+            _unitOfWorfk.BlogRepository.Delete(blogId);
+            return _unitOfWorfk.SaveChanges() > 0;
+        }
+       
+        public bool UpdateStatu(Guid blogId, bool ischecked)
+        {
+            var entity = _unitOfWorfk.BlogRepository.FindById(blogId);
+            entity.UpdatedBy = "ADMIN";
+            entity.UpdatedDate = DateTime.UtcNow;
+            entity.NotUse = !ischecked;
             return _unitOfWorfk.SaveChanges() > 0;
         }
     }

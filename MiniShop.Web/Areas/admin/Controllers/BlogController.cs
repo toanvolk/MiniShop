@@ -21,11 +21,7 @@ namespace MiniShop.Web.Areas.admin.Controllers
         {
             _blogService = blogService;
             _logger = logger;
-        }
-        public string Live()
-        {
-            return "living..";
-        }
+        }       
         public IActionResult Index()
         {
             return View();
@@ -59,6 +55,50 @@ namespace MiniShop.Web.Areas.admin.Controllers
                 else
                 {
                     var response = new DataResponeCommon() { Statu = StatuCodeEnum.InternalServerError, Message = "Thêm thất bại" };
+                    return Json(response);
+                }
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e.Message);
+                throw;
+            }
+        }
+        [HttpPost]
+        public IActionResult Delete(Guid blogId)
+        {
+            try
+            {
+                if (_blogService.Delete(blogId))
+                {
+                    var response = new DataResponeCommon() { Statu = StatuCodeEnum.OK, Message = "Xóa thành công" };
+                    return Json(response);
+                }
+                else
+                {
+                    var response = new DataResponeCommon() { Statu = StatuCodeEnum.InternalServerError, Message = "Xóa thất bại" };
+                    return Json(response);
+                }
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e.Message);
+                throw;
+            }
+        }
+        [HttpPost]
+        public JsonResult UpdateStatu(Guid blogId, bool ischecked)
+        {
+            try
+            {
+                if (_blogService.UpdateStatu(blogId, ischecked))
+                {
+                    var response = new DataResponeCommon() { Statu = StatuCodeEnum.OK, Message = "Cập nhật thành công" };
+                    return Json(response);
+                }
+                else
+                {
+                    var response = new DataResponeCommon() { Statu = StatuCodeEnum.InternalServerError, Message = "Cập nhật thất bại" };
                     return Json(response);
                 }
             }

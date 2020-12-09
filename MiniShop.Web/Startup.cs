@@ -80,6 +80,7 @@ namespace MiniShop.Web
                 cfg.AddProfile(new CategoryProfileMapping());
                 cfg.AddProfile(new ProductProfileMapping());
                 cfg.AddProfile(new AreaProfileMapping());
+                cfg.AddProfile(new BlogProfileMapping());
             });
             IMapper mapper = mappingConfig.CreateMapper();
             services.AddSingleton(mapper);

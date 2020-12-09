@@ -10,5 +10,7 @@ namespace MiniShop.App
         ICollection<BlogDto> BlogMains();
         Tuple<ICollection<BlogDto>, int> GetDataAdmin(int page, int pageSize, ProductPageFilterDto paramSearch);
         bool Insert(BlogDto blogDto);
+        bool Delete(Guid blogId);
+        bool UpdateStatu(Guid blogId, bool ischecked);
     }
 }

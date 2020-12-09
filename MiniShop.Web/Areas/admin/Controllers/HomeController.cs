@@ -20,6 +20,10 @@ namespace MiniShop.Web.Areas.admin.Controllers
             _homeService = homeService;
             _logger = logger;
         }
+        public string Live()
+        {
+            return "living..";
+        }
         [Authorize]
         public IActionResult Index()
         {

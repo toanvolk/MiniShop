@@ -88,6 +88,13 @@
     <!-- END: Page JS-->
     <script src="~/js/app-helper.js"></script>
     @RenderSection("Scripts", required: false)
+    <script>
+        //live
+        (function () {
+            setInterval(function () { $.get('/admin/home/live'); }, 60000);
+        })();
+
+    </script>
 </body>
 <!-- END: Body-->
 
