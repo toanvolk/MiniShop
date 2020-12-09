@@ -450,7 +450,7 @@ var helper = {
                             "uploadUrl": "/admin/FileBrowser/Upload"
                         }
                     },
-                    "stylesheets": ["../lib/kendo-ui/styles/editor.css"]
+                    "stylesheets": ["/lib/kendo-ui/styles/editor.css"]
                 });
                 $(document)
                     .off('click', '.k-filebrowser-dialog .k-listview-item[data-type=f]')

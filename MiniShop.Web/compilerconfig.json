@@ -90,5 +90,13 @@
   {
     "outputFile": "wwwroot/css/page/home.css",
     "inputFile": "wwwroot/css/page/home.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/page/blog.css",
+    "inputFile": "wwwroot/css/page/blog.scss"
+  },
+  {
+    "outputFile": "wwwroot/js/page/blog.es5.js",
+    "inputFile": "wwwroot/js/page/blog.js"
   }
 ]

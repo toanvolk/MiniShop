@@ -1,16 +1,13 @@
-﻿using MiniShop.Infrastructure;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
 
-namespace MiniShop.App
+namespace MiniShop.EF
 {
-    public class BlogDto : IndexDto
-    {
+    public class Blog : AuditableEntity
+    {      
+        public string Content { get; set; }
+        public string DescriptionShort { get; set; }
         public string Title { get; set; }
         public string Category { get; set; }
-        public string DescriptionShort { get; set; }
-        public string Content { get; set; }
         public string Author { get; set; }
         public DateTime PublishDate { get; set; }
         public string HashTag { get; set; }

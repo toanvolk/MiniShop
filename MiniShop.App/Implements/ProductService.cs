@@ -158,9 +158,6 @@ namespace MiniShop.App
                 });
             var model = queryDto.Skip((page - 1) * pageSize).Take(pageSize).ToList();
             var total = queryDto.Count();
-            //Index data
-            //int i = 0;
-            //model.ForEach((o) => {i++;o.Index = (page - 1) * pageSize + i; });
             model.SetIndex(page, pageSize);
 
             return new Tuple<ICollection<ProductDto>, int>(model, total);

@@ -68,11 +68,12 @@ namespace MiniShop.Infrastructure
 
         private IRepositoryBase<TouchHistory> _touchHistoryRepository;
         public IRepositoryBase<TouchHistory> TouchHistoryRepository => _touchHistoryRepository ?? (_touchHistoryRepository = new RepositoryBase<TouchHistory>(_dbContext));
-
         public DbSet<TouchHistory> TouchHistorys => _dbContext.TouchHistorys;
-        //Not table on database
+        
+        private IRepositoryBase<Blog> _blogRepository;
+        public IRepositoryBase<Blog> BlogRepository => _blogRepository ?? (_blogRepository = new RepositoryBase<Blog>(_dbContext));
 
         #endregion end register reponsitory
     }
-  
+
 }
