@@ -115,11 +115,11 @@ namespace MiniShop.Web.Areas.admin.Controllers
             return View(model);
         }
         [HttpPost]
-        public JsonResult Update(BlogDto data)
+        public JsonResult Update(BlogDto blogDto)
         {
             try
             {
-                if (_blogService.Update(data))
+                if (_blogService.Update(blogDto))
                 {
                     var response = new DataResponeCommon() { Statu = StatuCodeEnum.OK, Message = "Cập nhật thành công" };
                     return Json(response);

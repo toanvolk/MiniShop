@@ -50,24 +50,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group row">
-                                                <label class="col-md-3 label-control" for="userinput3">Mô tả ngắn</label>
-                                                <div class="col-md-9">
-                                                    <input type="text" id="userinput3" class="form-control border-primary" placeholder="DescriptionShort" name="DescriptionShort" value="@Model.DescriptionShort">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group row">
-                                                <label class="col-md-3 label-control" for="userinput4">Nguồn - tác giả</label>
-                                                <div class="col-md-9">
-                                                    <input type="text" id="userinput4" class="form-control border-primary" placeholder="Author" name="Author" value="@Model.Author">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group row">
@@ -86,15 +69,25 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group row">
-                                                <label class="col-md-3 label-control" for="userinput8">Đường dẫn đến nguồn</label>
+                                                <label class="col-md-3 label-control" for="userinput4">Nguồn - tác giả</label>
                                                 <div class="col-md-9">
-                                                    <input class="form-control border-primary" placeholder="ReadMorePath" name="ReadMorePath" value="@Model.ReadMorePath">
+                                                    <input type="text" id="userinput4" class="form-control border-primary" placeholder="Author" name="Author" value="@Model.Author">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-md-3 label-control">Ảnh minh họa</label>
                                                 <div class="col-md-9">
                                                     <input class="form-control border-primary" placeholder="PicturePath" name="PicturePath" value="@Model.PicturePath">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">                                        
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-md-3 label-control" for="userinput3">Mô tả ngắn</label>
+                                                <div class="col-md-9">
+                                                    <textarea rows="3" type="text" id="userinput3" class="form-control border-primary" placeholder="DescriptionShort" name="DescriptionShort">@Model.DescriptionShort</textarea>
                                                 </div>
                                             </div>
                                         </div>

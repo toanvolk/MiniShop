@@ -2,7 +2,24 @@
 
 }
 
+section.mnshop-blog-modify {
+    .btn.picture-path {
+        cursor: pointer;
+    }
+}
+
 section#mnshop-blog-add {
+    .form {
+        display: block;
+        margin-top: 0em;
+    }
+
+    table.k-editor {
+        height: 750px;
+    }
+}
+
+section#mnshop-blog-edit {
     .form {
         display: block;
         margin-top: 0em;

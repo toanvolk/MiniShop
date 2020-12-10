@@ -9,6 +9,17 @@
             format: 'DD/MM/YYYY'
         }
     });
+    $(document).on('click', '.btn.picture-path', function (e) {
+        helper.file.fileDialog(
+            content = $(e.target).closest('.mnshop-blog-modify'),
+            objConfig = { title: "Choose file" },
+            callbackAfterChoose = function (selects) {
+                let _filenames = [];
+                $(selects).each(function (index, item) { _filenames.push(item.path); });
+                $(e.target).parent().prev().val(_filenames);
+            }
+        );
+    });
 })();
 
 //index

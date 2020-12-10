@@ -13,7 +13,15 @@ namespace MiniShop.App
         public BlogProfileMapping()
         {
             ////create - update
-            CreateMap<BlogDto, Blog>();
+            CreateMap<BlogDto, Blog>()
+                .AfterMap((src, dst)=> {
+                    dst.ReadMorePath = $"blog/{src.Title.URLFriendly()}";
+                    dst.CreatedBy = "ADMIN";
+                    dst.CreatedDate = DateTime.UtcNow;
+
+                    dst.UpdatedBy = "ADMIN";
+                    dst.UpdatedDate = DateTime.UtcNow;
+                });
 
             ////get
             //CreateMap<Blog, BlogDto>()
