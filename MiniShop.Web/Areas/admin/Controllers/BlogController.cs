@@ -21,7 +21,7 @@ namespace MiniShop.Web.Areas.admin.Controllers
         {
             _blogService = blogService;
             _logger = logger;
-        }       
+        }
         public IActionResult Index()
         {
             return View();
@@ -92,6 +92,34 @@ namespace MiniShop.Web.Areas.admin.Controllers
             try
             {
                 if (_blogService.UpdateStatu(blogId, ischecked))
+                {
+                    var response = new DataResponeCommon() { Statu = StatuCodeEnum.OK, Message = "Cập nhật thành công" };
+                    return Json(response);
+                }
+                else
+                {
+                    var response = new DataResponeCommon() { Statu = StatuCodeEnum.InternalServerError, Message = "Cập nhật thất bại" };
+                    return Json(response);
+                }
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e.Message);
+                throw;
+            }
+        }
+
+        public IActionResult Edit(Guid id)
+        {
+            var model = _blogService.GetDataById(id);
+            return View(model);
+        }
+        [HttpPost]
+        public JsonResult Update(BlogDto data)
+        {
+            try
+            {
+                if (_blogService.Update(data))
                 {
                     var response = new DataResponeCommon() { Statu = StatuCodeEnum.OK, Message = "Cập nhật thành công" };
                     return Json(response);

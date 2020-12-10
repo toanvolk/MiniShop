@@ -131,5 +131,20 @@ namespace MiniShop.App
             entity.NotUse = !ischecked;
             return _unitOfWorfk.SaveChanges() > 0;
         }
+
+        public bool Update(BlogDto blogDto)
+        {
+            var entity = _mapper.Map<Blog>(blogDto);
+            entity.UpdatedDate = DateTime.UtcNow;
+            entity.UpdatedBy = "ADMIN";
+            _unitOfWorfk.BlogRepository.Update(entity, UpdateAccessMode.DENY_UPDATE, "CreatedBy", "CreatedDate", "NotUse");
+            return _unitOfWorfk.SaveChanges() > 0;
+        }
+
+        public BlogDto GetDataById(Guid blogId)
+        {
+            var entity = _unitOfWorfk.BlogRepository.FindById(blogId);
+            return _mapper.Map<BlogDto>(entity);
+        }
     }
 }

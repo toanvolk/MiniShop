@@ -1,10 +1,12 @@
 ﻿@{ Layout = "../Shared/_Layout.cshtml"; }
-
+@using MiniShop.App
+@model BlogDto;
 @section Styles{
     <link href="~/lib/kendo-ui/styles/editor.css" rel="stylesheet" />
     <link href="~/css/page/blog.min.css" rel="stylesheet" />
 }
-<section id="mnshop-blog-add" class="mnshop-blog-modify">
+<section id="mnshop-blog-edit" class="mnshop-blog-modify">
+    <input name="Id" value="@Model.Id" hidden/>
     <div class="content-wrapper-before"></div>
     <div class="content-header row">
     </div>
@@ -35,7 +37,7 @@
                                             <div class="form-group row">
                                                 <label class="col-md-3 label-control" for="userinput1">Tiêu đề</label>
                                                 <div class="col-md-9">
-                                                    <input type="text" id="userinput1" class="form-control border-primary" placeholder="Title" name="Title">
+                                                    <input type="text" id="userinput1" class="form-control border-primary" placeholder="Title" name="Title" value="@Model.Title">
                                                 </div>
                                             </div>
                                         </div>
@@ -43,7 +45,7 @@
                                             <div class="form-group row">
                                                 <label class="col-md-3 label-control" for="userinput2">Thể loại</label>
                                                 <div class="col-md-9">
-                                                    <input type="text" id="userinput2" class="form-control border-primary" placeholder="Category" name="Category">
+                                                    <input type="text" id="userinput2" class="form-control border-primary" placeholder="Category" name="Category" value="@Model.Category">
                                                 </div>
                                             </div>
                                         </div>
@@ -53,7 +55,7 @@
                                             <div class="form-group row">
                                                 <label class="col-md-3 label-control" for="userinput3">Mô tả ngắn</label>
                                                 <div class="col-md-9">
-                                                    <input type="text" id="userinput3" class="form-control border-primary" placeholder="DescriptionShort" name="DescriptionShort">
+                                                    <input type="text" id="userinput3" class="form-control border-primary" placeholder="DescriptionShort" name="DescriptionShort" value="@Model.DescriptionShort">
                                                 </div>
                                             </div>
                                         </div>
@@ -61,7 +63,7 @@
                                             <div class="form-group row">
                                                 <label class="col-md-3 label-control" for="userinput4">Nguồn - tác giả</label>
                                                 <div class="col-md-9">
-                                                    <input type="text" id="userinput4" class="form-control border-primary" placeholder="Author" name="Author">
+                                                    <input type="text" id="userinput4" class="form-control border-primary" placeholder="Author" name="Author" value="@Model.Author">
                                                 </div>
                                             </div>
                                         </div>
@@ -71,14 +73,14 @@
                                             <div class="form-group row">
                                                 <label class="col-md-3 label-control" for="userinput5">Ngày đăng</label>
                                                 <div class="col-md-9">
-                                                    <input class="form-control border-primary" placeholder="PublishDate" name="PublishDate">
+                                                    <input class="form-control border-primary" placeholder="PublishDate" name="PublishDate" value="@Model.PublishDate.ToString("dd/MM/yyyy")">
                                                 </div>
                                             </div>
 
                                             <div class="form-group row">
                                                 <label class="col-md-3 label-control" for="userinput6">Hash tag</label>
                                                 <div class="col-md-9">
-                                                    <input class="form-control border-primary" placeholder="HashTag" name="HashTag">
+                                                    <input class="form-control border-primary" placeholder="HashTag" name="HashTag" value="@Model.HashTag">
                                                 </div>
                                             </div>
                                         </div>
@@ -86,13 +88,13 @@
                                             <div class="form-group row">
                                                 <label class="col-md-3 label-control" for="userinput8">Đường dẫn đến nguồn</label>
                                                 <div class="col-md-9">
-                                                    <input class="form-control border-primary" placeholder="ReadMorePath" name="ReadMorePath">
+                                                    <input class="form-control border-primary" placeholder="ReadMorePath" name="ReadMorePath" value="@Model.ReadMorePath">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-md-3 label-control">Ảnh minh họa</label>
                                                 <div class="col-md-9">
-                                                    <input class="form-control border-primary" placeholder="PicturePath" name="PicturePath">
+                                                    <input class="form-control border-primary" placeholder="PicturePath" name="PicturePath" value="@Model.PicturePath">
                                                 </div>
                                             </div>
                                         </div>
@@ -100,7 +102,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group row">
-                                                <textarea id="content" rows="15" class="form-control border-primary" name="Content" placeholder="Content"></textarea>
+                                                <textarea id="content" rows="15" class="form-control border-primary" name="Content" placeholder="Content">@Html.Raw(Model.Content)</textarea>
                                             </div>
                                         </div>
                                     </div>

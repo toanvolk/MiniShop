@@ -12,5 +12,7 @@ namespace MiniShop.App
         bool Insert(BlogDto blogDto);
         bool Delete(Guid blogId);
         bool UpdateStatu(Guid blogId, bool ischecked);
+        bool Update(BlogDto blogDto);
+        BlogDto GetDataById(Guid blogId);
     }
 }

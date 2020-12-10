@@ -1,9 +1,21 @@
-﻿
+﻿//public
+(function () {
+    helper.editor.init($('.mnshop-blog-modify #content'));
+    // Single Date Range Picker
+    $('input[name=PublishDate]').daterangepicker({
+        singleDatePicker: true,
+        showDropdowns: true,
+        locale: {
+            format: 'DD/MM/YYYY'
+        }
+    });
+})();
+
 //index
 (function (selectorRoot) {
     //open new blog
-    $(document).on('click', selectorRoot +  ' .btn.ac-blog-add', function (e) {
-        open("/blog/add");
+    $(document).on('click', selectorRoot + ' .btn.ac-blog-add', function (e) {
+        open("/admin/blog/add");
     });
 
     //init grid
@@ -56,7 +68,7 @@
                     field: "publishDate",
                     title: "Ngày đăng",
                     width: "7%",
-                    template: function (item) {                        
+                    template: function (item) {
                         return moment(item.publishDate).format('DD/MM/YYYY');
                     },
                 },
@@ -78,7 +90,7 @@
                     field: "",
                     width: "15%",
                     template: function (item) {
-                        let _html = '<button type="button" class="btn btn-outline-primary round mr-1 mb-1" onclick="categoryIndex.clickEvent(this)" data-id="' + item.id + '" data-ename= "categoryConst.edit"><i class="ft-edit-3"></i> Sửa</button>';
+                        let _html = '<button type="button" class="btn btn-outline-primary round mr-1 mb-1 edit-data" data-id="' + item.id + '"><i class="ft-edit-3"></i> Sửa</button>';
                         _html += '<button type="button" class="btn btn-outline-danger round mr-1 mb-1 delete-data" data-id="' + item.id + '" data-title = "' + item.title + '"><i class="ft-trash-2"></i> Xóa</button>';
                         return _html;
                     },
@@ -101,7 +113,7 @@
             cancelButtonText: 'Quay lại',
             confirmButtonText: 'Vâng, xóa!'
         }).then(function (e) {
-            if (e.value == true) {               
+            if (e.value == true) {
                 $.post(
                     '/admin/blog/delete',
                     { blogId: _data.id },
@@ -114,7 +126,7 @@
                             swal('Xóa không thành công!', res.message, 'error');
                             $(selectorRoot + ' .grid-data').data("kendoGrid").dataSource.read();
                         }
-                        
+
                     }
                 );
             }
@@ -134,7 +146,7 @@
             {
                 blogId: _id,
                 ischecked: _checked
-            }, 
+            },
             function (res) {
                 if (res.statu == 200) {
                     $(selectorRoot + ' .grid-data').data("kendoGrid").dataSource.read();
@@ -147,21 +159,18 @@
         );
     });
 
+    //open edit form
+    $(document).on('click', selectorRoot + ' .btn.edit-data', function (e) {
+        let _id = $(e.target).data("id");
+        if (typeof (_id) == "undefined") _id = $(e.target).closest("button").data("id");
+        open("/admin/blog/edit/" + _id);
+    });
+
 })("section#mnshop-blog");
 
 //add
-(function (selectorRoot) {
-    helper.editor.init($(selectorRoot + ' #content'));
-    // Single Date Range Picker
-    $('input[name=PublishDate]').daterangepicker({
-        singleDatePicker: true,
-        showDropdowns: true,
-        locale: {
-            format: 'DD/MM/YYYY'
-        }
-    });
-
-
+(function (selectorRoot) {    
+    
     $(document).on('click', selectorRoot + ' .btn.save', function (e) {
         let _data = helper.formData.inputToObject($(selectorRoot), function (obj) {
             let _dateString = obj.PublishDate.split("/");
@@ -175,9 +184,67 @@
                 blogDto: _data
             },
             function (res) {
-                console.log(res.statu)
+                if (res.statu == cdA.CodeStatus.OK) {
+                    
+                    swal({
+                        title: 'Đã lưu!',
+                        text: res.message,
+                        type: 'success',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'OK'
+                    }).then(
+                        function (e) {
+                            if (e.value == true) {
+                                location.reload();
+                            }
+                        });
+                   
+                }
             }
         );
     });
 })("section#mnshop-blog-add");
+//add
+(function (selectorRoot) {
+
+    $(document).on('click', selectorRoot + ' .btn.save', function (e) {
+        let _data = helper.formData.inputToObject($(selectorRoot), function (obj) {
+            let _dateString = obj.PublishDate.split("/");
+            obj.PublishDate = new Date(_dateString[2] + '/' + _dateString[1] + '/' + _dateString[0]).toJSON();
+        });
+        console.log(helper.formData.inputToObject($(selectorRoot)));
+
+        $.post(
+            '/admin/blog/update',
+            {
+                blogDto: _data
+            },
+            function (res) {
+                if (res.statu != cdA.CodeStatus.OK) {
+                    swal({
+                        title: 'Cập nhật!',
+                        text: res.message,
+                        type: 'error',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'OK'
+                    }).then(
+                        function (e) {
+                            if (e.value == true) {
+                                location.reload();
+                            }
+                        });
+
+                }
+                else {
+                    swal({
+                        title: 'Cập nhật!',
+                        text: res.message,
+                        type: 'success',
+                        confirmButtonText: 'OK'
+                    })
+                }
+            }
+        );
+    });
+})("section#mnshop-blog-edit");
 
