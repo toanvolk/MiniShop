@@ -14,13 +14,11 @@ namespace MiniShop.App
         private ILogger<BlogService> _logger { get; set; }
         private readonly IUnitOfWork _unitOfWorfk;
         private readonly IMapper _mapper;
-        private readonly ICategoryService _categoryService;
         public BlogService(ILogger<BlogService> logger, IUnitOfWork unitOfWork, IMapper mapper, ICategoryService categoryService)
         {
             _logger = logger;
             _unitOfWorfk = unitOfWork;
             _mapper = mapper;
-            _categoryService = categoryService;
         }
         public ICollection<BlogDto> BlogMains()
         {
@@ -80,6 +78,18 @@ namespace MiniShop.App
         {
             var entity = _unitOfWorfk.BlogRepository.FindById(blogId);
             return _mapper.Map<BlogDto>(entity);
+        }
+
+        public PageDataDto<BlogDto> LoadDataPage(PageFilterDto pageFilterDto)
+        {
+            var query = _unitOfWorfk.BlogRepository.OrderByDescending(o => o.CreatedDate);
+
+            var entities = query.Skip(pageFilterDto.SkipCount).Take(pageFilterDto.TakeRecords).ToList();
+
+            var blogDtos = new List<BlogDto>();
+            entities.ForEach(o => blogDtos.Add(_mapper.Map<BlogDto>(o)));
+
+            return new PageDataDto<BlogDto>(blogDtos, query.Count());
         }
     }
 }

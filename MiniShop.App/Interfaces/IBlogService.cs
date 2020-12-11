@@ -14,5 +14,6 @@ namespace MiniShop.App
         bool UpdateStatu(Guid blogId, bool ischecked);
         bool Update(BlogDto blogDto);
         BlogDto GetDataById(Guid blogId);
+        PageDataDto<BlogDto> LoadDataPage(PageFilterDto pageFilterDto);
     }
 }

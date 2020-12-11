@@ -98,5 +98,17 @@
   {
     "outputFile": "wwwroot/js/page/blog.es5.js",
     "inputFile": "wwwroot/js/page/blog.js"
+  },
+  {
+    "outputFile": "wwwroot/js/client/blog.es5.js",
+    "inputFile": "wwwroot/js/client/blog.js"
+  },
+  {
+    "outputFile": "wwwroot/lib/pagination/pagination.es5.js",
+    "inputFile": "wwwroot/lib/pagination/pagination.js"
+  },
+  {
+    "outputFile": "wwwroot/js/client/page-home.es5.js",
+    "inputFile": "wwwroot/js/client/page-home.js"
   }
 ]

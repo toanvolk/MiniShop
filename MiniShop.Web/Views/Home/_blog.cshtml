@@ -4,46 +4,46 @@
 @using MiniShop.App;
 @model List<BlogDto>;
 <div id="fh5co-blog" class="mshop-blog-client">
-    <div class="row">
+    @{
+        var index = 0;
+        var alt = "";
+        foreach (var item in Model)
+        {
+            if (index % 2 == 0)@Html.Raw("<div class='row'>");
+            index++;
+            if (index % 2 == 0) alt = "alt"; else alt = "";
 
-        @{
-            var index = 0;
-            var alt = "";
-            foreach (var item in Model)
-            {
-                index++;
-                if (index % 2 == 0) alt = "alt"; else alt = "";
-                <div class="col-lg-6 col-md-6 col-xs-12">
-                    <div class="blog-card @alt">
-                        <div class="meta">
-                            <div class="photo" style="background-image: url(@item.PicturePath)"></div>
-                            <ul class="details">
-                                <li class="author"><a href="#">@item.Author</a></li>
-                                <li class="date">@item.PublishDate</li>
-                                <li class="tags">
-                                    <ul>
-                                        @{
-                                            var tags = @item.HashTag.Split(',');
-                                            foreach (var tag in tags)
-                                            {
-                                                <li><a href="#">@tag</a></li>
-                                            }
+            <div class="col-lg-6 col-md-6 col-xs-12">
+                <div class="blog-card @alt">
+                    <div class="meta">
+                        <div class="photo" style="background-image: url(@item.PicturePath)"></div>
+                        <ul class="details">
+                            <li class="author"><a href="#">@item.Author</a></li>
+                            <li class="date">@item.PublishDate</li>
+                            <li class="tags">
+                                <ul>
+                                    @{
+                                        var tags = @item.HashTag.Split(',');
+                                        foreach (var tag in tags)
+                                        {
+                                            <li><a href="#">@tag</a></li>
                                         }
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="description">
-                            <h1>@item.Title</h1>
-                            <h2>@item.Category</h2>
-                            <p style="max-height: 120px; height:120px" > @item.DescriptionShort</p>
-                            <p class="read-more">
-                                <a href="@item.ReadMorePath" target="_blank">Đọc thêm</a>
-                            </p>
-                        </div>
+                                    }
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="description">
+                        <h1>@item.Title</h1>
+                        <h2>@item.Category</h2>
+                        <p style="max-height: 120px; height:120px"> @item.DescriptionShort</p>
+                        <p class="read-more">
+                            <a href="@item.ReadMorePath" target="_blank">Đọc thêm</a>
+                        </p>
                     </div>
                 </div>
-            }
+            </div>
+            if (index % 2 == 0) @Html.Raw("</div>");           
         }
-    </div>
+    }
 </div>
