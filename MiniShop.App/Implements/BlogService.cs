@@ -79,7 +79,11 @@ namespace MiniShop.App
             var entity = _unitOfWorfk.BlogRepository.FindById(blogId);
             return _mapper.Map<BlogDto>(entity);
         }
-
+        public BlogDto GetDataByCode(string blogCode)
+        {
+            var entity = _unitOfWorfk.BlogRepository.Find(o=>o.ReadMorePath == $"blog/{blogCode}");
+            return _mapper.Map<BlogDto>(entity);
+        }
         public PageDataDto<BlogDto> LoadDataPage(PageFilterDto pageFilterDto)
         {
             var query = _unitOfWorfk.BlogRepository.OrderByDescending(o => o.CreatedDate);
@@ -91,5 +95,6 @@ namespace MiniShop.App
 
             return new PageDataDto<BlogDto>(blogDtos, query.Count());
         }
+
     }
 }

@@ -1,6 +1,6 @@
 ﻿
 @using MiniShop.App
-@model Tuple<InfoServerConfig, BlogDto>;
+@model Tuple<InfoServerConfig, BlogDto, ICollection<ProductDto>>;
 @{
     var metaData = new MetaTagDto()
     {
@@ -30,6 +30,21 @@
 @section stylesheets{
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css'>
     <link href="~/css/client/blog-card.min.css" rel="stylesheet" />
+
+    @*For mshop-blog-ads-client*@
+    <link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png" />
+    <meta name="apple-mobile-web-app-title" content="CodePen">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" />
+
+    <link rel="mask-icon" type="" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111" />
+
+
+    <title>CodePen - Material Cards</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
+    <link rel='stylesheet' href='https://storage.googleapis.com/code.getmdl.io/1.0.1/material.teal-red.min.css'>
 }
 
 <partial name="../Home/_nav.cshtml" />
@@ -85,7 +100,34 @@
     </div>
 </div>
 <div id="fh5co-blog-ads" class="mshop-blog-ads-client">
-
+    <div class="container">
+        <div class="mdl-layout mdl-js-layout mdl-color--grey-100">
+            <main class="mdl-layout__content">
+                <div class="mdl-grid">
+                    @foreach (var item in Model.Item3)
+                    {
+                        <div class="mdl-card mdl-cell mdl-cell--12-col mdl-shadow--2dp">
+                            <figure class="mdl-card__media">
+                                <img src="@($"{Model.Item1.FileRootPath}/{item.Picture}")" alt="" />
+                            </figure>
+                            <div class="mdl-card__title">
+                                <h1 class="mdl-card__title-text">@item.Name</h1>
+                            </div>
+                            <div class="mdl-card__supporting-text">
+                                <p>@Html.Raw(item.Description)</p>
+                            </div>
+                            <div class="mdl-card__actions mdl-card--border">
+                                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="/san-pham/@item.Code">Chi tiết</a>
+                                <div class="mdl-layout-spacer"></div>
+                                <button class="mdl-button mdl-button--icon mdl-button--colored"><i class="material-icons">favorite</i></button>
+                                <button class="mdl-button mdl-button--icon mdl-button--colored"><i class="material-icons">share</i></button>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </main>
+        </div>
+    </div>
 </div>
 <partial name="../Home/_footer.cshtml" />
 

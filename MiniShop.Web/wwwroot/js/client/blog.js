@@ -15,7 +15,7 @@
     (function () {
         let _htmlTemplate = `
             <div class="items-body-content">
-                    <span><a href="/blog/{#:id}"> {#:title} </a></span>
+                    <span><a href="/{#:readMorePath}"> {#:title} </a></span>
                     <i class="icon">
                         <svg class="svg-icon" viewBox="0 0 20 20">
                             <path fill="none" d="M1.683,3.39h16.676C18.713,3.39,19,3.103,19,2.749s-0.287-0.642-0.642-0.642H1.683
@@ -36,7 +36,7 @@
                     $(res.source).each(function (index, item) {
 
                         _html += _htmlTemplate
-                            .replaceAll(new RegExp("{#:id}", "gi"), item.id)
+                            .replaceAll(new RegExp("{#:readMorePath}", "gi"), item.readMorePath)
                             .replaceAll(new RegExp("{#:title}", "gi"), item.title)
 
                     });
@@ -51,4 +51,25 @@
     //    console.log(_id);
 
     //});
+    //fixed scroll
+    (function () {
+        window.onscroll = function () {
+            if (window.innerWidth >= 1024)
+                setFixed();
+        };
+        var areaMore = $('.mshop-blog-more-client .container')[0];
+        var areaAds = $('.mshop-blog-ads-client .container')[0];
+        var sticky = areaMore.offsetTop;
+
+        function setFixed() {
+            if (window.pageYOffset > sticky) {
+                $(areaMore).addClass("sticky");
+                $(areaAds).addClass("sticky");
+            } else {
+                $(areaMore).removeClass("sticky");
+                $(areaAds).removeClass("sticky");
+            }
+        }
+    })();
+
 })();

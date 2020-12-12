@@ -227,5 +227,14 @@ namespace MiniShop.App
             productDto ??= new Product();
             return productDto.Id;
         }
+
+        public ICollection<ProductDto> GetForAdsense(int take, string category)
+        {
+            var entities = _unitOfWorfk.ProductRepository.OrderByDescending(o => o.CreatedDate).Take(take).ToList();
+            var productDtos = new List<ProductDto>();
+
+            entities.ForEach(o => productDtos.Add(_mapper.Map<ProductDto>(o)));
+            return productDtos;
+        }
     }
 }

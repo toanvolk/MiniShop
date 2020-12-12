@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
+using System.Web;
 
 namespace MiniShop.Infrastructure
 {
@@ -137,6 +139,14 @@ namespace MiniShop.Infrastructure
             {
                 return "";
             }
+        }
+        public static string DecodeHtml(this string content)
+        {
+            StringWriter myWriter = new StringWriter();
+            // Decode the encoded string.
+            HttpUtility.HtmlDecode(content, myWriter);
+
+            return myWriter.ToString();
         }
     }
 }

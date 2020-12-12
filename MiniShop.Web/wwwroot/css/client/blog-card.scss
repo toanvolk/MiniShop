@@ -244,15 +244,18 @@
     .mshop-blog-home-client {
         width: 50%;
         clear: none;
+        left: 22% !important;
     }
+
     .mshop-blog-more-client {
         width: 22%;
         clear: none;
         max-height: 565px;
         overflow: auto;
     }
+
     .mshop-blog-ads-client {
-        width: 24%;
+        width: 24% !important;
         clear: none;
     }
 }
@@ -382,7 +385,52 @@
 
 .mshop-blog-ads-client {
     float: left;
-    margin: 2rem 0rem;
-    background: #f0ad4e;
-    height: 500px;
+
+    .container {
+        margin: 2rem 0rem;
+        max-height: 930px;
+        overflow: auto;
+
+        .mdl-grid {
+            max-width: 600px;
+        }
+
+        .mdl-card__media {
+            margin: 0;
+        }
+
+        .mdl-card__media > img {
+            max-width: 100%;
+        }
+
+        .mdl-card__actions {
+            display: flex;
+            box-sizing: border-box;
+            align-items: center;
+        }
+
+        .mdl-card__actions > .mdl-button--icon {
+            margin-right: 3px;
+            margin-left: 3px;
+        }
+
+        .mdl-card__title {
+            padding: 5px;
+        }
+
+        .mdl-card__supporting-text {
+            padding: 7px;
+        }
+    }
+
+    .container.sticky {
+        width: 18.2% !important
+    }
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    margin-left: 2rem;
 }

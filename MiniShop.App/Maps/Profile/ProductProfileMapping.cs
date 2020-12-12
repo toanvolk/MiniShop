@@ -40,7 +40,7 @@ namespace MiniShop.App
             CreateMap<Product, ProductDto>()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(source => source.Id))
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(source => source.Name))
-                .ForMember(dest => dest.Description, opt => opt.MapFrom(source => source.Description))
+                .ForMember(dest => dest.Description, opt => opt.MapFrom(source => source.Description.DecodeHtml()))
                 .ForMember(dest => dest.CategoryIds, opt => opt.MapFrom(source => source.CategoryIds))
                 .ForMember(dest => dest.AreaCode, opt => opt.MapFrom(source => source.AreaCode))
                 .ForMember(dest => dest.Price, opt => opt.MapFrom(source => source.Price))
