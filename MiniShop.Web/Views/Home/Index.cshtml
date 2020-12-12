@@ -39,11 +39,21 @@
 
 
 @*<partial name="_testimonial.cshtml" />*@
-<partial name="_counter.cshtml" model="Model.Item3"/>
-<partial name="_blog.cshtml" model="Model.Item2"/>
+<partial name="_counter.cshtml" model="Model.Item3" />
+<partial name="_blog.cshtml" model="Model.Item2" />
 <partial name="_footer.cshtml" />
-@section Scripts{
-    <script src="~/lib/pagination/pagination.js"></script>
-    <!-- Page -->
-    <script src="~/js/client/page-home.js"></script>
-}
+
+<environment include="Development">
+    @section Scripts{
+        <script src="~/lib/pagination/pagination.js"></script>
+        <!-- Page -->
+        <script src="~/js/client/page-home.js"></script>
+    }
+</environment>
+<environment include="Production">
+    @section Scripts{
+        <script src="~/lib/pagination/pagination.es5.min.js"></script>
+        <!-- Page -->
+        <script src="~/js/client/page-home.es5.min.js"></script>
+    }
+</environment>

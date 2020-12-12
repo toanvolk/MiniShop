@@ -1,6 +1,6 @@
 ﻿//public
 (function () {
-    helper.editor.init($('.mnshop-blog-modify #content'));
+    //helper.editor.init($('.mnshop-blog-modify #content'));
     // Single Date Range Picker
     $('input[name=PublishDate]').daterangepicker({
         singleDatePicker: true,

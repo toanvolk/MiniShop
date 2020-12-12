@@ -1,16 +1,16 @@
 ﻿
 @using MiniShop.App
-@model Tuple<InfoServerConfig>;
+@model Tuple<InfoServerConfig, BlogDto>;
 @{
     var metaData = new MetaTagDto()
     {
-        Title = "Thực phẩm chức năng | Sản phẩm đặc trị | Sản phẩm hỗ trợ sinh lý nam giới | Sản phẩm giúp chị Em làm đẹp ",
-        Description = "Cung cấp thông tin các sản phẩm từ các nguồn sản xuất chính hãng.",
+        Title = Model.Item2.Title,
+        Description = Model.Item2.Content,
         Keywords = "sinh ly, phu khoa, man duc, co be, phuc hoi, tang kha nang, lam dep, phu nu, duong vat, am ho, ...",
         FacebookMeta = new FacebookMetaTag()
         {
-            Description = "Cung cấp thông tin các sản phẩm từ các nguồn sản xuất chính hãng.",
-            Title = "Thực phẩm chức năng | Sản phẩm đặc trị | Sản phẩm hỗ trợ sinh lý nam giới | Sản phẩm giúp chị Em làm đẹp ",
+            Description = Model.Item2.Content,
+            Title = Model.Item2.Title,
             SiteName = Model.Item1.DomainName,
             Image = @$"{Model.Item1.HostName}/shared/img-backgrounds/pic-home.jpg",
             Url = "hanglink.info"
@@ -18,7 +18,7 @@
         TwitterMeta = new TwitterMetaTag()
         {
             Url = "hanglink.info",
-            Title = "Thực phẩm chức năng | Sản phẩm đặc trị | Sản phẩm hỗ trợ sinh lý nam giới | Sản phẩm giúp chị Em làm đẹp ",
+            Title = Model.Item2.Title,
             Image = @$"{Model.Item1.HostName}/shared/img-backgrounds/pic-home.jpg",
             Card = Model.Item1.DomainName
         }
@@ -33,7 +33,58 @@
 }
 
 <partial name="../Home/_nav.cshtml" />
-<div id="fh5co-blog" class="mshop-blog-client">
+<div id="fh5co-blog-more" class="mshop-blog-more-client">
+    <div class="container">
+        <div class="items">
+            <div class="items-head">
+                <p>Bài viết nổi bật</p>
+                <hr>
+            </div>
+
+            <div class="items-body">
+                <div class="items-body-content">
+                    <span>Web Usabilty Testing</span>
+                    <i class="icon">
+                        <svg class="svg-icon" viewBox="0 0 20 20">
+                            <path fill="none" d="M1.683,3.39h16.676C18.713,3.39,19,3.103,19,2.749s-0.287-0.642-0.642-0.642H1.683
+								c-0.354,0-0.641,0.287-0.641,0.642S1.328,3.39,1.683,3.39z M1.683,7.879h11.545c0.354,0,0.642-0.287,0.642-0.641
+								s-0.287-0.642-0.642-0.642H1.683c-0.354,0-0.641,0.287-0.641,0.642S1.328,7.879,1.683,7.879z M18.358,11.087H1.683
+								c-0.354,0-0.641,0.286-0.641,0.641s0.287,0.642,0.641,0.642h16.676c0.354,0,0.642-0.287,0.642-0.642S18.713,11.087,18.358,11.087z
+								 M11.304,15.576H1.683c-0.354,0-0.641,0.287-0.641,0.642s0.287,0.641,0.641,0.641h9.621c0.354,0,0.642-0.286,0.642-0.641
+								S11.657,15.576,11.304,15.576z"></path>
+                        </svg>
+                    </i>
+                </div>
+                <div class="items-body-content">
+                    <span>Web Usabilty Testing</span>
+                    <i class="icon">
+                        <svg class="svg-icon" viewBox="0 0 20 20">
+                            <path fill="none" d="M1.683,3.39h16.676C18.713,3.39,19,3.103,19,2.749s-0.287-0.642-0.642-0.642H1.683
+								c-0.354,0-0.641,0.287-0.641,0.642S1.328,3.39,1.683,3.39z M1.683,7.879h11.545c0.354,0,0.642-0.287,0.642-0.641
+								s-0.287-0.642-0.642-0.642H1.683c-0.354,0-0.641,0.287-0.641,0.642S1.328,7.879,1.683,7.879z M18.358,11.087H1.683
+								c-0.354,0-0.641,0.286-0.641,0.641s0.287,0.642,0.641,0.642h16.676c0.354,0,0.642-0.287,0.642-0.642S18.713,11.087,18.358,11.087z
+								 M11.304,15.576H1.683c-0.354,0-0.641,0.287-0.641,0.642s0.287,0.641,0.641,0.641h9.621c0.354,0,0.642-0.286,0.642-0.641
+								S11.657,15.576,11.304,15.576z"></path>
+                        </svg>
+                    </i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="fh5co-blog" class="mshop-blog-home-client">
+    <div class="header">
+        <h3>@Model.Item2.Title</h3>
+        <ul class="info">
+            <li class="publish-date">Ngày đăng @Model.Item2.PublishDate.ToString("dd/MM/yyyy HH:mm")</li>
+            <li class="author">| Nguồn: @Model.Item2.Author</li>
+        </ul>
+    </div>
+    <div class='content'>
+        @Html.Raw(Model.Item2.Content)
+    </div>
+</div>
+<div id="fh5co-blog-ads" class="mshop-blog-ads-client">
 
 </div>
 <partial name="../Home/_footer.cshtml" />
@@ -43,7 +94,6 @@
     @section Scripts{
         <script src="~/lib/pagination/pagination.js"></script>
         <!-- Page -->
-        <script src="~/js/client/page-home.js"></script>
         <script src="~/js/client/blog.js"></script>
     }
 </environment>
