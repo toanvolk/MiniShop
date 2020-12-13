@@ -494,5 +494,8 @@ var helper = {
             }            
         }
     },
+    jumpTag: function (selector) {
+        $("html, body").animate({ scrollTop: selector.offset().top }, "slow");
+    },
     bridgeHandle: {}
 }

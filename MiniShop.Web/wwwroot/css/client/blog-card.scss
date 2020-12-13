@@ -285,7 +285,7 @@
         font-family: "Antic Didone Regular",monospace;
         color: black;
         font-size: 16px;
-        margin-top: 5em;
+        margin: 5em 0px;
     }
 }
 
@@ -391,7 +391,7 @@
     float: left;
 
     .container {
-        margin: 2rem 0rem;
+/*        margin: 2rem 0rem;*/
         max-height: 930px;
         overflow: auto;
 
@@ -425,10 +425,67 @@
         .mdl-card__supporting-text {
             padding: 7px;
         }
+
+        p {
+            margin: 0 0 0;
+        }
     }
 
     .container.sticky {
         width: 18.2% !important
+    }
+
+    $t: 1s;
+    $d: 0.08em;
+    $n: 3;
+    $e: cubic-bezier(0.860, 0.000, 0.070, 1.000);
+    $front: black;
+    $back: lightblue;
+
+    .popout {
+        font-family: Futura, sans-serif;
+        font-family: sans-serif;
+        font-weight: 200;
+        font-size: 18px;
+        padding: 0px;
+
+        @keyframes ani {
+            0% {
+                transform: translate3d(0,0,0);
+                text-shadow: 0em 0em 0 $back;
+                color: $front;
+            }
+
+            30% {
+                transform: translate3d(0,0,0);
+                text-shadow: 0em 0em 0 $back;
+                color: $front;
+            }
+
+            70% {
+                transform: translate3d($d,-$d,0);
+                text-shadow: -$d $d $back;
+                color: $front;
+            }
+
+            100% {
+                transform: translate3d($d,-$d,0);
+                text-shadow: -$d $d $back;
+                color: $front;
+            }
+        }
+
+        span {
+            position: relative;
+            display: inline-block;
+            animation: ani $t infinite alternate $e;
+
+            @for $i from 1 through $n {
+                &:nth-last-child(#{$i}n) {
+                    animation-delay: -$t*$i/$n/2;
+                }
+            }
+        }
     }
 }
 

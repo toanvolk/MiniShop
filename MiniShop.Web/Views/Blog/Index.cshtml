@@ -119,7 +119,17 @@
                                 <img src="@($"{Model.Item1.FileRootPath}/{item.Picture}")" alt="" />
                             </figure>
                             <div class="mdl-card__title">
-                                <h1 class="mdl-card__title-text">@item.Name</h1>
+                                <h1 class="mdl-card__title-text">
+                                    <p class="popout">
+                                        @{
+                                            var chars = item.Name.ToCharArray();
+                                            foreach (var c in chars)
+                                            {
+                                                <span>@c</span>
+                                            }
+                                        }
+                                    </p>
+                                </h1>
                             </div>
                             <div class="mdl-card__supporting-text">
                                 <p>@Html.Raw(item.Description)</p>
@@ -127,10 +137,10 @@
                             <div class="mdl-card__actions mdl-card--border">
                                 <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="/san-pham/@item.Code">Chi tiết</a>
                                 <div class="mdl-layout-spacer"></div>
-                                <button class="mdl-button mdl-button--icon mdl-button--colored"><i class="material-icons">favorite</i></button>
-                                <button class="mdl-button mdl-button--icon mdl-button--colored"><i class="material-icons">share</i></button>
+                                @*<button class="mdl-button mdl-button--icon mdl-button--colored"><i class="material-icons">favorite</i></button>
+                                <button class="mdl-button mdl-button--icon mdl-button--colored"><i class="material-icons">share</i></button>*@
                             </div>
-                        </div>
+                        </div>                        
                     }
                 </div>
             </main>

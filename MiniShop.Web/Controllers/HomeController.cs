@@ -35,6 +35,7 @@ namespace MiniShop.Web.Controllers
             _homeService = homeService;
             _blogService = blogService;
         }
+        [Route("{f?}/{group?}")]
         public IActionResult Index()
         {
             var model = new Tuple<InfoServerConfig, ICollection<BlogDto>, CounterDto>(_infoServerConfig, _blogService.BlogMains(), _homeService.GetCounter());

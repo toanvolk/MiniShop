@@ -31,10 +31,12 @@ namespace MiniShop.Web.Controllers
             var productAdsense = _productService.GetForAdsense(2, "");
             var blogDto = blogData == default(BlogDto)
                 ? new BlogDto() {
-                    Title = "Thực phẩm chức năng | Sản phẩm đặc trị | Sản phẩm hỗ trợ sinh lý nam giới | Sản phẩm giúp chị Em làm đẹp",
+                    Title = "Hanglink.info cung cấp thông tin thực phẩm, sản phẩm hỗ trợ sinh lý dành cho nam - nữ!",
                     Author = "hanglink.info",
                     PublishDate = new DateTime(2020, 12, 01),
-                    Content = "Cung cấp thông tin các sản phẩm từ các nguồn sản xuất chính hãng"
+                    Content = @"Cung cấp thông tin các sản phẩm từ các nguồn sản xuất chính hãng.
+                                Các sản phẩm chỉ phù hợp với người trên 18 tuổi!                                
+                                "
                 }
                 : blogData;
             StringWriter myWriter = new StringWriter();

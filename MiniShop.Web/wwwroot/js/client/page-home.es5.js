@@ -49,7 +49,7 @@
         return regeneratorRuntime.async(function _genericHero$(context$2$0) {
             while (1) switch (context$2$0.prev = context$2$0.next) {
                 case 0:
-                    _url = 'home/producthero';
+                    _url = '/home/producthero';
                     _html = '';
                     context$2$0.next = 4;
                     return regeneratorRuntime.awrap($.get(_url, function (res) {
@@ -76,7 +76,7 @@
         return regeneratorRuntime.async(function _genericCategoryButton$(context$2$0) {
             while (1) switch (context$2$0.prev = context$2$0.next) {
                 case 0:
-                    _url = 'home/getcategorys';
+                    _url = '/home/getcategorys';
                     _html = '<a class="btn" data-id="ALL" data-name="Tất cả">Tất cả</a>';
                     context$2$0.next = 4;
                     return regeneratorRuntime.awrap($.get(_url, {}, function (res) {
@@ -107,7 +107,7 @@
             $(_mshop_product_client).find('#' + _cardId).html('');
             $(_mshop_product_client + ' .msshop-product-nav.read-more').show();
         }
-        var _url = 'home/productpage{#:_paramStrs}';
+        var _url = '/home/productpage{#:_paramStrs}';
         var _paramStrs = "";
         //get values
         var _values = [];
@@ -149,6 +149,44 @@
                 $(_mshop_product_client + ' .msshop-product-nav.read-more').hide();
             }
         });
+    };
+    var _jumpFocusTag = function _jumpFocusTag(group) {
+        //clear focus
+        $(_mshop_product_client + ' ' + _btn_categorys + ' a').removeClass("active");
+
+        //Thực phẩm chức năng
+        if (group == 'thuc-pham-chuc-nang') {
+            $(_mshop_product_client + ' a').each(function (index, item) {
+                if (['2fc89e20-b009-427b-8e34-4483bc0638fa', //Sinh lý
+                '8829d257-bafd-494b-bd6c-fce6954791b2' // Tăng -giảm cân
+                ].indexOf($(item).data('id')) != -1) {
+                    $(item).click();
+                }
+            });
+        }
+        //Mỹ phẩm
+        if (group == 'my-pham') {
+            $(_mshop_product_client + ' a').each(function (index, item) {
+                if (['ecac91c4-c0a2-41ae-b1e0-526e7134dd02', //Mẹ & bé
+                '717db383-b665-40c1-864c-635aa0b711f0', //Làm đẹp
+                '68163f53-529a-4177-9835-9ff5825b1741']. //Mỹ phẩm
+                indexOf($(item).data('id')) != -1) {
+                    $(item).click();
+                }
+            });
+        }
+        //Đặc trị
+        if (group == 'dac-tri') {
+            $(_mshop_product_client + ' a').each(function (index, item) {
+                if (['f2919983-d99a-4361-b1df-8be8ed873a41' //Đặc trị     
+                ].indexOf($(item).data('id')) != -1) {
+                    $(item).click();
+                }
+            });
+        }
+
+        //jump to tag
+        helper.jumpTag($('#fh5co-product'));
     };
     // init
     _genericHero();
@@ -193,53 +231,21 @@
         //clear focus
         $(_mshop_product_client + ' ' + _btn_categorys + ' a').removeClass("active");
 
-        //Thực phẩm chức năng
-        if (_group == 'thuc-pham-chuc-nang') {
-            $(_mshop_product_client + ' a').each(function (index, item) {
-                if (['2fc89e20-b009-427b-8e34-4483bc0638fa', //Sinh lý
-                '8829d257-bafd-494b-bd6c-fce6954791b2' // Tăng -giảm cân
-                ].indexOf($(item).data('id')) != -1) {
-                    $(item).click();
-                }
-            });
-        }
-        //Mỹ phẩm
-        if (_group == 'my-pham') {
-            $(_mshop_product_client + ' a').each(function (index, item) {
-                if (['ecac91c4-c0a2-41ae-b1e0-526e7134dd02', //Mẹ & bé
-                '717db383-b665-40c1-864c-635aa0b711f0', //Làm đẹp
-                '68163f53-529a-4177-9835-9ff5825b1741']. //Mỹ phẩm
-                indexOf($(item).data('id')) != -1) {
-                    $(item).click();
-                }
-            });
-        }
-        //Đặc trị
-        if (_group == 'dac-tri') {
-            $(_mshop_product_client + ' a').each(function (index, item) {
-                if (['f2919983-d99a-4361-b1df-8be8ed873a41' //Đặc trị     
-                ].indexOf($(item).data('id')) != -1) {
-                    $(item).click();
-                }
-            });
-        }
+        _jumpFocusTag(_group);
     });
     _loadProductMore();
-    //scroll
-    //$(window).scroll(function () {
-    //    if (($(window).scrollTop() >= $(document).height() - $(window).height() - $("#fh5co-footer")[0].offsetHeight)) {  
-    //        clearTimeout(timeDelay);
-    //        if (numberDeplayLazy == numberCountMax && numberDeplayLazy != 0) {
-    //            $(_mshop_product_client + ' .loader-tomato').hide();
-    //            return;
-    //        }
-    //        $(_mshop_product_client + ' .loader-tomato').show();
-    //        timeDelay = setTimeout(function () {
-    //            //_loadProductMore();
-    //            $(_mshop_product_client + ' .loader-tomato').hide();
-    //        }, 2200);
-
-    //    }
-    //});
+    //auto jump
+    setTimeout(function () {
+        var _path = window.location.pathname;
+        if (_path == '/f/thuc-pham-chuc-nang') {
+            _jumpFocusTag('thuc-pham-chuc-nang');
+        }
+        if (_path == '/f/my-pham') {
+            _jumpFocusTag('my-pham');
+        }
+        if (_path == '/f/dac-tri') {
+            _jumpFocusTag('dac-tri');
+        }
+    }, 700);
 })($, document);
 

@@ -187,7 +187,7 @@
     font-family: "Antic Didone Regular",monospace;
     color: black;
     font-size: 16px;
-    margin-top: 5em; }
+    margin: 5em 0px; }
 
 .mshop-blog-more-client {
   float: left;
@@ -259,7 +259,7 @@
 .mshop-blog-ads-client {
   float: left; }
   .mshop-blog-ads-client .container {
-    margin: 2rem 0rem;
+    /*        margin: 2rem 0rem;*/
     max-height: 930px;
     overflow: auto; }
     .mshop-blog-ads-client .container .mdl-grid {
@@ -279,8 +279,44 @@
       padding: 5px; }
     .mshop-blog-ads-client .container .mdl-card__supporting-text {
       padding: 7px; }
+    .mshop-blog-ads-client .container p {
+      margin: 0 0 0; }
   .mshop-blog-ads-client .container.sticky {
     width: 18.2% !important; }
+  .mshop-blog-ads-client .popout {
+    font-family: Futura, sans-serif;
+    font-family: sans-serif;
+    font-weight: 200;
+    font-size: 18px;
+    padding: 0px; }
+
+@keyframes ani {
+  0% {
+    transform: translate3d(0, 0, 0);
+    text-shadow: 0em 0em 0 lightblue;
+    color: black; }
+  30% {
+    transform: translate3d(0, 0, 0);
+    text-shadow: 0em 0em 0 lightblue;
+    color: black; }
+  70% {
+    transform: translate3d(0.08em, -0.08em, 0);
+    text-shadow: -0.08em 0.08em lightblue;
+    color: black; }
+  100% {
+    transform: translate3d(0.08em, -0.08em, 0);
+    text-shadow: -0.08em 0.08em lightblue;
+    color: black; } }
+    .mshop-blog-ads-client .popout span {
+      position: relative;
+      display: inline-block;
+      animation: ani 1s infinite alternate cubic-bezier(0.86, 0, 0.07, 1); }
+      .mshop-blog-ads-client .popout span:nth-last-child(1n) {
+        animation-delay: -0.16667s; }
+      .mshop-blog-ads-client .popout span:nth-last-child(2n) {
+        animation-delay: -0.33333s; }
+      .mshop-blog-ads-client .popout span:nth-last-child(3n) {
+        animation-delay: -0.5s; }
 
 .sticky {
   position: fixed;
