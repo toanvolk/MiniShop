@@ -32,16 +32,7 @@
     <link href="~/css/client/blog-card.min.css" rel="stylesheet" />
 
     @*For mshop-blog-ads-client*@
-    <link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png" />
     <meta name="apple-mobile-web-app-title" content="CodePen">
-
-    <link rel="shortcut icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" />
-
-    <link rel="mask-icon" type="" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111" />
-
-
-    <title>CodePen - Material Cards</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
     <link rel='stylesheet' href='https://storage.googleapis.com/code.getmdl.io/1.0.1/material.teal-red.min.css'>
@@ -98,6 +89,23 @@
     <div class='content'>
         @Html.Raw(Model.Item2.Content)
     </div>
+    <footer id="fh5co-footer" role="contentinfo" style="padding: 1em 0;">
+        <div class="container">
+            <div class="row row-pb-md">
+                <div class="col-md-12 fh5co-widget">
+                    <h3>Cầu nối đến sản phẩm hỗ trợ sức khỏe bạn</h3>
+                    <p><strong>Chính sức khỏe mới là sự giàu có thực sự, không phải vàng và bạc</strong></p>
+                    <p>(It is health that is real wealth and not pieces of gold and silver)</p>
+                    <p><i>-Mahatma Gandhi</i></p>
+                </div>
+                <div class="row row-pb-md" style="text-align: center;">
+                    <div class="col-md-12">
+                        <img src="/shared/img-backgrounds/img-footer.png" style="width: 50em;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 </div>
 <div id="fh5co-blog-ads" class="mshop-blog-ads-client">
     <div class="container">
@@ -129,7 +137,7 @@
         </div>
     </div>
 </div>
-<partial name="../Home/_footer.cshtml" />
+
 
 
 <environment include="Development">

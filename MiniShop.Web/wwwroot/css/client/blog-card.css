@@ -192,6 +192,8 @@
 .mshop-blog-more-client {
   float: left;
   margin-top: 2rem; }
+  .mshop-blog-more-client a {
+    color: #053248; }
   .mshop-blog-more-client * {
     box-sizing: border-radius;
     font-family: 'Rubik', sans-serif; }
