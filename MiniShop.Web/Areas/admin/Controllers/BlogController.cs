@@ -24,6 +24,7 @@ namespace MiniShop.Web.Areas.admin.Controllers
         }
         public IActionResult Index()
         {
+            ViewBag.Title = "Blog";
             return View();
         }
         public IActionResult GetDataAdmin([DataSourceRequest] DataSourceRequest request, ProductPageFilterDto paramSearch)
