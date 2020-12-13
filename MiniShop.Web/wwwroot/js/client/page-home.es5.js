@@ -43,6 +43,7 @@
             $(_mshop_filter + ' .loader').hide();
         }, 2500);
     });
+
     var _genericHero = function _genericHero() {
         var _url, _html;
 

@@ -129,6 +129,7 @@
             $(_mshop_filter + ' .loader').hide();
         }, 2500);
     });
+
     let _genericHero = async function () {
         let _url = '/home/producthero';
         let _html = '';
