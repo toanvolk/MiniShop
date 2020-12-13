@@ -17,10 +17,13 @@ namespace MiniShop.Web.Areas.admin.Controllers
         private readonly IBlogService _blogService;
         private ILogger<BlogController> _logger { get; set; }
 
-        public BlogController(IBlogService blogService, ILogger<BlogController> logger)
+        private readonly IProductService _productService;
+
+        public BlogController(IBlogService blogService, ILogger<BlogController> logger, IProductService productService)
         {
             _blogService = blogService;
             _logger = logger;
+            _productService = productService;
         }
         public IActionResult Index()
         {
@@ -41,7 +44,9 @@ namespace MiniShop.Web.Areas.admin.Controllers
         }
         public IActionResult Add()
         {
-            return View();
+            var model = new Tuple<ICollection<CategoryDto>>(
+                _productService.GetCategories());
+            return View(model);
         }
         [HttpPost]
         public IActionResult Create(BlogDto blogDto)
@@ -112,7 +117,7 @@ namespace MiniShop.Web.Areas.admin.Controllers
 
         public IActionResult Edit(Guid id)
         {
-            var model = _blogService.GetDataById(id);
+            var model = new Tuple<BlogDto, ICollection<CategoryDto>>(_blogService.GetDataById(id), _productService.GetCategories());
             return View(model);
         }
         [HttpPost]

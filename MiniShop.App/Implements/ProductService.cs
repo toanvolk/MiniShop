@@ -230,11 +230,32 @@ namespace MiniShop.App
 
         public ICollection<ProductDto> GetForAdsense(int take, string category)
         {
-            var entities = _unitOfWorfk.ProductRepository.OrderByDescending(o => o.CreatedDate).Take(take).ToList();
+            
+            var entities = _unitOfWorfk.ProductRepository.OrderByDescending(o => o.CreatedDate).ToList();
             var productDtos = new List<ProductDto>();
-
             entities.ForEach(o => productDtos.Add(_mapper.Map<ProductDto>(o)));
-            return productDtos;
+
+            var productDtoReturns = new List<ProductDto>();
+            if (string.IsNullOrEmpty(category))
+            {
+                productDtoReturns.AddRange(productDtos);
+            }
+            else
+            {
+                foreach (var item in productDtos)
+                {
+                    if (!string.IsNullOrEmpty(item.CategoryIds))
+                    {
+                        var categorys = item.CategoryIds.Split(',');
+                        var categorySrc = category.Split(',');
+                        if (categorys.Any(o => categorySrc.Contains(o)))
+                        {
+                            productDtoReturns.Add(item);
+                        }
+                    }
+                }
+            }            
+            return productDtoReturns.Take(2).ToList();
         }
     }
 }

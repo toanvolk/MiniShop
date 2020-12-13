@@ -28,7 +28,7 @@ namespace MiniShop.Web.Controllers
         public IActionResult Index(string blogCode)
         {
             var blogData = _blogService.GetDataByCode(blogCode);
-            var productAdsense = _productService.GetForAdsense(2, "");
+            var productAdsense = _productService.GetForAdsense(2, blogData?.Category);
             var blogDto = blogData == default(BlogDto)
                 ? new BlogDto() {
                     Title = "Hanglink.info cung cấp thông tin thực phẩm, sản phẩm hỗ trợ sinh lý dành cho nam - nữ!",

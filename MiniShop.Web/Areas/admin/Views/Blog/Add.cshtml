@@ -1,5 +1,6 @@
 ﻿@{ Layout = "../Shared/_Layout.cshtml"; }
-
+@using MiniShop.App
+@model Tuple<ICollection<CategoryDto>>;
 @section Styles{
     <link href="~/lib/kendo-ui/styles/editor.css" rel="stylesheet" />
     <link href="~/css/page/blog.min.css" rel="stylesheet" />
@@ -43,8 +44,11 @@
                                             <div class="form-group row">
                                                 <label class="col-md-3 label-control" for="userinput2">Thể loại</label>
                                                 <div class="col-md-9">
-                                                    <input type="text" id="userinput2" class="form-control border-primary" placeholder="Category" name="Category">
-                                                </div>
+                                                    @foreach (var item in @Model.Item1)
+                                                    {
+                                                        <a id="@item.Id" data-id="@item.Id" class="category-item">@item.Name</a>
+                                                    }
+                                                </div>                                                
                                             </div>
                                         </div>
                                     </div>

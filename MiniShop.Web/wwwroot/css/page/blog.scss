@@ -6,6 +6,19 @@ section.mnshop-blog-modify {
     .btn.picture-path {
         cursor: pointer;
     }
+
+    a.category-item {
+        border: 1px solid #808080;
+        border-radius: 10px;
+        margin: 2px;
+        padding: 5px;
+        display: inline-block;
+    }
+
+    a.category-item.active {
+        background-color: #0e84e8;
+        color: aliceblue;
+    }
 }
 
 section#mnshop-blog-add {
