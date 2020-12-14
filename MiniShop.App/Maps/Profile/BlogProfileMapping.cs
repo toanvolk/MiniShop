@@ -10,6 +10,7 @@ namespace MiniShop.App
 {
     public class BlogProfileMapping : Profile
     {
+        TimeZoneInfo tst = TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time");
         public BlogProfileMapping()
         {
             ////create - update
@@ -21,24 +22,16 @@ namespace MiniShop.App
 
                     dst.UpdatedBy = "ADMIN";
                     dst.UpdatedDate = DateTime.UtcNow;
+
+                    dst.PublishDate = src.PublishDate.ToUniversalTime();
                 });
 
-            ////get
-            //CreateMap<Blog, BlogDto>()
-            //    .ForMember(dest => dest.Id, opt => opt.MapFrom(source => source.Id))
-            //    .ForMember(dest => dest.Name, opt => opt.MapFrom(source => source.Name))
-            //    .ForMember(dest => dest.Description, opt => opt.MapFrom(source => source.Description))
-            //    .ForMember(dest => dest.CategoryIds, opt => opt.MapFrom(source => source.CategoryIds))
-            //    .ForMember(dest => dest.AreaCode, opt => opt.MapFrom(source => source.AreaCode))
-            //    .ForMember(dest => dest.Price, opt => opt.MapFrom(source => source.Price))
-            //    .ForMember(dest => dest.TrackingLink, opt => opt.MapFrom(source => source.TrackingLink))
-            //    .ForMember(dest => dest.Picture, opt => opt.MapFrom(source => source.Picture))
-            //    .ForMember(dest => dest.SmallPicture, opt => opt.MapFrom(source => source.SmallPicture))
-            //    .ForMember(dest => dest.BigPicture, opt => opt.MapFrom(source => source.BigPicture))
-            //    .ForMember(dest => dest.Tag, opt => opt.MapFrom(source => source.Tag));
-
-            //load
-            CreateMap<Blog, BlogDto>();
+           //load
+            CreateMap<Blog, BlogDto>()
+                .AfterMap((src, dst) => {                    
+                    dst.PublishDate = src.PublishDate.ToUniversalTime();
+                    dst.PublishDate = TimeZoneInfo.ConvertTimeFromUtc(src.PublishDate, tst);
+                });
 
 
         }

@@ -19,7 +19,7 @@
                         <div class="photo" style="background-image: url(@($"{Model.Item1.FileRootPath}/{item.PicturePath}"))"></div>
                         <ul class="details">
                             <li class="author"><a href="#">@item.Author</a></li>
-                            <li class="date">@item.PublishDate</li>
+                            <li class="date">@item.PublishDate.ToString("dd/MM/yyyy HH:mm")</li>
                             <li class="tags">
                                 <ul>
                                     @{

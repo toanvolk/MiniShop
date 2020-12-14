@@ -9,6 +9,9 @@
             format: 'DD/MM/YYYY'
         }
     });
+    $('input[name=PublishDate]').kendoDateTimePicker({
+        format: "dd/MM/yyyy HH:mm"
+    });
     $(document).on('click', '.btn.picture-path', function (e) {
         helper.file.fileDialog(
             content = $(e.target).closest('.mnshop-blog-modify'),
