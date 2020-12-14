@@ -12,14 +12,14 @@
             Description = Model.Item2.DescriptionShort,
             Title = Model.Item2.Title,
             SiteName = Model.Item1.DomainName,
-            Image = $"{Model.Item1.FileRootPath}/{Model.Item2.PicturePath}",
+            Image = $"{Model.Item1.HostName}/{Model.Item1.FileRootPath}/{Model.Item2.PicturePath}",
             Url = "hanglink.info"
         },
         TwitterMeta = new TwitterMetaTag()
         {
             Url = "hanglink.info",
             Title = Model.Item2.DescriptionShort,
-            Image = $"{Model.Item1.FileRootPath}/{Model.Item2.PicturePath}",
+            Image = $"{Model.Item1.HostName}/{Model.Item1.FileRootPath}/{Model.Item2.PicturePath}",
             Card = Model.Item1.DomainName
         }
     };
