@@ -2,12 +2,12 @@
     Layout = null;
 }
 @using MiniShop.App;
-@model List<BlogDto>;
+@model Tuple<InfoServerConfig, ICollection<BlogDto>>
 <div id="fh5co-blog" class="mshop-blog-client">
     @{
         var index = 0;
         var alt = "";
-        foreach (var item in Model)
+        foreach (var item in Model.Item2)
         {
             if (index % 2 == 0)@Html.Raw("<div class='row'>");
             index++;
@@ -16,7 +16,7 @@
             <div class="col-lg-6 col-md-6 col-xs-12">
                 <div class="blog-card @alt">
                     <div class="meta">
-                        <div class="photo" style="background-image: url(@item.PicturePath)"></div>
+                        <div class="photo" style="background-image: url(@($"{Model.Item1.FileRootPath}/{item.PicturePath}"))"></div>
                         <ul class="details">
                             <li class="author"><a href="#">@item.Author</a></li>
                             <li class="date">@item.PublishDate</li>
@@ -38,7 +38,7 @@
                         <h2>@item.Category</h2>
                         <p style="max-height: 120px; height:120px"> @item.DescriptionShort</p>
                         <p class="read-more">
-                            <a href="/@item.ReadMorePath" target="_blank">Đọc thêm</a>
+                            <a href="@($"/{item.ReadMorePath}")" target="_blank">Đọc thêm</a>
                         </p>
                     </div>
                 </div>

@@ -40,7 +40,7 @@
 
 @*<partial name="_testimonial.cshtml" />*@
 <partial name="_counter.cshtml" model="Model.Item3" />
-<partial name="_blog.cshtml" model="Model.Item2" />
+<partial name="_blog.cshtml" model="new Tuple<InfoServerConfig, ICollection<BlogDto>>(Model.Item1, Model.Item2)" />
 <partial name="_footer.cshtml" />
 
 <environment include="Development">
