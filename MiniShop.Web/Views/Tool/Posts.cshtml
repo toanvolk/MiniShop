@@ -1,0 +1,87 @@
+﻿
+@using MiniShop.App
+@*@model Tuple<InfoServerConfig, BlogDto, ICollection<ProductDto>>;
+    @{
+        var metaData = new MetaTagDto()
+        {
+            Title = Model.Item2.Title,
+            Description = Model.Item2.DescriptionShort,
+            Keywords = "sinh ly, phu khoa, man duc, co be, phuc hoi, tang kha nang, lam dep, phu nu, duong vat, am ho, ...",
+            FacebookMeta = new FacebookMetaTag()
+            {
+                Description = Model.Item2.DescriptionShort,
+                Title = Model.Item2.Title,
+                SiteName = Model.Item1.DomainName,
+                Image = $"{Model.Item1.HostName}{Model.Item1.FileRootPath}/{Model.Item2.PicturePath}",
+                Url = "hanglink.info"
+            },
+            TwitterMeta = new TwitterMetaTag()
+            {
+                Url = "hanglink.info",
+                Title = Model.Item2.DescriptionShort,
+                Image = $"{Model.Item1.HostName}{Model.Item1.FileRootPath}/{Model.Item2.PicturePath}",
+                Card = Model.Item1.DomainName
+            }
+        };
+    }
+    @section metaTag{
+        <partial name="../Shared/_metaTag.cshtml" model="metaData" />
+    }*@
+@section stylesheets{
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css'>
+    <link href="~/lib/chameleon-admin/app-assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/lib/chameleon-admin/app-assets/css/bootstrap-extended.min.css" rel="stylesheet" />
+    @*For mshop-blog-ads-client*@
+    <meta name="apple-mobile-web-app-title" content="CodePen">
+
+    <link rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
+    <link rel='stylesheet' href='https://storage.googleapis.com/code.getmdl.io/1.0.1/material.teal-red.min.css'>
+
+    <style>
+        .fh5co-nav {
+            height: 75px;
+        }
+        .mshop-tool-post.content {
+            margin-top: 5px;
+        }
+        .button-action {
+            margin-top: 5px;
+        }
+    </style>
+}
+
+<partial name="../Home/_nav.cshtml" />
+<div class="row">
+    <div id="fh5co-post-history" class="col-3 mshop-tool-post history">
+        <div class="container">
+            history
+        </div>
+    </div>
+    <div id="fh5co-post-content" class="col-5 mshop-tool-post content">
+        <div class="container">
+            <div class="row content-edit">
+                <textarea rows="20" class="form-control"></textarea>
+            </div>
+            <div class="row button-action">
+                <button class="btn btn-primary">Copy</button>
+            </div>           
+        </div>
+    </div>
+    <div id="fh5co-post-tool" class="col-4 mshop-tool-post tool">
+        <div class="container">
+            tool
+        </div>
+    </div>
+</div>
+
+<environment include="Development">
+    @section Scripts{
+
+    }
+</environment>
+<environment include="Production">
+    @section Scripts{
+
+    }
+</environment>
+
