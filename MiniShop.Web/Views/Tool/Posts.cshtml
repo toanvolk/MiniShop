@@ -37,21 +37,11 @@
     <link rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
     <link rel='stylesheet' href='https://storage.googleapis.com/code.getmdl.io/1.0.1/material.teal-red.min.css'>
 
-    <style>
-        .fh5co-nav {
-            height: 75px;
-        }
-        .mshop-tool-post.content {
-            margin-top: 5px;
-        }
-        .button-action {
-            margin-top: 5px;
-        }
-    </style>
+    <link href="~/css/client/posts.css" rel="stylesheet" />
 }
 
 <partial name="../Home/_nav.cshtml" />
-<div class="row">
+<div class="row" id="mshop-tool-post">
     <div id="fh5co-post-history" class="col-3 mshop-tool-post history">
         <div class="container">
             history
@@ -60,23 +50,52 @@
     <div id="fh5co-post-content" class="col-5 mshop-tool-post content">
         <div class="container">
             <div class="row content-edit">
-                <textarea rows="20" class="form-control"></textarea>
+                <textarea rows="20" class="form-control">Lorem ipsum dolor sit amet consecutor adipiscingLorem ipsum dolor sit amet </textarea>
             </div>
             <div class="row button-action">
                 <button class="btn btn-primary">Copy</button>
-            </div>           
+            </div>
         </div>
     </div>
     <div id="fh5co-post-tool" class="col-4 mshop-tool-post tool">
         <div class="container">
-            tool
+            <ul>
+                <li>Lorem dolor amet sit </li>
+                <li>Lorem ipsum dolor sit amet consecutor adipiscingLorem ipsum dolor sit amet </li>
+                <li>Lorem ipsum dolor sit amet consecutor</li>
+                <li>Lorem dolor amet sit </li>
+                <li>Lorem ipsum dolor sit amet consecutor adipiscingLorem ipsum dolor sit amet </li>
+                <li>Lorem ipsum dolor sit amet consecutor</li>
+                <li>Lorem dolor amet sit </li>
+            </ul>
         </div>
     </div>
 </div>
 
 <environment include="Development">
     @section Scripts{
+        <script>
+            (function () {
 
+                //----------------------------------DEFINE----------------------------
+
+
+                //----------------------------------EVENT----------------------------
+                $('.mshop-tool-post.tool ul li').on('click', function (e) {
+                    let text = $(e.target).text();
+                });
+                $(".mshop-tool-post.content textarea").select(function (e) {
+                    let textRoot = $(e.target).text();
+                    let startSelect = $(e.target)[0].selectionStart;
+                    let startEnd = $(e.target)[0].selectionEnd;
+                    let textSelected = textRoot.substring(startSelect, startEnd);
+
+                    $('.mshop-tool-post.tool ul li').each(function (index, selector) {
+                        $(selector).text(textSelected);
+                    });
+                });
+            })();
+        </script>
     }
 </environment>
 <environment include="Production">

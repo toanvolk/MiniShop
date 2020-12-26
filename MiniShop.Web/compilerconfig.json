@@ -110,5 +110,9 @@
   {
     "outputFile": "wwwroot/js/client/page-home.es5.js",
     "inputFile": "wwwroot/js/client/page-home.js"
+  },
+  {
+    "outputFile": "wwwroot/css/client/posts.css",
+    "inputFile": "wwwroot/css/client/posts.scss"
   }
 ]
