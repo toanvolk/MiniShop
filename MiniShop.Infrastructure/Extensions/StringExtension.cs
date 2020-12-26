@@ -63,7 +63,7 @@ namespace MiniShop.Infrastructure
         private static string RemapInternationalCharToAscii(char c)
         {
             string s = c.ToString().ToLowerInvariant();
-            if ("àåáâäãåąăầắấằẩẫậặạ".Contains(s))
+            if ("àåáâäãåąăầắấằẩẫậặạả".Contains(s))
             {
                 return "a";
             }
@@ -115,7 +115,7 @@ namespace MiniShop.Infrastructure
             {
                 return "l";
             }
-            else if (c == 'đ')
+            else if (c == 'đ' || c == 'Đ')
             {
                 return "d";
             }
