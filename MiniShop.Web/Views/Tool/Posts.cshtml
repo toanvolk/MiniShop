@@ -74,62 +74,107 @@
             (function () {
 
                 //----------------------------------DEFINE----------------------------
+                var assetRoot = unescape("0%201%202%203%204%205%206%207%208%209%20a%20%E1%20%E0%20%u1EA1%20%u1EA3%20%E3%20%u0103%20%u1EAF%20%u1EB1%20%u1EB7%20%u1EB3%20%u1EB5%20%E2%20%u1EA5%20%u1EA7%20%u1EAD%20%u1EA9%20%u1EAB%20b%20c%20d%20%u0111%20e%20%E9%20%E8%20%u1EB9%20%u1EBB%20%u1EBD%20%EA%20%u1EBF%20%u1EC1%20%u1EC7%20%u1EC3%20%u1EC5%20g%20h%20i%20%ED%20%EC%20%u1ECB%20%u1EC9%20%u0129%20k%20l%20m%20n%20o%20%F3%20%F2%20%u1ECD%20%u1ECF%20%F5%20%F4%20%u1ED1%20%u1ED3%20%u1ED9%20%u1ED5%20%u1ED7%20%u01A1%20%u1EDB%20%u1EDD%20%u1EE3%20%u1EDF%20%u1EE1%20p%20q%20r%20s%20t%20u%20%FA%20%F9%20%u1EE5%20%u1EE7%20%u0169%20%u01B0%20%u1EE9%20%u1EEB%20%u1EF1%20%u1EED%20%u1EEF%20v%20x%20y%20%FD%20%u1EF3%20%u1EF5%20%u1EF7%20%u1EF9%20A%20%C1%20%C0%20%u1EA0%20%u1EA2%20%C3%20%u0102%20%u1EAE%20%u1EB0%20%u1EB6%20%u1EB2%20%u1EB4%20%C2%20%u1EA4%20%u1EA6%20%u1EAC%20%u1EA8%20%u1EAA%20B%20C%20D%20%u0110%20E%20%C9%20%C8%20%u1EB8%20%u1EBA%20%u1EBC%20%CA%20%u1EBE%20%u1EC0%20%u1EC6%20%u1EC2%20%u1EC4%20G%20H%20I%20%CD%20%CC%20%u1ECA%20%u1EC8%20%u0128%20K%20L%20M%20N%20O%20%D3%20%D2%20%u1ECC%20%u1ECE%20%D5%20%D4%20%u1ED0%20%u1ED2%20%u1ED8%20%u1ED4%20%u1ED6%20%u01A0%20%u1EDA%20%u1EDC%20%u1EE2%20%u1EDE%20%u1EE0%20P%20Q%20R%20S%20T%20U%20%DA%20%D9%20%u1EE4%20%u1EE6%20%u0168%20%u01AF%20%u1EE8%20%u1EEA%20%u1EF0%20%u1EEC%20%u1EEE%20V%20X%20Y%20%DD%20%u1EF2%20%u1EF4%20%u1EF6%20%u1EF8%20%7E%20%60%20%21%20@@%20%23%20%24%20%25%20%5E%20%26%20*%20%28%20%29%20_%20-%20+%20%3D%20%7C%20%20%7B%20%5B%20%7D%20%5D%20%3A%20%3B%20%22%20%27%20%3C%20%2C%20%3E%20.%20%3F%20/");
+                var assetRootArray = assetRoot.split(' ');
                 var assetFonts = [
-                    "0123456789 aáàạảãăắằặẳẵâấầậẩẫbcdđeéèẹẻẽêếềệểễghiíìịỉĩklmnoóòọỏõôốồộổỗơớờợởỡpqrstuúùụủũưứừựửữvxyýỳỵỷỹAÁÀẠẢÃĂẮẰẶẲẴÂẤẦẬẨẪBCDĐEÉÈẸẺẼÊẾỀỆỂỄGHIÍÌỊỈĨKLMNOÓÒỌỎÕÔỐỒỘỔỖƠỚỜỢỞỠPQRSTUÚÙỤỦŨƯỨỪỰỬỮVXYÝỲỴỶỸ",
+                    //normal
+                    unescape("0%201%202%203%204%205%206%207%208%209%20a%20%E1%20%E0%20%u1EA1%20%u1EA3%20%E3%20%u0103%20%u1EAF%20%u1EB1%20%u1EB7%20%u1EB3%20%u1EB5%20%E2%20%u1EA5%20%u1EA7%20%u1EAD%20%u1EA9%20%u1EAB%20b%20c%20d%20%u0111%20e%20%E9%20%E8%20%u1EB9%20%u1EBB%20%u1EBD%20%EA%20%u1EBF%20%u1EC1%20%u1EC7%20%u1EC3%20%u1EC5%20g%20h%20i%20%ED%20%EC%20%u1ECB%20%u1EC9%20%u0129%20k%20l%20m%20n%20o%20%F3%20%F2%20%u1ECD%20%u1ECF%20%F5%20%F4%20%u1ED1%20%u1ED3%20%u1ED9%20%u1ED5%20%u1ED7%20%u01A1%20%u1EDB%20%u1EDD%20%u1EE3%20%u1EDF%20%u1EE1%20p%20q%20r%20s%20t%20u%20%FA%20%F9%20%u1EE5%20%u1EE7%20%u0169%20%u01B0%20%u1EE9%20%u1EEB%20%u1EF1%20%u1EED%20%u1EEF%20v%20x%20y%20%FD%20%u1EF3%20%u1EF5%20%u1EF7%20%u1EF9%20A%20%C1%20%C0%20%u1EA0%20%u1EA2%20%C3%20%u0102%20%u1EAE%20%u1EB0%20%u1EB6%20%u1EB2%20%u1EB4%20%C2%20%u1EA4%20%u1EA6%20%u1EAC%20%u1EA8%20%u1EAA%20B%20C%20D%20%u0110%20E%20%C9%20%C8%20%u1EB8%20%u1EBA%20%u1EBC%20%CA%20%u1EBE%20%u1EC0%20%u1EC6%20%u1EC2%20%u1EC4%20G%20H%20I%20%CD%20%CC%20%u1ECA%20%u1EC8%20%u0128%20K%20L%20M%20N%20O%20%D3%20%D2%20%u1ECC%20%u1ECE%20%D5%20%D4%20%u1ED0%20%u1ED2%20%u1ED8%20%u1ED4%20%u1ED6%20%u01A0%20%u1EDA%20%u1EDC%20%u1EE2%20%u1EDE%20%u1EE0%20P%20Q%20R%20S%20T%20U%20%DA%20%D9%20%u1EE4%20%u1EE6%20%u0168%20%u01AF%20%u1EE8%20%u1EEA%20%u1EF0%20%u1EEC%20%u1EEE%20V%20X%20Y%20%DD%20%u1EF2%20%u1EF4%20%u1EF6%20%u1EF8%20%7E%20%60%20%21%20@@%20%23%20%24%20%25%20%5E%20%26%20*%20%28%20%29%20_%20-%20+%20%3D%20%7C%20%20%7B%20%5B%20%7D%20%5D%20%3A%20%3B%20%22%20%27%20%3C%20%2C%20%3E%20.%20%3F%20/"),
                     //bold serif
-                    "𝐧𝐨𝐨́𝐨̀𝐨̣𝐨̉𝐨̃𝐨̂𝐨̂́𝐨̂̀𝐨̣̂𝐨̂̉𝐨̂̃𝐨̛𝐨̛́𝐨̛̀𝐨̛̣𝐨̛̉𝐨̛̃𝐩𝐪𝐫𝐬𝐭𝐮𝐮́𝐮̀𝐮̣𝐮̉𝐮̃𝐮̛𝐮̛́𝐮̛̀𝐮̛̣𝐮̛̉𝐮̛̃𝐯𝐱𝐲𝐲́𝐲̀𝐲̣𝐲̉𝐲̃𝐀𝐀́𝐀̀𝐀̣𝐀̉𝐀̃𝐀̆𝐀̆́𝐀̆̀𝐀̣̆𝐀̆̉𝐀̆̃𝐀̂𝐀̂́𝐀̂̀𝐀̣̂𝐀̂̉𝐀̂̃𝐁𝐂𝐃Đ𝐄𝐄́𝐄̀𝐄̣𝐄̉𝐄̃𝐄̂𝐄̂́𝐄̂̀𝐄̣̂𝐄̂̉𝐄̂̃𝐆𝐇𝐈𝐈́𝐈̀𝐈̣𝐈̉𝐈̃𝐊𝐋𝐌𝐍𝐎𝐎́𝐎̀𝐎̣𝐎̉𝐎̃𝐎̂𝐎̂́𝐎̂̀𝐎̣̂𝐎̂̉𝐎̂̃𝐎̛𝐎̛́𝐎̛̀𝐎̛̣𝐎̛̉𝐎̛̃𝐏𝐐𝐑𝐒𝐓𝐔𝐔́𝐔̀𝐔̣𝐔̉𝐔̃𝐔̛𝐔̛́𝐔̛̀𝐔̛̣𝐔̛̉𝐔̛̃𝐕𝐗𝐘𝐘́𝐘̀𝐘̣𝐘̉𝐘̃",
+                    unescape("%uD835%uDFCE%20%uD835%uDFCF%20%uD835%uDFD0%20%uD835%uDFD1%20%uD835%uDFD2%20%uD835%uDFD3%20%uD835%uDFD4%20%uD835%uDFD5%20%uD835%uDFD6%20%uD835%uDFD7%20%uD835%uDC1A%20%uD835%uDC1A%u0301%20%uD835%uDC1A%u0300%20%uD835%uDC1A%u0323%20%uD835%uDC1A%u0309%20%uD835%uDC1A%u0303%20%uD835%uDC1A%u0306%20%uD835%uDC1A%u0306%u0301%20%uD835%uDC1A%u0306%u0300%20%uD835%uDC1A%u0323%u0306%20%uD835%uDC1A%u0306%u0309%20%uD835%uDC1A%u0306%u0303%20%uD835%uDC1A%u0302%20%uD835%uDC1A%u0302%u0301%20%uD835%uDC1A%u0302%u0300%20%uD835%uDC1A%u0323%u0302%20%uD835%uDC1A%u0302%u0309%20%uD835%uDC1A%u0302%u0303%20%uD835%uDC1B%20%uD835%uDC1C%20%uD835%uDC1D%20%u0111%20%uD835%uDC1E%20%uD835%uDC1E%u0301%20%uD835%uDC1E%u0300%20%uD835%uDC1E%u0323%20%uD835%uDC1E%u0309%20%uD835%uDC1E%u0303%20%uD835%uDC1E%u0302%20%uD835%uDC1E%u0302%u0301%20%uD835%uDC1E%u0302%u0300%20%uD835%uDC1E%u0323%u0302%20%uD835%uDC1E%u0302%u0309%20%uD835%uDC1E%u0302%u0303%20%uD835%uDC20%20%uD835%uDC21%20%uD835%uDC22%20%uD835%uDC22%u0301%20%uD835%uDC22%u0300%20%uD835%uDC22%u0323%20%uD835%uDC22%u0309%20%uD835%uDC22%u0303%20%uD835%uDC24%20%uD835%uDC25%20%uD835%uDC26%20%uD835%uDC27%20%uD835%uDC28%20%uD835%uDC28%u0301%20%uD835%uDC28%u0300%20%uD835%uDC28%u0323%20%uD835%uDC28%u0309%20%uD835%uDC28%u0303%20%uD835%uDC28%u0302%20%uD835%uDC28%u0302%u0301%20%uD835%uDC28%u0302%u0300%20%uD835%uDC28%u0323%u0302%20%uD835%uDC28%u0302%u0309%20%uD835%uDC28%u0302%u0303%20%uD835%uDC28%u031B%20%uD835%uDC28%u031B%u0301%20%uD835%uDC28%u031B%u0300%20%uD835%uDC28%u031B%u0323%20%uD835%uDC28%u031B%u0309%20%uD835%uDC28%u031B%u0303%20%uD835%uDC29%20%uD835%uDC2A%20%uD835%uDC2B%20%uD835%uDC2C%20%uD835%uDC2D%20%uD835%uDC2E%20%uD835%uDC2E%u0301%20%uD835%uDC2E%u0300%20%uD835%uDC2E%u0323%20%uD835%uDC2E%u0309%20%uD835%uDC2E%u0303%20%uD835%uDC2E%u031B%20%uD835%uDC2E%u031B%u0301%20%uD835%uDC2E%u031B%u0300%20%uD835%uDC2E%u031B%u0323%20%uD835%uDC2E%u031B%u0309%20%uD835%uDC2E%u031B%u0303%20%uD835%uDC2F%20%uD835%uDC31%20%uD835%uDC32%20%uD835%uDC32%u0301%20%uD835%uDC32%u0300%20%uD835%uDC32%u0323%20%uD835%uDC32%u0309%20%uD835%uDC32%u0303%20%uD835%uDC00%20%uD835%uDC00%u0301%20%uD835%uDC00%u0300%20%uD835%uDC00%u0323%20%uD835%uDC00%u0309%20%uD835%uDC00%u0303%20%uD835%uDC00%u0306%20%uD835%uDC00%u0306%u0301%20%uD835%uDC00%u0306%u0300%20%uD835%uDC00%u0323%u0306%20%uD835%uDC00%u0306%u0309%20%uD835%uDC00%u0306%u0303%20%uD835%uDC00%u0302%20%uD835%uDC00%u0302%u0301%20%uD835%uDC00%u0302%u0300%20%uD835%uDC00%u0323%u0302%20%uD835%uDC00%u0302%u0309%20%uD835%uDC00%u0302%u0303%20%uD835%uDC01%20%uD835%uDC02%20%uD835%uDC03%20%u0110%20%uD835%uDC04%20%uD835%uDC04%u0301%20%uD835%uDC04%u0300%20%uD835%uDC04%u0323%20%uD835%uDC04%u0309%20%uD835%uDC04%u0303%20%uD835%uDC04%u0302%20%uD835%uDC04%u0302%u0301%20%uD835%uDC04%u0302%u0300%20%uD835%uDC04%u0323%u0302%20%uD835%uDC04%u0302%u0309%20%uD835%uDC04%u0302%u0303%20%uD835%uDC06%20%uD835%uDC07%20%uD835%uDC08%20%uD835%uDC08%u0301%20%uD835%uDC08%u0300%20%uD835%uDC08%u0323%20%uD835%uDC08%u0309%20%uD835%uDC08%u0303%20%uD835%uDC0A%20%uD835%uDC0B%20%uD835%uDC0C%20%uD835%uDC0D%20%uD835%uDC0E%20%uD835%uDC0E%u0301%20%uD835%uDC0E%u0300%20%uD835%uDC0E%u0323%20%uD835%uDC0E%u0309%20%uD835%uDC0E%u0303%20%uD835%uDC0E%u0302%20%uD835%uDC0E%u0302%u0301%20%uD835%uDC0E%u0302%u0300%20%uD835%uDC0E%u0323%u0302%20%uD835%uDC0E%u0302%u0309%20%uD835%uDC0E%u0302%u0303%20%uD835%uDC0E%u031B%20%uD835%uDC0E%u031B%u0301%20%uD835%uDC0E%u031B%u0300%20%uD835%uDC0E%u031B%u0323%20%uD835%uDC0E%u031B%u0309%20%uD835%uDC0E%u031B%u0303%20%uD835%uDC0F%20%uD835%uDC10%20%uD835%uDC11%20%uD835%uDC12%20%uD835%uDC13%20%uD835%uDC14%20%uD835%uDC14%u0301%20%uD835%uDC14%u0300%20%uD835%uDC14%u0323%20%uD835%uDC14%u0309%20%uD835%uDC14%u0303%20%uD835%uDC14%u031B%20%uD835%uDC14%u031B%u0301%20%uD835%uDC14%u031B%u0300%20%uD835%uDC14%u031B%u0323%20%uD835%uDC14%u031B%u0309%20%uD835%uDC14%u031B%u0303%20%uD835%uDC15%20%uD835%uDC17%20%uD835%uDC18%20%uD835%uDC18%u0301%20%uD835%uDC18%u0300%20%uD835%uDC18%u0323%20%uD835%uDC18%u0309%20%uD835%uDC18%u0303%20%7E%20%60%20%21%20@@%20%23%20%24%20%25%20%5E%20%26%20*%20%28%20%29%20_%20-%20+%20%3D%20%7C%20%20%7B%20%5B%20%7D%20%5D%20%3A%20%3B%20%22%20%27%20%3C%20%2C%20%3E%20.%20%3F%20/"),
                     //Bold(sans)
-                    "𝟬𝟭𝟮𝟯𝟰𝟱𝟲𝟳𝟴𝟵 𝗮𝗮́𝗮̀𝗮̣𝗮̉𝗮̃𝗮̆𝗮̆́𝗮̆̀𝗮̣̆𝗮̆̉𝗮̆̃𝗮̂𝗮̂́𝗮̂̀𝗮̣̂𝗮̂̉𝗮̂̃𝗯𝗰𝗱đ𝗲𝗲́𝗲̀𝗲̣𝗲̉𝗲̃𝗲̂𝗲̂́𝗲̂̀𝗲̣̂𝗲̂̉𝗲̂̃𝗴𝗵𝗶𝗶́𝗶̀𝗶̣𝗶̉𝗶̃𝗸𝗹𝗺𝗻𝗼𝗼́𝗼̀𝗼̣𝗼̉𝗼̃𝗼̂𝗼̂́𝗼̂̀𝗼̣̂𝗼̂̉𝗼̂̃𝗼̛𝗼̛́𝗼̛̀𝗼̛̣𝗼̛̉𝗼̛̃𝗽𝗾𝗿𝘀𝘁𝘂𝘂́𝘂̀𝘂̣𝘂̉𝘂̃𝘂̛𝘂̛́𝘂̛̀𝘂̛̣𝘂̛̉𝘂̛̃𝘃𝘅𝘆𝘆́𝘆̀𝘆̣𝘆̉𝘆̃𝗔𝗔́𝗔̀𝗔̣𝗔̉𝗔̃𝗔̆𝗔̆́𝗔̆̀𝗔̣̆𝗔̆̉𝗔̆̃𝗔̂𝗔̂́𝗔̂̀𝗔̣̂𝗔̂̉𝗔̂̃𝗕𝗖𝗗Đ𝗘𝗘́𝗘̀𝗘̣𝗘̉𝗘̃𝗘̂𝗘̂́𝗘̂̀𝗘̣̂𝗘̂̉𝗘̂̃𝗚𝗛𝗜𝗜́𝗜̀𝗜̣𝗜̉𝗜̃𝗞𝗟𝗠𝗡𝗢𝗢́𝗢̀𝗢̣𝗢̉𝗢̃𝗢̂𝗢̂́𝗢̂̀𝗢̣̂𝗢̂̉𝗢̂̃𝗢̛𝗢̛́𝗢̛̀𝗢̛̣𝗢̛̉𝗢̛̃𝗣𝗤𝗥𝗦𝗧𝗨𝗨́𝗨̀𝗨̣𝗨̉𝗨̃𝗨̛𝗨̛́𝗨̛̀𝗨̛̣𝗨̛̉𝗨̛̃𝗩𝗫𝗬𝗬́𝗬̀𝗬̣𝗬̉𝗬̃",
+                    unescape("%uD835%uDFEC%20%uD835%uDFED%20%uD835%uDFEE%20%uD835%uDFEF%20%uD835%uDFF0%20%uD835%uDFF1%20%uD835%uDFF2%20%uD835%uDFF3%20%uD835%uDFF4%20%uD835%uDFF5%20%uD835%uDDEE%20%uD835%uDDEE%u0301%20%uD835%uDDEE%u0300%20%uD835%uDDEE%u0323%20%uD835%uDDEE%u0309%20%uD835%uDDEE%u0303%20%uD835%uDDEE%u0306%20%uD835%uDDEE%u0306%u0301%20%uD835%uDDEE%u0306%u0300%20%uD835%uDDEE%u0323%u0306%20%uD835%uDDEE%u0306%u0309%20%uD835%uDDEE%u0306%u0303%20%uD835%uDDEE%u0302%20%uD835%uDDEE%u0302%u0301%20%uD835%uDDEE%u0302%u0300%20%uD835%uDDEE%u0323%u0302%20%uD835%uDDEE%u0302%u0309%20%uD835%uDDEE%u0302%u0303%20%uD835%uDDEF%20%uD835%uDDF0%20%uD835%uDDF1%20%u0111%20%uD835%uDDF2%20%uD835%uDDF2%u0301%20%uD835%uDDF2%u0300%20%uD835%uDDF2%u0323%20%uD835%uDDF2%u0309%20%uD835%uDDF2%u0303%20%uD835%uDDF2%u0302%20%uD835%uDDF2%u0302%u0301%20%uD835%uDDF2%u0302%u0300%20%uD835%uDDF2%u0323%u0302%20%uD835%uDDF2%u0302%u0309%20%uD835%uDDF2%u0302%u0303%20%uD835%uDDF4%20%uD835%uDDF5%20%uD835%uDDF6%20%uD835%uDDF6%u0301%20%uD835%uDDF6%u0300%20%uD835%uDDF6%u0323%20%uD835%uDDF6%u0309%20%uD835%uDDF6%u0303%20%uD835%uDDF8%20%uD835%uDDF9%20%uD835%uDDFA%20%uD835%uDDFB%20%uD835%uDDFC%20%uD835%uDDFC%u0301%20%uD835%uDDFC%u0300%20%uD835%uDDFC%u0323%20%uD835%uDDFC%u0309%20%uD835%uDDFC%u0303%20%uD835%uDDFC%u0302%20%uD835%uDDFC%u0302%u0301%20%uD835%uDDFC%u0302%u0300%20%uD835%uDDFC%u0323%u0302%20%uD835%uDDFC%u0302%u0309%20%uD835%uDDFC%u0302%u0303%20%uD835%uDDFC%u031B%20%uD835%uDDFC%u031B%u0301%20%uD835%uDDFC%u031B%u0300%20%uD835%uDDFC%u031B%u0323%20%uD835%uDDFC%u031B%u0309%20%uD835%uDDFC%u031B%u0303%20%uD835%uDDFD%20%uD835%uDDFE%20%uD835%uDDFF%20%uD835%uDE00%20%uD835%uDE01%20%uD835%uDE02%20%uD835%uDE02%u0301%20%uD835%uDE02%u0300%20%uD835%uDE02%u0323%20%uD835%uDE02%u0309%20%uD835%uDE02%u0303%20%uD835%uDE02%u031B%20%uD835%uDE02%u031B%u0301%20%uD835%uDE02%u031B%u0300%20%uD835%uDE02%u031B%u0323%20%uD835%uDE02%u031B%u0309%20%uD835%uDE02%u031B%u0303%20%uD835%uDE03%20%uD835%uDE05%20%uD835%uDE06%20%uD835%uDE06%u0301%20%uD835%uDE06%u0300%20%uD835%uDE06%u0323%20%uD835%uDE06%u0309%20%uD835%uDE06%u0303%20%uD835%uDDD4%20%uD835%uDDD4%u0301%20%uD835%uDDD4%u0300%20%uD835%uDDD4%u0323%20%uD835%uDDD4%u0309%20%uD835%uDDD4%u0303%20%uD835%uDDD4%u0306%20%uD835%uDDD4%u0306%u0301%20%uD835%uDDD4%u0306%u0300%20%uD835%uDDD4%u0323%u0306%20%uD835%uDDD4%u0306%u0309%20%uD835%uDDD4%u0306%u0303%20%uD835%uDDD4%u0302%20%uD835%uDDD4%u0302%u0301%20%uD835%uDDD4%u0302%u0300%20%uD835%uDDD4%u0323%u0302%20%uD835%uDDD4%u0302%u0309%20%uD835%uDDD4%u0302%u0303%20%uD835%uDDD5%20%uD835%uDDD6%20%uD835%uDDD7%20%u0110%20%uD835%uDDD8%20%uD835%uDDD8%u0301%20%uD835%uDDD8%u0300%20%uD835%uDDD8%u0323%20%uD835%uDDD8%u0309%20%uD835%uDDD8%u0303%20%uD835%uDDD8%u0302%20%uD835%uDDD8%u0302%u0301%20%uD835%uDDD8%u0302%u0300%20%uD835%uDDD8%u0323%u0302%20%uD835%uDDD8%u0302%u0309%20%uD835%uDDD8%u0302%u0303%20%uD835%uDDDA%20%uD835%uDDDB%20%uD835%uDDDC%20%uD835%uDDDC%u0301%20%uD835%uDDDC%u0300%20%uD835%uDDDC%u0323%20%uD835%uDDDC%u0309%20%uD835%uDDDC%u0303%20%uD835%uDDDE%20%uD835%uDDDF%20%uD835%uDDE0%20%uD835%uDDE1%20%uD835%uDDE2%20%uD835%uDDE2%u0301%20%uD835%uDDE2%u0300%20%uD835%uDDE2%u0323%20%uD835%uDDE2%u0309%20%uD835%uDDE2%u0303%20%uD835%uDDE2%u0302%20%uD835%uDDE2%u0302%u0301%20%uD835%uDDE2%u0302%u0300%20%uD835%uDDE2%u0323%u0302%20%uD835%uDDE2%u0302%u0309%20%uD835%uDDE2%u0302%u0303%20%uD835%uDDE2%u031B%20%uD835%uDDE2%u031B%u0301%20%uD835%uDDE2%u031B%u0300%20%uD835%uDDE2%u031B%u0323%20%uD835%uDDE2%u031B%u0309%20%uD835%uDDE2%u031B%u0303%20%uD835%uDDE3%20%uD835%uDDE4%20%uD835%uDDE5%20%uD835%uDDE6%20%uD835%uDDE7%20%uD835%uDDE8%20%uD835%uDDE8%u0301%20%uD835%uDDE8%u0300%20%uD835%uDDE8%u0323%20%uD835%uDDE8%u0309%20%uD835%uDDE8%u0303%20%uD835%uDDE8%u031B%20%uD835%uDDE8%u031B%u0301%20%uD835%uDDE8%u031B%u0300%20%uD835%uDDE8%u031B%u0323%20%uD835%uDDE8%u031B%u0309%20%uD835%uDDE8%u031B%u0303%20%uD835%uDDE9%20%uD835%uDDEB%20%uD835%uDDEC%20%uD835%uDDEC%u0301%20%uD835%uDDEC%u0300%20%uD835%uDDEC%u0323%20%uD835%uDDEC%u0309%20%uD835%uDDEC%u0303%20%7E%20%60%20%21%20@@%20%23%20%24%20%25%20%5E%20%26%20*%20%28%20%29%20_%20-%20+%20%3D%20%7C%20%20%7B%20%5B%20%7D%20%5D%20%3A%20%3B%20%22%20%27%20%3C%20%2C%20%3E%20.%20%3F%20/"),
+                    //Bold / italic (serif)
+                    unescape("0%201%202%203%204%205%206%207%208%209%20%uD835%uDC82%20%uD835%uDC82%u0301%20%uD835%uDC82%u0300%20%uD835%uDC82%u0323%20%uD835%uDC82%u0309%20%uD835%uDC82%u0303%20%uD835%uDC82%u0306%20%uD835%uDC82%u0306%u0301%20%uD835%uDC82%u0306%u0300%20%uD835%uDC82%u0323%u0306%20%uD835%uDC82%u0306%u0309%20%uD835%uDC82%u0306%u0303%20%uD835%uDC82%u0302%20%uD835%uDC82%u0302%u0301%20%uD835%uDC82%u0302%u0300%20%uD835%uDC82%u0323%u0302%20%uD835%uDC82%u0302%u0309%20%uD835%uDC82%u0302%u0303%20%uD835%uDC83%20%uD835%uDC84%20%uD835%uDC85%20%u0111%20%uD835%uDC86%20%uD835%uDC86%u0301%20%uD835%uDC86%u0300%20%uD835%uDC86%u0323%20%uD835%uDC86%u0309%20%uD835%uDC86%u0303%20%uD835%uDC86%u0302%20%uD835%uDC86%u0302%u0301%20%uD835%uDC86%u0302%u0300%20%uD835%uDC86%u0323%u0302%20%uD835%uDC86%u0302%u0309%20%uD835%uDC86%u0302%u0303%20%uD835%uDC88%20%uD835%uDC89%20%uD835%uDC8A%20%uD835%uDC8A%u0301%20%uD835%uDC8A%u0300%20%uD835%uDC8A%u0323%20%uD835%uDC8A%u0309%20%uD835%uDC8A%u0303%20%uD835%uDC8C%20%uD835%uDC8D%20%uD835%uDC8E%20%uD835%uDC8F%20%uD835%uDC90%20%uD835%uDC90%u0301%20%uD835%uDC90%u0300%20%uD835%uDC90%u0323%20%uD835%uDC90%u0309%20%uD835%uDC90%u0303%20%uD835%uDC90%u0302%20%uD835%uDC90%u0302%u0301%20%uD835%uDC90%u0302%u0300%20%uD835%uDC90%u0323%u0302%20%uD835%uDC90%u0302%u0309%20%uD835%uDC90%u0302%u0303%20%uD835%uDC90%u031B%20%uD835%uDC90%u031B%u0301%20%uD835%uDC90%u031B%u0300%20%uD835%uDC90%u031B%u0323%20%uD835%uDC90%u031B%u0309%20%uD835%uDC90%u031B%u0303%20%uD835%uDC91%20%uD835%uDC92%20%uD835%uDC93%20%uD835%uDC94%20%uD835%uDC95%20%uD835%uDC96%20%uD835%uDC96%u0301%20%uD835%uDC96%u0300%20%uD835%uDC96%u0323%20%uD835%uDC96%u0309%20%uD835%uDC96%u0303%20%uD835%uDC96%u031B%20%uD835%uDC96%u031B%u0301%20%uD835%uDC96%u031B%u0300%20%uD835%uDC96%u031B%u0323%20%uD835%uDC96%u031B%u0309%20%uD835%uDC96%u031B%u0303%20%uD835%uDC97%20%uD835%uDC99%20%uD835%uDC9A%20%uD835%uDC9A%u0301%20%uD835%uDC9A%u0300%20%uD835%uDC9A%u0323%20%uD835%uDC9A%u0309%20%uD835%uDC9A%u0303%20%uD835%uDC68%20%uD835%uDC68%u0301%20%uD835%uDC68%u0300%20%uD835%uDC68%u0323%20%uD835%uDC68%u0309%20%uD835%uDC68%u0303%20%uD835%uDC68%u0306%20%uD835%uDC68%u0306%u0301%20%uD835%uDC68%u0306%u0300%20%uD835%uDC68%u0323%u0306%20%uD835%uDC68%u0306%u0309%20%uD835%uDC68%u0306%u0303%20%uD835%uDC68%u0302%20%uD835%uDC68%u0302%u0301%20%uD835%uDC68%u0302%u0300%20%uD835%uDC68%u0323%u0302%20%uD835%uDC68%u0302%u0309%20%uD835%uDC68%u0302%u0303%20%uD835%uDC69%20%uD835%uDC6A%20%uD835%uDC6B%20%u0110%20%uD835%uDC6C%20%uD835%uDC6C%u0301%20%uD835%uDC6C%u0300%20%uD835%uDC6C%u0323%20%uD835%uDC6C%u0309%20%uD835%uDC6C%u0303%20%uD835%uDC6C%u0302%20%uD835%uDC6C%u0302%u0301%20%uD835%uDC6C%u0302%u0300%20%uD835%uDC6C%u0323%u0302%20%uD835%uDC6C%u0302%u0309%20%uD835%uDC6C%u0302%u0303%20%uD835%uDC6E%20%uD835%uDC6F%20%uD835%uDC70%20%uD835%uDC70%u0301%20%uD835%uDC70%u0300%20%uD835%uDC70%u0323%20%uD835%uDC70%u0309%20%uD835%uDC70%u0303%20%uD835%uDC72%20%uD835%uDC73%20%uD835%uDC74%20%uD835%uDC75%20%uD835%uDC76%20%uD835%uDC76%u0301%20%uD835%uDC76%u0300%20%uD835%uDC76%u0323%20%uD835%uDC76%u0309%20%uD835%uDC76%u0303%20%uD835%uDC76%u0302%20%uD835%uDC76%u0302%u0301%20%uD835%uDC76%u0302%u0300%20%uD835%uDC76%u0323%u0302%20%uD835%uDC76%u0302%u0309%20%uD835%uDC76%u0302%u0303%20%uD835%uDC76%u031B%20%uD835%uDC76%u031B%u0301%20%uD835%uDC76%u031B%u0300%20%uD835%uDC76%u031B%u0323%20%uD835%uDC76%u031B%u0309%20%uD835%uDC76%u031B%u0303%20%uD835%uDC77%20%uD835%uDC78%20%uD835%uDC79%20%uD835%uDC7A%20%uD835%uDC7B%20%uD835%uDC7C%20%uD835%uDC7C%u0301%20%uD835%uDC7C%u0300%20%uD835%uDC7C%u0323%20%uD835%uDC7C%u0309%20%uD835%uDC7C%u0303%20%uD835%uDC7C%u031B%20%uD835%uDC7C%u031B%u0301%20%uD835%uDC7C%u031B%u0300%20%uD835%uDC7C%u031B%u0323%20%uD835%uDC7C%u031B%u0309%20%uD835%uDC7C%u031B%u0303%20%uD835%uDC7D%20%uD835%uDC7F%20%uD835%uDC80%20%uD835%uDC80%u0301%20%uD835%uDC80%u0300%20%uD835%uDC80%u0323%20%uD835%uDC80%u0309%20%uD835%uDC80%u0303%20%7E%20%60%20%21%20@@%20%23%20%24%20%25%20%5E%20%26%20*%20%28%20%29%20_%20-%20+%20%3D%20%7C%20%20%7B%20%5B%20%7D%20%5D%20%3A%20%3B%20%22%20%27%20%3C%20%2C%20%3E%20.%20%3F%20/")                    
                 ];
-                var obj = { 0: "𝗲̂𝗲̂́" };
-                var assetObjectFonts = [
-                    //bold serif
-                    [
-                        { 0: '𝟎' }, { 1: '𝟏' }, { 2: '𝟐' }, { 3: '𝟑' }, { 4: '𝟒' }, { 5: '𝟓' }, { 6: '𝟔' }, { 7: '𝟕' }, { 8: '𝟖' }, { 9: '𝟗' },
-                        { a: '𝐚' }, { á: '𝐚́' }, { à: '𝐚̀' }, { ạ: '𝐚̣' }, { ả: '𝐚̉' }, { ã: '𝐚̃' }, { ă: '𝐚̆' }, { ắ: '𝐚̆́' }, { ằ: '𝐚̆̀' }, { ặ: '𝐚̣̆' }, { ẳ: '𝐚̆̉' }, { ẵ: '𝐚̆̃' }, { â: '𝐚̂' }, { ấ: '𝐚̂́' }, { ầ: '𝐚̂̀' }, { ậ: '𝐚̣̂' }, { ẩ: '𝐚̂̉' },
-                        { ẫ: '𝐚̂̃' }, { b: '𝐛' }, { c: '𝐜' }, { d: '𝐝' }, { đ: 'đ' }, { e: '𝐞' }, { é: '𝐞́' }, { è: '𝐞̀' }, { ẹ: '𝐞̣' }, { ẻ: '𝐞̉' }, { ẽ: '𝐞̃' }, { ê: '𝐞̂' }, { ế: '𝐞̂́' }, { ề: '𝐞̂̀' }, { ệ: '𝐞̣̂' }, { ể: '𝐞̂̉' }, { ễ: '𝐞̂̃' },
-                        { g: '𝐠' }, { h: '𝐡' }, { i: '𝐢' }, { í: '𝐢́' }, { ì: '𝐢̀' }, { ị: '𝐢̣' }, { ỉ: '𝐢̉' }, { ĩ: '𝐢̃' }, { k: '𝐤' }, { l: '𝐥' }, { m: 'm' }, { n: 'n' }, { o: 'o' }, { ó: 'ó' }, { ò: 'ò' }, { ọ: 'ọ' }, { ỏ: 'ỏ' },
-                        { õ: 'õ' }, { ô: 'ô' }, { ố: 'ố' }, { ồ: 'ồ' }, { ộ: 'ộ' }, { ổ: 'ổ' }, { ỗ: 'ỗ' }, { ơ: 'ơ' }, { ớ: 'ớ' }, { ờ: 'ờ' }, { ợ: 'ợ' }, { ở: 'ở' }, { ỡ: 'ỡ' }, { p: 'p' }, { q: 'q' }, { r: 'r' }, { s: 's' },
-                        { t: 't' }, { u: 'u' }, { ú: 'ú' }, { ù: 'ù' }, { ụ: 'ụ' }, { ủ: 'ủ' }, { ũ: 'ũ' }, { ư: 'ư' }, { ứ: 'ứ' }, { ừ: 'ừ' }, { ự: 'ự' }, { ử: 'ử' }, { ữ: 'ữ' }, { v: 'v' }, { x: 'x' }, { y: 'y' }, { ý: 'ý' },
-                        { ỳ: 'ỳ' }, { ỵ: 'ỵ' }, { ỷ: 'ỷ' }, { ỹ: 'ỹ' }, { A: 'A' }, { Á: 'Á' }, { À: 'À' }, { Ạ: 'Ạ' }, { Ả: 'Ả' }, { Ã: 'Ã' }, { Ă: 'Ă' }, { Ắ: 'Ắ' }, { Ằ: 'Ằ' }, { Ặ: 'Ặ' }, { Ẳ: 'Ẳ' }, { Ẵ: 'Ẵ' }, { Â: 'Â' },
-                        { Ấ: 'Ấ' }, { Ầ: 'Ầ' }, { Ậ: 'Ậ' }, { Ẩ: 'Ẩ' }, { Ẫ: 'Ẫ' }, { B: 'B' }, { C: 'C' }, { D: 'D' }, { Đ: 'Đ' }, { E: 'E' }, { É: 'É' }, { È: 'È' }, { Ẹ: 'Ẹ' }, { Ẻ: 'Ẻ' }, { Ẽ: 'Ẽ' }, { Ê: 'Ê' }, { Ế: 'Ế' },
-                        { Ề: 'Ề' }, { Ệ: 'Ệ' }, { Ể: 'Ể' }, { Ễ: 'Ễ' }, { G: 'G' }, { H: 'H' }, { I: 'I' }, { Í: 'Í' }, { Ì: 'Ì' }, { Ị: 'Ị' }, { Ỉ: 'Ỉ' }, { Ĩ: 'Ĩ' }, { K: 'K' }, { L: 'L' }, { M: 'M' }, { N: 'N' }, { O: 'O' },
-                        { Ó: 'Ó' }, { Ò: 'Ò' }, { Ọ: 'Ọ' }, { Ỏ: 'Ỏ' }, { Õ: 'Õ' }, { Ô: 'Ô' }, { Ố: 'Ố' }, { Ồ: 'Ồ' }, { Ộ: 'Ộ' }, { Ổ: 'Ổ' }, { Ỗ: 'Ỗ' }, { Ơ: 'Ơ' }, { Ớ: 'Ớ' }, { Ờ: 'Ờ' }, { Ợ: 'Ợ' }, { Ở: 'Ở' }, { Ỡ: 'Ỡ' },
-                        { P: 'P' }, { Q: 'Q' }, { R: 'R' }, { S: 'S' }, { T: 'T' }, { U: 'U' }, { Ú: 'Ú' }, { Ù: 'Ù' }, { Ụ: 'Ụ' }, { Ủ: 'Ủ' }, { Ũ: 'Ũ' }, { Ư: 'Ư' }, { Ứ: 'Ứ' }, { Ừ: 'Ừ' }, { Ự: 'Ự' }, { Ử: 'Ử' }, { Ữ: 'Ữ' },
-                        { V: 'V' }, { X: 'X' }, { Y: 'Y' }, { Ý: 'Ý' }, { Ỳ: 'Ỳ' }, { Ỵ: 'Ỵ' }, { Ỷ: 'Ỷ' }, { Ỹ: 'Ỹ' }                        
-                    ],
-                    [
 
-                    ],
-                ];
+                (function () {
+                    let liTag = '';
+                    $(assetFonts).each(function (index, item) {
+                        liTag += "<li></li>";
+                    });
+                    $('.mshop-tool-post.tool ul').html(liTag);
+                })();
 
                 //----------------------------------FUNCTION----------------------------
-                function convertCharFont(indexFont,chars) {
-                    let charReturn = [];
-                    let charFonts = assetObjectFonts[indexFont];
-                    let charFontRoots = assetFonts[0];
-                    $(chars).each(function (index, item) {
-                        let indexChar = charFontRoots.indexOf(item);
-                        charReturn.push(charFonts[indexChar]);
+                function convertCharFont(indexFont, chars) {
+                    let charReturn = '';
+                    let fonts = assetFonts[indexFont].split(' ');
+                    chars.forEach(function (c) {
+                        //get index in root
+                        let i = assetRootArray.indexOf(c);
+                        if (i == -1)
+                            charReturn += c;
+                        else
+                            charReturn += fonts[i];
                     });
 
                     return charReturn;
                 }
 
+                function clearFont(text) {
+                    let returnText = '';
+                    let cTextEscape = escape(text);
+                    let spaceEscape = escape(' ');
+
+                    while (cTextEscape != '') {
+                        if (cTextEscape.startsWith('%')) {
+                            assetFonts.forEach(function (item) {
+                                let chars = item.split(' ');
+                                chars.forEach(function (item, index) {
+                                    let charEscape = escape(item);
+                                    if (cTextEscape.startsWith(spaceEscape)) {
+                                        returnText += ' ';
+                                        cTextEscape = cTextEscape.replace(spaceEscape, '');
+                                    }
+
+                                    if (cTextEscape.startsWith(charEscape)) {
+                                        returnText += assetRootArray[index];
+                                        cTextEscape = cTextEscape.replace(charEscape, '');
+                                        return;
+                                    }
+                                });
+                            });
+                        }
+                        else {
+                            returnText += cTextEscape.charAt(0);
+                            cTextEscape = cTextEscape.replace(cTextEscape.charAt(0), '');
+                        }
+                    }
+
+
+
+                    return returnText;
+                }
+
                 //----------------------------------EVENT----------------------------
                 $('.mshop-tool-post.tool ul li').on('click', function (e) {
+                    let startSelect = $(e.target).data('start-select');
+                    let endSelect = $(e.target).data('end-select');
                     let text = $(e.target).text();
+
+                    let textContain = $('.content-edit textarea').text();
+                    let textReplace = textContain.substring(0, startSelect) + text + textContain.substring(endSelect);
+
+                    $('.content-edit textarea').text(textReplace);
+
+                    $('.content-edit textarea')[0].setSelectionRange(startSelect, startSelect + text.length);
                 });
                 $(".mshop-tool-post.content textarea").select(function (e) {
-                    let textRoot = $(e.target).text();
+                    let textRoot = $(e.target).val();
                     let startSelect = $(e.target)[0].selectionStart;
-                    let startEnd = $(e.target)[0].selectionEnd;
-                    let textSelected = textRoot.substring(startSelect, startEnd);
+                    let endSelect = $(e.target)[0].selectionEnd;
+                    let textSelected = textRoot.substring(startSelect, endSelect);
+
+                    //clear font
+                    textSelected = clearFont(textSelected); console.log(textSelected);
 
                     $('.mshop-tool-post.tool ul li').each(function (index, selector) {
                         let chars = textSelected.split('');
                         $(selector).text(convertCharFont(index, chars));
                     });
+
+                    $('.mshop-tool-post.tool ul li').data('start-select', startSelect);
+                    $('.mshop-tool-post.tool ul li').data('end-select', endSelect);
                 });
             })();
         </script>
