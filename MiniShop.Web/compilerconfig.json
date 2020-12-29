@@ -114,5 +114,9 @@
   {
     "outputFile": "wwwroot/css/client/posts.css",
     "inputFile": "wwwroot/css/client/posts.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/client/loader-newton.css",
+    "inputFile": "wwwroot/css/client/loader-newton.scss"
   }
 ]
