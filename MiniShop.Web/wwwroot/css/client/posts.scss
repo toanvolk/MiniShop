@@ -11,7 +11,7 @@
         margin-top: 5px;
     }
 
-    .mshop-tool-post.tool {
+    .mshop-tool-post.tool, .mshop-tool-post.template {
         /* List */
         ul {
             counter-reset: index;
@@ -62,5 +62,29 @@
         color: white;
         background-color: #12961e;
         font-weight: 600;
+    }
+
+    label.font-info {
+        border: 1px solid #ccc;
+        width: 100%;
+        text-align: center;
+        margin-top: 0.75em;
+        height: 3em;
+        padding-top: 0.7em;
+        border-radius: 2em 0em;
+        background: #6967ce;
+        color: white;
+    }
+
+    label.font-template {
+        border: 1px solid #ccc;
+        width: 100%;
+        text-align: center;
+        margin-top: 0.75em;
+        height: 3em;
+        padding-top: 0.7em;
+        border-radius: 2em 0em;
+        background: #6967ce;
+        color: white;
     }
 }

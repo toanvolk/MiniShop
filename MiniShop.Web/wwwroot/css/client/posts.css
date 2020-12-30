@@ -7,24 +7,24 @@
 #mshop-tool-post .button-action {
   margin-top: 5px; }
 
-#mshop-tool-post .mshop-tool-post.tool {
+#mshop-tool-post .mshop-tool-post.tool, #mshop-tool-post .mshop-tool-post.template {
   /* List */
   /* List element */
   /* Element counter */
   /* Element separation */ }
-  #mshop-tool-post .mshop-tool-post.tool ul {
+  #mshop-tool-post .mshop-tool-post.tool ul, #mshop-tool-post .mshop-tool-post.template ul {
     counter-reset: index;
     padding: 0;
     max-width: 300px; }
-  #mshop-tool-post .mshop-tool-post.tool li {
+  #mshop-tool-post .mshop-tool-post.tool li, #mshop-tool-post .mshop-tool-post.template li {
     counter-increment: index;
     display: flex;
     align-items: center;
     padding: 12px 0;
     box-sizing: border-box; }
-  #mshop-tool-post .mshop-tool-post.tool li:hover {
+  #mshop-tool-post .mshop-tool-post.tool li:hover, #mshop-tool-post .mshop-tool-post.template li:hover {
     cursor: pointer; }
-  #mshop-tool-post .mshop-tool-post.tool li::before {
+  #mshop-tool-post .mshop-tool-post.tool li::before, #mshop-tool-post .mshop-tool-post.template li::before {
     content: counters(index, ".", decimal-leading-zero);
     font-size: 1.5rem;
     text-align: right;
@@ -38,7 +38,7 @@
     background-attachment: fixed;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent; }
-  #mshop-tool-post .mshop-tool-post.tool li + li {
+  #mshop-tool-post .mshop-tool-post.tool li + li, #mshop-tool-post .mshop-tool-post.template li + li {
     border-top: 1px solid rgba(255, 255, 255, 0.2); }
 
 #mshop-tool-post span.copy-status {
@@ -51,3 +51,25 @@
   color: white;
   background-color: #12961e;
   font-weight: 600; }
+
+#mshop-tool-post label.font-info {
+  border: 1px solid #ccc;
+  width: 100%;
+  text-align: center;
+  margin-top: 0.75em;
+  height: 3em;
+  padding-top: 0.7em;
+  border-radius: 2em 0em;
+  background: #6967ce;
+  color: white; }
+
+#mshop-tool-post label.font-template {
+  border: 1px solid #ccc;
+  width: 100%;
+  text-align: center;
+  margin-top: 0.75em;
+  height: 3em;
+  padding-top: 0.7em;
+  border-radius: 2em 0em;
+  background: #6967ce;
+  color: white; }
