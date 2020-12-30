@@ -38,6 +38,7 @@
     <link rel='stylesheet' href='https://storage.googleapis.com/code.getmdl.io/1.0.1/material.teal-red.min.css'>
     <link href="~/css/client/loader-newton.min.css" rel="stylesheet" />
     <link href="~/css/client/posts.css" rel="stylesheet" />
+    
 }
 
 <partial name="../Home/_nav.cshtml" />
@@ -57,265 +58,18 @@
                     <span></span>
                 </div>
             </div>
+            <div class="row button-action">
+                <button class="btn btn-primary" id="btn-copy">Sao chép</button>
+                <span class="copy-status">Đã sao chép</span>
+            </div>
             <div class="row content-edit">
                 <textarea rows="20" class="form-control"></textarea>
             </div>
-            <div class="icon-group">
-                <div class="list clearfix" data-cat="people">
-                    <span class="emoji emoji1f600" data-c="😀" role="button" title="Mặt cười" data-s="Mặt cười Grinning face"></span>
-                    <span class="emoji emoji1f603" data-c="😃" role="button" title="Mặt cười với miệng há" data-s="Mặt cười với miệng há Smiling face with open mouth"></span>
-                    <span class="emoji emoji1f604" data-c="😄" role="button" title="Mặt cười với miệng há và đôi mắt cười" data-s="Mặt cười với miệng há và đôi mắt cười Smiling face with open mouth and smiling eyes"></span>
-                    <span class="emoji emoji1f601" data-c="😁" role="button" title="Khuôn mặt cười toe toét với đôi mắt cười" data-s="Khuôn mặt cười toe toét với đôi mắt cười Grinning face with smiling eyes"></span>
-                    <span class="emoji emoji1f606" data-c="😆" role="button" title="Mặt cười với miệng há và đôi mắt nhắm chặt" data-s="Mặt cười với miệng há và đôi mắt nhắm chặt Smiling face with open mouth and tightly-closed eyes"></span>
-                    <span class="emoji emoji1f605" data-c="😅" role="button" title="Mặt cười với miệng há và toát mồ hôi" data-s="Mặt cười với miệng há và toát mồ hôi Smiling face with open mouth and cold sweat"></span>
-                    <span class="emoji emoji1f602" data-c="😂" role="button" title="Khuôn mặt với giọt nước mắt vui mừng" data-s="Khuôn mặt với giọt nước mắt vui mừng Face with tears of joy"></span>
-                    <span class="emoji emoji1f923" data-c="🤣" role="button" title="Cười lăn cười bò" data-s="Cười lăn cười bò Rolling on the floor laughing"></span>
-                    <span class="emoji emoji263a"  data-c="☺️" role="button" title="Mặt cười màu trắng" data-s="Mặt cười màu trắng White smiling face"></span>
-                    <span class="emoji emoji1f60a" data-c="😊" role="button" title="Mặt cười với đôi mắt cười" data-s="Mặt cười với đôi mắt cười Smiling face with smiling eyes"></span>
-                    <span class="emoji emoji1f607" data-c="😇" role="button" title="Mặt cười với vầng hào quang" data-s="Mặt cười với vầng hào quang Smiling face with halo"></span>
-                    <span class="emoji emoji1f642" data-c="🙂" role="button" title="Mặt mỉm cười" data-s="Mặt mỉm cười Slightly smiling face"></span>
-                    <span class="emoji emoji1f643" data-c="🙃" role="button" title="Mặt lộn ngược" data-s="Mặt lộn ngược Upside-down face"></span>
-                    <span class="emoji emoji1f609" data-c="😉" role="button" title="Mặt nháy mắt" data-s="Mặt nháy mắt Winking face"></span>
-                    <span class="emoji emoji1f60c" data-c="😌" role="button" title="Mặt thanh thản" data-s="Mặt thanh thản Relieved face"></span>
-                    <span class="emoji emoji1f60d" data-c="😍" role="button" title="Mặt cười với đôi mắt hình trái tim" data-s="Mặt cười với đôi mắt hình trái tim Smiling face with heart-shaped eyes"></span>
-                    <span class="emoji emoji1f970" data-c="🥰" role="button" title="khuôn mặt mỉm cười có trái tim" data-s="khuôn mặt mỉm cười có trái tim Smiling face with 3 hearts"></span>
-                    <span class="emoji emoji1f618" data-c="😘" role="button" title="Mặt đang gửi một nụ hôn" data-s="Mặt đang gửi một nụ hôn Face throwing a kiss"></span>
-                    <span class="emoji emoji1f617" data-c="😗" role="button" title="Mặt đang hôn" data-s="Mặt đang hôn Kissing face"></span>
-                    <span class="emoji emoji1f619" data-c="😙" role="button" title="Mặt đang hôn với đôi mắt cười" data-s="Mặt đang hôn với đôi mắt cười Kissing face with smiling eyes"></span>
-                    <span class="emoji emoji1f61a" data-c="😚" role="button" title="Mặt đang hôn với đôi mắt nhắm" data-s="Mặt đang hôn với đôi mắt nhắm Kissing face with closed eyes"></span>
-                    <span class="emoji emoji1f60b" data-c="😋" role="button" title="Mặt nhấm nháp thức ăn ngon" data-s="Mặt nhấm nháp thức ăn ngon Face savouring delicious food"></span>
-                    <span class="emoji emoji1f61b" data-c="😛" role="button" title="Mặt lè lưỡi" data-s="Mặt lè lưỡi Face with stuck-out tongue"></span>
-                    <span class="emoji emoji1f61d" data-c="😝" role="button" title="Mặt lè lưỡi và đôi mắt nhắm chặt" data-s="Mặt lè lưỡi và đôi mắt nhắm chặt Face with stuck-out tongue and tightly-closed eyes"></span>
-                    <span class="emoji emoji1f61c" data-c="😜" role="button" title="Mặt lè lưỡi và nháy mắt" data-s="Mặt lè lưỡi và nháy mắt Face with stuck-out tongue and winking eye"></span>
-                    <span class="emoji emoji1f92a" data-c="🤪" role="button" title="Mặt khờ" data-s="Mặt khờ Zany face"></span>
-                    <span class="emoji emoji1f928" data-c="🤨" role="button" title="Mặt nhíu mày" data-s="Mặt nhíu mày Face with raised eyebrow"></span>
-                    <span class="emoji emoji1f9d0" data-c="🧐" role="button" title="Mặt đeo kính một mắt" data-s="Mặt đeo kính một mắt Face with monocle"></span>
-                    <span class="emoji emoji1f913" data-c="🤓" role="button" title="Mặt chán ngắt" data-s="Mặt chán ngắt Nerd face"></span>
-                    <span class="emoji emoji1f60e" data-c="😎" role="button" title="Mặt cười với kính râm" data-s="Mặt cười với kính râm Smiling face with sunglasses"></span>
-                    <span class="emoji emoji1f929" data-c="🤩" role="button" title="Mơ làm ngôi sao" data-s="Mơ làm ngôi sao Star-struck"></span>
-                    <span class="emoji emoji1f973" data-c="🥳" role="button" title="khuôn mặt tiệc tùng" data-s="khuôn mặt tiệc tùng Partying face"></span>
-                    <span class="emoji emoji1f60f" data-c="😏" role="button" title="Mặt cười giả tạo" data-s="Mặt cười giả tạo Smirking face"></span>
-                    <span class="emoji emoji1f612" data-c="😒" role="button" title="Mặt buồn rầu" data-s="Mặt buồn rầu Unamused face"></span>
-                    <span class="emoji emoji1f61e" data-c="😞" role="button" title="Mặt thất vọng" data-s="Mặt thất vọng Disappointed face"></span>
-                    <span class="emoji emoji1f614" data-c="😔" role="button" title="Mặt trầm ngâm" data-s="Mặt trầm ngâm Pensive face"></span>
-                    <span class="emoji emoji1f61f" data-c="😟" role="button" title="Mặt lo lắng" data-s="Mặt lo lắng Worried face"></span>
-                    <span class="emoji emoji1f615" data-c="😕" role="button" title="Mặt bối rối" data-s="Mặt bối rối Confused face"></span>
-                    <span class="emoji emoji1f641" data-c="🙁" role="button" title="Mặt hơi cau có" data-s="Mặt hơi cau có Slightly frowning face"></span>
-                    <span class="emoji emoji2639" data-c="☹️" role="button" title="Mặt cau có" data-s="Mặt cau có White frowning face"></span>
-                    <span class="emoji emoji1f623" data-c="😣" role="button" title="Mặt kiên nhẫn" data-s="Mặt kiên nhẫn Persevering face"></span>
-                    <span class="emoji emoji1f616" data-c="😖" role="button" title="Mặt bực bội" data-s="Mặt bực bội Confounded face"></span>
-                    <span class="emoji emoji1f62b" data-c="😫" role="button" title="Mặt mệt mỏi" data-s="Mặt mệt mỏi Tired face"></span>
-                    <span class="emoji emoji1f629" data-c="😩" role="button" title="Mặt mệt lử" data-s="Mặt mệt lử Weary face"></span>
-                    <span class="emoji emoji1f97a" data-c="🥺" role="button" title="khuôn mặt cầu xin" data-s="khuôn mặt cầu xin Pleading face"></span>
-                    <span class="emoji emoji1f622" data-c="😢" role="button" title="Mặt khóc" data-s="Mặt khóc Crying face"></span>
-                    <span class="emoji emoji1f62d" data-c="😭" role="button" title="Mặt khóc òa" data-s="Mặt khóc òa Loudly crying face"></span>
-                    <span class="emoji emoji1f624" data-c="😤" role="button" title="Mặt giận dữ" data-s="Mặt giận dữ Face with look of triumph"></span>
-                    <span class="emoji emoji1f620" data-c="😠" role="button" title="Mặt giận dữ" data-s="Mặt giận dữ Angry face"></span>
-                    <span class="emoji emoji1f621" data-c="😡" role="button" title="Mặt hờn dỗi" data-s="Mặt hờn dỗi Pouting face"></span>
-                    <span class="emoji emoji1f92c" data-c="🤬" role="button" title="Mặt có biểu tượng che miệng" data-s="Mặt có biểu tượng che miệng Face with symbols over mouth"></span>
-                    <span class="emoji emoji1f92f" data-c="🤯" role="button" title="Nổ đầu" data-s="Nổ đầu Exploding head"></span>
-                    <span class="emoji emoji1f633" data-c="😳" role="button" title="Mặt xúc động" data-s="Mặt xúc động Flushed face"></span>
-                    <span class="emoji emoji1f975" data-c="🥵" role="button" title="khuôn mặt nóng" data-s="khuôn mặt nóng Hot face"></span>
-                    <span class="emoji emoji1f976" data-c="🥶" role="button" title="khuôn mặt lạnh" data-s="khuôn mặt lạnh Cold face"></span>
-                    <span class="emoji emoji1f631" data-c="😱" role="button" title="Mặt la hét vì sợ hãi" data-s="Mặt la hét vì sợ hãi Face screaming in fear"></span>
-                    <span class="emoji emoji1f628" data-c="😨" role="button" title="Mặt sợ hãi" data-s="Mặt sợ hãi Fearful face"></span>
-                    <span class="emoji emoji1f630" data-c="😰" role="button" title="Mặt há miệng và toát mồ hôi" data-s="Mặt há miệng và toát mồ hôi Face with open mouth and cold sweat"></span>
-                    <span class="emoji emoji1f625" data-c="😥" role="button" title="Mặt thất vọng nhưng thanh thản" data-s="Mặt thất vọng nhưng thanh thản Disappointed but relieved face"></span>
-                    <span class="emoji emoji1f613" data-c="😓" role="button" title="Mặt toát mồ hôi" data-s="Mặt toát mồ hôi Face with cold sweat"></span>
-                    <span class="emoji emoji1f917" data-c="🤗" role="button" title="Mặt ôm" data-s="Mặt ôm Hugging face"></span>
-                    <span class="emoji emoji1f914" data-c="🤔" role="button" title="Mặt suy nghĩ" data-s="Mặt suy nghĩ Thinking face"></span>
-                    <span class="emoji emoji1f92d" data-c="🤭" role="button" title="Mặt có tay che miệng" data-s="Mặt có tay che miệng Face with hand over mouth"></span>
-                    <span class="emoji emoji1f92b" data-c="🤫" role="button" title="Mặt suỵt im lặng" data-s="Mặt suỵt im lặng Shushing face"></span>
-                    <span class="emoji emoji1f925" data-c="🤥" role="button" title="Mặt mũi dài" data-s="Mặt mũi dài Lying face"></span>
-                    <span class="emoji emoji1f636" data-c="😶" role="button" title="Khuôn mặt không có miệng" data-s="Khuôn mặt không có miệng Face without mouth"></span>
-                    <span class="emoji emoji1f610" data-c="😐" role="button" title="Mặt trung lập" data-s="Mặt trung lập Neutral face"></span>
-                    <span class="emoji emoji1f611" data-c="😑" role="button" title="Mặt vô cảm" data-s="Mặt vô cảm Expressionless face"></span>
-                    <span class="emoji emoji1f62c" data-c="😬" role="button" title="Mặt nhăn nhó" data-s="Mặt nhăn nhó Grimacing face"></span>
-                    <span class="emoji emoji1f644" data-c="🙄" role="button" title="Mặt với mắt trợn" data-s="Mặt với mắt trợn Face with rolling eyes"></span>
-                    <span class="emoji emoji1f62f" data-c="😯" role="button" title="Mặt ngơ ngác" data-s="Mặt ngơ ngác Hushed face"></span>
-                    <span class="emoji emoji1f626" data-c="😦" role="button" title="Mặt cau có với miệng há" data-s="Mặt cau có với miệng há Frowning face with open mouth"></span>
-                    <span class="emoji emoji1f627" data-c="😧" role="button" title="Khuôn mặt đau khổ" data-s="Khuôn mặt đau khổ Anguished face"></span>
-                    <span class="emoji emoji1f62e" data-c="😮" role="button" title="Mặt há miệng" data-s="Mặt há miệng Face with open mouth"></span>
-                    <span class="emoji emoji1f632" data-c="😲" role="button" title="Mặt ngạc nhiên" data-s="Mặt ngạc nhiên Astonished face"></span>
-                    <span class="emoji emoji1f971" data-c="🥱" role="button" title="Khuôn mặt ngáp ngủ" data-s="Khuôn mặt ngáp ngủ Yawning face"></span>
-                    <span class="emoji emoji1f634" data-c="😴" role="button" title="Mặt buồn ngủ" data-s="Mặt buồn ngủ Sleeping face"></span>
-                    <span class="emoji emoji1f924" data-c="🤤" role="button" title="Mặt chảy nước miếng" data-s="Mặt chảy nước miếng Drooling face"></span>
-                    <span class="emoji emoji1f62a" data-c="😪" role="button" title="Mặt buồn ngủ" data-s="Mặt buồn ngủ Sleepy face"></span>
-                    <span class="emoji emoji1f635" data-c="😵" role="button" title="Mặt choáng váng" data-s="Mặt choáng váng Dizzy face"></span>
-                    <span class="emoji emoji1f910" data-c="🤐" role="button" title="Mặt với miệng có khóa kéo" data-s="Mặt với miệng có khóa kéo Zipper-mouth face"></span>
-                    <span class="emoji emoji1f974" data-c="🥴" role="button" title="khuôn mặt choáng váng" data-s="khuôn mặt choáng váng Woozy face"></span>
-                    <span class="emoji emoji1f922" data-c="🤢" role="button" title="Mặt buồn nôn" data-s="Mặt buồn nôn Nauseated face"></span>
-                    <span class="emoji emoji1f92e" data-c="🤮" role="button" title="Mặt nôn" data-s="Mặt nôn Face vomiting"></span>
-                    <span class="emoji emoji1f927" data-c="🤧" role="button" title="Mặt hắt hơi" data-s="Mặt hắt hơi Sneezing face"></span>
-                    <span class="emoji emoji1f637" data-c="😷" role="button" title="Khuôn mặt đeo khẩu trang y tế" data-s="Khuôn mặt đeo khẩu trang y tế Face with medical mask"></span>
-                    <span class="emoji emoji1f912" data-c="🤒" role="button" title="Mặt với nhiệt kế" data-s="Mặt với nhiệt kế Face with thermometer"></span>
-                    <span class="emoji emoji1f915" data-c="🤕" role="button" title="Mặt với đầu băng bó" data-s="Mặt với đầu băng bó Face with head-bandage"></span>
-                    <span class="emoji emoji1f911" data-c="🤑" role="button" title="Mặt miệng ngậm tiền" data-s="Mặt miệng ngậm tiền Money-mouth face"></span>
-                    <span class="emoji emoji1f920" data-c="🤠" role="button" title="Mặt đội mũ cao bồi" data-s="Mặt đội mũ cao bồi Cowboy hat face"></span>
-                    <span class="emoji emoji1f608" data-c="😈" role="button" title="Mặt có sừng cười" data-s="Mặt có sừng cười Smiling face with horns"></span>
-                    <span class="emoji emoji1f47f" data-c="👿" role="button" title="Tiểu yêu" data-s="Tiểu yêu Imp"></span>
-                    <span class="emoji emoji1f479" data-c="👹" role="button" title="Yêu quái Nhật Bản" data-s="Yêu quái Nhật Bản Japanese ogre"></span>
-                    <span class="emoji emoji1f47a" data-c="👺" role="button" title="Yêu tinh Nhật Bản" data-s="Yêu tinh Nhật Bản Japanese goblin"></span>
-                    <span class="emoji emoji1f921" data-c="🤡" role="button" title="Mặt chú hề" data-s="Mặt chú hề Clown face"></span>
-                    <span class="emoji emoji1f4a9" data-c="💩" role="button" title="Đống phân" data-s="Đống phân Pile of poo"></span>
-                    <span class="emoji emoji1f47b" data-c="👻" role="button" title="Ma" data-s="Ma Ghost"></span>
-                    <span class="emoji emoji1f480" data-c="💀" role="button" title="Sọ" data-s="Sọ Skull"></span>
-                    <span class="emoji emoji2620" data-c="☠️" role="button" title="Sọ và xương chéo" data-s="Sọ và xương chéo Skull and crossbones"></span>
-                    <span class="emoji emoji1f47d" data-c="👽" role="button" title="Người ngoài hành tinh" data-s="Người ngoài hành tinh Extraterrestrial alien"></span>
-                    <span class="emoji emoji1f47e" data-c="👾" role="button" title="Quỷ ngoài hành tinh" data-s="Quỷ ngoài hành tinh Alien monster"></span>
-                    <span class="emoji emoji1f916" data-c="🤖" role="button" title="Mặt người máy" data-s="Mặt người máy Robot face"></span>
-                    <span class="emoji emoji1f383" data-c="🎃" role="button" title="Đèn ma" data-s="Đèn ma Jack-o-lantern"></span>
-                    <span class="emoji emoji1f63a" data-c="😺" role="button" title="Khuôn mặt mèo cười với miệng há" data-s="Khuôn mặt mèo cười với miệng há Smiling cat face with open mouth"></span>
-                    <span class="emoji emoji1f638" data-c="😸" role="button" title="Khuôn mặt mèo rạng rỡ với đôi mắt cười" data-s="Khuôn mặt mèo rạng rỡ với đôi mắt cười Grinning cat face with smiling eyes"></span>
-                    <span class="emoji emoji1f639" data-c="😹" role="button" title="Khuôn mặt với giọt nước mắt vui mừng" data-s="Khuôn mặt với giọt nước mắt vui mừng Cat face with tears of joy"></span>
-                    <span class="emoji emoji1f63b" data-c="😻" role="button" title="Mặt mèo cười với đôi mắt hình trái tim" data-s="Mặt mèo cười với đôi mắt hình trái tim Smiling cat face with heart-shaped eyes"></span>
-                    <span class="emoji emoji1f63c" data-c="😼" role="button" title="Mặt mèo với nụ cười gượng gạo" data-s="Mặt mèo với nụ cười gượng gạo Cat face with wry smile"></span>
-                    <span class="emoji emoji1f63d" data-c="😽" role="button" title="Khuôn mặt mèo đang hôn với mắt nhắm" data-s="Khuôn mặt mèo đang hôn với mắt nhắm Kissing cat face with closed eyes"></span>
-                    <span class="emoji emoji1f640" data-c="🙀" role="button" title="Mặt mèo mệt lử" data-s="Mặt mèo mệt lử Weary cat face"></span>
-                    <span class="emoji emoji1f63f" data-c="😿" role="button" title="Mặt mèo khóc" data-s="Mặt mèo khóc Crying cat face"></span>
-                    <span class="emoji emoji1f63e" data-c="😾" role="button" title="Mặt mèo hờn dỗi" data-s="Mặt mèo hờn dỗi Pouting cat face"></span>
-                    <span class="emoji emoji1f932" data-c="🤲" role="button" title="Mở hai lòng bàn tay sát nhau" data-s="Mở hai lòng bàn tay sát nhau Palms up together"></span>
-                    <span class="emoji emoji1f450" data-c="👐" role="button" title="Biểu tượng đôi bàn tay mở" data-s="Biểu tượng đôi bàn tay mở Open hands sign"></span>
-                    <span class="emoji emoji1f64c" data-c="🙌" role="button" title="Người giơ hai tay chúc mừng" data-s="Người giơ hai tay chúc mừng Person raising both hands in celebration"></span>
-                    <span class="emoji emoji1f44f" data-c="👏" role="button" title="Biểu tượng vỗ tay" data-s="Biểu tượng vỗ tay Clapping hands sign"></span>
-                    <span class="emoji emoji1f91d" data-c="🤝" role="button" title="Bắt tay" data-s="Bắt tay Handshake"></span>
-                    <span class="emoji emoji1f44d" data-c="👍" role="button" title="Biểu tượng ngón tay cái giơ lên" data-s="Biểu tượng ngón tay cái giơ lên Thumbs up sign"></span>
-                    <span class="emoji emoji1f44e" data-c="👎" role="button" title="Biểu tượng ngón tay cái quay xuống" data-s="Biểu tượng ngón tay cái quay xuống Thumbs down sign"></span>
-                    <span class="emoji emoji1f44a" data-c="👊" role="button" title="Biểu tượng quả đấm" data-s="Biểu tượng quả đấm Fisted hand sign"></span>
-                    <span class="emoji emoji270a" data-c="✊" role="button" title="Giơ quả đấm" data-s="Giơ quả đấm Raised fist"></span>
-                    <span class="emoji emoji1f91b" data-c="🤛" role="button" title="Nắm đấm sang trái" data-s="Nắm đấm sang trái Left-facing fist"></span>
-                    <span class="emoji emoji1f91c" data-c="🤜" role="button" title="Nắm đấm sang phải" data-s="Nắm đấm sang phải Right-facing fist"></span>
-                    <span class="emoji emoji1f91e" data-c="🤞" role="button" title="Ngón tay vắt chéo" data-s="Ngón tay vắt chéo Crossed fingers"></span>
-                    <span class="emoji emoji270c" data-c="✌️" role="button" title="Tay chữ V" data-s="Tay chữ V Victory hand"></span>
-                    <span class="emoji emoji1f91f" data-c="🤟" role="button" title="Cử chỉ yêu-bạn" data-s="Cử chỉ yêu-bạn Love-you gesture"></span>
-                    <span class="emoji emoji1f918" data-c="🤘" role="button" title="Biểu tượng của những chiếc sừng" data-s="Biểu tượng của những chiếc sừng Sign of the horns"></span>
-                    <span class="emoji emoji1f44c" data-c="👌" role="button" title="Biểu tượng bàn tay ra dấu Ok" data-s="Biểu tượng bàn tay ra dấu Ok Ok hand sign"></span>
-                    <span class="emoji emoji1f90f" data-c="🤏" role="button" title="Bàn tay véo" data-s="Bàn tay véo Pinching hand"></span>
-                    <span class="emoji emoji1f448" data-c="👈" role="button" title="Ngón trỏ chỉ sang trái" data-s="Ngón trỏ chỉ sang trái White left pointing backhand index"></span>
-                    <span class="emoji emoji1f449" data-c="👉" role="button" title="Ngón trỏ chỉ sang phải" data-s="Ngón trỏ chỉ sang phải White right pointing backhand index"></span>
-                    <span class="emoji emoji1f446" data-c="👆" role="button" title="Ngón trỏ chỉ lên trên" data-s="Ngón trỏ chỉ lên trên White up pointing backhand index"></span>
-                    <span class="emoji emoji1f447" data-c="👇" role="button" title="Ngón trỏ chỉ xuống dưới" data-s="Ngón trỏ chỉ xuống dưới White down pointing backhand index"></span>
-                    <span class="emoji emoji261d" data-c="☝️" role="button" title="Ngón trỏ chỉ lên màu trắng" data-s="Ngón trỏ chỉ lên màu trắng White up pointing index"></span>
-                    <span class="emoji emoji270b" data-c="✋" role="button" title="Giơ tay" data-s="Giơ tay Raised hand"></span>
-                    <span class="emoji emoji1f91a" data-c="🤚" role="button" title="Giơ mu bàn tay lên" data-s="Giơ mu bàn tay lên Raised back of hand"></span>
-                    <span class="emoji emoji1f590" data-c="🖐" role="button" title="Giơ tay với các ngón xòe ra" data-s="Giơ tay với các ngón xòe ra Raised hand with fingers splayed"></span>
-                    <span class="emoji emoji1f596" data-c="🖖" role="button" title="Giơ tay với phần giữa các ngón đeo nhẫn và ngón giữa" data-s="Giơ tay với phần giữa các ngón đeo nhẫn và ngón giữa Raised hand with part between middle and ring fingers"></span>
-                    <span class="emoji emoji1f44b" data-c="👋" role="button" title="Biểu tượng tay vẫy" data-s="Biểu tượng tay vẫy Waving hand sign"></span>
-                    <span class="emoji emoji1f919" data-c="🤙" role="button" title="Hãy gọi cho tôi" data-s="Hãy gọi cho tôi Call me hand"></span>
-                    <span class="emoji emoji1f4aa" data-c="💪" role="button" title="Bắp tay uốn cong" data-s="Bắp tay uốn cong Flexed biceps"></span>
-                    <span class="emoji emoji1f9be" data-c="🦾" role="button" title="Cánh tay giả" data-s="Cánh tay giả Mechanical arm"></span>
-                    <span class="emoji emoji1f595" data-c="🖕" role="button" title="Đảo ngược bàn tay với ngón giữa kéo dài" data-s="Đảo ngược bàn tay với ngón giữa kéo dài Reversed hand with middle finger extended"></span>
-                    <span class="emoji emoji270d" data-c="✍️" role="button" title="Viết tay" data-s="Viết tay Writing hand"></span>
-                    <span class="emoji emoji1f64f" data-c="🙏" role="button" title="Người với hai tay gập" data-s="Người với hai tay gập Person with folded hands"></span>
-                    <span class="emoji emoji1f9b6" data-c="🦶" role="button" title="bàn chân" data-s="bàn chân Foot"></span>
-                    <span class="emoji emoji1f9b5" data-c="🦵" role="button" title="chân" data-s="chân Leg"></span>
-                    <span class="emoji emoji1f9bf" data-c="🦿" role="button" title="Chân giả" data-s="Chân giả Mechanical leg"></span>
-                    <span class="emoji emoji1f484" data-c="💄" role="button" title="Son môi" data-s="Son môi Lipstick"></span>
-                    <span class="emoji emoji1f48b" data-c="💋" role="button" title="Dấu hôn" data-s="Dấu hôn Kiss mark"></span>
-                    <span class="emoji emoji1f444" data-c="👄" role="button" title="Miệng" data-s="Miệng Mouth"></span>
-                    <span class="emoji emoji1f9b7" data-c="🦷" role="button" title="răng" data-s="răng Tooth"></span>
-                    <span class="emoji emoji1f445" data-c="👅" role="button" title="Lưỡi" data-s="Lưỡi Tongue"></span>
-                    <span class="emoji emoji1f442" data-c="👂" role="button" title="Tai" data-s="Tai Ear"></span>
-                    <span class="emoji emoji1f9bb" data-c="🦻" role="button" title="Tai gắn máy trợ thính" data-s="Tai gắn máy trợ thính Ear with hearing aid"></span>
-                    <span class="emoji emoji1f443" data-c="👃" role="button" title="Mũi" data-s="Mũi Nose"></span>
-                    <span class="emoji emoji1f463" data-c="👣" role="button" title="Dấu chân" data-s="Dấu chân Footprints"></span>
-                    <span class="emoji emoji1f441" data-c="👁" role="button" title="Mắt" data-s="Mắt Eye"></span>
-                    <span class="emoji emoji1f440" data-c="👀" role="button" title="Đôi mắt" data-s="Đôi mắt Eyes"></span>
-                    <span class="emoji emoji1f9e0" data-c="🧠" role="button" title="Não" data-s="Não Brain"></span>
-                    <span class="emoji emoji1f5e3" data-c="🗣" role="button" title="Cái bóng hình đầu đang nói" data-s="Cái bóng hình đầu đang nói Speaking head in silhouette"></span>
-                    <span class="emoji emoji1f464" data-c="👤" role="button" title="Hình bóng nửa người" data-s="Hình bóng nửa người Bust in silhouette"></span>
-                    <span class="emoji emoji1f465" data-c="👥" role="button" title="Hình bóng nửa người" data-s="Hình bóng nửa người Busts in silhouette"></span>
-                    <span class="emoji emoji1f476" data-c="👶" role="button" title="Đứa trẻ" data-s="Đứa trẻ Baby"></span>
-                    <span class="emoji emoji1f467" data-c="👧" role="button" title="Cô bé" data-s="Cô bé Girl"></span>
-                    <span class="emoji emoji1f9d2" data-c="🧒" role="button" title="Trẻ con" data-s="Trẻ con Child"></span>
-                    <span class="emoji emoji1f466" data-c="👦" role="button" title="Cậu bé" data-s="Cậu bé Boy"></span>
-                    <span class="emoji emoji1f469" data-c="👩" role="button" title="Nữ" data-s="Nữ Woman"></span>
-                    <span class="emoji emoji1f9d1" data-c="🧑" role="button" title="Người lớn" data-s="Người lớn Adult"></span>
-                    <span class="emoji emoji1f468" data-c="👨" role="button" title="Nam" data-s="Nam Man"></span>
-                    <span class="emoji emoji1f469-200d-1f9b1" data-c="👩‍🦱" role="button" title="người phụ nữ tóc xoăn" data-s="người phụ nữ tóc xoăn Woman, curly haired"></span>
-                    <span class="emoji emoji1f9d1-200d-1f9b1" data-c="🧑‍🦱" role="button" title="Người, tóc quăn" data-s="Người, tóc quăn Person, curly haired"></span>
-                    <span class="emoji emoji1f468-200d-1f9b1" data-c="👨‍🦱" role="button" title="người đàn ông tóc xoăn" data-s="người đàn ông tóc xoăn Man, curly haired"></span>
-                    <span class="emoji emoji1f469-200d-1f9b0" data-c="👩‍🦰" role="button" title="người phụ nữ tóc đỏ" data-s="người phụ nữ tóc đỏ Woman, red haired"></span>
-                    <span class="emoji emoji1f9d1-200d-1f9b0" data-c="🧑‍🦰" role="button" title="Người, tóc đỏ" data-s="Người, tóc đỏ Person, red haired"></span>
-                    <span class="emoji emoji1f468-200d-1f9b0" data-c="👨‍🦰" role="button" title="người đàn ông tóc đỏ" data-s="người đàn ông tóc đỏ Man, red haired"></span>
-                    <span class="emoji emoji1f471-200d-2640" data-c="👱‍♀️" role="button" title="Nữ, tóc vàng hoe" data-s="Nữ, tóc vàng hoe Woman, blond haired"></span>
-                    <span class="emoji emoji1f471" data-c="👱" role="button" title="Người có tóc vàng hoe" data-s="Người có tóc vàng hoe Person with blond hair"></span>
-                    <span class="emoji emoji1f471-200d-2642" data-c="👱‍♂️" role="button" title="Nam, tóc vàng hoe" data-s="Nam, tóc vàng hoe Man, blond haired"></span>
-                    <span class="emoji emoji1f469-200d-1f9b3" data-c="👩‍🦳" role="button" title="người phụ nữ tóc trắng" data-s="người phụ nữ tóc trắng Woman, white haired"></span>
-                    <span class="emoji emoji1f468-200d-1f9b3" data-c="👨‍🦳" role="button" title="người đàn ông tóc trắng" data-s="người đàn ông tóc trắng Man, white haired"></span>
-                    <span class="emoji emoji1f469-200d-1f9b2" data-c="👩‍🦲" role="button" title="người phụ nữ không có tóc" data-s="người phụ nữ không có tóc Woman, bald"></span>
-                    <span class="emoji emoji1f468-200d-1f9b2" data-c="👨‍🦲" role="button" title="người đàn ông không có tóc" data-s="người đàn ông không có tóc Man, bald"></span>
-                    <span class="emoji emoji1f9d4" data-c="🧔" role="button" title="Người có râu" data-s="Người có râu Bearded person"></span>
-                    <span class="emoji emoji1f475" data-c="👵" role="button" title="Người phụ nữ già hơn" data-s="Người phụ nữ già hơn Older woman"></span>
-                    <span class="emoji emoji1f9d3" data-c="🧓" role="button" title="Người lớn tuổi" data-s="Người lớn tuổi Older adult"></span>
-                    <span class="emoji emoji1f474" data-c="👴" role="button" title="Người đàn ông già hơn" data-s="Người đàn ông già hơn Older man"></span>
-                    <span class="emoji emoji1f472" data-c="👲" role="button" title="Người đàn ông đội mũ gua pi mao" data-s="Người đàn ông đội mũ gua pi mao Man with gua pi mao"></span>
-                    <span class="emoji emoji1f473-200d-2640" data-c="👳‍♀️" role="button" title="Người phụ nữ đội mũ turban" data-s="Người phụ nữ đội mũ turban Woman wearing turban"></span>
-                    <span class="emoji emoji1f473" data-c="👳" role="button" title="Người đàn ông đội khăn xếp" data-s="Người đàn ông đội khăn xếp Man with turban"></span>
-                    <span class="emoji emoji1f473-200d-2642" data-c="👳‍♂️" role="button" title="Người đàn ông đội mũ turban" data-s="Người đàn ông đội mũ turban Man wearing turban"></span>
-                    <span class="emoji emoji1f9d5" data-c="🧕" role="button" title="Người phụ nữ trùm khăn" data-s="Người phụ nữ trùm khăn Woman with headscarf"></span>
-                    <span class="emoji emoji1f930" data-c="🤰" role="button" title="Bà bầu" data-s="Bà bầu Pregnant woman"></span>
-                    <span class="emoji emoji1f931" data-c="🤱" role="button" title="Cho con bú" data-s="Cho con bú Breastfeeding"></span>
-                    <span class="emoji emoji1f647-200d-2640" data-c="🙇‍♀️" role="button" title="Nữ đang cúi thấp" data-s="Nữ đang cúi thấp Woman bowing deeply"></span>
-                    <span class="emoji emoji1f647" data-c="🙇" role="button" title="Người cúi gập mình" data-s="Người cúi gập mình Person bowing deeply"></span>
-                    <span class="emoji emoji1f647-200d-2642" data-c="🙇‍♂️" role="button" title="Nam đang cúi thấp" data-s="Nam đang cúi thấp Man bowing deeply"></span>
-                    <span class="emoji emoji1f481-200d-2640" data-c="💁‍♀️" role="button" title="Nữ đang giơ tay mời" data-s="Nữ đang giơ tay mời Woman tipping hand"></span>
-                    <span class="emoji emoji1f481" data-c="💁" role="button" title="Nhân viên tiếp tân" data-s="Nhân viên tiếp tân Information desk person"></span>
-                    <span class="emoji emoji1f481-200d-2642" data-c="💁‍♂️" role="button" title="Người đàn ông đang giơ tay mời" data-s="Người đàn ông đang giơ tay mời Man tipping hand"></span>
-                    <span class="emoji emoji1f645-200d-2640" data-c="🙅‍♀️" role="button" title="Nữ đang ra dấu không ok" data-s="Nữ đang ra dấu không ok Woman gesturing not ok"></span>
-                    <span class="emoji emoji1f645" data-c="🙅" role="button" title="Khuôn mặt với cử chỉ tồi" data-s="Khuôn mặt với cử chỉ tồi Face with no good gesture"></span>
-                    <span class="emoji emoji1f645-200d-2642" data-c="🙅‍♂️" role="button" title="Nam đang ra dấu không ok" data-s="Nam đang ra dấu không ok Man gesturing not ok"></span>
-                    <span class="emoji emoji1f646-200d-2640" data-c="🙆‍♀️" role="button" title="Nữ đang ra dấu ok" data-s="Nữ đang ra dấu ok Woman gesturing ok"></span>
-                    <span class="emoji emoji1f646" data-c="🙆" role="button" title="Khuôn mặt với cử chỉ tốt" data-s="Khuôn mặt với cử chỉ tốt Face with ok gesture"></span>
-                    <span class="emoji emoji1f646-200d-2642" data-c="🙆‍♂️" role="button" title="Nam đang ra dấu ok" data-s="Nam đang ra dấu ok Man gesturing ok"></span>
-                    <span class="emoji emoji1f64b-200d-2640" data-c="🙋‍♀️" role="button" title="Người phụ nữ vui vẻ giơ một tay" data-s="Người phụ nữ vui vẻ giơ một tay Happy woman raising one hand"></span>
-                    <span class="emoji emoji1f64b" data-c="🙋" role="button" title="Người vui vẻ giơ một tay" data-s="Người vui vẻ giơ một tay Happy person raising one hand"></span>
-                    <span class="emoji emoji1f64b-200d-2642" data-c="🙋‍♂️" role="button" title="Người đàn ông vui vẻ giơ một tay" data-s="Người đàn ông vui vẻ giơ một tay Happy man raising one hand"></span>
-                    <span class="emoji emoji1f9cf-200d-2640" data-c="🧏‍♀️" role="button" title="Người phụ nữ khiếm thính" data-s="Người phụ nữ khiếm thính Deaf woman"></span>
-                    <span class="emoji emoji1f9cf" data-c="🧏" role="button" title="Người khiếm thính" data-s="Người khiếm thính Deaf person"></span>
-                    <span class="emoji emoji1f9cf-200d-2642" data-c="🧏‍♂️" role="button" title="Người đàn ông khiếm thính" data-s="Người đàn ông khiếm thính Deaf man"></span>
-                    <span class="emoji emoji1f926-200d-2640" data-c="🤦‍♀️" role="button" title="Nữ đang lấy tay che mặt" data-s="Nữ đang lấy tay che mặt Woman facepalming"></span>
-                    <span class="emoji emoji1f926" data-c="🤦" role="button" title="Người úp tay vào mặt" data-s="Người úp tay vào mặt Person facepalming"></span>
-                    <span class="emoji emoji1f926-200d-2642" data-c="🤦‍♂️" role="button" title="Nam đang lấy tay che mặt" data-s="Nam đang lấy tay che mặt Man facepalming"></span>
-                    <span class="emoji emoji1f937-200d-2640" data-c="🤷‍♀️" role="button" title="Nữ đang nhún vai" data-s="Nữ đang nhún vai Woman shrugging"></span>
-                    <span class="emoji emoji1f937" data-c="🤷" role="button" title="Người nhún vai" data-s="Người nhún vai Person shrugging"></span>
-                    <span class="emoji emoji1f937-200d-2642" data-c="🤷‍♂️" role="button" title="Nam đang nhún vai" data-s="Nam đang nhún vai Man shrugging"></span>
-                    <span class="emoji emoji1f64e-200d-2640" data-c="🙎‍♀️" role="button" title="Nữ đang bĩu môi" data-s="Nữ đang bĩu môi Woman pouting"></span>
-                    <span class="emoji emoji1f64e" data-c="🙎" role="button" title="Người mặt hờn dỗi" data-s="Người mặt hờn dỗi Person with pouting face"></span>
-                    <span class="emoji emoji1f64e-200d-2642" data-c="🙎‍♂️" role="button" title="Nam đang bĩu môi" data-s="Nam đang bĩu môi Man pouting"></span>
-                    <span class="emoji emoji1f64d-200d-2640" data-c="🙍‍♀️" role="button" title="Nữ đang cau mày" data-s="Nữ đang cau mày Woman frowning"></span>
-                    <span class="emoji emoji1f64d-1f3fd" data-c="🙍🏽" role="button"></span>
-                    <span class="emoji emoji1f64d-200d-2642" data-c="🙍‍♂️" role="button" title="Nam đang cau mày" data-s="Nam đang cau mày Man frowning"></span>
-                    <span class="emoji emoji1f469-200d-2764-200d-1f468" data-c="👩‍❤️‍👨" role="button" title="Cặp tình nhân với hình trái tim (nữ, nam)" data-s="Cặp tình nhân với hình trái tim (nữ, nam) Couple with heart (woman, man)"></span>
-                    <span class="emoji emoji1f469-200d-2764-200d-1f469" data-c="👩‍❤️‍👩" role="button" title="Cặp tình nhân với hình trái tim (nữ, nữ)" data-s="Cặp tình nhân với hình trái tim (nữ, nữ) Couple with heart (woman, woman)"></span>
-                    <span class="emoji emoji1f468-200d-2764-200d-1f468" data-c="👨‍❤️‍👨" role="button" title="Cặp tình nhân với hình trái tim (nam, nam)" data-s="Cặp tình nhân với hình trái tim (nam, nam) Couple with heart (man, man)"></span>
-                    <span class="emoji emoji1f469-200d-2764-200d-1f48b-200d-1f468" data-c="👩‍❤️‍💋‍👨" role="button" title="Hôn (nữ, nam)" data-s="Hôn (nữ, nam) Kiss (woman, man)"></span>
-                    <span class="emoji emoji1f469-200d-2764-200d-1f48b-200d-1f469" data-c="👩‍❤️‍💋‍👩" role="button" title="Hôn (nữ, nữ)" data-s="Hôn (nữ, nữ) Kiss (woman, woman)"></span>
-                    <span class="emoji emoji1f468-200d-2764-200d-1f48b-200d-1f468" data-c="👨‍❤️‍💋‍👨" role="button" title="Hôn (nam, nam)" data-s="Hôn (nam, nam) Kiss (man, man)"></span>
-                    <span class="emoji emoji2764" data-c="❤️" role="button" title="Trái tim buồn phiền" data-s="Trái tim buồn phiền Heavy black heart"></span>
-                    <span class="emoji emoji1f9e1" data-c="🧡" role="button" title="Trái tim màu cam" data-s="Trái tim màu cam Orange heart"></span>
-                    <span class="emoji emoji1f49b" data-c="💛" role="button" title="Trái tim màu vàng" data-s="Trái tim màu vàng Yellow heart"></span>
-                    <span class="emoji emoji1f49a" data-c="💚" role="button" title="Trái tim màu xanh lục" data-s="Trái tim màu xanh lục Green heart"></span>
-                    <span class="emoji emoji1f499" data-c="💙" role="button" title="Trái tim màu xanh lam" data-s="Trái tim màu xanh lam Blue heart"></span>
-                    <span class="emoji emoji1f49c" data-c="💜" role="button" title="Trái tim màu tía" data-s="Trái tim màu tía Purple heart"></span>
-                    <span class="emoji emoji1f5a4" data-c="🖤" role="button" title="Trái tim đen" data-s="Trái tim đen Black heart"></span>
-                    <span class="emoji emoji1f90d" data-c="🤍" role="button" title="Trái tim màu trắng" data-s="Trái tim màu trắng White heart"></span>
-                    <span class="emoji emoji1f90e" data-c="🤎" role="button" title="Trái tim màu nâu" data-s="Trái tim màu nâu Brown heart"></span>
-                    <span class="emoji emoji1f494" data-c="💔" role="button" title="Trái tim tan vỡ" data-s="Trái tim tan vỡ Broken heart"></span>
-                    <span class="emoji emoji2763" data-c="❣️" role="button" title="Dấu chấm than hình trái tim" data-s="Dấu chấm than hình trái tim Heavy heart exclamation mark ornament"></span>
-                    <span class="emoji emoji1f495" data-c="💕" role="button" title="Hai trái tim" data-s="Hai trái tim Two hearts"></span>
-                    <span class="emoji emoji1f49e" data-c="💞" role="button" title="Trái tim xoay vòng" data-s="Trái tim xoay vòng Revolving hearts"></span>
-                    <span class="emoji emoji1f493" data-c="💓" role="button" title="Trái tim đập" data-s="Trái tim đập Beating heart"></span>
-                    <span class="emoji emoji1f497" data-c="💗" role="button" title="Trái tím lớn lên" data-s="Trái tím lớn lên Growing heart"></span>
-                    <span class="emoji emoji1f496" data-c="💖" role="button" title="Trái tim lấp lánh" data-s="Trái tim lấp lánh Sparkling heart"></span>
-                    <span class="emoji emoji1f498" data-c="💘" role="button" title="Trái tim có mũi tên" data-s="Trái tim có mũi tên Heart with arrow"></span>
-                    <span class="emoji emoji1f49d" data-c="💝" role="button" title="Trái tim có dải băng" data-s="Trái tim có dải băng Heart with ribbon"></span>
-                    <span class="emoji emoji1f49f" data-c="💟" role="button" title="Trang trí trái tim" data-s="Trang trí trái tim Heart decoration"></span>
-                </div>
+            <label>Biểu tượng: </label>
+            <div class="row icon-group" style="background: #fff; overflow: auto; max-height: 30em; ">
+                <partial name="Posts_emoji.cshtml"/>
             </div>
-            <div class="row button-action">
-                <button class="btn btn-primary">Copy</button>
-            </div>
+
         </div>
     </div>
     <div id="fh5co-post-tool" class="col-4 mshop-tool-post tool">
@@ -351,6 +105,8 @@
                 (function () {
                     //load
                     $('.load-convert').hide();
+                    //statu copy
+                    $('span.copy-status').hide();
                     //
                     let liTag = '';
                     $(assetFonts).each(function (index, item) {
@@ -407,7 +163,7 @@
                                 returnText += unescape(cTexts[0]);
                                 cTextEscape = cTextEscape.replace(cTexts[0], '');
                             }
-                        } 
+                        }
                     }
 
                     $('.load-convert').hide();
@@ -448,14 +204,37 @@
                             }
                             i++;
                         });
-
+                        let signHas = '';
+                        if (ctexts.length > 9) signHas = '...';
                         $(selector).data('vlue', text);
-                        $(selector).text(textDisplay+ '...');
+                        $(selector).text(textDisplay + signHas);
 
                     });
 
                     $('.mshop-tool-post.tool ul li').data('start-select', startSelect);
                     $('.mshop-tool-post.tool ul li').data('end-select', endSelect);
+                });
+                $('.category p').on('click', function (e) {
+                    let icon = $(e.target).text();
+                    let startSelect = $(".content-edit textarea")[0].selectionStart;
+                    let endSelect = $(".content-edit textarea")[0].selectionEnd;
+
+                    let textContain = $('.content-edit textarea').val();
+                    let textReplace = textContain.substring(0, startSelect) + icon + textContain.substring(endSelect);
+                    $('.content-edit textarea').val(textReplace);
+                    $('.content-edit textarea')[0].setSelectionRange(startSelect, startSelect + icon.length);
+                });
+                $('#btn-copy').on('click', function () {
+                    //let len = $(".mshop-tool-post.content textarea")[0].textLength;
+                    //let text = $(".mshop-tool-post.content textarea").val();
+                    //$(".mshop-tool-post.content textarea")[0].setSelectionRange(0, len);
+                    $(".mshop-tool-post.content textarea").select();
+                    document.execCommand("copy");
+                    $('span.copy-status').show();
+                    setTimeout(function () {
+                        
+                        $("span.copy-status").fadeOut(1500);
+                    }, 1500);
                 });
             })();
         </script>

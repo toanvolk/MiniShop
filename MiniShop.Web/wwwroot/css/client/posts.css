@@ -40,3 +40,14 @@
     -webkit-text-fill-color: transparent; }
   #mshop-tool-post .mshop-tool-post.tool li + li {
     border-top: 1px solid rgba(255, 255, 255, 0.2); }
+
+#mshop-tool-post span.copy-status {
+  padding: 0.5em;
+  border: 1px solid #ccc;
+  border-radius: 2em;
+  width: 10em;
+  text-align: center;
+  height: 2.5em;
+  color: white;
+  background-color: #12961e;
+  font-weight: 600; }

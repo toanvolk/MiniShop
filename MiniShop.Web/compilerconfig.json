@@ -118,5 +118,9 @@
   {
     "outputFile": "wwwroot/css/client/loader-newton.css",
     "inputFile": "wwwroot/css/client/loader-newton.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/StyleSheet.css",
+    "inputFile": "wwwroot/css/StyleSheet.scss"
   }
 ]
