@@ -68,7 +68,7 @@
                 <span class="copy-status">Đã sao chép</span>
             </div>
             <div class="row content-edit">
-                <textarea rows="20" class="form-control"></textarea>
+                <textarea rows="20" class="form-control" autofocus></textarea>
             </div>
             <label>Biểu tượng: </label>
             <div class="row icon-group" style="background: #fff; overflow: auto; max-height: 30em; ">
@@ -187,6 +187,7 @@
                     $('.content-edit textarea').val(textReplace);
 
                     $('.content-edit textarea')[0].setSelectionRange(startSelect, startSelect + text.length);
+                    $(".content-edit textarea")[0].focus();
                 });
                 $(".mshop-tool-post.content textarea").select(function (e) {
                     let textRoot = $(e.target).val();
@@ -228,7 +229,9 @@
                     let textContain = $('.content-edit textarea').val();
                     let textReplace = textContain.substring(0, startSelect) + icon + textContain.substring(endSelect);
                     $('.content-edit textarea').val(textReplace);
-                    $('.content-edit textarea')[0].setSelectionRange(startSelect, startSelect + icon.length);
+                    //$('.content-edit textarea')[0].setSelectionRange(startSelect, startSelect + icon.length);
+                    $(".content-edit textarea")[0].selectionEnd = startSelect + icon.length;
+                    $(".content-edit textarea")[0].focus();
                 });
                 $('#btn-copy').on('click', function () {
                     //let len = $(".mshop-tool-post.content textarea")[0].textLength;
@@ -237,8 +240,7 @@
                     $(".mshop-tool-post.content textarea").select();
                     document.execCommand("copy");
                     $('span.copy-status').show();
-                    setTimeout(function () {
-                        
+                    setTimeout(function () {                        
                         $("span.copy-status").fadeOut(1500);
                     }, 1500);
                 });
