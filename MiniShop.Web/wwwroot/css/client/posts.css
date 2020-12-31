@@ -15,7 +15,7 @@
   #mshop-tool-post .mshop-tool-post.tool ul, #mshop-tool-post .mshop-tool-post.template ul {
     counter-reset: index;
     padding: 0;
-    max-width: 300px; }
+    /*max-width: 300px;*/ }
   #mshop-tool-post .mshop-tool-post.tool li, #mshop-tool-post .mshop-tool-post.template li {
     counter-increment: index;
     display: flex;

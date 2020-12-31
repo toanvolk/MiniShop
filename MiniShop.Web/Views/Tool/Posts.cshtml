@@ -121,6 +121,7 @@
                     $('.mshop-tool-post.tool ul').html(liTag);
                 })();
 
+                var isCopy = false;
                 //----------------------------------FUNCTION----------------------------
                 function convertCharFont(indexFont, chars) {
                     $('.load-convert').show();
@@ -195,31 +196,33 @@
                     let endSelect = $(e.target)[0].selectionEnd;
                     let textSelected = textRoot.substring(startSelect, endSelect);
 
-                    //clear font
-                    textSelected = clearFont(textSelected); console.log(textSelected);
+                    if (!isCopy) {
+                        //clear font
+                        textSelected = clearFont(textSelected); console.log(textSelected);
 
-                    $('.mshop-tool-post.tool ul li').each(function (index, selector) {
-                        let chars = textSelected.split('');
-                        let text = convertCharFont(index, chars);
-                        let ctexts = text.split(' ');
+                        $('.mshop-tool-post.tool ul li').each(function (index, selector) {
+                            let chars = textSelected.split('');
+                            let text = convertCharFont(index, chars);
+                            let ctexts = text.split(' ');
 
-                        let textDisplay = '';
-                        let i = 0;
-                        ctexts.forEach(function (item) {
-                            if (i <= 8) {
-                                textDisplay += item + ' ';
-                            }
-                            i++;
+                            let textDisplay = '';
+                            let i = 0;
+                            ctexts.forEach(function (item) {
+                                if (i <= 8) {
+                                    textDisplay += item + ' ';
+                                }
+                                i++;
+                            });
+                            let signHas = '';
+                            if (ctexts.length > 9) signHas = '...';
+                            $(selector).data('vlue', text);
+                            $(selector).text(textDisplay + signHas);
+
                         });
-                        let signHas = '';
-                        if (ctexts.length > 9) signHas = '...';
-                        $(selector).data('vlue', text);
-                        $(selector).text(textDisplay + signHas);
 
-                    });
-
-                    $('.mshop-tool-post.tool ul li').data('start-select', startSelect);
-                    $('.mshop-tool-post.tool ul li').data('end-select', endSelect);
+                        $('.mshop-tool-post.tool ul li').data('start-select', startSelect);
+                        $('.mshop-tool-post.tool ul li').data('end-select', endSelect);
+                    }
                 });
                 $('.category p').on('click', function (e) {
                     let icon = $(e.target).text();
@@ -237,12 +240,28 @@
                     //let len = $(".mshop-tool-post.content textarea")[0].textLength;
                     //let text = $(".mshop-tool-post.content textarea").val();
                     //$(".mshop-tool-post.content textarea")[0].setSelectionRange(0, len);
+
+                    isCopy = true;
+
                     $(".mshop-tool-post.content textarea").select();
                     document.execCommand("copy");
                     $('span.copy-status').show();
                     setTimeout(function () {                        
                         $("span.copy-status").fadeOut(1500);
+                        isCopy = false;
                     }, 1500);
+                });
+                $('.template ul li').on('click', function (e) {
+                    let text = $(e.target).text();
+                    let startSelect = $(".content-edit textarea")[0].selectionStart;
+                    let endSelect = $(".content-edit textarea")[0].selectionEnd;
+
+                    let textContain = $('.content-edit textarea').val();
+                    let textReplace = textContain.substring(0, startSelect) + text + textContain.substring(endSelect);
+                    $('.content-edit textarea').val(textReplace);
+                    //$('.content-edit textarea')[0].setSelectionRange(startSelect, startSelect + icon.length);
+                    $(".content-edit textarea")[0].selectionEnd = startSelect + text.length;
+                    $(".content-edit textarea")[0].focus();
                 });
             })();
         </script>
