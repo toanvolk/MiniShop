@@ -81,6 +81,7 @@ namespace MiniShop.Web
                 cfg.AddProfile(new ProductProfileMapping());
                 cfg.AddProfile(new AreaProfileMapping());
                 cfg.AddProfile(new BlogProfileMapping());
+                cfg.AddProfile(new PostProfileMapping());
             });
             IMapper mapper = mappingConfig.CreateMapper();
             services.AddSingleton(mapper);
@@ -103,6 +104,7 @@ namespace MiniShop.Web
             services.AddScoped<IAreaService, AreaService>();
             services.AddScoped<IHomeService, HomeService>();
             services.AddScoped<IBlogService, BlogService>();
+            services.AddScoped<IPostService, PostService>();
             #endregion
 
             // Config setting 

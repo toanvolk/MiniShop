@@ -73,6 +73,9 @@ namespace MiniShop.Infrastructure
         private IRepositoryBase<Blog> _blogRepository;
         public IRepositoryBase<Blog> BlogRepository => _blogRepository ?? (_blogRepository = new RepositoryBase<Blog>(_dbContext));
 
+        private IRepositoryBase<Post> _postRepository;
+        public IRepositoryBase<Post> PostRepository => _postRepository ?? (_postRepository = new RepositoryBase<Post>(_dbContext));
+
         #endregion end register reponsitory
     }
 

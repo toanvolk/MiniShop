@@ -1,0 +1,336 @@
+﻿@{ Layout = "../Shared/_Layout.cshtml"; }
+
+@section Styles{
+    <style>
+        #tabstrip h2 {
+            font-weight: lighter;
+            font-size: 5em;
+            line-height: 1;
+            padding: 0 0 0 30px;
+            margin: 0;
+        }
+
+            #tabstrip h2 span {
+                background: none;
+                padding-left: 5px;
+                font-size: .3em;
+                vertical-align: top;
+            }
+
+        #tabstrip p {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+    <style>
+        #descTextarea {
+            padding: 5px 2px;
+        }
+
+        .btn-save {
+            margin-top: 3px;
+        }
+
+        .btn-action {
+            text-align: center;
+            margin-top: 5px;
+        }
+
+        #tabstrip .k-content {
+            height: 45em;
+        }
+    </style>
+}
+<section id="mnshop-blog">
+    <div class="content-wrapper-before"></div>
+    <div class="content-header row">
+    </div>
+    <div class="content-body">
+        <!-- Revenue, Hit Rate & Deals -->
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Posts</h4>
+                        <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+                        @*<div class="heading-elements">
+                                <ul class="list-inline mb-0">
+                                    <li>
+                                        <button type="button" class="btn btn-glow btn-round btn-bg-gradient-x-red-pink ac-blog-add">
+                                            Add
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>*@
+                    </div>
+                    <div class="card-content collapse show">
+                        <div class="card-body p-0 pb-0">
+                            <div id="example">
+
+                                <div class="demo-section k-content ">
+                                    <ul class="fieldlist edit-area" id="data-edit">
+                                        <li style=" float: left; margin-right: 3em;">
+                                            <input type="radio" name="PostType" id="FontType" class="k-radio" checked="checked" value="0">
+                                            <label class="k-radio-label" for="FontType">Font</label>
+                                        </li>
+                                        <li style=" float: left; margin-right: 3em;">
+                                            <input type="radio" name="PostType" id="TemplateFontType" class="k-radio" value="1">
+                                            <label class="k-radio-label" for="TemplateFontType">Template font</label>
+                                        </li>
+                                        <li>
+                                            <input name="Id" hidden />
+                                            <input type="text" name="FontName" placeholder="Tên font" class="k-textbox" style="width: 100%;" />
+                                            <div class="clearfix" style=" margin: 5px;"></div>
+                                            <textarea name="FontSign" id="simple-textarea" class="k-textbox" style="width: 100%;padding-left: 10px;" placeholder="Ký tự font"></textarea>
+                                            <div class="btn-action">
+                                                <button class="k-button k-primary save-font" id="btn-save"><i class="k-icon k-i-save"></i>&nbsp;Lưu</button>
+                                                <label class="info-action"></label>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <div id="tabstrip" style="height:50em">
+                                        <ul>
+                                            <li class="k-state-active">
+                                                Cài đặt font
+                                            </li>
+                                            <li>
+                                                Font mẫu
+                                            </li>
+                                        </ul>
+                                        <div>
+                                            <ul class="fieldlist content-area">
+                                            </ul>
+                                            <style>
+                                                .fieldlist {
+                                                    margin: 0 0 -2em;
+                                                    padding: 0;
+                                                }
+
+                                                    .fieldlist li {
+                                                        list-style: none;
+                                                        padding-bottom: 2em;
+                                                    }
+
+                                                    .fieldlist label {
+                                                        display: block;
+                                                        padding-bottom: 1em;
+                                                        font-weight: bold;
+                                                        text-transform: uppercase;
+                                                        font-size: 12px;
+                                                        color: #444;
+                                                    }
+                                            </style>
+                                        </div>
+                                        <div>
+                                            <ul class="fieldlist content-template-area">
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <script>
+                                    $(document).ready(function () {
+                                        $("#tabstrip").kendoTabStrip({
+                                            animation: {
+                                                open: {
+                                                    effects: "fadeIn"
+                                                }
+                                            }
+                                        });
+                                    });
+                                </script>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<environment include="Development">
+    @section Scripts{
+        <script>
+            (function () {
+                //---------------------------FUNCTION---------------------------------
+                function _getData() {
+                    return helper.formData.inputToObject("#data-edit", function (obj) {
+                        obj.FontSign = escape(obj.FontSign);
+                    });
+                }
+                function _setData(data) {
+                    helper.formData.objectToInput(data
+                        , $("#data-edit")
+                        , [
+                            {
+                                "inputName": "Id",
+                                "propertyName": "id",
+                            },
+                            {
+                                "inputName": "FontName",
+                                "propertyName": "fontName",
+                            }
+                        ]
+                        , function (obj, content) {
+                            content.find('textarea[name=FontSign]').val(unescape(obj["fontSign"]));
+                            content.find("input[name=PostType][value=" + obj["postType"] + "]").prop('checked', true);
+                        });
+                }
+                function _setDataDefault() {
+                    let _data = {
+                        id: '',
+                        fontName: '',
+                        fontSign: '',
+                        postType: 0
+                    };
+                    helper.formData.objectToInput(_data
+                        , $("#data-edit")
+                        , [
+                            {
+                                "inputName": "Id",
+                                "propertyName": "id",
+                            },
+                            {
+                                "inputName": "FontName",
+                                "propertyName": "fontName",
+                            }
+                        ]
+                        , function (obj, content) {
+                            content.find('textarea[name=FontSign]').val(unescape(obj["fontSign"]));
+                            content.find("input[name=PostType][value=" + obj["postType"] + "]").prop('checked', true);
+                        });
+                }
+                async function _getDataById(id) {
+                    let _url = '/admin/tool/GetDataByIdPost';
+                    let _data = {};
+                    await $.get(_url, { postId: id }, function (res) {
+                        _data = res.data;
+                    });
+                    return _data;
+                }
+                function _insert(data, callback) {
+                    let _url = '/admin/tool/CreatePost';
+                    $.post(_url, { data: data }, function (res) {
+                        $('.btn-action label.info-action').show();
+                        $('.btn-action label.info-action').text(res.message);
+                        setTimeout(function () { $('.btn-action label.info-action').hide(); callback(); }, 1250);
+                    });
+                }
+                function _update(data, callback) {
+                    let _url = '/admin/tool/UpdatePost';
+
+                    $.post(_url, { data: data }, function (res) {
+                        $('.btn-action label.info-action').show();
+                        $('.btn-action label.info-action').text(res.message);
+                        setTimeout(function () { $('.btn-action label.info-action').hide(); callback(); }, 1250);
+                    });
+                }
+                function _delete(id) {
+                    $.post(
+                        '/admin/tool/deletePost',
+                        { postId: id },
+                        function (res) {
+                            if (res.statu == cdA.CodeStatus.OK) {
+                                swal('Đã xóa!', res.message, 'success');
+                            }
+                            else {
+                                swal('Xóa không thành công!', res.message, 'error');
+                            }
+                        }
+                    );
+                }
+                function _load() {
+                    let _url = '/admin/tool/loadPost';
+                    let _html = `
+                                                        <li>
+                                                            <label for="icon-right">{#:fontName}</label>
+                                                            <span class="k-textbox k-space-right" style=" width: 100%; padding-right: 4em;">
+                                                                <div>{#:fontSign}</div>
+                                                                <a href="#" class="k-icon k-i-edit btn-edit" style="right: 2em;" data-id="{#:id}">&nbsp;</a>
+                                                                <a href="#" class="k-icon k-i-delete btn-delete" data-id="{#:id}" data-name="{#:fontName}">&nbsp;</a>
+                                                            </span>
+                                                        </li>
+`;
+                    $.get(_url, function (res) {
+                        if (res.data) {
+                            let _htmlContent = '';
+                            let _htmlTempleteContent = '';
+                            res.data.source.forEach(function (item) {
+                                if (item["postType"] == 0) {
+                                    _htmlContent += _html.replaceAll(new RegExp("{#:fontName}", "gi"), item.fontName)
+                                        .replaceAll(new RegExp("{#:fontSign}", "gi"), unescape(item.fontSign))
+                                        .replaceAll(new RegExp("{#:id}", "gi"), item.id);
+                                } else {
+                                    _htmlTempleteContent += _html.replaceAll(new RegExp("{#:fontName}", "gi"), item.fontName)
+                                        .replaceAll(new RegExp("{#:fontSign}", "gi"), unescape(item.fontSign))
+                                        .replaceAll(new RegExp("{#:id}", "gi"), item.id);
+                                }
+                                
+                            });
+                            $('ul.content-area').html(_htmlContent);
+                            $('ul.content-template-area').html(_htmlTempleteContent);
+                        }
+                    });
+                }
+                //---------------------------INIT---------------------------------
+                (function () {
+                    $('.btn-action label.info-action').hide();
+                    _load();
+                })();
+                //---------------------------EVENT---------------------------------
+                $('#btn-save').on('click', function (e) {
+                    //get data
+                    let _data = _getData();
+                    //validate
+                    if (_data.FontName == '' || _data.FontSign == '') {
+                        swal('Thiếu thông tin cần thiết!', 'Hãy bổ sung thêm!', 'error');
+                        return;
+                    }
+
+                    if (_data.Id == '') {
+                        _data.Id = helper.createGUID();
+                        _insert(_data, function () { return _load() });
+                    }
+                    else {
+                        _data.Id = _data.Id;
+                        _update(_data, function () { return _load() });
+                    }
+                    //clear id
+                    _setDataDefault();
+                });
+
+                $(document).on('click', '.btn-delete', function (e) {
+                    var _data = $(e.target).data();
+
+                    swal({
+                        title: 'Chắc xóa?',
+                        text: 'Xóa [' + _data.name + ']!',
+                        type: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        cancelButtonText: 'Quay lại',
+                        confirmButtonText: 'Vâng, xóa!'
+                    }).then(function (e) {
+                        if (e.value == true) {
+                            _delete(_data.id)
+                        }
+
+                    }).catch(swal.noop);
+                });
+                $(document).on('click', '.btn-edit', async function (e) {
+                    var _data = $(e.target).data();
+                    let dataReponse = await _getDataById(_data.id);
+                    _setData(dataReponse);
+                });
+            })();
+        </script>
+    }
+</environment>
+<environment include="Production">
+    @section Scripts{
+    }
+</environment>
