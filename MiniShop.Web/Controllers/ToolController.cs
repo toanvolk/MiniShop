@@ -12,21 +12,21 @@ namespace MiniShop.Web.Controllers
     public class ToolController : BaseController
     {
         private readonly InfoServerConfig _infoServerConfig;
-        private readonly IProductService _productService;
+        private readonly IPostService _postService;
 
         public ToolController(IBaseService baseService, IBlogService blogService
             , IOptions<InfoServerConfig> optionAccessor
-            , IProductService productService) : base(baseService)
+            , IProductService productService, IPostService postService) : base(baseService)
         {
             _infoServerConfig = optionAccessor.Value;
-            _productService = productService;
+            _postService = postService;
         }
         [Route("posts")]
         public IActionResult Posts()
         {
-            //var model = new Tuple<InfoServerConfig>(_infoServerConfig);
-            return View();
-        }
-
+            var postDtos = _postService.LoadData();
+            var model = new Tuple<ICollection<PostDto>>(postDtos.ToList());
+            return View(model);
+        }       
     }
 }

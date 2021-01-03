@@ -105,7 +105,7 @@ namespace MiniShop.Web.Areas.admin.Controllers
             var response = new DataResponeCommon<PageDataDto<PostDto>>()
             {
                 Statu = StatuCodeEnum.OK,
-                Message = "Thêm thành công",
+                Message = "Truy vấn thành công",
                 Data = new PageDataDto<PostDto>(postDtos.ToList(), postDtos.Count)
             };
             return Json(response);

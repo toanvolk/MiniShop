@@ -1,5 +1,6 @@
 ﻿
 @using MiniShop.App
+@model Tuple<ICollection<PostDto>>;
 @*@model Tuple<InfoServerConfig, BlogDto, ICollection<ProductDto>>;
     @{
         var metaData = new MetaTagDto()
@@ -38,7 +39,7 @@
     <link rel='stylesheet' href='https://storage.googleapis.com/code.getmdl.io/1.0.1/material.teal-red.min.css'>
     <link href="~/css/client/loader-newton.min.css" rel="stylesheet" />
     <link href="~/css/client/posts.css" rel="stylesheet" />
-    
+
 }
 
 <partial name="../Home/_nav.cshtml" />
@@ -72,7 +73,7 @@
             </div>
             <label>Biểu tượng: </label>
             <div class="row icon-group" style="background: #fff; overflow: auto; max-height: 30em; ">
-                <partial name="Posts_emoji.cshtml"/>
+                <partial name="Posts_emoji.cshtml" />
             </div>
 
         </div>
@@ -246,7 +247,7 @@
                     $(".mshop-tool-post.content textarea").select();
                     document.execCommand("copy");
                     $('span.copy-status').show();
-                    setTimeout(function () {                        
+                    setTimeout(function () {
                         $("span.copy-status").fadeOut(1500);
                         isCopy = false;
                     }, 1500);
