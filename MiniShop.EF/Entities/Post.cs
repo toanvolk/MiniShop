@@ -13,6 +13,9 @@ namespace MiniShop.EF
         public string FontName { get; set; }
         public string FontSign { get; set; }
         public PostType PostType { get; set; }
+
+        [MaxLength(100)]
+        public string Code { get; set; }
     }
     public enum PostType : byte
     {
