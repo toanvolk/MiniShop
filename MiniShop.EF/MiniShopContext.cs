@@ -14,6 +14,7 @@ namespace MiniShop.EF
         public DbSet<Category> Categorys { get; set; }        
         public DbSet<Area> Areas { get; set; }        
         public DbSet<Post> Posts { get; set; }        
+        public DbSet<Feedback> Feedbacks { get; set; }        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Blog>(eb =>

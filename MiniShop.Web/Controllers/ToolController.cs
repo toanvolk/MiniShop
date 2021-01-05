@@ -13,20 +13,36 @@ namespace MiniShop.Web.Controllers
     {
         private readonly InfoServerConfig _infoServerConfig;
         private readonly IPostService _postService;
+        private readonly IFeedbackService _feedbackService;
 
         public ToolController(IBaseService baseService, IBlogService blogService
             , IOptions<InfoServerConfig> optionAccessor
-            , IProductService productService, IPostService postService) : base(baseService)
+            , IPostService postService
+            , IFeedbackService feedbackService
+            ) : base(baseService)
         {
             _infoServerConfig = optionAccessor.Value;
             _postService = postService;
+            _feedbackService = feedbackService;
         }
         [Route("posts")]
         public IActionResult Posts()
         {
             var postDtos = _postService.LoadData();
-            var model = new Tuple<ICollection<PostDto>>(postDtos.ToList());
+            var model = new Tuple<ICollection<PostDto>, InfoServerConfig>(postDtos.ToList(), _infoServerConfig);
             return View(model);
-        }       
+        }
+        [Route("posts/feedback")]
+        [HttpPost]
+        public void FeedbackPosts(string name, string description)
+        {
+            var feedback = new FeedbackDto()
+            {
+                Name = name,
+                Description = description,
+                UserHostAddress = this.HttpContext.Connection.RemoteIpAddress.ToString()
+            };
+            _feedbackService.Insert(feedback);
+        }
     }
 }

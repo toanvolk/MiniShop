@@ -1,33 +1,32 @@
 ﻿
 @using MiniShop.App
-@model Tuple<ICollection<PostDto>>;
-@*@model Tuple<InfoServerConfig, BlogDto, ICollection<ProductDto>>;
+@model Tuple<ICollection<PostDto>, InfoServerConfig>;
+@*@model Tuple<InfoServerConfig, BlogDto, ICollection<ProductDto>>;*@
     @{
         var metaData = new MetaTagDto()
         {
-            Title = Model.Item2.Title,
-            Description = Model.Item2.DescriptionShort,
-            Keywords = "sinh ly, phu khoa, man duc, co be, phuc hoi, tang kha nang, lam dep, phu nu, duong vat, am ho, ...",
+            Title = "Tool soạn thảo bài viết facebook, twitter,...",
+            Description = "Hỗ trợ soạn thảo bài biết sinh động, chèn symbols, ký tự đặc biệt,...",
             FacebookMeta = new FacebookMetaTag()
             {
-                Description = Model.Item2.DescriptionShort,
-                Title = Model.Item2.Title,
-                SiteName = Model.Item1.DomainName,
-                Image = $"{Model.Item1.HostName}{Model.Item1.FileRootPath}/{Model.Item2.PicturePath}",
-                Url = "hanglink.info"
+                Title = "Tool soạn thảo bài viết facebook, twitter,...",
+                Description = "Hỗ trợ soạn thảo bài biết sinh động, chèn symbols, ký tự đặc biệt,...",
+                SiteName = Model.Item2.DomainName,
+                Image = $"{Model.Item2.HostName}shared/img-backgrounds/pic-home.jpg",
+                Url = "hanglink.info/tool/posts"
             },
             TwitterMeta = new TwitterMetaTag()
             {
-                Url = "hanglink.info",
-                Title = Model.Item2.DescriptionShort,
-                Image = $"{Model.Item1.HostName}{Model.Item1.FileRootPath}/{Model.Item2.PicturePath}",
-                Card = Model.Item1.DomainName
+                Title = "Hỗ trợ soạn thảo bài biết sinh động, chèn symbols, ký tự đặc biệt,...",
+                Image = $"{Model.Item2.HostName}shared/img-backgrounds/pic-home.jpg",
+                Card = Model.Item2.DomainName,
+                Url = "hanglink.info/tool/posts"
             }
         };
     }
     @section metaTag{
         <partial name="../Shared/_metaTag.cshtml" model="metaData" />
-    }*@
+    }
 @section stylesheets{
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css'>
     <link href="~/lib/chameleon-admin/app-assets/css/bootstrap.min.css" rel="stylesheet" />
@@ -95,6 +94,21 @@
                 <li>Lorem ipsum dolor sit amet consecutor adipiscingLorem ipsum dolor sit amet </li>
                 <li>Lorem ipsum dolor sit amet consecutor</li>
             </ul>
+        </div>
+    </div>
+
+    <div id="fh5co-post-feedback" class="col-4 mshop-tool-post feedback">
+        <div class="container">
+            <div class="subscribe-box">
+                <h2>Mọi ý kiến đóng góp xin liên hệ <span style="color:darkblue">Zalo: 093 690 73 41</span></h2>
+                <p>Hãy nhắn tin đừng gọi!</p>
+                <h2 hidden>Ý kiến người dùng</h2>
+                <div class="subscribe" id="feedback-form" hidden>
+                    <input type="text" placeholder="Danh xưng các hạ" autocomplete="off" required="required" name="name" maxlength="90"/>
+                    <input type="text" placeholder="Nội dung đóng góp" autocomplete="off" required="required" name="description" maxlength="200"/>
+                    <button type="button"> <span>Gửi</span></button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -282,6 +296,22 @@
                     $(".content-edit textarea")[0].focus();
                 });
             })();
+            (function ($conntentRoot) {
+                var btnAction = $conntentRoot.find('button').first();
+                var inputName = $conntentRoot.find('input[name=name]').first();
+                var inputDescription = $conntentRoot.find('input[name=description]').first();
+
+                btnAction.on('click', function () {
+                    if (inputName.val() == '' || inputDescription.val() == '') return;
+
+                    $.post('/tool/posts/feedback', {
+                        name: inputName.val(),
+                        description: inputDescription.val()
+                    });
+                });
+                
+
+            })($("#feedback-form"));
         </script>
     }
 </environment>
