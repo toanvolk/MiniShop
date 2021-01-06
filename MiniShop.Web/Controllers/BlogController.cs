@@ -27,15 +27,18 @@ namespace MiniShop.Web.Controllers
         [Route("{blogCode?}")]
         public IActionResult Index(string blogCode)
         {
+            /*
+             Tiếp thị sản phẩm sức khỏe, điều trị, mỹ phẩm và các dịch vụ mua sắm, thông tin khuyến mãi,...
+             */
             var blogData = _blogService.GetDataByCode(blogCode);
             var productAdsense = _productService.GetForAdsense(2, blogData?.Category);
             var blogDto = blogData == default(BlogDto)
                 ? new BlogDto() {
-                    Title = "Hanglink.info cung cấp thông tin thực phẩm, sản phẩm hỗ trợ sinh lý dành cho nam - nữ!",
+                    Title = "Hanglink.info - Tiếp thị sản phẩm sức khỏe, điều trị, mỹ phẩm và các dịch vụ mua sắm, thông tin khuyến mãi,...",
                     Author = "hanglink.info",
                     PublishDate = new DateTime(2020, 12, 01),
-                    Content = @"Cung cấp thông tin các sản phẩm từ các nguồn sản xuất chính hãng.
-                                Các sản phẩm chỉ phù hợp với người trên 18 tuổi!                                
+                    Content = @"Cung cấp thông tin các sản phẩm, dịch vụ từ các nguồn cung cấp rõ ràng.
+                                Các sản phẩm không phù hợp với trẻ em!                          
                                 "
                 }
                 : blogData;

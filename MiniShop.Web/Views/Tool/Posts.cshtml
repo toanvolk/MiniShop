@@ -1,8 +1,7 @@
 ﻿
 @using MiniShop.App
 @model Tuple<ICollection<PostDto>, InfoServerConfig>;
-@*@model Tuple<InfoServerConfig, BlogDto, ICollection<ProductDto>>;*@
-    @{
+@{
         var metaData = new MetaTagDto()
         {
             Title = "Tool soạn thảo bài viết facebook, twitter,...",
@@ -12,21 +11,21 @@
                 Title = "Tool soạn thảo bài viết facebook, twitter,...",
                 Description = "Hỗ trợ soạn thảo bài biết sinh động, chèn symbols, ký tự đặc biệt,...",
                 SiteName = Model.Item2.DomainName,
-                Image = $"{Model.Item2.HostName}shared/img-backgrounds/pic-home.jpg",
+                Image = $"{Model.Item2.HostName}shared/img-backgrounds/edit-posts.jpg",
                 Url = "hanglink.info/tool/posts"
             },
             TwitterMeta = new TwitterMetaTag()
             {
                 Title = "Hỗ trợ soạn thảo bài biết sinh động, chèn symbols, ký tự đặc biệt,...",
-                Image = $"{Model.Item2.HostName}shared/img-backgrounds/pic-home.jpg",
+                Image = $"{Model.Item2.HostName}shared/img-backgrounds/edit-posts.jpg",
                 Card = Model.Item2.DomainName,
                 Url = "hanglink.info/tool/posts"
             }
         };
-    }
-    @section metaTag{
-        <partial name="../Shared/_metaTag.cshtml" model="metaData" />
-    }
+}
+@section metaTag{
+    <partial name="../Shared/_metaTag.cshtml" model="metaData" />
+}
 @section stylesheets{
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css'>
     <link href="~/lib/chameleon-admin/app-assets/css/bootstrap.min.css" rel="stylesheet" />
@@ -104,8 +103,8 @@
                 <p>Hãy nhắn tin đừng gọi!</p>
                 <h2 hidden>Ý kiến người dùng</h2>
                 <div class="subscribe" id="feedback-form" hidden>
-                    <input type="text" placeholder="Danh xưng các hạ" autocomplete="off" required="required" name="name" maxlength="90"/>
-                    <input type="text" placeholder="Nội dung đóng góp" autocomplete="off" required="required" name="description" maxlength="200"/>
+                    <input type="text" placeholder="Danh xưng các hạ" autocomplete="off" required="required" name="name" maxlength="90" />
+                    <input type="text" placeholder="Nội dung đóng góp" autocomplete="off" required="required" name="description" maxlength="200" />
                     <button type="button"> <span>Gửi</span></button>
                 </div>
             </div>
@@ -115,211 +114,12 @@
 
 <environment include="Development">
     @section Scripts{
-        <script>
-            (function () {
-
-                //----------------------------------DEFINE----------------------------
-                var assetRoot = '';
-                var assetRootArray = undefined;
-                var assetFonts = [];
-
-                (function () {
-                    //init
-                    assetRoot = unescape($('#d-f-standand').text());
-                    assetRootArray = assetRoot.split(' ');
-
-                    assetFonts.push(assetRoot);
-
-                    let _fonts = JSON.parse($('#d-f-sign').text());
-                    _fonts.map(o => {
-                        assetFonts.push(unescape(o.fontSign));
-                    });
-
-                    let _fontTemplates = JSON.parse($('#d-f-sign-template').text());
-                    _fontTemplates.map(o => {
-                        let _html = '<li>' + unescape(o.fontSign)+'</li>';
-                        $('ul.font-template-items').append(_html);
-                    });
-
-                    //load
-                    $('.load-convert').hide();
-                    //statu copy
-                    $('span.copy-status').hide();
-                    //
-                    let liTag = '';
-                    $(assetFonts).each(function (index, item) {
-                        liTag += "<li></li>";
-                    });
-                    $('.mshop-tool-post.tool ul').html(liTag);
-                })();
-
-                var isCopy = false;
-                //----------------------------------FUNCTION----------------------------
-                function convertCharFont(indexFont, chars) {
-                    $('.load-convert').show();
-                    let charReturn = '';
-                    let fonts = assetFonts[indexFont].split(' ');
-                    chars.forEach(function (c) {
-                        //get index in root
-                        let i = assetRootArray.indexOf(c);
-                        if (i == -1)
-                            charReturn += c;
-                        else
-                            charReturn += fonts[i];
-                    });
-                    $('.load-convert').hide();
-                    return charReturn;
-                }
-                function clearFont(text) {
-                    $('.load-convert').show();
-                    let returnText = '';
-                    let cTextEscape = escape(text);
-                    let spaceEscape = escape(' ');
-
-                    while (cTextEscape != '') {
-                        let oldText = cTextEscape;
-                        assetFonts.forEach(function (itemFont) {
-                            let chars = itemFont.split(' ');
-                            chars.forEach(function (item, index) {
-                                let charEscape = escape(item);
-                                if (cTextEscape.startsWith(spaceEscape)) {
-                                    returnText += ' ';
-                                    cTextEscape = cTextEscape.replace(spaceEscape, '');
-                                }
-
-                                if (cTextEscape.startsWith(charEscape)) {
-                                    returnText += assetRootArray[index];
-                                    cTextEscape = cTextEscape.replace(charEscape, '');
-                                    return;
-                                }
-                            });
-                        });
-
-                        //end loop
-                        if (oldText == cTextEscape) {
-                            let cTexts = cTextEscape.split(spaceEscape);
-                            if (cTexts.length > 0) {
-                                returnText += unescape(cTexts[0]);
-                                cTextEscape = cTextEscape.replace(cTexts[0], '');
-                            }
-                        }
-                    }
-
-                    $('.load-convert').hide();
-                    return returnText;
-                }
-                //----------------------------------EVENT----------------------------
-                $('.mshop-tool-post.tool ul li').on('click', function (e) {
-                    let startSelect = $(e.target).data('start-select');
-                    let endSelect = $(e.target).data('end-select');
-                    let text = $(e.target).data('vlue');
-
-                    let textContain = $('.content-edit textarea').val();
-                    let textReplace = textContain.substring(0, startSelect) + text + textContain.substring(endSelect);
-
-                    $('.content-edit textarea').val(textReplace);
-
-                    $('.content-edit textarea')[0].setSelectionRange(startSelect, startSelect + text.length);
-                    $(".content-edit textarea")[0].focus();
-                });
-                $(".mshop-tool-post.content textarea").select(function (e) {
-                    let textRoot = $(e.target).val();
-                    let startSelect = $(e.target)[0].selectionStart;
-                    let endSelect = $(e.target)[0].selectionEnd;
-                    let textSelected = textRoot.substring(startSelect, endSelect);
-
-                    if (!isCopy) {
-                        //clear font
-                        textSelected = clearFont(textSelected); console.log(textSelected);
-
-                        $('.mshop-tool-post.tool ul li').each(function (index, selector) {
-                            let chars = textSelected.split('');
-                            let text = convertCharFont(index, chars);
-                            let ctexts = text.split(' ');
-
-                            let textDisplay = '';
-                            let i = 0;
-                            ctexts.forEach(function (item) {
-                                if (i <= 8) {
-                                    textDisplay += item + ' ';
-                                }
-                                i++;
-                            });
-                            let signHas = '';
-                            if (ctexts.length > 9) signHas = '...';
-                            $(selector).data('vlue', text);
-                            $(selector).text(textDisplay + signHas);
-
-                        });
-
-                        $('.mshop-tool-post.tool ul li').data('start-select', startSelect);
-                        $('.mshop-tool-post.tool ul li').data('end-select', endSelect);
-                    }
-                });
-                $('.category p').on('click', function (e) {
-                    let icon = $(e.target).text();
-                    let startSelect = $(".content-edit textarea")[0].selectionStart;
-                    let endSelect = $(".content-edit textarea")[0].selectionEnd;
-
-                    let textContain = $('.content-edit textarea').val();
-                    let textReplace = textContain.substring(0, startSelect) + icon + textContain.substring(endSelect);
-                    $('.content-edit textarea').val(textReplace);
-                    //$('.content-edit textarea')[0].setSelectionRange(startSelect, startSelect + icon.length);
-                    $(".content-edit textarea")[0].selectionEnd = startSelect + icon.length;
-                    $(".content-edit textarea")[0].focus();
-                });
-                $('#btn-copy').on('click', function () {
-                    //let len = $(".mshop-tool-post.content textarea")[0].textLength;
-                    //let text = $(".mshop-tool-post.content textarea").val();
-                    //$(".mshop-tool-post.content textarea")[0].setSelectionRange(0, len);
-
-                    isCopy = true;
-
-                    $(".mshop-tool-post.content textarea").select();
-                    document.execCommand("copy");
-                    $('span.copy-status').show();
-                    setTimeout(function () {
-                        $("span.copy-status").fadeOut(1500);
-                        isCopy = false;
-                    }, 1500);
-                });
-                $('.template ul li').on('click', function (e) {
-                    let text = $(e.target).text();
-                    let startSelect = $(".content-edit textarea")[0].selectionStart;
-                    let endSelect = $(".content-edit textarea")[0].selectionEnd;
-
-                    let textContain = $('.content-edit textarea').val();
-                    let textReplace = textContain.substring(0, startSelect) + text + textContain.substring(endSelect);
-                    $('.content-edit textarea').val(textReplace);
-                    //$('.content-edit textarea')[0].setSelectionRange(startSelect, startSelect + icon.length);
-                    $(".content-edit textarea")[0].selectionEnd = startSelect + text.length;
-                    $(".content-edit textarea")[0].focus();
-                });
-            })();
-            (function ($conntentRoot) {
-                var btnAction = $conntentRoot.find('button').first();
-                var inputName = $conntentRoot.find('input[name=name]').first();
-                var inputDescription = $conntentRoot.find('input[name=description]').first();
-
-                btnAction.on('click', function () {
-                    if (inputName.val() == '' || inputDescription.val() == '') return;
-
-                    $.post('/tool/posts/feedback', {
-                        name: inputName.val(),
-                        description: inputDescription.val()
-                    });
-                });
-                
-
-            })($("#feedback-form"));
-        </script>
+        <script src="~/js/client/posts.js"></script>
     }
 </environment>
 <environment include="Production">
     @section Scripts{
-        <script>
-            !function () { var t = "", e = void 0, n = []; !function () { t = unescape($("#d-f-standand").text()), e = t.split(" "), n.push(t), JSON.parse($("#d-f-sign").text()).map(t => { n.push(unescape(t.fontSign)) }), JSON.parse($("#d-f-sign-template").text()).map(t => { let e = "<li>" + unescape(t.fontSign) + "</li>"; $("ul.font-template-items").append(e) }), $(".load-convert").hide(), $("span.copy-status").hide(); let o = ""; $(n).each(function (t, e) { o += "<li></li>" }), $(".mshop-tool-post.tool ul").html(o) }(); var o = !1; $(".mshop-tool-post.tool ul li").on("click", function (t) { let e = $(t.target).data("start-select"), n = $(t.target).data("end-select"), o = $(t.target).data("vlue"), a = $(".content-edit textarea").val(), l = a.substring(0, e) + o + a.substring(n); $(".content-edit textarea").val(l), $(".content-edit textarea")[0].setSelectionRange(e, e + o.length), $(".content-edit textarea")[0].focus() }), $(".mshop-tool-post.content textarea").select(function (t) { let a = $(t.target).val(), l = $(t.target)[0].selectionStart, c = $(t.target)[0].selectionEnd, s = a.substring(l, c); o || (s = function (t) { $(".load-convert").show(); let o = "", a = escape(t), l = escape(" "); for (; "" != a;) { let t = a; if (n.forEach(function (t) { t.split(" ").forEach(function (t, n) { let c = escape(t); if (a.startsWith(l) && (o += " ", a = a.replace(l, "")), a.startsWith(c)) return o += e[n], void (a = a.replace(c, "")) }) }), t == a) { let t = a.split(l); t.length > 0 && (o += unescape(t[0]), a = a.replace(t[0], "")) } } return $(".load-convert").hide(), o }(s), console.log(s), $(".mshop-tool-post.tool ul li").each(function (t, o) { let a = function (t, o) { $(".load-convert").show(); let a = "", l = n[t].split(" "); return o.forEach(function (t) { let n = e.indexOf(t); a += -1 == n ? t : l[n] }), $(".load-convert").hide(), a }(t, s.split("")), l = a.split(" "), c = "", i = 0; l.forEach(function (t) { i <= 8 && (c += t + " "), i++ }); let r = ""; l.length > 9 && (r = "..."), $(o).data("vlue", a), $(o).text(c + r) }), $(".mshop-tool-post.tool ul li").data("start-select", l), $(".mshop-tool-post.tool ul li").data("end-select", c)) }), $(".category p").on("click", function (t) { let e = $(t.target).text(), n = $(".content-edit textarea")[0].selectionStart, o = $(".content-edit textarea")[0].selectionEnd, a = $(".content-edit textarea").val(), l = a.substring(0, n) + e + a.substring(o); $(".content-edit textarea").val(l), $(".content-edit textarea")[0].selectionEnd = n + e.length, $(".content-edit textarea")[0].focus() }), $("#btn-copy").on("click", function () { o = !0, $(".mshop-tool-post.content textarea").select(), document.execCommand("copy"), $("span.copy-status").show(), setTimeout(function () { $("span.copy-status").fadeOut(1500), o = !1 }, 1500) }), $(".template ul li").on("click", function (t) { let e = $(t.target).text(), n = $(".content-edit textarea")[0].selectionStart, o = $(".content-edit textarea")[0].selectionEnd, a = $(".content-edit textarea").val(), l = a.substring(0, n) + e + a.substring(o); $(".content-edit textarea").val(l), $(".content-edit textarea")[0].selectionEnd = n + e.length, $(".content-edit textarea")[0].focus() }) }();
-        </script>
+        <script src="~/js/client/posts.min.js"></script>
     }
 </environment>
 

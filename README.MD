@@ -31,3 +31,8 @@
 7. Điều chỉnh ngày thao tác thành UTC. -- OK
 8. Check NotUse client -- OK
 9. Client-lazyload -- Processing
+
+## 06/01/2020
+1. Thêm tiện ích bổ sung font cho người dùng.
+2. Minifier javascript posts
+3. Đổi image đại diện posts

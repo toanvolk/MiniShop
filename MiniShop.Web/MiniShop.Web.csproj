@@ -6,10 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="bundleconfig.json" />
     <Content Remove="compilerconfig.json" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="bundleconfig.json" />
     <None Include="compilerconfig.json" />
     <None Include="wwwroot\lib\chameleon-admin\app-assets\data\fullcalendar\php\get-events.php" />
     <None Include="wwwroot\lib\chameleon-admin\app-assets\data\fullcalendar\php\get-timezones.php" />
@@ -4407,6 +4409,7 @@
 
   <ItemGroup>
     <Folder Include="Areas\admin\Data\" />
+    <Folder Include="wwwroot\log\" />
     <Folder Include="wwwroot\shared\UserFiles\Images\" />
   </ItemGroup>
 
