@@ -2,26 +2,26 @@
 @using MiniShop.App
 @model Tuple<ICollection<PostDto>, InfoServerConfig>;
 @{
-        var metaData = new MetaTagDto()
+    var metaData = new MetaTagDto()
+    {
+        Title = "Tool soạn thảo bài viết facebook, twitter,...",
+        Description = "Hỗ trợ soạn thảo bài biết sinh động, chèn symbols, ký tự đặc biệt,...",
+        FacebookMeta = new FacebookMetaTag()
         {
             Title = "Tool soạn thảo bài viết facebook, twitter,...",
             Description = "Hỗ trợ soạn thảo bài biết sinh động, chèn symbols, ký tự đặc biệt,...",
-            FacebookMeta = new FacebookMetaTag()
-            {
-                Title = "Tool soạn thảo bài viết facebook, twitter,...",
-                Description = "Hỗ trợ soạn thảo bài biết sinh động, chèn symbols, ký tự đặc biệt,...",
-                SiteName = Model.Item2.DomainName,
-                Image = $"{Model.Item2.HostName}shared/img-backgrounds/edit-posts.jpg",
-                Url = "hanglink.info/tool/posts"
-            },
-            TwitterMeta = new TwitterMetaTag()
-            {
-                Title = "Hỗ trợ soạn thảo bài biết sinh động, chèn symbols, ký tự đặc biệt,...",
-                Image = $"{Model.Item2.HostName}shared/img-backgrounds/edit-posts.jpg",
-                Card = Model.Item2.DomainName,
-                Url = "hanglink.info/tool/posts"
-            }
-        };
+            SiteName = Model.Item2.DomainName,
+            Image = $"{Model.Item2.HostName}shared/img-backgrounds/edit-posts.jpg",
+            Url = "hanglink.info/tool/posts"
+        },
+        TwitterMeta = new TwitterMetaTag()
+        {
+            Title = "Hỗ trợ soạn thảo bài biết sinh động, chèn symbols, ký tự đặc biệt,...",
+            Image = $"{Model.Item2.HostName}shared/img-backgrounds/edit-posts.jpg",
+            Card = Model.Item2.DomainName,
+            Url = "hanglink.info/tool/posts"
+        }
+    };
 }
 @section metaTag{
     <partial name="../Shared/_metaTag.cshtml" model="metaData" />
@@ -77,6 +77,11 @@
             </div>
             <div class="row content-edit">
                 <textarea rows="20" class="form-control" autofocus></textarea>
+            </div>
+            <div class="font-change-case">
+                <button data-a="lower-case">Viết thường</button>
+                <button data-a="upper-case">Viết hoa </button>
+                <button data-a="upper-character-case">Viết hoa đầu mỗi từ</button>
             </div>
             <label>Biểu tượng: </label>
             <div class="row icon-group" style="background: #fff; overflow: auto; max-height: 30em; ">

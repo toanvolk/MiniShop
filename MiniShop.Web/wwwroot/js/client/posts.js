@@ -179,6 +179,36 @@
         $(".content-edit textarea")[0].selectionEnd = startSelect + text.length;
         $(".content-edit textarea")[0].focus();
     });
+    $('.font-change-case button').on('click', function (e) {
+        let _target = $(e.target).data('a');
+
+        let startSelect = $(".content-edit textarea")[0].selectionStart;
+        let endSelect = $(".content-edit textarea")[0].selectionEnd;
+        let textContain = $('.content-edit textarea').val();
+        let text = textContain.substring(startSelect, endSelect);
+
+        if (_target == "lower-case") {
+            text = text.toLowerCase();
+        }
+        if (_target == "upper-case") {
+            text = text.toUpperCase();
+        }
+        if (_target == "upper-character-case") {
+            text = text
+                .toLowerCase()
+                .split(' ')
+                .map(function (Word) {
+                    return Word[0].toUpperCase() + Word.substr(1);
+                })
+                .join(' ');
+        }
+
+        
+        let textReplace = textContain.substring(0, startSelect) + text + textContain.substring(endSelect);
+        $('.content-edit textarea').val(textReplace);
+        $('.content-edit textarea')[0].setSelectionRange(startSelect, startSelect + text.length);
+        $(".content-edit textarea")[0].focus();
+    });
 })();
 (function ($conntentRoot) {
     var btnAction = $conntentRoot.find('button').first();
