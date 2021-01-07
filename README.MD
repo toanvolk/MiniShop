@@ -34,5 +34,6 @@
 
 ## 06/01/2020
 1. Thêm tiện ích bổ sung font cho người dùng.
-2. Minifier javascript posts
-3. Đổi image đại diện posts
+2. Click vào font xin chưa chọn hiển thị undertifine
+3. Chọn case lower, upcase,...
+4. Fix font chứ đ
