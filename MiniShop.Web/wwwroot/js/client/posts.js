@@ -17,6 +17,17 @@
             assetFonts.push(unescape(o.fontSign));
         });
 
+        //read local store
+        if (typeof (Storage) !== "undefined") {
+            for (var i = 0; i < 3; i++) {
+                let content = localStorage.getItem('hl-posts-template-index-' + i);
+                if (content) {
+                    let _html = '<li>' + unescape(content) + '</li>';
+                    $('ul.font-template-items').append(_html);
+                }
+            }
+        }
+
         let _fontTemplates = JSON.parse($('#d-f-sign-template').text());
         _fontTemplates.map(o => {
             let _html = '<li>' + unescape(o.fontSign) + '</li>';
@@ -226,3 +237,52 @@
 
 
 })($("#feedback-form"));
+//modal
+(function () {
+    const buttons = document.querySelectorAll('.trigger[data-modal-trigger]');
+
+    for (let button of buttons) {
+        modalEvent(button);
+    }
+
+    function modalEvent(button) {
+        button.addEventListener('click', () => {
+            const trigger = button.getAttribute('data-modal-trigger');
+            const modal = document.querySelector(`[data-modal=${trigger}]`);
+            const contentWrapper = modal.querySelector('.content-wrapper');
+            const close = modal.querySelector('.close');
+
+            close.addEventListener('click', () => modal.classList.remove('open'));
+            modal.addEventListener('click', () => modal.classList.remove('open'));
+            contentWrapper.addEventListener('click', (e) => e.stopPropagation());
+
+            for (var i = 0; i < 3; i++) {
+                let content = localStorage.getItem('hl-posts-template-index-' + i);
+                if (content) {
+                    $('.modal[data-modal] .content input')[i].value = unescape(content);
+                }
+            }
+
+            modal.classList.toggle('open');
+        });
+    }
+
+    $('.btn-save-template-user').on('click', function (e) {
+        if (typeof (Storage) !== "undefined") {
+            // Có hỗ trợ localStorage
+            //console.log(localStorage.length);
+            //localStorage.setItem('key', 'value');
+            //localStorage.getItem('key');
+
+            $('.modal[data-modal] .content input').each(function (index, element) {
+                if (index < 3 && element.value.trim() != '') {
+                    localStorage.setItem('hl-posts-template-index-' + index, escape(element.value));
+                }
+                if (element.value.trim() == '') {
+                    localStorage.removeItem('hl-posts-template-index-' + index);
+                }
+            });
+            location.reload();
+        }
+    });
+})();
