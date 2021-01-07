@@ -96,6 +96,8 @@
         let endSelect = $(e.target).data('end-select');
         let text = $(e.target).data('vlue');
 
+        if (typeof(text) == "undefined") return;
+
         let textContain = $('.content-edit textarea').val();
         let textReplace = textContain.substring(0, startSelect) + text + textContain.substring(endSelect);
 
