@@ -101,6 +101,43 @@
         $('.load-convert').hide();
         return returnText;
     }
+    function getFontIndex(text) {
+        $('.load-convert').show();
+        let fontIndex = -1;
+        let cTextEscape = escape(text);
+        let spaceEscape = escape(' ');
+
+        while (cTextEscape != '') {
+            let oldText = cTextEscape;
+            assetFonts.forEach(function (itemFont, ifont) {
+                let chars = itemFont.split(' ');
+                chars.forEach(function (item, index) {
+                    let charEscape = escape(item);
+                    if (cTextEscape.startsWith(spaceEscape)) {
+                        cTextEscape = cTextEscape.replace(spaceEscape, '');
+                    }
+
+                    if (cTextEscape.startsWith(charEscape)) {
+                        cTextEscape = cTextEscape.replace(charEscape, '');
+                        fontIndex = ifont;
+                        return;
+                    }
+                });
+            });
+
+            //end loop
+            if (oldText == cTextEscape) {
+                let cTexts = cTextEscape.split(spaceEscape);
+                if (cTexts.length > 0) {
+                    cTextEscape = cTextEscape.replace(cTexts[0], '');
+                }
+            }
+            if (fontIndex > -1) cTextEscape = '';
+        }
+
+        $('.load-convert').hide();
+        return fontIndex;
+    }
     //----------------------------------EVENT----------------------------
     $('.mshop-tool-post.tool ul li').on('click', function (e) {
         let startSelect = $(e.target).data('start-select');
@@ -125,7 +162,7 @@
 
         if (!isCopy) {
             //clear font
-            textSelected = clearFont(textSelected); console.log(textSelected);
+            textSelected = clearFont(textSelected); 
 
             $('.mshop-tool-post.tool ul li').each(function (index, selector) {
                 let chars = textSelected.split('');
@@ -198,14 +235,17 @@
         let textContain = $('.content-edit textarea').val();
         let text = textContain.substring(startSelect, endSelect);
 
+        //determined font index
+        let indexFont = getFontIndex(text);
+        let cFont = clearFont(text);
         if (_target == "lower-case") {
-            text = text.toLowerCase();
+            cFont = cFont.toLowerCase();
         }
         if (_target == "upper-case") {
-            text = text.toUpperCase();
+            cFont = cFont.toUpperCase();
         }
         if (_target == "upper-character-case") {
-            text = text
+            cFont = cFont
                 .toLowerCase()
                 .split(' ')
                 .map(function (Word) {
@@ -213,8 +253,8 @@
                 })
                 .join(' ');
         }
-
-        
+        //convert font
+        text = convertCharFont(indexFont, cFont.split(''));
         let textReplace = textContain.substring(0, startSelect) + text + textContain.substring(endSelect);
         $('.content-edit textarea').val(textReplace);
         $('.content-edit textarea')[0].setSelectionRange(startSelect, startSelect + text.length);
