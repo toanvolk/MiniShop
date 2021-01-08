@@ -21,6 +21,15 @@
  
 
 # Fix
+## 08/01/2020
+1. Hiển thị emoji sử dụng gần nhất
+
+## 06/01/2020
+1. Thêm tiện ích bổ sung font cho người dùng.
+2. Click vào font xin chưa chọn hiển thị undertifine
+3. Chọn case lower, upcase,...
+4. Fix font chứ đ (chưa làm được)
+
 ## 25/11/2020
 1. Chỉnh sửa share facebook -- OK
 2. Từ trang sản phẩm, tạo action link về trang chủ. -- OK
@@ -31,9 +40,3 @@
 7. Điều chỉnh ngày thao tác thành UTC. -- OK
 8. Check NotUse client -- OK
 9. Client-lazyload -- Processing
-
-## 06/01/2020
-1. Thêm tiện ích bổ sung font cho người dùng.
-2. Click vào font xin chưa chọn hiển thị undertifine
-3. Chọn case lower, upcase,...
-4. Fix font chứ đ
