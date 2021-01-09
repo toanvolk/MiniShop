@@ -21,6 +21,9 @@
  
 
 # Fix
+## 09/01/2020
+1. Minifier script
+
 ## 08/01/2020
 1. Hiển thị emoji sử dụng gần nhất
 
