@@ -4,5 +4,23 @@
     "inputFiles": [
       "wwwroot/js/client/posts.js"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/js/app-helper.min.js",
+    "inputFiles": [
+      "wwwroot/js/app-helper.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/site.min.js",
+    "inputFiles": [
+      "wwwroot/js/site.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/page/tool.min.js",
+    "inputFiles": [
+      "wwwroot/js/page/tool.js"
+    ]
   }
 ]

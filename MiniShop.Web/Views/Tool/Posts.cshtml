@@ -45,7 +45,7 @@
     <div id="d-init">
         @{
             var fontStandand = Model.Item1.Where(o => o.Code == "font-chuan").FirstOrDefault();
-            <div id="d-f-standand" hidden>@fontStandand.FontSign</div>
+            <div id="d-f-standand" hidden>@fontStandand?.FontSign</div>
 
             var fonts = Model.Item1.Where(o => o.Code != "font-chuan" && o.PostType == MiniShop.EF.PostType.INPUT_TYPE).Select(o => new { FontSign = o.FontSign });
             <div id="d-f-sign" hidden>@Html.Raw(Json.Serialize(fonts))</div>
@@ -108,8 +108,12 @@
                 <button data-a="upper-case">Viết hoa </button>
                 <button data-a="upper-character-case">Viết hoa đầu mỗi từ</button>
             </div>
-            <label>Biểu tượng: </label>
-            <div class="row icon-group" style="background: #fff; overflow: auto; max-height: 30em; ">
+            <div class="caption-emoji">
+                <label><span class="emoji-nearest"></span></label>
+            </div>
+            <div class="clearfix"></div>
+            <label>Biểu tượng:</label>
+            <div class="row icon-group emoji-item-list" style="background: #fff; overflow: auto; max-height: 30em; ">
                 <partial name="Posts_emoji.cshtml" />
             </div>
 
@@ -147,7 +151,7 @@
         <script src="~/js/client/posts.js"></script>
     }
 </environment>
-<environment include="Production">
+<environment exclude="Development">
     @section Scripts{
         <script src="~/js/client/posts.min.js"></script>
     }

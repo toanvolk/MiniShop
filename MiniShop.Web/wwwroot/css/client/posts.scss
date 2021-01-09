@@ -153,6 +153,42 @@
         }
     }
 
+    .caption-emoji {
+        height: 4.5em;
+
+        span.emoji-nearest {
+            position: absolute;
+            background-color: #f9fafd;
+            border-radius: 1em;
+
+            p:first-child {
+                margin-left: 5px;
+            }
+
+            p {
+                position: relative;
+                display: block;
+                width: 32px;
+                height: 32px;
+                margin: 6px;
+                padding: 0;
+                border: 4px solid #f9fafd;
+                border-radius: 3px;
+                background-color: #f9fafd !important;
+                background-image: inherit;
+                background-size: auto 24px !important;
+                background-position: center center;
+                background-repeat: no-repeat;
+                font-size: 0;
+                color: transparent;
+                color: transparent;
+                line-height: 0;
+                float: left;
+                cursor: pointer;
+            }
+        }
+    }
+
     .mshop-tool-post.template {
         $base-duration: 0.25s;
 

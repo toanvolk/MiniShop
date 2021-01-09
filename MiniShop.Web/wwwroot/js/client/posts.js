@@ -4,6 +4,7 @@
     var assetRoot = '';
     var assetRootArray = undefined;
     var assetFonts = [];
+    var KEY_EMOJI_LIST = "posts:emoji-nearest";
 
     (function () {
         //init
@@ -44,6 +45,9 @@
             liTag += "<li></li>";
         });
         $('.mshop-tool-post.tool ul').html(liTag);
+
+        //load emoji nearest
+        loadEmojiNearest();
     })();
 
     var isCopy = false;
@@ -138,6 +142,26 @@
         $('.load-convert').hide();
         return fontIndex;
     }
+    function insertFirstList(array, item, limit) {        
+        if (typeof (limit) != "undefined" && array.length == limit) {
+            array.pop();
+        };
+        array.splice(0, 0, item);
+    }
+    function loadEmojiNearest() {
+        let emojiListNearest = [];
+        let valueLocal = helper.localStorage.get(KEY_EMOJI_LIST);
+        if (typeof (valueLocal) != "undefined") {
+            emojiListNearest = valueLocal.split(',');
+        }
+
+        $('span.emoji-nearest').html('');
+        emojiListNearest.forEach(function (item) {
+            $('span.emoji-nearest').append(item);
+        });
+
+        if (emojiListNearest.length == 0) $('.caption-emoji').hide(); else $('.caption-emoji').show();
+    }
     //----------------------------------EVENT----------------------------
     $('.mshop-tool-post.tool ul li').on('click', function (e) {
         let startSelect = $(e.target).data('start-select');
@@ -188,7 +212,7 @@
             $('.mshop-tool-post.tool ul li').data('end-select', endSelect);
         }
     });
-    $('.category p').on('click', function (e) {
+    $(document).on('click', '.category p, .emoji-nearest p', function (e) {
         let icon = $(e.target).text();
         let startSelect = $(".content-edit textarea")[0].selectionStart;
         let endSelect = $(".content-edit textarea")[0].selectionEnd;
@@ -260,6 +284,21 @@
         $('.content-edit textarea')[0].setSelectionRange(startSelect, startSelect + text.length);
         $(".content-edit textarea")[0].focus();
     });
+    $('.emoji-item-list p').on('click', function (e) {
+        let html = e.target.outerHTML;
+        html = $(html).css('background-image', $(e.target).closest('.category').css('background-image'))[0].outerHTML;
+        let emojiListNearest = [];
+        let valueLocal = helper.localStorage.get(KEY_EMOJI_LIST);
+        if (typeof (valueLocal) != "undefined") {
+            emojiListNearest = valueLocal.split(',');
+            insertFirstList(emojiListNearest, html, 8);
+        }
+        else {
+            insertFirstList(emojiListNearest, html);
+        }
+        helper.localStorage.set(KEY_EMOJI_LIST, emojiListNearest.toString());
+        loadEmojiNearest();
+    });
 })();
 (function ($conntentRoot) {
     var btnAction = $conntentRoot.find('button').first();
@@ -279,11 +318,11 @@
 })($("#feedback-form"));
 //modal
 (function () {
-    const buttons = document.querySelectorAll('.trigger[data-modal-trigger]');
+    var buttons = document.querySelectorAll('.trigger[data-modal-trigger]');
 
     for (let button of buttons) {
         modalEvent(button);
-    }
+    };
 
     function modalEvent(button) {
         button.addEventListener('click', () => {

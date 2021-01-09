@@ -1,5 +1,6 @@
 ﻿
 var helper = {
+    keyStandand: "hanglink.info",
     createGUID: function () {
         return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
             var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
@@ -492,6 +493,20 @@ var helper = {
             } else {
                 sessionStorage[code] = "Sorry, client browser does not support web storage...";
             }            
+        }
+    },
+    localStorage: {
+        get: function (key) {
+            if (typeof (Storage) == "undefined") {
+                localStorage[helper.keyStandand + ":" + key] = "Sorry, client browser does not support web storage...";
+            }
+            return localStorage[helper.keyStandand + ":" +key];
+        },
+        set: function (key, value) {
+            if (typeof (Storage) == "undefined") {
+                localStorage[helper.keyStandand + ":" +key] = "Sorry, client browser does not support web storage...";
+            }
+            localStorage[helper.keyStandand + ":" + key] = value;
         }
     },
     jumpTag: function (selector) {
