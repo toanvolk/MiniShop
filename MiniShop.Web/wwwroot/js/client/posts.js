@@ -318,9 +318,9 @@
 })($("#feedback-form"));
 //modal
 (function () {
-    var buttons = document.querySelectorAll('.trigger[data-modal-trigger]');
+    //var buttons = document.querySelectorAll('.trigger[data-modal-trigger]');
 
-    for (let button of buttons) {
+    for (let button of document.querySelectorAll('.trigger[data-modal-trigger]')) {
         modalEvent(button);
     };
 
