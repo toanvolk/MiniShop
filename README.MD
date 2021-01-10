@@ -24,6 +24,8 @@
 ## 10/01/2020
 1. Build layout productItem
 2. Modify data with layout product
+3. Chức năng seach cho page riêng
+4. Chỉnh lại nội dung các title
 
 ## 09/01/2020
 1. Minifier script
