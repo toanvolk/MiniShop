@@ -21,6 +21,10 @@
  
 
 # Fix
+## 10/01/2020
+1. Build layout productItem
+2. Modify data with layout product
+
 ## 09/01/2020
 1. Minifier script
 
