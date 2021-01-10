@@ -122,5 +122,9 @@
   {
     "outputFile": "wwwroot/css/StyleSheet.css",
     "inputFile": "wwwroot/css/StyleSheet.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/client/page-home-v2.css",
+    "inputFile": "wwwroot/css/client/page-home-v2.scss"
   }
 ]
