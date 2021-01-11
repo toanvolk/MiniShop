@@ -22,5 +22,6 @@ namespace MiniShop.App
         public string AreaCode { get; set; }
         public bool IsHero { get; set; }
         public TagEnum Tag { get; set; }
+        public decimal PriceIgnore { get; set; }
     }
 }

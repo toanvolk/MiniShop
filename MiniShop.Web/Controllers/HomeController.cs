@@ -38,7 +38,12 @@ namespace MiniShop.Web.Controllers
         [Route("{f?}/{group?}")]
         public IActionResult Index()
         {
-            var model = new Tuple<InfoServerConfig, ICollection<BlogDto>, CounterDto>(_infoServerConfig, _blogService.BlogMains(), _homeService.GetCounter());
+            var model = new Tuple<InfoServerConfig, ICollection<BlogDto>, CounterDto, ICollection<CategoryProductDto>>(
+                _infoServerConfig,
+                _blogService.BlogMains(),
+                _homeService.GetCounter(),
+                _productService.LoadDataPageDefault(15)
+                ); 
             return View(model);
         }
         public IActionResult ProductPage(int pageNumber = 1, int pageSize = 9, string paramStrs = null)

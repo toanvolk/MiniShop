@@ -257,5 +257,31 @@ namespace MiniShop.App
             }            
             return productDtoReturns.Take(2).ToList();
         }
+
+        public ICollection<CategoryProductDto> LoadDataPageDefault(int take)
+        {
+            var categoryProducts = new List<CategoryProductDto>();
+            //load category
+            var categorys = _unitOfWorfk.CategoryRepository.Filter(o => o.NotUse != true).ToList();
+            foreach (var category in categorys)
+            {
+                var categoryDto = _mapper.Map<CategoryDto>(category);
+                var products = _unitOfWorfk.ProductRepository.Filter(o=> o.NotUse != true && o.CategoryIds.Contains(category.Id.ToString())).Take(take).ToList();
+                var productDtos = _mapper.Map<List<ProductDto>>(products);
+
+                productDtos.ForEach(o=> { 
+                    o.Picture = $"{_infoServerConfig.FileRootPath}/{o.Picture}";
+                    o.Description = o.Description?.TakeWords(10);
+                    o.Code = $"/san-pham/{o.Code}";
+                });
+
+                categoryProducts.Add(new CategoryProductDto() { 
+                    Category = categoryDto,
+                    Products = productDtos
+                });
+            }
+
+            return categoryProducts;
+        }
     }
 }

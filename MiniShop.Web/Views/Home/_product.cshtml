@@ -5,198 +5,126 @@
 @{
     var productCardId = Guid.NewGuid();
 }
+@model ICollection<CategoryProductDto>;
 <div id="fh5co-product" class="mshop-product-client">
 
     <div class="container">
-        <div class="row animate-box" hidden>
-            <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-                <span>Thức tỉnh nội tại</span>
-                <h2 style="color:#f8950f;">Sản phẩm hỗ trợ khơi dậy đam mê</h2>
-                <p>Sức khỏe - tuyệt vời - bạn cần phải trân trọng - nó sẽ làm tất cả những gì bạn thích!</p>
-            </div>
-        </div>
-        @*<div class="row category-product">
+        @foreach (var item in Model)
+        {
+            var productPart1 = @item.Products.Skip(0).Take(5);
+            var productPart2 = @item.Products.Skip(5).Take(5);
+            var productPart3 = @item.Products.Skip(10).Take(5);
+
+            <div class="row category-product-v">
                 <div class="category">
-                    <div class="name">Thể loại</div>
+                    <div class="name">@item.Category.Name</div>
                     <div class="read-more">Xem thêm</div>
                 </div>
                 <div class="clearfix"></div>
-                <ul class="product">
-                    <li class="item">Sản phẩm 1</li>
-                    <li class="item">Sản phẩm 2</li>
-                    <li class="item">Sản phẩm 3</li>
-                    <li class="item">Sản phẩm 4</li>
-                    <li class="item">Sản phẩm 5</li>
-                </ul>
-            </div>*@
-
-        <div class="row category-product-v">
-            <div class="category">
-                <div class="name">Thể loại</div>
-                <div class="read-more">Xem thêm</div>
-            </div>
-            <div class="clearfix"></div>
-            <div class="slideshow-container">
-                <div class="mySlides fade">
-                    <ul class="product">
-                        <li class="item">
-                            <div class="product-card">
-                                <div class="badge">Hot</div>
-                                <div class="product-tumb">
-                                    <img src="https://i.imgur.com/xdbHo4E.png" alt="">
-                                </div>
-                                <div class="product-details">
-                                    <span class="product-catagory">Women,bag</span>
-                                    <h4><a href="">Women leather bag</a></h4>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, possimus nostrum!</p>
-                                    <div class="product-bottom-details">
-                                        <div class="product-price"><small>$96.00</small>$230.99</div>
-                                        <div class="product-links">
-                                            <a href=""><i class="fa fa-heart"></i></a>
-                                            <a href=""><i class="fa fa-shopping-cart"></i></a>
+                <div class="slideshow-container">
+                    @if (productPart1.Count() > 0)
+                    {
+                        <div class="mySlides fade">
+                            <ul class="product">
+                                @foreach (var p1 in productPart1)
+                                {
+                                    <li class="item">
+                                        <div class="product-card">
+                                            @if (p1.Tag != TagEnum.NONE)
+                                            {
+                                                <div class="badge">@p1.Tag</div>
+                                            }
+                                            <div class="product-tumb">
+                                                <img src="@p1.Picture" alt="">
+                                            </div>
+                                            <div class="product-details">
+                                                <span class="product-catagory">@item.Category.Name</span>
+                                                <h4><a href="@p1.Code" target="_blank">@p1.Name</a></h4>
+                                                <p>@p1.Description</p>
+                                                <div class="product-bottom-details">
+                                                    <div class="product-price"><small>@((p1.PriceIgnore / 1000).ToString("n0")) K</small>@((p1.Price / 1000).ToString("n0")) K</div>
+                                                    <div class="product-links">
+                                                        <a href="@p1.Code" target="_blank"><i class="fa fa-comment-o"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="item">
-                            <div class="product-card">
-                                <div class="badge">Hot</div>
-                                <div class="product-tumb">
-                                    <img src="https://i.imgur.com/xdbHo4E.png" alt="">
-                                </div>
-                                <div class="product-details">
-                                    <span class="product-catagory">Women,bag</span>
-                                    <h4><a href="">Women leather bag</a></h4>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, possimus nostrum!</p>
-                                    <div class="product-bottom-details">
-                                        <div class="product-price"><small>$96.00</small>$230.99</div>
-                                        <div class="product-links">
-                                            <a href=""><i class="fa fa-heart"></i></a>
-                                            <a href=""><i class="fa fa-shopping-cart"></i></a>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    }
+                    @if (productPart2.Count() > 0)
+                    {
+                        <div class="mySlides fade">
+                            <ul class="product">
+                                @foreach (var p1 in productPart2)
+                                {
+                                    <li class="item">
+                                        <div class="product-card">
+                                            @if (p1.Tag != TagEnum.NONE)
+                                            {
+                                                <div class="badge">@p1.Tag</div>
+                                            }
+                                            <div class="product-tumb">
+                                                <img src="@p1.Picture" alt="">
+                                            </div>
+                                            <div class="product-details">
+                                                <span class="product-catagory">@item.Category.Name</span>
+                                                <h4><a href="@p1.Code" target="_blank">@p1.Name</a></h4>
+                                                <p>@p1.Description</p>
+                                                <div class="product-bottom-details">
+                                                    <div class="product-price"><small>@((p1.PriceIgnore / 1000).ToString("n0")) K</small>@((p1.Price / 1000).ToString("n0")) K</div>
+                                                    <div class="product-links">
+                                                        <a href="@p1.Code" target="_blank"><i class="fa fa-comment-o"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="item">
-                            <div class="product-card">
-                                <div class="badge">Hot</div>
-                                <div class="product-tumb">
-                                    <img src="https://i.imgur.com/xdbHo4E.png" alt="">
-                                </div>
-                                <div class="product-details">
-                                    <span class="product-catagory">Women,bag</span>
-                                    <h4><a href="">Women leather bag</a></h4>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, possimus nostrum!</p>
-                                    <div class="product-bottom-details">
-                                        <div class="product-price"><small>$96.00</small>$230.99</div>
-                                        <div class="product-links">
-                                            <a href=""><i class="fa fa-heart"></i></a>
-                                            <a href=""><i class="fa fa-shopping-cart"></i></a>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    }
+                    @if (productPart3.Count() > 0)
+                    {
+                        <div class="mySlides fade">
+                            <ul class="product">
+                                @foreach (var p1 in productPart3)
+                                {
+                                    <li class="item">
+                                        <div class="product-card">
+                                            @if (p1.Tag != TagEnum.NONE)
+                                            {
+                                                <div class="badge">@p1.Tag</div>
+                                            }
+                                            <div class="product-tumb">
+                                                <img src="@p1.Picture" alt="">
+                                            </div>
+                                            <div class="product-details">
+                                                <span class="product-catagory">@item.Category.Name</span>
+                                                <h4><a href="@p1.Code" target="_blank">@p1.Name</a></h4>
+                                                <p>@p1.Description</p>
+                                                <div class="product-bottom-details">
+                                                    <div class="product-price"><small>@((p1.PriceIgnore / 1000).ToString("n0")) K</small>@((p1.Price / 1000).ToString("n0")) K</div>
+                                                    <div class="product-links">
+                                                        <a href="@p1.Code" target="_blank"><i class="fa fa-comment-o"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="item">
-                            <div class="product-card">
-                                <div class="badge">Hot</div>
-                                <div class="product-tumb">
-                                    <img src="https://i.imgur.com/xdbHo4E.png" alt="">
-                                </div>
-                                <div class="product-details">
-                                    <span class="product-catagory">Women,bag</span>
-                                    <h4><a href="">Women leather bag</a></h4>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, possimus nostrum!</p>
-                                    <div class="product-bottom-details">
-                                        <div class="product-price"><small>$96.00</small>$230.99</div>
-                                        <div class="product-links">
-                                            <a href=""><i class="fa fa-heart"></i></a>
-                                            <a href=""><i class="fa fa-shopping-cart"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="item">
-                            <div class="product-card">
-                                <div class="badge">Hot</div>
-                                <div class="product-tumb">
-                                    <img src="https://i.imgur.com/xdbHo4E.png" alt="">
-                                </div>
-                                <div class="product-details">
-                                    <span class="product-catagory">Women,bag</span>
-                                    <h4><a href="">Women leather bag</a></h4>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, possimus nostrum!</p>
-                                    <div class="product-bottom-details">
-                                        <div class="product-price"><small>$96.00</small>$230.99</div>
-                                        <div class="product-links">
-                                            <a href=""><i class="fa fa-heart"></i></a>
-                                            <a href=""><i class="fa fa-shopping-cart"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    }
+                    <div class="clearfix"></div>
+                    <a class="prev">&#10094;</a>
+                    <a class="next">&#10095;</a>
                 </div>
 
-                <div class="mySlides fade">
-                    <ul class="product">
-                        <li class="item">Sản phẩm 6</li>
-                        <li class="item">Sản phẩm 7</li>
-                        <li class="item">Sản phẩm 8</li>
-                        <li class="item">Sản phẩm 9</li>
-                        <li class="item">Sản phẩm 10</li>
-                    </ul>
-                </div>
-
-                <div class="mySlides fade">
-                    <ul class="product">
-                        <li class="item">Sản phẩm 11</li>
-                        <li class="item">Sản phẩm 12</li>
-                        <li class="item">Sản phẩm 13</li>
-                        <li class="item">Sản phẩm 14</li>
-                        <li class="item">Sản phẩm 15</li>
-                    </ul>
-                </div>
-                <div class="clearfix"></div>
-                <a class="prev">&#10094;</a>
-                <a class="next">&#10095;</a>
-
+                <br>
             </div>
-            <br>
-
-            <div style="text-align:center" hidden>
-                <span class="dot" onclick="currentSlide(1)"></span>
-                <span class="dot" onclick="currentSlide(2)"></span>
-                <span class="dot" onclick="currentSlide(3)"></span>
-            </div>
-        </div>
-        @*<div class="row button-effect-shine btn-categorys">
-            </div>
-            <div class="row mshop-filter" data-card-id="@productCardId" hidden>
-                <div class="col-md-6 mshop-filter-item">
-                    <div class="search__container">
-                        <input class="search__input" type="text" placeholder="Search" id="mnshop-btn-product-search">
-                    </div>
-                    <span class="search__result"></span>
-                </div>
-                <div class="col-md-6 mnshop-pagination">
-
-                </div>
-                <div class="loader">
-                    <div class="loader__element"></div>
-                </div>
-            </div>
-
-            <div class="row msshop-product-content" id="@productCardId">
-            </div>
-            <div class="row msshop-product-nav read-more" style="text-align:center">
-                <div class="button-pulse">
-                    <p class="button"><span class="pulse">Xem thêm</span></p>
-                </div>
-            </div>*@
+        }
     </div>
 </div>

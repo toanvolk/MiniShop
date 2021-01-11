@@ -27,5 +27,7 @@ namespace MiniShop.EF
         public string AreaCode { get; set; }
         public bool IsHero { get; set; }
         public int Tag { get; set; }
+        [Column(TypeName = "decimal(12, 2)")]
+        public decimal PriceIgnore { get; set; }
     }
 }

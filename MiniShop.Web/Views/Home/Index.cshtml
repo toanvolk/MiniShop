@@ -1,5 +1,5 @@
 ﻿@using MiniShop.App
-@model Tuple<InfoServerConfig, ICollection<BlogDto>, CounterDto>;
+@model Tuple<InfoServerConfig, ICollection<BlogDto>, CounterDto, ICollection<CategoryProductDto>>;
 @{
     var metaData = new MetaTagDto()
     {
@@ -34,7 +34,7 @@
 <partial name="_nav.cshtml" />
 <partial name="_hero.cshtml" />
 <partial name="_service.cshtml" />
-<partial name="_product.cshtml" />
+<partial name="_product.cshtml" model="Model.Item4"/>
 @*<div id="fh5co-product" class="mnshop-product-page-client"></div>*@
 
 

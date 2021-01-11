@@ -68,6 +68,7 @@ namespace MiniShop.App
                         Description = item.Description,
                         Name = item.Name,
                         Picture = item.Picture,
+                        Code = item.Code,
                         SmallPicture = item.SmallPicture,
                         BigPicture = item.BigPicture,
                         TrackingLink = item.TrackingLink,

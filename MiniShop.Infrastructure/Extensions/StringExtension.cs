@@ -148,5 +148,29 @@ namespace MiniShop.Infrastructure
 
             return myWriter.ToString();
         }
+        public static string TakeWords(this string content,int take)
+        {
+            var ars = content.Split(' ');
+            string result = "";
+
+            for (int i = 0; i < ars.Length - 1; i++)
+            {
+                if(i < take)
+                {
+                    result += $"{ars[i]} ";
+                }
+                else
+                {
+                    break;
+                }    
+            }
+            return result;
+        }
+        public static string FormatCurrencyK(this string content)
+        {
+            _ = decimal.TryParse(content, out decimal value);
+            value /= 1000;
+            return $"{value:n0}K";
+        }
     }
 }
