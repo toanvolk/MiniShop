@@ -21,6 +21,8 @@
     <Compile Remove="Migrations\20201114170629_add-query-product-review.Designer.cs" />
     <Compile Remove="Migrations\20210110082259_modify-data-server.cs" />
     <Compile Remove="Migrations\20210110082259_modify-data-server.Designer.cs" />
+    <Compile Remove="Migrations\20210111103816_re-build-layout-v2-1.cs" />
+    <Compile Remove="Migrations\20210111103816_re-build-layout-v2-1.Designer.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.8" />

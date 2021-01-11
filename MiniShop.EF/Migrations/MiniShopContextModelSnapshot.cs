@@ -207,9 +207,6 @@ namespace MiniShop.EF.Migrations
                     b.Property<bool>("NotUse")
                         .HasColumnType("bit");
 
-                    b.Property<Guid?>("ParentId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(20)")
                         .HasMaxLength(20);
@@ -220,42 +217,6 @@ namespace MiniShop.EF.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categorys");
-                });
-
-            modelBuilder.Entity("MiniShop.EF.Feedback", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(20)")
-                        .HasMaxLength(20);
-
-                    b.Property<DateTime?>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
-
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("nvarchar(20)")
-                        .HasMaxLength(20);
-
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("UserHostAddress")
-                        .HasColumnType("nvarchar(200)")
-                        .HasMaxLength(200);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Feedback");
                 });
 
             modelBuilder.Entity("MiniShop.EF.Post", b =>
@@ -343,9 +304,6 @@ namespace MiniShop.EF.Migrations
                         .HasMaxLength(500);
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(12, 2)");
-
-                    b.Property<decimal>("PriceIgnore")
                         .HasColumnType("decimal(12, 2)");
 
                     b.Property<string>("SmallPicture")
