@@ -98,7 +98,8 @@
         text-transform: uppercase;
         color: #363636;
         text-decoration: none;
-        transition: 0.3s; }
+        transition: 0.3s;
+        height: 2.8em; }
       .category-product-v .product .item .product-details h4 a:hover {
         color: #fbb72c; }
       .category-product-v .product .item .product-details p {

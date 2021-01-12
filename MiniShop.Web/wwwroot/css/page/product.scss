@@ -39,3 +39,47 @@
         margin: 1rem;
     }
 }
+.mnshop-category-content {
+    position: relative;
+
+    .parent-category {
+        span {
+            left: 1.5em;
+            top: -0.6em;
+            border: 1px solid #ccc;
+            padding: 0px 1em;
+            border-radius: 0.8em;
+            background: lightgray;
+            color: white;
+            font-weight: 600;
+        }
+
+        .items {
+            border: 1px solid #ccc;
+            padding: 1em 1.5em 0.5em;
+            border-radius: 0.8em;
+            width: 100%;
+
+            .item {
+                float: left;
+                margin: 0.2em;
+                padding: 0.3em;
+                border: 1px solid #aaa;
+                border-radius: .6em;
+            }
+
+            .item:hover {
+                cursor: pointer;
+                border-color: #217aee;
+                color: #217aee;
+            }
+
+            .item.active {
+                background-color: #217aee;
+                color: white;
+            }
+
+            display: inline-block;
+        }
+    }
+}

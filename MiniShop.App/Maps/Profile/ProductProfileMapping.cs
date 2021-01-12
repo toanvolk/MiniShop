@@ -17,7 +17,7 @@ namespace MiniShop.App
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(source => source.Id))
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(source => source.Name))
                 .ForMember(dest => dest.Description, opt => opt.MapFrom(source => source.Description))
-                .ForMember(dest => dest.CategoryIds, opt => opt.MapFrom(source => source.CategoryIds))
+                .ForMember(dest => dest.Category, opt => opt.MapFrom(source => source.CategoryDto))
                 .ForMember(dest => dest.AreaCode, opt => opt.MapFrom(source => source.AreaCode))
                 .ForMember(dest => dest.Price, opt => opt.MapFrom(source => source.Price))
                 .ForMember(dest => dest.TrackingLink, opt => opt.MapFrom(source => source.TrackingLink))
@@ -38,17 +38,8 @@ namespace MiniShop.App
 
             //get
             CreateMap<Product, ProductDto>()
-                .ForMember(dest => dest.Id, opt => opt.MapFrom(source => source.Id))
-                .ForMember(dest => dest.Name, opt => opt.MapFrom(source => source.Name))
-                .ForMember(dest => dest.Description, opt => opt.MapFrom(source => source.Description.DecodeHtml()))
-                .ForMember(dest => dest.CategoryIds, opt => opt.MapFrom(source => source.CategoryIds))
-                .ForMember(dest => dest.AreaCode, opt => opt.MapFrom(source => source.AreaCode))
-                .ForMember(dest => dest.Price, opt => opt.MapFrom(source => source.Price))
-                .ForMember(dest => dest.TrackingLink, opt => opt.MapFrom(source => source.TrackingLink))
-                .ForMember(dest => dest.Picture, opt => opt.MapFrom(source => source.Picture))
-                .ForMember(dest => dest.SmallPicture, opt => opt.MapFrom(source => source.SmallPicture))
-                .ForMember(dest => dest.BigPicture, opt => opt.MapFrom(source => source.BigPicture))
-                .ForMember(dest => dest.Tag, opt => opt.MapFrom(source => source.Tag));
+                .IncludeBase<Product, ProductDto>()
+                .ForMember(dest => dest.CategoryDto, opt => opt.MapFrom(source => source.Category));
 
             //load
             CreateMap<List<Product>, List<ProductDto>>().ConvertUsing<ProductTypingConvert>();
@@ -73,7 +64,7 @@ namespace MiniShop.App
                         BigPicture = item.BigPicture,
                         TrackingLink = item.TrackingLink,
                         Price = item.Price,
-                        CategoryIds = item.CategoryIds,
+                        CategoryDto = context.Mapper.Map<CategoryDto>(item.Category),
                         NotUse = item.NotUse,
                         IsHero = item.IsHero,
                         Tag = (TagEnum)Enum.Parse(typeof(TagEnum), item.Tag.ToString())

@@ -40,13 +40,19 @@ namespace MiniShop.Web.Areas.admin.Controllers
         [HttpPost]
         public IActionResult Add()
         {
-            return PartialView("_add");
+            var category = _categoryService.LoadData();
+            var model = new Tuple<ICollection<CategoryDto>>(category);
+            return PartialView("_add", model);
         }
         [HttpPost]
         public IActionResult Edit(Guid categoryId)
         {
             var entity = _categoryService.GetData(categoryId);
-            return PartialView("_edit", entity);
+            var categorys = _categoryService.LoadData();
+
+            var model = new Tuple<CategoryDto,ICollection<CategoryDto>>(entity, categorys.Where(o=>o.Id != entity.Id).ToList());
+
+            return PartialView("_edit", model);
         }
         [HttpPost]
         public JsonResult Create(CategoryDto data)

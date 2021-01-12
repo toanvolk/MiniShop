@@ -1,4 +1,13 @@
-﻿var productConst = {
+﻿(function ($, selector) {
+    $(document).on('click', selector + ' .item', function (e) {
+        let hasActive = $(e.target).hasClass('active');
+        $(selector + ' .item').removeClass('active');
+        if (!hasActive)
+            $(e.target).addClass('active');
+    });
+})($, '.mnshop-category-content');
+
+var productConst = {
     add: 'add',
     edit: 'edit',
     delete: 'delete',

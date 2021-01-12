@@ -68,17 +68,28 @@
                         <label for="CattegoryId">Loại sản phâm</label>
                         <div class="mnshop-category-content">
                             @{
-                                var categorys = Model.Item3.CategoryIds?.Split(',');
-                            }
-                            @foreach (var item in @Model.Item1)
-                            {
-                                var classActive = "";
-                                if (categorys != null && categorys.Any(o => o == item.Id.ToString()))
-                                    classActive = "class=active";
-                                <a id="@item.Id" @classActive
-                                   data-id="@item.Id"
-                                   onclick="productAddIndex.clickEvent(this)"
-                                   data-ename="productAddConst.categorySelected">@item.Name</a>
+                                var rootCategorys = Model.Item1.Where(o => o.ParentId == null);
+                                foreach (var category in rootCategorys)
+                                {
+                                    var categoryChilds = Model.Item1.Where(o => o.ParentId == category.Id);
+                                    <div class="parent-category">
+                                        <span>@category.Name</span>
+                                        <div class="items">
+                                            @foreach (var item in categoryChilds)
+                                            {
+                                                if (item.Id == Model.Item3.CategoryDto.Id)
+                                                {
+                                                    <div class="item active" data-id="@item.Id">@item.Name</div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="item" data-id="@item.Id">@item.Name</div>
+                                                }
+
+                                            }
+                                        </div>
+                                    </div>
+                                }
                             }
                         </div>
                     </div>

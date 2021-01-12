@@ -52,85 +52,16 @@ namespace MiniShop.App
             _unitOfWorfk.ProductRepository.Delete(productId);
             return _unitOfWorfk.SaveChanges() > 0;
         }
-        public Tuple<ICollection<ProductDto>, int> LoadDataPage(int page, int pageSize, ProductPageFilterDto filter)
-        {
-
-            IQueryable<Product> query = null;
-            if (filter.CategoryIds.Count > 0)
-            {
-                foreach (var item in filter.CategoryIds)
-                {
-                    var queryChild = _unitOfWorfk.Products.Where(o => o.CategoryIds.Contains(item.ToString()));
-                    if (query == null)
-                        query = queryChild;
-                    else
-                        query = query.Union(queryChild);
-                }
-
-            }
-            else
-            {
-                query = _unitOfWorfk.Products;
-            }
-            if (!string.IsNullOrWhiteSpace(filter.TextSearch))
-            {
-                query = query.Where(o => o.Name.Contains(filter.TextSearch));
-
-            }
-            var queryDto = query.Where(o=> o.NotUse != true).OrderByDescending(o => o.Tag).Select(m => new ProductDto()
-            {
-                Id = m.Id,
-                Name = m.Name,
-                Description = m.Description,
-                AreaCode = m.AreaCode,
-                Price = m.Price,
-                TrackingLink = m.TrackingLink,
-                Picture = $"{_infoServerConfig.FileRootPath}/{m.Picture}",
-                Code = m.Code,
-                NotUse = m.NotUse,
-                IsHero = m.IsHero,
-                Tag = (TagEnum)m.Tag
-            });
-
-            //var model = queryDto.Skip((page - 1) * pageSize).Take(pageSize).ToList();
-            var model = queryDto.Skip(filter.SkipCount).Take(filter.TakeRecords).ToList();
-            var total = queryDto.Count();
-
-            return new Tuple<ICollection<ProductDto>, int>(model, total);
-        }
-        private bool filterCategoryId(Product product, List<Guid> filters)
-        {
-            var categorys = product.CategoryIds?.Split(',');
-            if (categorys == null) return false;
-
-            return filters.Any(o => categorys.Any(c => c == o.ToString()));
-        }
-        private IQueryable<Guid> ConvertGuid(string categorys)
-        {
-            if (string.IsNullOrWhiteSpace(categorys)) return new List<Guid>().AsQueryable();
-            var list = categorys.Split(',');
-            var guids = new List<Guid>();
-            foreach (var item in list)
-            {
-                guids.Add(Guid.Parse(item));
-            }
-            return guids.AsQueryable();
-        }
         public Tuple<ICollection<ProductDto>, int> LoadDataPageAdmin(int page, int pageSize, ProductPageFilterDto paramSearch)
         {
-
             IQueryable<Product> query = null;
             if (paramSearch.CategoryIds != null && paramSearch.CategoryIds.Count > 0)
-            {
-                foreach (var item in paramSearch.CategoryIds)
-                {
-                    var queryChild = _unitOfWorfk.Products.Where(o => o.CategoryIds.Contains(item.ToString()));
-                    if (query == null)
-                        query = queryChild;
-                    else
-                        query = query.Union(queryChild);
-                }
-
+            {                
+                var queryChild = _unitOfWorfk.Products.Where(o => paramSearch.CategoryIds.Contains(o.Category.Id));
+                if (query == null)
+                    query = queryChild;
+                else
+                    query = query.Union(queryChild);
             }
             else
             {
@@ -142,9 +73,9 @@ namespace MiniShop.App
 
             }
             var queryDto = query
-                .OrderByDescending(o => o.CreatedDate)                
+                .OrderByDescending(o => o.CreatedDate)
                 .Select(m => new ProductDto()
-                {                   
+                {
                     Id = m.Id,
                     Name = m.Name,
                     Description = m.Description,
@@ -242,19 +173,20 @@ namespace MiniShop.App
             }
             else
             {
-                foreach (var item in productDtos)
-                {
-                    if (!string.IsNullOrEmpty(item.CategoryIds))
-                    {
-                        var categorys = item.CategoryIds.Split(',');
-                        var categorySrc = category.Split(',');
-                        if (categorys.Any(o => categorySrc.Contains(o)))
-                        {
-                            productDtoReturns.Add(item);
-                        }
-                    }
-                }
-            }            
+                //TODO: need fix CategoryIds
+                //foreach (var item in productDtos)
+                //{
+                //    if (!string.IsNullOrEmpty(item.CategoryIds))
+                //    {
+                //        var categorys = item.CategoryIds.Split(',');
+                //        var categorySrc = category.Split(',');
+                //        if (categorys.Any(o => categorySrc.Contains(o)))
+                //        {
+                //            productDtoReturns.Add(item);
+                //        }
+                //    }
+                //}
+            }
             return productDtoReturns.Take(2).ToList();
         }
 
@@ -266,7 +198,7 @@ namespace MiniShop.App
             foreach (var category in categorys)
             {
                 var categoryDto = _mapper.Map<CategoryDto>(category);
-                var products = _unitOfWorfk.ProductRepository.Filter(o=> o.NotUse != true && o.CategoryIds.Contains(category.Id.ToString())).Take(take).ToList();
+                var products = _unitOfWorfk.ProductRepository.Filter(o=> o.NotUse != true && o.Category.Id == category.Id).Take(take).ToList();
                 var productDtos = _mapper.Map<List<ProductDto>>(products);
 
                 productDtos.ForEach(o=> { 

@@ -54,10 +54,28 @@
                     <div class="form-group">
                         <label for="CattegoryId">Loại sản phâm</label>
                         <div class="mnshop-category-content">
-                            @foreach (var item in @Model.Item1)
-                            {
-                                <a id="@item.Id" data-id="@item.Id" onclick="productAddIndex.clickEvent(this)" data-ename="productAddConst.categorySelected">@item.Name</a>
-                            }
+                            @{
+                                var rootCategorys = Model.Item1.Where(o => o.ParentId == null);
+                                foreach (var category in rootCategorys)
+                                {
+                                    var categoryChilds = Model.Item1.Where(o => o.ParentId == category.Id);
+                                    <div class="parent-category">
+                                        <span>@category.Name</span>
+                                        <div class="items">
+                                            @foreach (var item in categoryChilds)
+                                            {
+                                                <div class="item" data-id="@item.Id">@item.Name</div>
+
+                                            }
+                                        </div>
+                                    </div>
+                                }
+                            }                           
+                            @*<div class="clearfix"></div>
+        @foreach (var item in @Model.Item1)
+        {
+            <a id="@item.Id" data-id="@item.Id" onclick="productAddIndex.clickEvent(this)" data-ename="productAddConst.categorySelected">@item.Name</a>
+        }*@
                         </div>
                     </div>
                     <div class="form-group">

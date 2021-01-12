@@ -12,9 +12,6 @@ namespace MiniShop.App
         {
             //create - update
             CreateMap<CategoryDto, Category>()
-                .ForMember(dest => dest.Id, opt => opt.MapFrom(source => source.Id))
-                .ForMember(dest => dest.Name, opt => opt.MapFrom(source => source.Name))
-                .ForMember(dest => dest.Description, opt => opt.MapFrom(source => source.Description))
                 .AfterMap((source, destination) =>
                 {
                     destination.CreatedBy = "ADMIN";
@@ -26,10 +23,7 @@ namespace MiniShop.App
 
             //get
             //create - update
-            CreateMap<Category, CategoryDto>()
-                .ForMember(dest => dest.Id, opt => opt.MapFrom(source => source.Id))
-                .ForMember(dest => dest.Name, opt => opt.MapFrom(source => source.Name))
-                .ForMember(dest => dest.Description, opt => opt.MapFrom(source => source.Description));
+            CreateMap<Category, CategoryDto>();
             //load
             CreateMap<List<Category>, List<CategoryDto>>().ConvertUsing<CategoryTypingConvert>();
         }
@@ -45,6 +39,7 @@ namespace MiniShop.App
                     Id = item.Id,
                     Description = item.Description,
                     Name = item.Name,
+                    ParentId = item.ParentId,
                     NotUse = item.NotUse
                 });
             }

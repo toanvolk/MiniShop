@@ -125,7 +125,6 @@
         $(_mshop_filter + ' .loader').show();
         timeDelay = setTimeout(function () {
             //_genericPagination();
-            _loadProductMore(true);
             $(_mshop_filter + ' .loader').hide();
         }, 2500);
     });
@@ -157,61 +156,7 @@
     }
     let _captionSearchResult = function (text) {
         $(_mshop_filter + ' ' + _search_result).text(text);
-    }
-    let _loadProductMore = function (reload) {
-        let _cardId = $(".mshop-filter").data("cardId");
-        if (reload) {
-            numberDeplayLazy = 0;
-            numberCountMax = 0;
-            $(_mshop_product_client).find('#' + _cardId).html('');
-            $(_mshop_product_client + ' .msshop-product-nav.read-more').show();
-        }
-        let _url = '/home/productpage{#:_paramStrs}';
-        let _paramStrs = "";
-        //get values
-        let _values = [];
-        $(_mshop_product_client + ' ' + _btn_categorys + ' a.active').each(function (index, item) {
-            let _id = $(item).data("id");
-            if (_id != "ALL")
-                _values.push($(item).data("id"));
-        });
-        let _textSearch = $(_mshop_filter).find(_btnProductSearch).first().val();
-        //parse filter
-        if (_textSearch || _values != []) {
-            let _paramObject = {
-                TextSearch: _textSearch,
-                CategoryIds: _values,
-                SkipCount: numberDeplayLazy,
-                TakeRecords: cdC.pageSize
-            }
-            _paramStrs = "?paramStrs=" + JSON.stringify(_paramObject);
-        };
-        _url = _url.replaceAll(new RegExp("{#:_paramStrs}", "gi"), _paramStrs || "");
-
-        $.get(_url, {}, function (res) {
-            let _html = '';
-            $(res.source).each(function (index, value) {
-                _html += _formatCardTemplate(value);
-            });
-            //set total row into numberCountMax
-            numberCountMax = res.total;
-            if ($(_btnProductSearch).val()) {
-                let _resultText = "Tìm thấy {#:totalItem} kết quả";
-                _resultText = _resultText.replaceAll(new RegExp("{#:totalItem}", "gi"), res.total);
-                _captionSearchResult(_resultText);
-            }
-            //cập nhật tham số load lazy
-            numberDeplayLazy += res.source.length;
-            $(_mshop_product_client).find('#' + _cardId).append(_html);
-
-            console.log("numberDeplayLazy: " + numberDeplayLazy, "numberCountMax :" + numberCountMax)
-            if (numberDeplayLazy == numberCountMax && numberDeplayLazy != 0) {
-                $(_mshop_product_client + ' .msshop-product-nav.read-more').hide();
-            }
-        });
-
-
-    }
+    }    
     let _jumpFocusTag = function (group) {
         //clear focus
         $(_mshop_product_client + ' ' + _btn_categorys + ' a').removeClass("active");
@@ -288,12 +233,9 @@
         $(_mshop_filter + ' .loader').show();
         timeDelay = setTimeout(function () {
             //_genericPagination();
-            _loadProductMore(true);
             $(_mshop_filter + ' .loader').hide();
         }, 700);
-        _loadProductMore(true);
     })
-    $(document).on('click', _mshop_product_client + ' .msshop-product-nav.read-more p.button', function (e) { _loadProductMore(); })
     $(document).on('click', '.mnshop-service-client a.service-read-more', function (e) {
         let _group = $(e.target).data('group');
         if (typeof (_group) == "undefined") _group = $(e.target).closest('a').data('group');
@@ -303,7 +245,6 @@
 
         _jumpFocusTag(_group);
     });
-    _loadProductMore();
     //auto jump
     setTimeout(function () {
         let _path = window.location.pathname;

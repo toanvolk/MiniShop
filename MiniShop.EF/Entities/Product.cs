@@ -21,7 +21,7 @@ namespace MiniShop.EF
         public decimal Price { get; set; }
         public string Description { get; set; }
         public bool NotUse { get; set; }
-        public string CategoryIds { get; set; }
+        public Category Category { get; set; }
         public string TrackingLink { get; set; }
         [MaxLength(50)]
         public string AreaCode { get; set; }

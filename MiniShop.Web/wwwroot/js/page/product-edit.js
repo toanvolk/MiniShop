@@ -1,4 +1,5 @@
-﻿var productEditConst = {
+﻿
+var productEditConst = {
     save: "save",
     cancel: "cancel",
     cardContent: "#mnshop-product-edit",
@@ -25,11 +26,8 @@ var productEditIndex = {
         if (!handle.validate.checkRequired({ content: _$rootContent })) return;
         let _data = handle.data.inputToObject(_$rootContent, function (obj) {
             obj.Price = parseFloat(obj.Price.replaceAll(',', ''));
-            let _catetorys = [];
-            $(productEditConst.cardContent + ' ' + productEditConst.categoryContent + ' a.active').each(function (index, item) {
-                _catetorys.push($(item).data('id'));
-            });
-            obj.CategoryIds = _catetorys.toString();
+            
+            obj.CategoryId = { Id: $('.mnshop-category-content .item.active').data('id') };
         });
         console.log(_data);
         //save

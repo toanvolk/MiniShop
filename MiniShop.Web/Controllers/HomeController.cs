@@ -45,20 +45,7 @@ namespace MiniShop.Web.Controllers
                 _productService.LoadDataPageDefault(15)
                 ); 
             return View(model);
-        }
-        public IActionResult ProductPage(int pageNumber = 1, int pageSize = 9, string paramStrs = null)
-        {
-            ProductPageFilterDto filterDto = new ProductPageFilterDto();
-            if (!string.IsNullOrWhiteSpace(paramStrs))
-                filterDto = JsonConvert.DeserializeObject<ProductPageFilterDto>(paramStrs);
-            var productDtos = _productService.LoadDataPage(pageNumber, pageSize, filterDto);
-            var model = new
-            {
-                source = productDtos.Item1,
-                total = productDtos.Item2
-            };
-            return Json(model);
-        }
+        }        
         public IActionResult ProductHero()
         {
             var productDtos = _productService.LoadDataHero();

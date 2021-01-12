@@ -2,27 +2,44 @@
     Layout = null;
 }
 @using MiniShop.App;
-@model CategoryDto;
+@model Tuple<CategoryDto, ICollection<CategoryDto>>;
 <div class="card" id="mnshop-category-edit">
     <div class="card-content collapse show">
-        <div class="card-body">            
+        <div class="card-body">
             <div class="form">
-                <input hidden name="Id" value="@Model.Id" />
+                <input hidden name="Id" value="@Model.Item1.Id" />
                 <div class="form-body">
                     <h4 class="form-section">
                         <i class="ft-flag"></i> Category Info
                     </h4>
                     <div class="form-group">
                         <label for="categoryName">Name</label>
-                        <input type="text" class="form-control" placeholder="Category name" name="Name" required validate-message-required="Please a category name!" value="@Model.Name">
-                    </div>                    
+                        <input type="text" class="form-control" placeholder="Category name" name="Name" required validate-message-required="Please a category name!" value="@Model.Item1.Name">
+                    </div>
                     <div class="form-group">
                         <label for="companyinput8">Description</label>
-                        <textarea rows="5" class="form-control" name="Description" placeholder="Category description" value="@Model.Description">@Model.Description</textarea>
+                        <textarea rows="5" class="form-control" name="Description" placeholder="Category description" value="@Model.Item1.Description">@Model.Item1.Description</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="categoryParent">Parent</label>
+                        <select class="form-control" name="ParentId">
+                            <option value="" selected></option>
+                            @foreach (var category in Model.Item2)
+                            {
+                                if (category.Id == Model.Item1.ParentId)
+                                {
+                                    <option value="@category.Id" selected>@category.Name</option>
+                                }
+                                else
+                                {
+                                    <option value="@category.Id">@category.Name</option>
+                                }
+                            }
+                        </select>
                     </div>
                 </div>
 
-                <div class="form-actions">                   
+                <div class="form-actions">
                     <button class="btn btn-primary" onclick="categoryEditIndex.clickEvent(this)" data-ename="categoryEditConst.save">
                         <i class="la la-check-square-o"></i> Save
                     </button>

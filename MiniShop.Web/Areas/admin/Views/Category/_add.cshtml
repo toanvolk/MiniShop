@@ -1,6 +1,8 @@
 ﻿@{
     Layout = null;
 }
+@using MiniShop.App;
+@model Tuple<ICollection<CategoryDto>>;
 <div class="card" id="mnshop-category-add">
     <div class="card-content collapse show">
         <div class="card-body">            
@@ -12,10 +14,20 @@
                     <div class="form-group">
                         <label for="categoryName">Name</label>
                         <input type="text" class="form-control" placeholder="Category name" name="Name" required validate-message-required="Please a category name!">
-                    </div>                    
+                    </div>
                     <div class="form-group">
                         <label for="companyinput8">Description</label>
                         <textarea rows="5" class="form-control" name="Description" placeholder="Category description"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="categoryParent">Parent</label>
+                        <select class="form-control" name="ParentId">
+                            <option value="" selected></option>
+                            @foreach (var category in Model.Item1)
+                            {
+                                <option value="@category.Id">@category.Name</option>
+                            }
+                        </select>                        
                     </div>
                 </div>
 

@@ -51,7 +51,7 @@ namespace MiniShop.App
         }
         public ICollection<CategoryDto> LoadData()
         {
-            var datas = _unitOfWorfk.Categories.Where(o=>o.NotUse !=true).ToList();
+            var datas = _unitOfWorfk.Categories.Where(o=>o.NotUse != true).ToList();
             var model = _mapper.Map<List<CategoryDto>>(datas);
             model.SetIndex();
 
