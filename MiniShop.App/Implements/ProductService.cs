@@ -35,15 +35,15 @@ namespace MiniShop.App
         public bool Insert(ProductDto data)
         {
             var product = _mapper.Map<Product>(data);
-            _unitOfWorfk.ProductRepository.Add(product);
-
+            //_unitOfWorfk.ProductRepository.Add(product, product.Category);
+            _unitOfWorfk.ProductCategoryRepository.Add(product, product.Category);
             return _unitOfWorfk.SaveChanges() > 0;
         }
 
         public bool Update(ProductDto data)
         {
             var product = _mapper.Map<Product>(data);
-            _unitOfWorfk.ProductRepository.Update(product, UpdateAccessMode.DENY_UPDATE, "CreatedBy", "CreatedDate", "NotUse", "IsHero");
+            _unitOfWorfk.ProductRepository.Update(product, AccessPropertyMode.DENY_UPDATE, "CreatedBy", "CreatedDate", "NotUse", "IsHero");
             return _unitOfWorfk.SaveChanges() > 0;
         }
 

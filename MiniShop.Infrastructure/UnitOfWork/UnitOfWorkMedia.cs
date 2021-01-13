@@ -79,6 +79,9 @@ namespace MiniShop.Infrastructure
         private IRepositoryBase<Feedback> _feedbackRepository;
         public IRepositoryBase<Feedback> FeedbackRepository => _feedbackRepository ?? (_feedbackRepository = new RepositoryBase<Feedback>(_dbContext));
 
+        private IRepositoryBase<Product,Category> _productCategoryRepository;
+        public IRepositoryBase<Product, Category> ProductCategoryRepository => _productCategoryRepository ?? (_productCategoryRepository = new RepositoryBase<Product, Category>(_dbContext));
+
         #endregion end register reponsitory
     }
 

@@ -29,6 +29,7 @@ var productAddIndex = {
             obj.Price = parseFloat(obj.Price.replaceAll(',', ''));
            
             obj.CategoryDto = { Id: $('.mnshop-category-content .item.active').data('id') };
+            obj.IsRedirectToPageRoot = $('[name=IsRedirectToPageRoot]').prop('checked');
         });
         console.log(_data);
         //save

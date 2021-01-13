@@ -22,6 +22,7 @@ namespace MiniShop.Infrastructure
         IRepositoryBase<Category> CategoryRepository { get; }
         DbSet<Category> Categories { get; }
         IRepositoryBase<Product> ProductRepository { get; }
+        IRepositoryBase<Product,Category> ProductCategoryRepository { get; }
         DbSet<Product> Products { get; }
         IRepositoryBase<Area> AreaRepository { get; }
         DbSet<Area> Areas { get; }

@@ -6,6 +6,11 @@ using System.Linq.Expressions;
 
 namespace MiniShop.Infrastructure
 {
+    public interface IRepositoryBase
+    {
+        string GetDatabaseName();
+        IEnumerable<dynamic> GetDynamicResult(string commandText, params SqlParameter[] parameters);
+    }
     public interface IRepositoryBase<TEntity> where TEntity : class
     {
         int Count { get; }
@@ -19,7 +24,6 @@ namespace MiniShop.Infrastructure
 
         IQueryable<TEntity> GetAllData(Expression<Func<TEntity, bool>> condition, int currentPage, int pageSize, Expression<Func<TEntity, string>> orderby);
         void Add(TEntity entity);
-
         void AddRange(IEnumerable<TEntity> entities);
 
         void Update(TEntity toUpdate);
@@ -29,7 +33,7 @@ namespace MiniShop.Infrastructure
         /// <param name="toUpdate">Entity</param>
         /// <param name="accessMode">Chế độ cho phép (hoặc không) update property.</param>
         /// <param name="props">PropertyName</param>
-        void Update(TEntity toUpdate, UpdateAccessMode accessMode, params string[] propertyNames);
+        void Update(TEntity toUpdate, AccessPropertyMode accessMode, params string[] propertyNames);
         void Delete(Guid id);
 
         void Delete(TEntity entity);
@@ -42,9 +46,9 @@ namespace MiniShop.Infrastructure
 
         IQueryable<TEntity> OrderByDescending<TKey>(Expression<Func<TEntity, TKey>> condition);
     }    
-    public interface IRepositoryBase
+   
+    public interface IRepositoryBase<TEntity1, TEntity2> where TEntity1 : class where TEntity2 : class
     {
-        string GetDatabaseName();
-        IEnumerable<dynamic> GetDynamicResult(string commandText, params SqlParameter[] parameters);
+        void Add(TEntity1 toAdd, TEntity2 ignoreAdd);
     }
 }

@@ -27,7 +27,8 @@ var productEditIndex = {
         let _data = handle.data.inputToObject(_$rootContent, function (obj) {
             obj.Price = parseFloat(obj.Price.replaceAll(',', ''));
             
-            obj.CategoryId = { Id: $('.mnshop-category-content .item.active').data('id') };
+            obj.CategoryDto = { Id: $('.mnshop-category-content .item.active').data('id') };
+            obj.IsRedirectToPageRoot = $('[name=IsRedirectToPageRoot]').prop('checked');
         });
         console.log(_data);
         //save

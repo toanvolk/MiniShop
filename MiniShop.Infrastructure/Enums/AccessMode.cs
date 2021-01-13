@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MiniShop.Infrastructure
 {
-    public enum UpdateAccessMode
+    public enum AccessPropertyMode
     {
         ALLOW_UPDATE,
         DENY_UPDATE

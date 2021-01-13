@@ -14,17 +14,7 @@ namespace MiniShop.App
         {
             //create - update
             CreateMap<ProductDto, Product>()
-                .ForMember(dest => dest.Id, opt => opt.MapFrom(source => source.Id))
-                .ForMember(dest => dest.Name, opt => opt.MapFrom(source => source.Name))
-                .ForMember(dest => dest.Description, opt => opt.MapFrom(source => source.Description))
                 .ForMember(dest => dest.Category, opt => opt.MapFrom(source => source.CategoryDto))
-                .ForMember(dest => dest.AreaCode, opt => opt.MapFrom(source => source.AreaCode))
-                .ForMember(dest => dest.Price, opt => opt.MapFrom(source => source.Price))
-                .ForMember(dest => dest.TrackingLink, opt => opt.MapFrom(source => source.TrackingLink))
-                .ForMember(dest => dest.Picture, opt => opt.MapFrom(source => source.Picture))
-                .ForMember(dest => dest.SmallPicture, opt => opt.MapFrom(source => source.SmallPicture))
-                .ForMember(dest => dest.BigPicture, opt => opt.MapFrom(source => source.BigPicture))
-                .ForMember(dest => dest.Tag, opt => opt.MapFrom(source => source.Tag))
                 .AfterMap((source, destination) =>
                 {
                     destination.Code = source.Name.URLFriendly();
@@ -38,7 +28,6 @@ namespace MiniShop.App
 
             //get
             CreateMap<Product, ProductDto>()
-                .IncludeBase<Product, ProductDto>()
                 .ForMember(dest => dest.CategoryDto, opt => opt.MapFrom(source => source.Category));
 
             //load

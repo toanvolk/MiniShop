@@ -70,7 +70,7 @@ namespace MiniShop.App
             var entity = _mapper.Map<Blog>(blogDto);
             entity.UpdatedDate = DateTime.UtcNow;
             entity.UpdatedBy = "ADMIN";
-            _unitOfWorfk.BlogRepository.Update(entity, UpdateAccessMode.DENY_UPDATE, "CreatedBy", "CreatedDate", "NotUse");
+            _unitOfWorfk.BlogRepository.Update(entity, AccessPropertyMode.DENY_UPDATE, "CreatedBy", "CreatedDate", "NotUse");
             return _unitOfWorfk.SaveChanges() > 0;
         }
 

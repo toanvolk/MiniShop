@@ -21,7 +21,6 @@ namespace MiniShop.EF
         public decimal Price { get; set; }
         public string Description { get; set; }
         public bool NotUse { get; set; }
-        public Category Category { get; set; }
         public string TrackingLink { get; set; }
         [MaxLength(50)]
         public string AreaCode { get; set; }
@@ -29,5 +28,10 @@ namespace MiniShop.EF
         public int Tag { get; set; }
         [Column(TypeName = "decimal(12, 2)")]
         public decimal PriceIgnore { get; set; }
+        public bool? IsRedirectToPageRoot { get; set; }
+        
+
+        [ReferenceCustom]
+        public virtual Category Category { get; set; }
     }
 }

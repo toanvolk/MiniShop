@@ -12,7 +12,7 @@
                         <i class="ft-flag"></i> Thông tin sản phẩm
                     </h4>
                     <div class="form-group row">
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <label for="productName">Tên</label>
                             <input type="text" class="form-control" placeholder="Product name" name="Name" required validate-message-required="Nhập tên sản phẩm!">
                         </div>
@@ -26,7 +26,7 @@
                                 }
                             </select>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                             <label for="Tag">Tag</label>
                             <select name="Tag" class="form-control" required>
                                 @{
@@ -46,8 +46,12 @@
                                 }
                             </select>
                         </div>
-                        <div class="col-md-3">
-                            <label for="Price">Giá</label>
+                        <div class="col-md-6">
+                            <label for="PriceIgnore">Giá gốc</label>
+                            <input name="PriceIgnore" class="form-control decimal-inputmask" required validate-message-required="Nhập số tiền" />
+                        </div>
+                        <div class="col-md-6">
+                            <label for="Price">Giá thực</label>
                             <input name="Price" class="form-control decimal-inputmask" required validate-message-required="Nhập số tiền" />
                         </div>
                     </div>
@@ -70,12 +74,7 @@
                                         </div>
                                     </div>
                                 }
-                            }                           
-                            @*<div class="clearfix"></div>
-        @foreach (var item in @Model.Item1)
-        {
-            <a id="@item.Id" data-id="@item.Id" onclick="productAddIndex.clickEvent(this)" data-ename="productAddConst.categorySelected">@item.Name</a>
-        }*@
+                            }     
                         </div>
                     </div>
                     <div class="form-group">
@@ -108,9 +107,17 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="TrackingLink">Tracking link</label>
-                        <input type="text" class="form-control" placeholder="Nhập tracking link" name="TrackingLink">
+                    <div class="form-group row">
+                        <div class="col-md-8">
+                            <label for="TrackingLink">Tracking link</label>
+                            <input type="text" class="form-control" placeholder="Nhập tracking link" name="TrackingLink">
+                        </div>
+                        <div class="form-check col-md-4">
+                            <input class="form-check-input" type="checkbox" name="IsRedirectToPageRoot">
+                            <label class="form-check-label" for="defaultCheck3">
+                                Chuyển hướng về trang gốc
+                            </label>
+                        </div>                        
                     </div>
                     <div class="form-group">
                         <label for="companyinput8">Mô tả</label>

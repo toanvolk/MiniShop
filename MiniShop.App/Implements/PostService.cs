@@ -32,7 +32,7 @@ namespace MiniShop.App
         public bool Update(PostDto postDto)
         {
             var entity = _mapper.Map<Post>(postDto);
-            _unitOfWorfk.PostRepository.Update(entity, UpdateAccessMode.DENY_UPDATE, "CreatedBy", "CreatedDate");
+            _unitOfWorfk.PostRepository.Update(entity, AccessPropertyMode.DENY_UPDATE, "CreatedBy", "CreatedDate");
 
             return _unitOfWorfk.SaveChanges() > 0;
         }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace MiniShop.EF
@@ -12,5 +13,6 @@ namespace MiniShop.EF
         public string Description { get; set; }
         public Guid? ParentId { get; set; }
         public bool NotUse { get; set; }
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

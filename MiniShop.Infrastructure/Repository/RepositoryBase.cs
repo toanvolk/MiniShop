@@ -8,6 +8,7 @@ using System.Dynamic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MiniShop.Infrastructure
 {
@@ -57,7 +58,6 @@ namespace MiniShop.Infrastructure
         {
             _dbContext.Set<TEntity>().Add(toAdd);
         }
-
         public void AddRange(IEnumerable<TEntity> entities)
         {
             _dbContext.Set<TEntity>().AddRange(entities);
@@ -68,7 +68,7 @@ namespace MiniShop.Infrastructure
             _dbContext.Entry(toUpdate).State = EntityState.Modified;
         }
 
-        public virtual void Update(TEntity toUpdate, UpdateAccessMode accessMode, params string[] propertyNames)
+        public virtual void Update(TEntity toUpdate, AccessPropertyMode accessMode, params string[] propertyNames)
         {
             _dbContext.Attach(toUpdate);
             PropertyInfo[] propertyInfo = typeof(TEntity).GetProperties();
@@ -81,11 +81,31 @@ namespace MiniShop.Infrastructure
                     _dbContext.Entry(toUpdate).Property(property.Name).IsModified = false;
                     continue;
                 }
+                //if (property.CustomAttributes.Any(o => o.AttributeType == typeof(NotMappedAttribute)))
+                //    continue;
 
-                if (accessMode == UpdateAccessMode.ALLOW_UPDATE)
-                    _dbContext.Entry(toUpdate).Property(property.Name).IsModified = propertyNames.Contains(property.Name);
-                else if(accessMode == UpdateAccessMode.DENY_UPDATE)
-                    _dbContext.Entry(toUpdate).Property(property.Name).IsModified = !propertyNames.Contains(property.Name);
+                if (accessMode == AccessPropertyMode.ALLOW_UPDATE)
+                {
+                    if (property.CustomAttributes.Any(o => o.AttributeType == typeof(ReferenceCustomAttribute)))
+                    {                        
+                        _dbContext.Entry(toUpdate).Reference(property.Name).IsModified = propertyNames.Contains(property.Name);
+                    }
+                    else
+                    {
+                        _dbContext.Entry(toUpdate).Property(property.Name).IsModified = propertyNames.Contains(property.Name);
+                    }
+                }
+                else if (accessMode == AccessPropertyMode.DENY_UPDATE)
+                {
+                    if (property.CustomAttributes.Any(o => o.AttributeType == typeof(ReferenceCustomAttribute)))
+                    {
+                        _dbContext.Entry(toUpdate).Reference(property.Name).IsModified = !propertyNames.Contains(property.Name);
+                    }
+                    else
+                    {
+                        _dbContext.Entry(toUpdate).Property(property.Name).IsModified = !propertyNames.Contains(property.Name);
+                    }
+                }
             }
         }
 
@@ -200,6 +220,22 @@ namespace MiniShop.Infrastructure
                     }
                 }
             }
+        }
+    }
+    public class RepositoryBase<TEntity1, TEntity2> : IRepositoryBase<TEntity1, TEntity2> where TEntity1 : class where TEntity2 : class
+    {
+        private readonly DbContext _dbContext;
+        private DbSet<TEntity1> _dbSet;
+
+        public RepositoryBase(DbContext dbcontext)
+        {
+            _dbContext = dbcontext;
+            _dbSet = dbcontext.Set<TEntity1>();
+        }
+        public virtual void Add(TEntity1 toAdd, TEntity2 ignoreAdd)
+        {
+            _dbContext.Set<TEntity1>().Add(toAdd);
+            _dbContext.Entry(ignoreAdd).State = EntityState.Unchanged;
         }
     }
 }
