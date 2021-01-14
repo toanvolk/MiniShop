@@ -24,7 +24,7 @@
                         <label for="categoryParent">Parent</label>
                         <select class="form-control" name="ParentId">
                             <option value="" selected></option>
-                            @foreach (var category in Model.Item2)
+                            @foreach (var category in Model.Item2.Where(o => o.ParentId == null))
                             {
                                 if (category.Id == Model.Item1.ParentId)
                                 {

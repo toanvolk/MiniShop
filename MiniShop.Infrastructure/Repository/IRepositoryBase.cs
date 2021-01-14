@@ -21,7 +21,8 @@ namespace MiniShop.Infrastructure
         TEntity Find(Expression<Func<TEntity, bool>> predicate, string condition = "");
 
         IQueryable<TEntity> Filter(Expression<Func<TEntity, bool>> condition);
-
+        IQueryable<TEntity> Filter(Expression<Func<TEntity, bool>> condition, string navigationPropertyPath);
+        IQueryable<TEntity> Filter(Expression<Func<TEntity, bool>> condition, Expression<Func<TEntity, object>> navigationPropertyPath);
         IQueryable<TEntity> GetAllData(Expression<Func<TEntity, bool>> condition, int currentPage, int pageSize, Expression<Func<TEntity, string>> orderby);
         void Add(TEntity entity);
         void AddRange(IEnumerable<TEntity> entities);

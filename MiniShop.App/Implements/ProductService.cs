@@ -194,20 +194,27 @@ namespace MiniShop.App
         {
             var categoryProducts = new List<CategoryProductDto>();
             //load category
-            var categorys = _unitOfWorfk.CategoryRepository.Filter(o => o.NotUse != true).ToList();
+            var categorys = _unitOfWorfk.CategoryRepository.Filter(o => o.NotUse != true && o.ParentId == null).ToList();
             foreach (var category in categorys)
             {
+                var categoryChild = _unitOfWorfk.CategoryRepository.Filter(o => o.ParentId == category.Id, p=>p.Products).ToList();
                 var categoryDto = _mapper.Map<CategoryDto>(category);
-                var products = _unitOfWorfk.ProductRepository.Filter(o=> o.NotUse != true && o.Category.Id == category.Id).Take(take).ToList();
-                var productDtos = _mapper.Map<List<ProductDto>>(products);
+                var productDtos = new List<ProductDto>();
+                foreach (var item in categoryChild)
+                {
+                    var products = item.Products.Where(o => o.NotUse != true).OrderByDescending(o => o.CreatedDate).Take(take).ToList();
+                    productDtos.AddRange(_mapper.Map<List<ProductDto>>(products));
+                }
 
-                productDtos.ForEach(o=> { 
+                productDtos.ForEach(o =>
+                {
                     o.Picture = $"{_infoServerConfig.FileRootPath}/{o.Picture}";
                     o.Description = o.Description?.TakeWords(10);
                     o.Code = $"/san-pham/{o.Code}";
                 });
 
-                categoryProducts.Add(new CategoryProductDto() { 
+                categoryProducts.Add(new CategoryProductDto()
+                {
                     Category = categoryDto,
                     Products = productDtos
                 });

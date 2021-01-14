@@ -15,7 +15,7 @@
             var productPart2 = @item.Products.Skip(5).Take(5);
             var productPart3 = @item.Products.Skip(10).Take(5);
 
-            <div class="row category-product-v">
+            <div class="row category-product-v" data-ishow="0">
                 <div class="category">
                     <div class="name">@item.Category.Name</div>
                     <div class="read-more">Xem thêm</div>
@@ -38,7 +38,7 @@
                                                 <img src="@p1.Picture" alt="">
                                             </div>
                                             <div class="product-details">
-                                                <span class="product-catagory">@item.Category.Name</span>
+                                                <span class="product-catagory">@p1.CategoryDto.Name</span>
                                                 <h4 class="name-h4"><a href="@p1.Code" target="_blank">@p1.Name</a></h4>
                                                 <p>@p1.Description</p>
                                                 <div class="product-bottom-details">
@@ -70,7 +70,7 @@
                                                 <img src="@p1.Picture" alt="">
                                             </div>
                                             <div class="product-details">
-                                                <span class="product-catagory">@item.Category.Name</span>
+                                                <span class="product-catagory">@p1.CategoryDto.Name</span>
                                                 <h4 class="name-h4"><a href="@p1.Code" target="_blank">@p1.Name</a></h4>
                                                 <p>@p1.Description</p>
                                                 <div class="product-bottom-details">
@@ -102,7 +102,7 @@
                                                 <img src="@p1.Picture" alt="">
                                             </div>
                                             <div class="product-details">
-                                                <span class="product-catagory">@item.Category.Name</span>
+                                                <span class="product-catagory">@p1.CategoryDto.Name</span>
                                                 <h4 class="name-h4"><a href="@p1.Code" target="_blank">@p1.Name</a></h4>
                                                 <p>@p1.Description</p>
                                                 <div class="product-bottom-details">

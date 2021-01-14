@@ -16,9 +16,9 @@ namespace MiniShop.Infrastructure
     {
         private readonly DbContext _dbContext;
         private DbSet<TEntity> _dbSet;
-       
+
         public RepositoryBase(DbContext dbcontext)
-        {            
+        {
             _dbContext = dbcontext;
             _dbSet = dbcontext.Set<TEntity>();
         }
@@ -50,6 +50,12 @@ namespace MiniShop.Infrastructure
         }
 
         public virtual IQueryable<TEntity> Filter(Expression<Func<TEntity, bool>> condition) => _dbSet.Where(condition);
+        public virtual IQueryable<TEntity> Filter(Expression<Func<TEntity, bool>> condition, string navigationPropertyPath) => _dbSet.Where(condition).Include(navigationPropertyPath);
+        public virtual IQueryable<TEntity> Filter(Expression<Func<TEntity, bool>> condition, Expression<Func<TEntity, object>> navigationPropertyPath) {
+            var expression = (MemberExpression)navigationPropertyPath.Body;
+            string name = expression.Member.Name;
+            return _dbSet.Where(condition).Include(name);
+        }
 
         public virtual IQueryable<TEntity> GetAllData(Expression<Func<TEntity, bool>> condition, int currentPage, int pageSize, Expression<Func<TEntity, string>> orderby)
             => _dbSet.Where(condition).OrderBy(orderby).ThenBy(orderby).Skip((currentPage - 1) * pageSize).Take(pageSize);

@@ -1,34 +1,43 @@
 ﻿//raw layout product
 (function () {
-    var slideIndex = 1;
-    showSlides(slideIndex);
-
-    function plusSlides(n) {
-        showSlides(slideIndex += n);
+    showSlides(0);
+    function plusSlides(n,e) {
+        showSlides(n,e);
     }
-
-    function currentSlide(n) {
-        showSlides(slideIndex = n);
-    }
-
-    function showSlides(n) {
-        var i;
-        var slides = document.getElementsByClassName("mySlides");
-        var dots = document.getElementsByClassName("dot");
-        if (n > slides.length) { slideIndex = 1 }
-        if (n < 1) { slideIndex = slides.length }
-        for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";
+    function showSlides(n,e) {
+        if (typeof (e) == "undefined") {
+            //show item first defaut
+            let $categorys = $('.category-product-v');
+            for (var i = 0; i < $categorys.length; i++) {
+                var groupProducts = $($categorys[i]).find('.mySlides');
+                for (ig = 0; ig < groupProducts.length; ig++) {
+                    groupProducts[ig].style.display = "none";
+                }
+                groupProducts[0].style.display = "block";
+                groupProducts[0].style.opacity = "1";
+            }
         }
-        for (i = 0; i < dots.length; i++) {
-            dots[i].className = dots[i].className.replace(" active", "");
-        }
-        slides[slideIndex - 1].style.display = "block";
-        slides[slideIndex - 1].style.opacity = "1";
-        //dots[slideIndex - 1].className += " active";
-    }
+        else {
+            let $categoryProduct = $(e.target).closest('.category-product-v');
+            let iShowOfGroup = $categoryProduct.data('ishow');
+            let iShowCurrent = iShowOfGroup + n;
+            
 
+            let groupProducts = $categoryProduct.find('.mySlides');
+            for (i = 0; i < groupProducts.length; i++) {
+                groupProducts[i].style.display = "none";
+            }
+
+            if (iShowCurrent > (groupProducts.length - 1)) iShowCurrent = 0;
+            if (iShowCurrent < 0) iShowCurrent = groupProducts.length - 1;
+
+            groupProducts[iShowCurrent].style.display = "block";
+            groupProducts[iShowCurrent].style.opacity = "1";
+
+            $categoryProduct.data('ishow', iShowCurrent);
+        }
+    }
     //event
-    $('.category-product-v a.prev').on('click', function (e) { plusSlides(-1);});
-    $('.category-product-v a.next').on('click', function (e) { plusSlides(1);});
+    $('.category-product-v a.prev').on('click', function (e) { plusSlides(-1,e);});
+    $('.category-product-v a.next').on('click', function (e) { plusSlides(1,e);});
 })();

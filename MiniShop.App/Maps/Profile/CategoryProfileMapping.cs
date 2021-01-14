@@ -23,7 +23,8 @@ namespace MiniShop.App
 
             //get
             //create - update
-            CreateMap<Category, CategoryDto>();
+            CreateMap<Category, CategoryDto>()
+                .ForMember(dest => dest.Pruducts, opt => opt.MapFrom(source => source.Products));
             //load
             CreateMap<List<Category>, List<CategoryDto>>().ConvertUsing<CategoryTypingConvert>();
         }

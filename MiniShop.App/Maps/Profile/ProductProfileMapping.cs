@@ -42,22 +42,7 @@ namespace MiniShop.App
                 destination ??= new List<ProductDto>();
                 foreach (var item in source)
                 {
-                    destination.Add(new ProductDto()
-                    {
-                        Id = item.Id,
-                        Description = item.Description,
-                        Name = item.Name,
-                        Picture = item.Picture,
-                        Code = item.Code,
-                        SmallPicture = item.SmallPicture,
-                        BigPicture = item.BigPicture,
-                        TrackingLink = item.TrackingLink,
-                        Price = item.Price,
-                        CategoryDto = context.Mapper.Map<CategoryDto>(item.Category),
-                        NotUse = item.NotUse,
-                        IsHero = item.IsHero,
-                        Tag = (TagEnum)Enum.Parse(typeof(TagEnum), item.Tag.ToString())
-                    });
+                    destination.Add(context.Mapper.Map<ProductDto>(item));
                 }
                 return destination;
             }

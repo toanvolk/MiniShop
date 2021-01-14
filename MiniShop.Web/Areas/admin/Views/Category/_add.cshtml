@@ -23,7 +23,7 @@
                         <label for="categoryParent">Parent</label>
                         <select class="form-control" name="ParentId">
                             <option value="" selected></option>
-                            @foreach (var category in Model.Item1)
+                            @foreach (var category in Model.Item1.Where(o=>o.ParentId == null))
                             {
                                 <option value="@category.Id">@category.Name</option>
                             }
