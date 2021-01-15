@@ -15,6 +15,7 @@
 
     //////////////////////////////////////////////////////
      -->
+    <link rel="icon" href="~/shared/Icon/logo-hanglink-info.png" />
     <!-- <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet"> -->
     <!-- <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i" rel="stylesheet"> -->
     @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">*@
@@ -60,15 +61,15 @@
     <link href="~/css/client/button-pulse.css" rel="stylesheet" />
     <link href="~/css/client/loader-tomato.min.css" rel="stylesheet" />
     <partial name="_googleTag.cshtml" />
+    <link href="~/css/client/page-home-v2.css" rel="stylesheet" />
+
     @RenderSection("stylesheets", required: false)
 </head>
 <body>
+    <div class="bg"></div>
     <div class="fh5co-loader"></div>
     <div id="page">
         @RenderBody()
-    </div>
-    <div id="page-ads">
-        <partial name="_pageAds.cshtml" />
     </div>
     <div class="gototop js-top">
         <a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>

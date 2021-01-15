@@ -1,26 +1,22 @@
 ﻿
-@media only screen and (min-width: 1900px) {
-    #page {
-        width: 84.2%;
-        float: left;
-    }
-    #page-ads {
-        width: 15.8%;
-        background: blue;
-        position: fixed;
-        right: 0;
-    }
-}
-@media only screen and (max-width: 1899px) {
-    #page {
-        width: 100%;
-    }
-
-    #page-ads {       
-        display:none
-    }
+.bg {
+    background: url("../../shared/img-backgrounds/mua-xuan-hoa-mai-10.jpg") fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    position: fixed;
+    height: 100%;
+    width: 100%;
 }
 
+#page {
+    width: 65%;
+    /* float: left; */
+    margin: 0 auto;
+}
 /*@media only screen and (max-width: 1899) {
     #page-ads {
         display:none;
@@ -31,23 +27,11 @@
 
 
 .mshop-product-client {
-    /*msshop-product-content {
-        width: 100%;
-        height: 100%;
-    }
+    padding: .3em 0 !important;
 
-    msshop-product-content {
-        height: 100%;
+    .container {
         width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }*/
-    /* .img-responsive {
-        max-height: 195px;
     }
-*/
-    background-image: url("../../shared/img-backgrounds/mua-xuan-hoa-mai-10.jpg");
 
     .msshop-product-content {
         background-image: url("../../shared/img-backgrounds/dark-background-product.png");
@@ -492,6 +476,11 @@
     }
 }
 
+.mshop-blog-client {
+    margin: 0em !important;
+    background: none !important;
+}
+
 .mshop-filter {
     @import url('https://fonts.googleapis.com/css?family=Raleway:400,700,900');
     font-family: 'Raleway', sans-serif;
@@ -625,7 +614,9 @@
 .mnshop-navigation {
     #fh5co-logo {
         img {
-            height: 24px;
+            height: 4.5em;
+            top: -30px;
+            position: absolute;
         }
     }
 }

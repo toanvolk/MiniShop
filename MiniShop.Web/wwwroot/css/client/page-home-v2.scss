@@ -96,9 +96,9 @@
             }
 
             .product-tumb img {
-                max-width: 225px;
-                max-height: 200px;
-                height: 200px;
+                max-width: 100%;
+                max-height: 12em;
+                height: 12em;
             }
 
             .product-details {
@@ -122,7 +122,7 @@
                 color: #363636;
                 text-decoration: none;
                 transition: 0.3s;
-                height:2.8em;
+                height: 2.8em;
             }
 
             .product-details h4 a:hover {
@@ -142,7 +142,7 @@
             .product-bottom-details {
                 overflow: hidden;
                 border-top: 1px solid #eee;
-                padding-top: 20px;
+                padding-top: 0.5em;
             }
 
             .product-bottom-details div {
@@ -294,4 +294,13 @@
             font-size: 11px
         }
     }
+}
+footer#fh5co-footer, .fh5co-nav {
+    background: none !important;
+    .container{
+        width: 100%;
+    }
+}
+.fh5co-nav, .fh5co-logo {
+    background: none !important;
 }

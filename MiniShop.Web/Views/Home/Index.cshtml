@@ -28,21 +28,19 @@
 @section stylesheets{
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css'>
     <link href="~/css/client/blog-card.min.css" rel="stylesheet" />
-    <link href="~/css/client/page-home-v2.css" rel="stylesheet" />
 }
 
 <partial name="_nav.cshtml" />
 <partial name="_hero.cshtml" />
-<partial name="_service.cshtml" />
-<partial name="_product.cshtml" model="Model.Item4"/>
+@*<partial name="_service.cshtml" />*@
+<partial name="_product.cshtml" model="Model.Item4" />
 @*<div id="fh5co-product" class="mnshop-product-page-client"></div>*@
 
 
 @*<partial name="_testimonial.cshtml" />*@
-<partial name="_counter.cshtml" model="Model.Item3" />
+@*<partial name="_counter.cshtml" model="Model.Item3" />*@
 <partial name="_blog.cshtml" model="new Tuple<InfoServerConfig, ICollection<BlogDto>>(Model.Item1, Model.Item2)" />
 <partial name="_footer.cshtml" />
-
 <environment include="Development">
     @section Scripts{
         <script src="~/lib/pagination/pagination.js"></script>
