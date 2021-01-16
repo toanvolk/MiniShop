@@ -2,9 +2,6 @@
     Layout = null;
 }
 @using MiniShop.App
-@{
-    var productCardId = Guid.NewGuid();
-}
 @model ICollection<CategoryProductDto>;
 <div id="fh5co-product" class="mshop-product-client">
 
@@ -18,7 +15,7 @@
             <div class="row category-product-v" data-ishow="0">
                 <div class="category">
                     <div class="name">@item.Category.Name</div>
-                    <div class="read-more">Xem thêm</div>
+                    <a class="read-more" href="/san-pham/loai/@item.Category.Code">Xem thêm</a>
                 </div>
                 <div class="clearfix"></div>
                 <div class="slideshow-container">

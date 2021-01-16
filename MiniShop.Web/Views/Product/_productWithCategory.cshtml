@@ -1,0 +1,54 @@
+﻿@{
+    Layout = null;
+}
+@using MiniShop.App
+@model ICollection<CategoryProductDto>;
+
+<div id="fh5co-product-with-category" class="mshop-product-client">
+
+    <div class="container">
+        @foreach (var item in Model)
+        {
+            <div class="row category-product-v" data-ishow="0">
+                <div class="category">
+                    <div class="name">@item.Category.Name</div>
+                    <a class="read-more" href="/san-pham/loai/@item.Category.Code" hidden>Xem thêm</a>
+                </div>
+                <div class="clearfix"></div>
+                <div class="slideshow-container">
+                    <div class="mySlides fade">
+                        <ul class="product">
+                            @foreach (var p1 in item.Products)
+                            {
+                                <li class="item">
+                                    <div class="product-card">
+                                        @if (p1.Tag != TagEnum.NONE)
+                                        {
+                                            <div class="badge">@p1.Tag</div>
+                                        }
+                                        <div class="product-tumb">
+                                            <img src="@p1.Picture" alt="">
+                                        </div>
+                                        <div class="product-details">
+                                            <span class="product-catagory">@p1.CategoryDto.Name</span>
+                                            <h4 class="name-h4"><a href="@p1.Code" target="_blank">@p1.Name</a></h4>
+                                            <p>@p1.Description</p>
+                                            <div class="product-bottom-details">
+                                                <div class="product-price"><small>@((p1.PriceIgnore / 1000).ToString("n0")) K</small>@((p1.Price / 1000).ToString("n0")) K</div>
+                                                <div class="product-links">
+                                                    <a href="@p1.Code" target="_blank"><i class="fa fa-comment-o"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+
+                <br>
+            </div>
+        }
+    </div>
+</div>

@@ -258,3 +258,6 @@ footer#fh5co-footer, .fh5co-nav {
   .mshop-blog-ads-client .container {
     max-height: 45em !important;
     overflow: auto !important; }
+
+#fh5co-product-with-category .item {
+  margin-bottom: 0.5em; }

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MiniShop.EF;
+using MiniShop.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,6 +15,7 @@ namespace MiniShop.App
             CreateMap<CategoryDto, Category>()
                 .AfterMap((source, destination) =>
                 {
+                    destination.Code = source.Name.URLFriendly();
                     destination.CreatedBy = "ADMIN";
                     destination.CreatedDate = DateTime.UtcNow;
 
@@ -22,9 +24,7 @@ namespace MiniShop.App
                 });
 
             //get
-            //create - update
-            CreateMap<Category, CategoryDto>()
-                .ForMember(dest => dest.Pruducts, opt => opt.MapFrom(source => source.Products));
+            CreateMap<Category, CategoryDto>();
             //load
             CreateMap<List<Category>, List<CategoryDto>>().ConvertUsing<CategoryTypingConvert>();
         }
@@ -36,13 +36,15 @@ namespace MiniShop.App
             destination ??= new List<CategoryDto>();
             foreach (var item in source)
             {
-                destination.Add(new CategoryDto() { 
-                    Id = item.Id,
-                    Description = item.Description,
-                    Name = item.Name,
-                    ParentId = item.ParentId,
-                    NotUse = item.NotUse
-                });
+                destination.Add(context.Mapper.Map<CategoryDto>(item));
+                //destination.Add(new CategoryDto() { 
+                //    Id = item.Id,
+                //    Description = item.Description,
+                //    Name = item.Name,
+                //    Code = item.Name,
+                //    ParentId = item.ParentId,
+                //    NotUse = item.NotUse
+                //});
             }
             return destination;
         }

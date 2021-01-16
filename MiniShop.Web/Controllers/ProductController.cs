@@ -13,10 +13,17 @@ namespace MiniShop.Web.Controllers
     {
         private readonly IProductService _productService;
         private readonly InfoServerConfig _infoServerConfig;
-        public ProductController(IBaseService baseService, IProductService productService, IOptions<InfoServerConfig> optionAccessor) : base(baseService)
+        public ICategoryService _categoryService;
+
+        public ProductController(IBaseService baseService, 
+            IProductService productService, 
+            IOptions<InfoServerConfig> optionAccessor,
+            ICategoryService categoryService
+            ) : base(baseService)
         {
             _productService = productService;
             _infoServerConfig = optionAccessor.Value;
+            _categoryService = categoryService;
         }
         [Route("{code}")]
         public IActionResult Review(string code)
@@ -49,6 +56,15 @@ namespace MiniShop.Web.Controllers
                   );
             return View(model);
         }
-        
+        [Route("loai/{code}")]
+        public IActionResult ProductWithCategory(string code)
+        {
+            var categoryProducts = _categoryService.GetDataByCode(code);
+            var model = new Tuple<InfoServerConfig, ICollection<CategoryProductDto>>(
+                  _infoServerConfig,
+                  new List<CategoryProductDto>() { categoryProducts }
+                  );
+            return View(model);
+        }
     }
 }

@@ -1,0 +1,14 @@
+﻿@using MiniShop.App
+@model Tuple<InfoServerConfig, ICollection<CategoryProductDto>>;
+
+@section stylesheets{
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css'>
+}
+
+<partial name="../Home/_nav.cshtml" />
+<partial name="_productWithCategory.cshtml" model="Model.Item2" />
+<div class="clearfix"></div>
+<partial name="../Home/_footer.cshtml" />
+@section Scripts{
+    <script src="~/js/client/page-home-v2.js"></script>
+}
