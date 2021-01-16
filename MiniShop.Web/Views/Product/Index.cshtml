@@ -1,1 +1,10 @@
-﻿<h1>Danh sách sản phẩm</h1>
+﻿@using MiniShop.App
+@model Tuple<InfoServerConfig, ICollection<CategoryProductDto>>;
+
+<partial name="../Home/_nav.cshtml" />
+<partial name="../Home/_product.cshtml" model="Model.Item2" />
+<div class="clearfix"></div>
+<partial name="../Home/_footer.cshtml" />
+@section Scripts{
+    <script src="~/js/client/page-home-v2.js"></script>
+}

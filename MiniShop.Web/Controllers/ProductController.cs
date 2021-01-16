@@ -43,7 +43,11 @@ namespace MiniShop.Web.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var model = new Tuple<InfoServerConfig,ICollection<CategoryProductDto>>(
+                  _infoServerConfig,
+                  _productService.LoadDataPageDefault(15)
+                  );
+            return View(model);
         }
         
     }
