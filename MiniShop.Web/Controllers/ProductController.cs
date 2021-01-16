@@ -19,7 +19,7 @@ namespace MiniShop.Web.Controllers
             _infoServerConfig = optionAccessor.Value;
         }
         [Route("{code}")]
-        public IActionResult Index(string code)
+        public IActionResult Review(string code)
         {
             //filter code => productId
             var productId = _productService.GetProductId(code);
@@ -28,7 +28,7 @@ namespace MiniShop.Web.Controllers
             productDto.Picture = $"{_infoServerConfig.FileRootPath}/{productDto.Picture}";
 
             var model = new Tuple<ProductDto, InfoServerConfig>(productDto, _infoServerConfig);
-            return View("Index", model);
+            return View("Review", model);
         }
         [Route("data/{productId}")]
         public IActionResult ProductView(Guid productId)
@@ -39,6 +39,11 @@ namespace MiniShop.Web.Controllers
                 source = productDto
             };
             return Json(model);
+        }
+
+        public IActionResult Index()
+        {
+            return View();
         }
         
     }

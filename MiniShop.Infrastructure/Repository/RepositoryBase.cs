@@ -96,6 +96,10 @@ namespace MiniShop.Infrastructure
                     {                        
                         _dbContext.Entry(toUpdate).Reference(property.Name).IsModified = propertyNames.Contains(property.Name);
                     }
+                    else if(property.CustomAttributes.Any(o => o.AttributeType == typeof(CollectionCustomAttribute)))
+                    {
+                        _dbContext.Entry(toUpdate).Collection(property.Name).IsModified = propertyNames.Contains(property.Name);
+                    }
                     else
                     {
                         _dbContext.Entry(toUpdate).Property(property.Name).IsModified = propertyNames.Contains(property.Name);
@@ -106,6 +110,10 @@ namespace MiniShop.Infrastructure
                     if (property.CustomAttributes.Any(o => o.AttributeType == typeof(ReferenceCustomAttribute)))
                     {
                         _dbContext.Entry(toUpdate).Reference(property.Name).IsModified = !propertyNames.Contains(property.Name);
+                    }
+                    else if (property.CustomAttributes.Any(o => o.AttributeType == typeof(CollectionCustomAttribute)))
+                    {
+                        _dbContext.Entry(toUpdate).Collection(property.Name).IsModified = propertyNames.Contains(property.Name);
                     }
                     else
                     {

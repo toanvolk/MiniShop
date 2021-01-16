@@ -31,7 +31,7 @@ namespace MiniShop.App
         public bool Update(CategoryDto data)
         {
             var category = _mapper.Map<Category>(data);
-            _unitOfWorfk.CategoryRepository.Update(category, AccessPropertyMode.DENY_UPDATE, "CreatedBy", "CreatedDate", "NotUse");
+            _unitOfWorfk.CategoryRepository.Update(category, AccessPropertyMode.DENY_UPDATE, "CreatedBy", "CreatedDate", "NotUse", "Products");
             return _unitOfWorfk.SaveChanges() > 0;
         }
 

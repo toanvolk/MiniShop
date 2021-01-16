@@ -12,4 +12,12 @@ namespace MiniShop.EF
             AllowModify = modify;
         }
     }
+    public class CollectionCustomAttribute : Attribute
+    {
+        public bool AllowModify { get; set; }
+        public CollectionCustomAttribute(bool modify = false)
+        {
+            AllowModify = modify;
+        }
+    }
 }
