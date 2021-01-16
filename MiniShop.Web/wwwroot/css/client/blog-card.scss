@@ -236,26 +236,26 @@
 @media (min-width: 320px) {
     .mshop-blog-home-client, .mshop-blog-more-client, .mshop-blog-ads-client {
         clear: both;
-        width: 92%;
+        width: 92% !important;
     }
 }
 
 @media (min-width: 1024px) {
     .mshop-blog-home-client {
-        width: 50%;
+        width: 50% !important;
         clear: none;
         left: 22% !important;
     }
 
     .mshop-blog-more-client {
-        width: 22%;
+        width: 22% !important;
         clear: none;
         max-height: 565px;
         overflow: auto;
     }
 
     .mshop-blog-ads-client {
-        width: 24% !important;
+        width: 23% !important;
         clear: none;
     }
 }

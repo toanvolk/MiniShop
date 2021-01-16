@@ -11,7 +11,25 @@
     height: 100%;
     width: 100%;
 }
+@media (max-width: 928px) {
+    .hl-panel {
+        display: none;
+    }
+    
+}
+.hl-panel {
+    position: fixed;
+    top: 15%;
 
+    img {
+        width: 10em;
+    }
+}
+.hl-panel.panel-right {
+    right: 0;
+
+    
+}
 #page {
     width: 65%;
     /* float: left; */

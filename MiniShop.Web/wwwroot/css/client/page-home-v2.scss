@@ -295,12 +295,75 @@
         }
     }
 }
+
 footer#fh5co-footer, .fh5co-nav {
     background: none !important;
-    .container{
+
+    .container {
         width: 100%;
+        margin: 0
     }
 }
+
 .fh5co-nav, .fh5co-logo {
     background: none !important;
 }
+
+#fh5co-footer {
+    padding: 1.5em 0 2em 0;
+
+    .container {
+        margin: 0;
+        padding: 0;
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+    }
+
+    .row-pb-md {
+        padding-bottom: 0em !important;
+    }
+}
+
+#fh5co-blog-more.mshop-blog-more-client {
+    .items {
+        width: 100%;
+    }
+
+    .sticky {
+        max-width: 20em;
+    }
+
+    .container {
+        margin: 0 !important;
+        padding: 0 !important;
+        max-width: 20em;
+        width: 100%;
+    }
+}
+
+#fh5co-blog.mshop-blog-home-client {
+        * {
+            background-color: transparent !important;
+        }
+    
+    
+}
+
+.mshop-blog-ads-client {
+    float: left;
+    width: 23% !important;
+
+    * {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .container {
+        max-height: 45em !important;
+        overflow: auto !important;
+    }
+}
+

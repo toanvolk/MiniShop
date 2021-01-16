@@ -217,7 +217,44 @@
 footer#fh5co-footer, .fh5co-nav {
   background: none !important; }
   footer#fh5co-footer .container, .fh5co-nav .container {
-    width: 100%; }
+    width: 100%;
+    margin: 0; }
 
 .fh5co-nav, .fh5co-logo {
   background: none !important; }
+
+#fh5co-footer {
+  padding: 1.5em 0 2em 0; }
+  #fh5co-footer .container {
+    margin: 0;
+    padding: 0; }
+    #fh5co-footer .container * {
+      margin: 0;
+      padding: 0; }
+  #fh5co-footer .row-pb-md {
+    padding-bottom: 0em !important; }
+
+#fh5co-blog-more.mshop-blog-more-client .items {
+  width: 100%; }
+
+#fh5co-blog-more.mshop-blog-more-client .sticky {
+  max-width: 20em; }
+
+#fh5co-blog-more.mshop-blog-more-client .container {
+  margin: 0 !important;
+  padding: 0 !important;
+  max-width: 20em;
+  width: 100%; }
+
+#fh5co-blog.mshop-blog-home-client * {
+  background-color: transparent !important; }
+
+.mshop-blog-ads-client {
+  float: left;
+  width: 23% !important; }
+  .mshop-blog-ads-client * {
+    margin: 0 !important;
+    padding: 0 !important; }
+  .mshop-blog-ads-client .container {
+    max-height: 45em !important;
+    overflow: auto !important; }

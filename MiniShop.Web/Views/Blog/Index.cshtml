@@ -87,7 +87,7 @@
     <div class='content'>
         @Html.Raw(Model.Item2.Content)
     </div>
-    <footer id="fh5co-footer" role="contentinfo" style="padding: 1em 0;">
+    @*<footer id="fh5co-footer" role="contentinfo" style="padding: 1em 0;">
         <div class="container">
             <div class="row row-pb-md">
                 <div class="col-md-12 fh5co-widget">
@@ -103,7 +103,7 @@
                 </div>
             </div>
         </div>
-    </footer>
+    </footer>*@
 </div>
 <div id="fh5co-blog-ads" class="mshop-blog-ads-client">
     <div class="container">
@@ -146,7 +146,8 @@
     </div>
 </div>
 
-
+<div class="clearfix"></div>
+<partial name="../Home/_footer.cshtml" />
 
 <environment include="Development">
     @section Scripts{
