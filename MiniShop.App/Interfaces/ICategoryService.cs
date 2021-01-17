@@ -14,5 +14,6 @@ namespace MiniShop.App
         CategoryDto GetData(Guid categoryId);
         CategoryProductDto GetDataByCode(string code);
         bool UpdateStatu(Guid categoryId, bool ischecked);
+        ICollection<CategoryDto> LoadDataNonRoot();
     }
 }

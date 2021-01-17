@@ -105,5 +105,14 @@ namespace MiniShop.App
                 Products = products
             };
         }
+
+        public ICollection<CategoryDto> LoadDataNonRoot()
+        {
+            var datas = _unitOfWorfk.Categories.Where(o => o.NotUse != true && o.ParentId != null).OrderByDescending(o=>o.CreatedDate).ToList();
+            var model = _mapper.Map<List<CategoryDto>>(datas);
+            model.SetIndex();
+
+            return model;
+        }
     }
 }

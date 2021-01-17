@@ -112,7 +112,7 @@ namespace MiniShop.App
 
         public ICollection<CategoryDto> GetCategories()
         {
-            return _categoryService.LoadData();
+            return _categoryService.LoadDataNonRoot();
         }
         public ICollection<AreaDto> GetAreas()
         {
@@ -194,7 +194,7 @@ namespace MiniShop.App
         {
             var categoryProducts = new List<CategoryProductDto>();
             //load category
-            var categorys = _unitOfWorfk.CategoryRepository.Filter(o => o.NotUse != true && o.ParentId == null).ToList();
+            var categorys = _unitOfWorfk.CategoryRepository.Filter(o => o.NotUse != true && o.ParentId == null).OrderByDescending(o=>o.UpdatedDate).ToList();
             foreach (var category in categorys)
             {
                 var categoryChild = _unitOfWorfk.CategoryRepository.Filter(o => o.ParentId == category.Id, p=>p.Products).ToList();
