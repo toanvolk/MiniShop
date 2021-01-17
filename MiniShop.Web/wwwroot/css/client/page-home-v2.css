@@ -223,6 +223,11 @@ footer#fh5co-footer, .fh5co-nav {
 .fh5co-nav, .fh5co-logo {
   background: none !important; }
 
+.fh5co-nav .search input {
+  background: no-repeat;
+  border: 1px solid #ccc;
+  border-radius: 0.8em; }
+
 #fh5co-footer {
   padding: 1.5em 0 2em 0; }
   #fh5co-footer .container {
