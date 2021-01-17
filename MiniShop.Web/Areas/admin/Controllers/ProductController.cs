@@ -45,7 +45,7 @@ namespace MiniShop.Web.Areas.admin.Controllers
         {
 
             var model = new Tuple<ICollection<CategoryDto>,ICollection<AreaDto>, ICollection<string>>(
-                _productService.GetCategories(), 
+                _productService.GetCategoryForProductModify(), 
                 _productService.GetAreas(),
                 _productService.TagList());
             return PartialView("_add", model);
@@ -54,7 +54,7 @@ namespace MiniShop.Web.Areas.admin.Controllers
         public IActionResult Edit(Guid productId)
         {
             var model = new Tuple<ICollection<CategoryDto>, ICollection<AreaDto>, ProductDto, ICollection<string>>(
-                _productService.GetCategories(),
+                _productService.GetCategoryForProductModify(),
                 _productService.GetAreas(),
                 _productService.GetData(productId),
                  _productService.TagList()

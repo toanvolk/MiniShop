@@ -114,6 +114,10 @@ namespace MiniShop.App
         {
             return _categoryService.LoadDataNonRoot();
         }
+        public ICollection<CategoryDto> GetCategoryForProductModify()
+        {
+            return _categoryService.LoadData();
+        }
         public ICollection<AreaDto> GetAreas()
         {
             return _areaService.LoadData();
