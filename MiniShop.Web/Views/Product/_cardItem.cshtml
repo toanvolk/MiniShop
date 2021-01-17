@@ -19,8 +19,18 @@
                 <h4 class="name-h4"><a href="@p.Code" target="_blank">@p.Name</a></h4>
                 <p>@p.Description</p>
                 <div class="product-bottom-details">
-                    <div class="product-price"><small>@((p.PriceIgnore / 1000).ToString("n0")) K</small>@((p.Price / 1000).ToString("n0")) K</div>
-                    <div class="product-links">
+                    <div class="product-price">
+                        @if (p.PriceIgnore > 0)
+                        {
+                            <small>@((p.PriceIgnore / 1000).ToString("n0")) K</small>
+                        }
+                        @if (p.Price > 0)
+                        {
+                            @((p.Price / 1000).ToString("n0") + " K")  
+                        }                        
+                        </div>
+
+                        <div class="product-links">
                         <a href="@p.Code" target="_blank"><i class="fa fa-comment-o"></i></a>
                     </div>
                 </div>
