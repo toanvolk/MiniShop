@@ -22,7 +22,7 @@ namespace MiniShop.App
         }
         public ICollection<BlogDto> BlogMains()
         {
-            var entities = _unitOfWorfk.BlogRepository.OrderByDescending(o => o.CreatedDate).Take(6).ToList();
+            var entities = _unitOfWorfk.BlogRepository.Filter(o=>o.NotUse != true).OrderByDescending(o => o.CreatedDate).Take(6).ToList();
             var blogDtos = new List<BlogDto>();
             entities.ForEach(o => blogDtos.Add(_mapper.Map<BlogDto>(o)));
 
@@ -30,7 +30,7 @@ namespace MiniShop.App
         }
         public Tuple<ICollection<BlogDto>, int> GetDataAdmin(int page, int pageSize, ProductPageFilterDto paramSearch)
         {
-            var query = _unitOfWorfk.BlogRepository.OrderByDescending(o => o.CreatedDate);
+            var query = _unitOfWorfk.BlogRepository.Filter(o => o.NotUse != true).OrderByDescending(o => o.CreatedDate);
             var total = query.Count();
             var entities = query.Skip((page - 1) * pageSize).Take(pageSize).ToList();
 
@@ -81,7 +81,7 @@ namespace MiniShop.App
         }
         public BlogDto GetDataByCode(string blogCode)
         {
-            var entity = _unitOfWorfk.BlogRepository.Find(o=>o.ReadMorePath == $"blog/{blogCode}");
+            var entity = _unitOfWorfk.BlogRepository.Filter(o => o.NotUse != true && o.ReadMorePath == $"blog/{blogCode}").FirstOrDefault();
             return _mapper.Map<BlogDto>(entity);
         }
         public PageDataDto<BlogDto> LoadDataPage(PageFilterDto pageFilterDto)
