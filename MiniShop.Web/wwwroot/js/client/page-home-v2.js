@@ -28,6 +28,7 @@
             let $categorys = $('.category-product-v');
             for (var i = 0; i < $categorys.length; i++) {
                 var groupProducts = $($categorys[i]).find('.mySlides');
+                if (groupProducts.length == 0) continue;
                 for (ig = 0; ig < groupProducts.length; ig++) {
                     groupProducts[ig].style.display = "none";
                 }
