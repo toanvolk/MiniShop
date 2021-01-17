@@ -173,7 +173,7 @@ var productIndex = {
                 title: "TẠO MỚI",
                 actions: ["Refresh", "Close"],
                 activate: function (e) {
-                    handle.initEditor($('#mnshop-product-add #description'));
+                    //handle.initEditor($('#mnshop-product-add #description'));
                     $('.decimal-inputmask').inputmask("decimal", {
                         placeholder: "0",
                         digits: 0,
@@ -204,7 +204,7 @@ var productIndex = {
                 title: "TẠO MỚI",
                 actions: ["Refresh", "Close"],
                 activate: function (e) {
-                    handle.initEditor($('#mnshop-product-edit #description'));
+                    //handle.initEditor($('#mnshop-product-edit #description'));
                     $('.decimal-inputmask').inputmask("decimal", {
                         placeholder: "0",
                         digits: 0,
