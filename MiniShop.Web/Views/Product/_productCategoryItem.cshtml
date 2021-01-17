@@ -1,0 +1,30 @@
+﻿@{
+    Layout = null;
+}
+@using MiniShop.App
+@model ICollection<CategoryProductDto>;
+
+<div id="fh5co-product-with-category" class="mshop-product-client">
+
+    <div class="container">
+        @foreach (var item in Model)
+        {
+            <div class="row category-product-v" data-ishow="0">
+                <div class="category">
+                    <div class="name">@item.Category.Name</div>
+                    <a class="read-more" href="/san-pham/loai/@item.Category.Code" hidden>Xem thêm</a>
+                </div>
+                <div class="clearfix"></div>
+                <div class="slideshow-container">
+                    <div class="mySlides fade">
+                        <ul class="product">
+                            <partial name="_cardItem.cshtml" model="item.Products" />
+                        </ul>
+                    </div>
+                </div>
+
+                <br>
+            </div>
+        }
+    </div>
+</div>

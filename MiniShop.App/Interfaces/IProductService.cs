@@ -22,5 +22,6 @@ namespace MiniShop.App
         ProductDto LoadDataView(Guid productId);
         Guid GetProductId(string code);
         ICollection<ProductDto> GetForAdsense(int take, string category);
+        ICollection<ProductDto> GetDataBySearchString(string searchString);
     }
 }

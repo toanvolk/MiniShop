@@ -1,12 +1,15 @@
 ﻿@using MiniShop.App
-@model Tuple<InfoServerConfig, ICollection<CategoryProductDto>>;
+@model Tuple<InfoServerConfig, ICollection<ProductDto>>;
 
 @section stylesheets{
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css'>
 }
 
 <partial name="../Home/_nav.cshtml" />
-<partial name="_productWithCategory.cshtml" model="Model.Item2" />
+<div class="search-result-info">
+    <label>Tìm thấy @Model.Item2.Count() sản phẩm </label>
+</div>
+<partial name="_productCardItem.cshtml" model="Model.Item2" />
 <div class="clearfix"></div>
 <partial name="../Home/_footer.cshtml" />
 @section Scripts{

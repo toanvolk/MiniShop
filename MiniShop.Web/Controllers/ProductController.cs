@@ -57,12 +57,22 @@ namespace MiniShop.Web.Controllers
             return View(model);
         }
         [Route("loai/{code}")]
-        public IActionResult ProductWithCategory(string code)
+        public IActionResult ProductCategory(string code)
         {
             var categoryProducts = _categoryService.GetDataByCode(code);
             var model = new Tuple<InfoServerConfig, ICollection<CategoryProductDto>>(
                   _infoServerConfig,
                   new List<CategoryProductDto>() { categoryProducts }
+                  );
+            return View(model);
+        }
+        [Route("tim-kiem/{searchString}")]
+        public IActionResult SearchPage(string searchString)
+        {
+            var productDtos = _productService.GetDataBySearchString(searchString);
+            var model = new Tuple<InfoServerConfig, ICollection<ProductDto>>(
+                  _infoServerConfig,
+                  productDtos
                   );
             return View(model);
         }

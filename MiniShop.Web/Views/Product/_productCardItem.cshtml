@@ -1,0 +1,20 @@
+﻿@{
+    Layout = null;
+}
+@using MiniShop.App
+@model ICollection<ProductDto>;
+
+<div id="fh5co-product-with-category" class="mshop-product-client">
+
+    <div class="container">
+        <div class="row category-product-v" data-ishow="0">
+            <div class="slideshow-container">
+                <div class="mySlides fade">
+                    <ul class="product">
+                        <partial name="_cardItem.cshtml" model="Model" />                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

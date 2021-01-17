@@ -1,4 +1,22 @@
-﻿//raw layout product
+﻿//search product
+(function () {    
+    $('.search input#search-string-value').keypress(function (event) {
+        var keycode = (event.keyCode ? event.keyCode : event.which);
+        if (keycode == '13') {
+            searchString(this.value);
+        }
+    });
+    $('.search button').on('click', function (e) {
+        let text = $('.search input#search-string-value').last().val();
+        searchString(text);
+    });
+    function searchString(text) {
+        let _url = '/san-pham/tim-kiem/' + text;
+        open(_url);
+    }
+})();
+
+//raw layout product
 (function () {
     showSlides(0);
     function plusSlides(n,e) {

@@ -222,5 +222,25 @@ namespace MiniShop.App
 
             return categoryProducts;
         }
+
+        public ICollection<ProductDto> GetDataBySearchString(string searchString)
+        {
+            var entities = _unitOfWorfk.ProductRepository
+                .Filter(o => o.NotUse != true && o.Name.Contains(searchString), p=>p.Category)
+                .OrderByDescending(o => o.CreatedDate)
+                .ToList();
+            var productDtos = new List<ProductDto>();
+
+            entities.ForEach(o => productDtos.Add(_mapper.Map<ProductDto>(o)));
+
+            productDtos.ForEach(o =>
+            {
+                o.Picture = $"{_infoServerConfig.FileRootPath}/{o.Picture}";
+                o.Description = o.Description?.TakeWords(10);
+                o.Code = $"/san-pham/{o.Code}";
+            });
+
+            return productDtos;
+        }
     }
 }
