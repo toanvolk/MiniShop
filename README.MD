@@ -21,6 +21,13 @@
  
 
 # Fix
+## 18/01/2020
+1. Filter product client
+2. Filter product admin
+3. Chuyển hướng trang theo cài đặt.
+4. Client - mở rộng description prooduct hợp lý
+5. Title /san-pham
+
 ## 10/01/2020
 1. Build layout productItem
 2. Modify data with layout product
