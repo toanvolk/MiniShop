@@ -21,6 +21,10 @@
                         <textarea rows="5" class="form-control" name="Description" placeholder="Category description" value="@Model.Item1.Description">@Model.Item1.Description</textarea>
                     </div>
                     <div class="form-group">
+                        <label for="categoryName">Thứ tự sắp xếp</label>
+                        <input type="number" class="form-control" placeholder="Category sort" name="SortIndex" required validate-message-required="Please a number sort of category !" value="@Model.Item1.SortIndex">
+                    </div>
+                    <div class="form-group">
                         <label for="categoryParent">Parent</label>
                         <select class="form-control" name="ParentId">
                             <option value="" selected></option>

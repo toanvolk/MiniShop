@@ -54,6 +54,11 @@ var categoryIndex = {
                     title: "Mô tả"
                 },
                 {
+                    field: "sortIndex",
+                    title: "Thứ tự",
+                    width: "120px"
+                },
+                {
                     field: "NotUse",
                     title: "Status",
                     template: function (item) {

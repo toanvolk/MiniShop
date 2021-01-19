@@ -46,7 +46,7 @@ namespace MiniShop.App
 
         public ICollection<CategoryDto> LoadDataAdmin()
         {
-            var datas = _unitOfWorfk.Categories.ToList();
+            var datas = _unitOfWorfk.Categories.OrderBy(o=>o.SortIndex).ToList();
             var model = _mapper.Map<List<CategoryDto>>(datas);
             model.SetIndex();
 

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MiniShop.EF;
 
 namespace MiniShop.EF.Migrations
 {
     [DbContext(typeof(MiniShopContext))]
-    partial class MiniShopContextModelSnapshot : ModelSnapshot
+    [Migration("20210119094815_addition-field-sortIndex-Category")]
+    partial class additionfieldsortIndexCategory
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

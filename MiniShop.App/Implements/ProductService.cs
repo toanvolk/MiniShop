@@ -198,7 +198,7 @@ namespace MiniShop.App
         {
             var categoryProducts = new List<CategoryProductDto>();
             //load category
-            var categorys = _unitOfWorfk.CategoryRepository.Filter(o => o.NotUse != true && o.ParentId == null).OrderByDescending(o=>o.UpdatedDate).ToList();
+            var categorys = _unitOfWorfk.CategoryRepository.Filter(o => o.NotUse != true && o.ParentId == null).OrderBy(o=>o.SortIndex).ToList();
             foreach (var category in categorys)
             {
                 var categoryChild = _unitOfWorfk.CategoryRepository.Filter(o => o.ParentId == category.Id, p=>p.Products).ToList();
@@ -231,7 +231,6 @@ namespace MiniShop.App
         {
             var entities = _unitOfWorfk.ProductRepository
                 .Filter(o => o.NotUse != true && o.Name.Contains(searchString), p=>p.Category)
-                .OrderByDescending(o => o.CreatedDate)
                 .ToList();
             var productDtos = new List<ProductDto>();
 
