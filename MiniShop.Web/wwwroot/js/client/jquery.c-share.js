@@ -42,7 +42,7 @@
             fa: 'fa-plurk',
             name: 'Plurk',
             href: function href(url, description) {
-              return "http://www.plurk.com/?qualifier=shares&status=".concat(description, " ").concat(url);
+              return "https://www.plurk.com/?qualifier=shares&status=".concat(description, " ").concat(url);
             },
             show: false
           },
@@ -50,7 +50,7 @@
             fa: 'fab fa-weibo',
             name: '微博',
             href: function href(url, description) {
-              return "http://service.weibo.com/share/share.php?title=".concat(description, "&url=").concat(url);
+              return "https://service.weibo.com/share/share.php?title=".concat(description, "&url=").concat(url);
             },
             show: false
           },
@@ -66,7 +66,7 @@
             fa: 'fab fa-tumblr',
             name: 'Tumblr',
             href: function href(url, description) {
-              return "http://www.tumblr.com/share/link?name=".concat(description, " ").concat(url, "&url=").concat(url);
+              return "https://www.tumblr.com/share/link?name=".concat(description, " ").concat(url, "&url=").concat(url);
             },
             show: false
           },
