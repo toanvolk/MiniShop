@@ -27,6 +27,7 @@
 3. Chuyển hướng trang theo cài đặt.
 4. Client - mở rộng description prooduct hợp lý
 5. Title /san-pham
+6. clear http:
 
 ## 10/01/2020
 1. Build layout productItem
