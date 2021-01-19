@@ -90,7 +90,7 @@ namespace MiniShop.App
                 productDtos.ForEach(o =>
                 {
                     o.Picture = $"{_infoServerConfig.FileRootPath}/{o.Picture}";
-                    o.Description = o.Description?.TakeWords(10);
+                    o.Description = o.Description;//?.TakeWords(10);
                     o.Code = $"/san-pham/{o.Code}";
                 });
 

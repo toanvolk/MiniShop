@@ -43,6 +43,7 @@
             
 
             let groupProducts = $categoryProduct.find('.mySlides');
+            if (groupProducts.length == 0) return;
             for (i = 0; i < groupProducts.length; i++) {
                 groupProducts[i].style.display = "none";
             }
