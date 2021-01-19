@@ -276,4 +276,12 @@ footer#fh5co-footer, .fh5co-nav {
   .category-product-v .product-details h4 a {
     height: auto !important; }
   .category-product-v .product-details p {
-    margin: 0.3em !important; } }
+    margin: 0.3em !important; }
+  #fh5co-hero .flexslider .slider-text > .slider-text-inner h2 {
+    font-size: 24px;
+    color: #f1dbae; }
+  #fh5co-hero .desc p {
+    font-size: 15px; }
+  #fh5co-hero .desc .price {
+    margin-bottom: 0px;
+    color: aliceblue; } }
