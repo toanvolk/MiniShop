@@ -4,7 +4,32 @@
 @section stylesheets{
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css'>
 }
-
+@{
+    var description = Model.Item2.FirstOrDefault()?.Category.Description;
+    var metaData = new MetaTagDto()
+    {
+        Title = Model.Item1.Slogan,
+        Description = description,
+        FacebookMeta = new FacebookMetaTag()
+        {
+            Title = Model.Item1.Slogan,
+            Description = description,
+            SiteName = Model.Item1.DomainName,
+            Image = @$"{Model.Item1.HostName}/shared/img-backgrounds/pic-home.jpg",
+            Url = "hanglink.info"
+        },
+        TwitterMeta = new TwitterMetaTag()
+        {
+            Url = "hanglink.info",
+            Title = Model.Item1.Slogan,
+            Image = @$"{Model.Item1.HostName}/shared/img-backgrounds/pic-home.jpg",
+            Card = Model.Item1.DomainName
+        }
+    };
+}
+@section metaTag{
+    <partial name="../Shared/_metaTag.cshtml" model="metaData" />
+}
 <partial name="../Home/_nav.cshtml" />
 <partial name="_productCategoryItem.cshtml" model="Model.Item2" />
 <div class="clearfix"></div>

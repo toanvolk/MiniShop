@@ -4,7 +4,31 @@
 @section stylesheets{
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css'>
 }
-
+@{
+    var metaData = new MetaTagDto()
+    {
+        Title = Model.Item1.Slogan,
+        Description = "Tìm kiếm...",
+        FacebookMeta = new FacebookMetaTag()
+        {
+            Title = Model.Item1.Slogan,
+            Description = "Tìm kiếm...",
+            SiteName = Model.Item1.DomainName,
+            Image = @$"{Model.Item1.HostName}/shared/img-backgrounds/pic-home.jpg",
+            Url = "hanglink.info"
+        },
+        TwitterMeta = new TwitterMetaTag()
+        {
+            Url = "hanglink.info",
+            Title = Model.Item1.Slogan,
+            Image = @$"{Model.Item1.HostName}/shared/img-backgrounds/pic-home.jpg",
+            Card = Model.Item1.DomainName
+        }
+    };
+}
+@section metaTag{
+    <partial name="../Shared/_metaTag.cshtml" model="metaData" />
+}
 <partial name="../Home/_nav.cshtml" />
 <div class="search-result-info">
     <label>Tìm thấy @Model.Item2.Count() sản phẩm </label>

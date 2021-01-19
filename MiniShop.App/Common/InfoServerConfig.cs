@@ -12,5 +12,6 @@ namespace MiniShop.App
         public string FileRootPath { get; set; }
         public string PathPageNoteFound { get; set; }
         public string HostName { get; set; }
+        public string Slogan { get; set; }
     }
 }
