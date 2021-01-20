@@ -57,9 +57,9 @@ namespace MiniShop.Web.Controllers
             return View(model);
         }
         [Route("loai/{code}")]
-        public IActionResult ProductCategory(string code)
+        public IActionResult ProductCategory(string code, string sort)
         {
-            var categoryProducts = _categoryService.GetDataByCode(code);
+            var categoryProducts = _categoryService.GetDataByCode(code, sort);
             var model = new Tuple<InfoServerConfig, ICollection<CategoryProductDto>>(
                   _infoServerConfig,
                   new List<CategoryProductDto>() { categoryProducts }
@@ -67,9 +67,9 @@ namespace MiniShop.Web.Controllers
             return View(model);
         }
         [Route("tim-kiem/{searchString}")]
-        public IActionResult SearchPage(string searchString)
+        public IActionResult SearchPage(string searchString, string sort)
         {
-            var productDtos = _productService.GetDataBySearchString(searchString);
+            var productDtos = _productService.GetDataBySearchString(searchString, sort);
             var model = new Tuple<InfoServerConfig, ICollection<ProductDto>>(
                   _infoServerConfig,
                   productDtos

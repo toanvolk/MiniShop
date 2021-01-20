@@ -77,7 +77,7 @@ namespace MiniShop.App
             return _unitOfWorfk.SaveChanges() > 0;
         }
 
-        public CategoryProductDto GetDataByCode(string code)
+        public CategoryProductDto GetDataByCode(string code, string sort)
         {
             var entity = _unitOfWorfk.CategoryRepository.Filter(o => o.NotUse != true && o.Code == code).FirstOrDefault();
             var dto = _mapper.Map<CategoryDto>(entity);
@@ -86,7 +86,7 @@ namespace MiniShop.App
             var categorys = _unitOfWorfk.CategoryRepository.Filter(o=> o.NotUse != true && o.ParentId == dto.Id, p => p.Products).ToList();
             foreach (var category in categorys)
             {
-                var productDtos = _mapper.Map<List<ProductDto>>(category.Products);
+                var productDtos = _mapper.Map<List<ProductDto>>(category.Products);                
                 productDtos.ForEach(o =>
                 {
                     o.Picture = $"{_infoServerConfig.FileRootPath}/{o.Picture}";
@@ -97,7 +97,8 @@ namespace MiniShop.App
                 products.AddRange(productDtos);
                 
             }
-
+            Enum.TryParse(sort?.ToUpper(), out ProductSortEnum productSortEnum);
+            products = products.Sort(productSortEnum);
 
             return new CategoryProductDto()
             {

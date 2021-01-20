@@ -1,0 +1,27 @@
+﻿@{
+    Layout = null;
+}
+@using MiniShop.App
+@model string;
+<div class="product sort">
+    <div class="box">
+        <select>
+            @{
+                var sorts = Enum.GetNames(typeof(ProductSortEnum));
+                foreach (var s in sorts)
+                {
+                    var productSort = Enum.Parse<ProductSortEnum>(s);
+                    if (s.ToLower() == Model)
+                    {
+                        <option value="@($"{this.Context.Request.Path}?sort={s.ToLower()}")" selected>@productSort.GetString()</option>
+                    }
+                    else
+                    {
+                        <option value="@($"{this.Context.Request.Path}?sort={s.ToLower()}")">@productSort.GetString()</option>
+
+                    }
+                }
+            }
+        </select>
+    </div>
+</div>

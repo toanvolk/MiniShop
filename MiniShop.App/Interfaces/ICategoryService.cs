@@ -12,7 +12,7 @@ namespace MiniShop.App
         ICollection<CategoryDto> LoadData();
         ICollection<CategoryDto> LoadDataAdmin();
         CategoryDto GetData(Guid categoryId);
-        CategoryProductDto GetDataByCode(string code);
+        CategoryProductDto GetDataByCode(string code, string sort);
         bool UpdateStatu(Guid categoryId, bool ischecked);
         ICollection<CategoryDto> LoadDataNonRoot();
     }

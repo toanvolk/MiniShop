@@ -4,8 +4,12 @@
 @using MiniShop.App
 @model ICollection<CategoryProductDto>;
 
+@{
+    var sort = this.Context.Request.Query["sort"].ToString();
+}
 <div id="fh5co-product-with-category" class="mshop-product-client">
-
+    <partial name="_productSort.cshtml" model="sort"/>
+    <div class="clearfix"></div>
     <div class="container">
         @foreach (var item in Model)
         {

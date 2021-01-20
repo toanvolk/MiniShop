@@ -56,7 +56,7 @@ namespace MiniShop.App
         {
             IQueryable<Product> query = null;
             if (paramSearch.CategoryIds != null && paramSearch.CategoryIds.Count > 0)
-            {                
+            {
                 var queryChild = _unitOfWorfk.Products.Where(o => paramSearch.CategoryIds.Contains(o.Category.Id));
                 if (query == null)
                     query = queryChild;
@@ -97,7 +97,7 @@ namespace MiniShop.App
         {
             var entity = _unitOfWorfk.ProductRepository.FindById(productId);
             var productDto = _mapper.Map<ProductDto>(entity);
-            
+
             return productDto;
         }
 
@@ -165,7 +165,7 @@ namespace MiniShop.App
 
         public ICollection<ProductDto> GetForAdsense(int take, string category)
         {
-            
+
             var entities = _unitOfWorfk.ProductRepository.OrderByDescending(o => o.CreatedDate).ToList();
             var productDtos = new List<ProductDto>();
             entities.ForEach(o => productDtos.Add(_mapper.Map<ProductDto>(o)));
@@ -198,10 +198,10 @@ namespace MiniShop.App
         {
             var categoryProducts = new List<CategoryProductDto>();
             //load category
-            var categorys = _unitOfWorfk.CategoryRepository.Filter(o => o.NotUse != true && o.ParentId == null).OrderBy(o=>o.SortIndex).ToList();
+            var categorys = _unitOfWorfk.CategoryRepository.Filter(o => o.NotUse != true && o.ParentId == null).OrderBy(o => o.SortIndex).ToList();
             foreach (var category in categorys)
             {
-                var categoryChild = _unitOfWorfk.CategoryRepository.Filter(o => o.ParentId == category.Id, p=>p.Products).ToList();
+                var categoryChild = _unitOfWorfk.CategoryRepository.Filter(o => o.ParentId == category.Id, p => p.Products).ToList();
                 var categoryDto = _mapper.Map<CategoryDto>(category);
                 var productDtos = new List<ProductDto>();
                 foreach (var item in categoryChild)
@@ -227,10 +227,10 @@ namespace MiniShop.App
             return categoryProducts;
         }
 
-        public ICollection<ProductDto> GetDataBySearchString(string searchString)
+        public ICollection<ProductDto> GetDataBySearchString(string searchString, string sort)
         {
             var entities = _unitOfWorfk.ProductRepository
-                .Filter(o => o.NotUse != true && o.Name.Contains(searchString), p=>p.Category)
+                .Filter(o => o.NotUse != true && o.Name.Contains(searchString), p => p.Category)
                 .ToList();
             var productDtos = new List<ProductDto>();
 
@@ -242,7 +242,8 @@ namespace MiniShop.App
                 o.Description = o.Description;//?.TakeWords(10);
                 o.Code = $"/san-pham/{o.Code}";
             });
-
+            Enum.TryParse(sort?.ToUpper(), out ProductSortEnum productSortEnum);
+            productDtos = productDtos.Sort(productSortEnum);
             return productDtos;
         }
     }

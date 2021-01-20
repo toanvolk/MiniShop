@@ -11,11 +11,18 @@
         searchString(text);
     });
     function searchString(text) {
+        if (text == "") return;
         let _url = '/san-pham/tim-kiem/' + text;
         open(_url);
     }
 })();
-
+//product sort
+(function () {
+    $(".product.sort select").on('change',function (e) {
+        let _v = e.target.value;
+        open(_v,"_self");
+    });
+})();
 //raw layout product
 (function () {
     showSlides(0);

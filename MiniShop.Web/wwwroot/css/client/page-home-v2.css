@@ -267,6 +267,85 @@ footer#fh5co-footer, .fh5co-nav {
 #fh5co-product-with-category .item {
   margin-bottom: 0.5em; }
 
+#fh5co-product-with-category .sort {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  height: 3em; }
+  #fh5co-product-with-category .sort .box {
+    position: absolute;
+    right: 0; }
+  #fh5co-product-with-category .sort .box select {
+    background-color: transparent;
+    padding: 0.3em;
+    width: 9em;
+    border: none;
+    font-size: 1.2em;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    -webkit-appearance: button;
+    appearance: button;
+    outline: none; }
+  #fh5co-product-with-category .sort .box::before {
+    content: "\f13a";
+    font-family: FontAwesome;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20%;
+    height: 100%;
+    text-align: center;
+    font-size: 2em;
+    line-height: 36px;
+    color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.1);
+    pointer-events: none; }
+  #fh5co-product-with-category .sort .box:hover::before {
+    color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(255, 255, 255, 0.2); }
+  #fh5co-product-with-category .sort .box select option {
+    padding: 30px; }
+
+/*
+    Product sort
+*/
+.product.sort {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  height: 3em; }
+  .product.sort .box {
+    position: absolute;
+    right: 0; }
+  .product.sort .box select {
+    background-color: transparent;
+    padding: 0.3em;
+    width: 9em;
+    border: none;
+    font-size: 1.2em;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    -webkit-appearance: button;
+    appearance: button;
+    outline: none; }
+  .product.sort .box::before {
+    content: "\f13a";
+    font-family: FontAwesome;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20%;
+    height: 100%;
+    text-align: center;
+    font-size: 2em;
+    line-height: 36px;
+    color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.1);
+    pointer-events: none; }
+  .product.sort .box:hover::before {
+    color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(255, 255, 255, 0.2); }
+  .product.sort .box select option {
+    padding: 30px; }
+
 @media only screen and (max-width: 360px) {
   #page {
     width: 100%; }
