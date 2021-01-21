@@ -79,7 +79,7 @@ namespace MiniShop.Infrastructure
             {
                 return "o";
             }
-            else if ("ùúûüŭůưứừựữ".Contains(s))
+            else if ("ùúûüŭůủưứừựữử".Contains(s))
             {
                 return "u";
             }
