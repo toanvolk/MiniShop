@@ -31,7 +31,12 @@ namespace MiniShop.Web.Controllers
             //filter code => productId
             var productId = _productService.GetProductId(code);
             var productDto = _productService.GetData(productId);
-            if (productId == Guid.Empty) return Redirect(_infoServerConfig.PathPageNoteFound);           
+            if (productId == Guid.Empty) return Redirect(_infoServerConfig.PathPageNoteFound);
+            if (productDto.IsRedirectToPageRoot.GetValueOrDefault())
+            {
+                return Redirect(productDto.TrackingLink);
+            }
+
             productDto.Picture = $"{_infoServerConfig.FileRootPath}/{productDto.Picture}";
 
             var model = new Tuple<ProductDto, InfoServerConfig>(productDto, _infoServerConfig);

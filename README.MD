@@ -29,6 +29,7 @@
 5. Title /san-pham
 6. clear http:
 7. sort index categorys
+8. Fix url friendly
 
 ## 10/01/2020
 1. Build layout productItem
