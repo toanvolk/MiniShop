@@ -21,6 +21,10 @@
  
 
 # Fix
+## 21/01/2020
+1. Filter product admin
+2. Blog update file production, display NotUse
+
 ## 18/01/2020
 1. Filter product client
 2. Filter product admin
