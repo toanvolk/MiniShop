@@ -30,7 +30,7 @@ namespace MiniShop.App
         }
         public Tuple<ICollection<BlogDto>, int> GetDataAdmin(int page, int pageSize, ProductPageFilterDto paramSearch)
         {
-            var query = _unitOfWorfk.BlogRepository.Filter(o => o.NotUse != true).OrderByDescending(o => o.CreatedDate);
+            var query = _unitOfWorfk.BlogRepository.OrderByDescending(o => o.CreatedDate);
             var total = query.Count();
             var entities = query.Skip((page - 1) * pageSize).Take(pageSize).ToList();
 
@@ -86,7 +86,7 @@ namespace MiniShop.App
         }
         public PageDataDto<BlogDto> LoadDataPage(PageFilterDto pageFilterDto)
         {
-            var query = _unitOfWorfk.BlogRepository.OrderByDescending(o => o.CreatedDate);
+            var query = _unitOfWorfk.BlogRepository.Filter(o => o.NotUse != true).OrderByDescending(o => o.CreatedDate);
 
             var entities = query.Skip(pageFilterDto.SkipCount).Take(pageFilterDto.TakeRecords).ToList();
 
